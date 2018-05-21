@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+        <div id="slideshow2">
+            <div>
+                <img class="img_slider2" src="https://cazaofertas.com.mx/wp-content/uploads/2014/10/ciudad-colima.jpg">
+            </div>
+            <div>
+                <img class="img_slider2" src="https://media-cdn.tripadvisor.com/media/photo-s/0a/10/54/89/promocion-viernes.jpg">
+            </div>
+            <div>
+                <img class="img_slider2" src="http://xn--perupeon-i3a.com/wp-content/uploads/2016/10/peru-penon-restaurante-peruano-cali-promocion-jueves-piqueos-peruanos.png">
+            </div>
+        </div>
+        <a class="btn btn-success btn-lg flotante right" href="@Url.Action("Index", "POS_MC_CATEGORIAS")">MENU</a>
+  
+ <script>$("#slideshow2 > div:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow2 > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow2');
+}, 3000);</script>

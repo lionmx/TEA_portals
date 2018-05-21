@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Backoffice0._1.Models.M_callcenter_clientes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.especificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colonia_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adicionales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_ubicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_pwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.app_gcm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ultima_compra)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.especificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colonia_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adicionales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_ubicacion)
+        </td>   
+        <td>
+            @Html.DisplayFor(modelItem => item.app_pwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_gcm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ultima_compra)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

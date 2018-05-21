@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8df421ee769464da303ccedfa7dabf6" Name="Diagram1">
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.MODULOS" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.PERFILES" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.PERMISOS" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.PERMISOS_ASIGNADOS" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.ROLES" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.USUARIOS" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__PERMISOS___ID_MO__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__ROLES__ID_PERFIL__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__USUARIOS__ID_PER__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__PERMISOS___ID_PE__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__PERMISOS___ID_RO__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__PERMISOS___ID_US__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__USUARIOS__ID_ROL__21B6055D" ManuallyRouted="false" />
+
+        <EntityTypeShape EntityType="QUESIPIZZAS_DEV1Model.USUARIO_LOGIN" Width="1.5" PointX="10.5" PointY="3.875" />
+        <AssociationConnector Association="QUESIPIZZAS_DEV1Model.FK__USUARIO_L__ID_US__02FC7413" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

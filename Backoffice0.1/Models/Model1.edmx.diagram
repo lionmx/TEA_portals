@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b3b959b33ec419e8022aea9f7a8de3b" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_almacenes" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_almacen" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_calculo" Width="1.5" PointX="26" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_diafestivo_ap" Width="1.5" PointX="29" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_diasfestivos" Width="1.5" PointX="26.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_g" Width="1.5" PointX="23.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_orden" Width="1.5" PointX="2.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_porc_df" Width="1.5" PointX="31.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_suc_ir" Width="1.5" PointX="26" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_cajas" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_campaña_empresas" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_campaña_medios" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_campañas" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_cfdi_informacion" Width="1.5" PointX="25.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_ciudades" Width="1.5" PointX="7" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_clientes" Width="1.5" PointX="13.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_clientes_direccion" Width="1.5" PointX="16" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_clientes_telefono" Width="1.5" PointX="16" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_codigos_postales" Width="1.5" PointX="9.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_colonias" Width="1.5" PointX="11.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_direcciones" Width="1.5" PointX="13.75" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_empresas" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_estados" Width="1.5" PointX="4.75" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_eventos" Width="1.5" PointX="16.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_facturas" Width="1.5" PointX="28" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_impuesto_producto" Width="1.5" PointX="8.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_impuestos" Width="1.5" PointX="6" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_cat" Width="1.5" PointX="9" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_mov_status" Width="1.5" PointX="18.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_mov_suc_d" Width="1.5" PointX="23.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_mov_suc_g" Width="1.5" PointX="21" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_sucursal" Width="1.5" PointX="11.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_insumo_tipo_mov" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_marca_config" Width="1.5" PointX="12" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_marcas" Width="1.5" PointX="9.75" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_marcas_sociedades" Width="1.5" PointX="12" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_medios" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_modulos" Width="1.5" PointX="9" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pago_tipo" Width="1.5" PointX="16.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_paises" Width="1.5" PointX="2.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_parametros" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_parametros_sucursales" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pedido_status" Width="1.5" PointX="16.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pedidos" Width="1.5" PointX="19" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pedidos_d" Width="1.5" PointX="21.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pedidos_pagos" Width="1.5" PointX="21.25" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_pedidos_tipo" Width="1.5" PointX="16.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_presentaciones" Width="1.5" PointX="9" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_producto_clasificacion" Width="1.5" PointX="3.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_producto_presentacion" Width="1.5" PointX="11.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_productos_cat" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_productos_precios" Width="1.5" PointX="14.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_productos_sucursal" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_promociones_d" Width="1.5" PointX="11.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_promociones_g" Width="1.5" PointX="9" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_promociones_prods" Width="1.5" PointX="13.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_promociones_sucursales" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_servicios" Width="1.5" PointX="9" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_servicios_modulos" Width="1.5" PointX="11.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_servicios_sucursal" Width="1.5" PointX="11.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_sociedades" Width="1.5" PointX="3.75" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_sociedades_empresas" Width="1.5" PointX="6" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_suc_invreal" Width="1.5" PointX="23.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_suc_invreal_d" Width="1.5" PointX="26" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_sucursales" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_telefonos" Width="1.5" PointX="13.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_tipo_empaque" Width="1.5" PointX="6.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_tipos_codigo" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_tracking_status" Width="1.5" PointX="16.75" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_unidades" Width="1.5" PointX="6.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_unidades_medida" Width="1.5" PointX="6.75" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_ventas_d" Width="1.5" PointX="16.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_ventas_g" Width="1.5" PointX="14.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_ventas_tipo" Width="1.5" PointX="12" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_zona_almacen_suc" Width="1.5" PointX="9" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_zonas_almacenaje" Width="1.5" PointX="2.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_zonas_precio" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_callcenter_cliente" Width="1.5" PointX="15.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_modulos" Width="1.5" PointX="21" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_perfiles" Width="1.5" PointX="18.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_permisos" Width="1.5" PointX="21" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_permisos_asignados" Width="1.5" PointX="23.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_roles" Width="1.5" PointX="21" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_usuario_login" Width="1.5" PointX="28.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.CS_usuarios" Width="1.5" PointX="26.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.ELMAH_Error" Width="1.5" PointX="0.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.M_callcenter_clientes" Width="1.5" PointX="23.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.M_callcenter_clientes_adicionales" Width="1.5" PointX="18.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.sysdiagram" Width="1.5" PointX="20.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_producto_tipo" Width="1.5" PointX="18.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_proveedores" Width="1.5" PointX="20.75" PointY="28.125" IsExpanded="true" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_C_bo_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_diafestivo_ap_C_bo_diasfestivos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_diafestivo_ap_C_bo_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_porc_df_C_bo_diafestivo_ap" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_suc_ir_C_bo_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_suc_ir_C_suc_invreal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Cajas_Sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campañas_C_campaña_empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_medios_C_campañas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_medios_C_medios" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campañas_C_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campañas_C_promociones_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_campañas_C_tipos_codigo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Facturas_CFDI_informacion" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Ciudades_Estados" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_CodigosPostales_Ciudades" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_clientes_direccion_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Clientes_telefono_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_clientes_direccion_Direcciones" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Clientes_telefono_Telefonos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Colonias_CodigosPostales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Direcciones_Colonias" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_sociedades_empresas_C_empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_sucursales_C_empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Sucursales_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Estados_Paises" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_Eventos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_impuesto_producto_impuestos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_impuesto_producto_Productos_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_Insumo_cat_C_tipo_empaque" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_Insumo_cat_C_unidades" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_insumo_sucursal_Insumo_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_insumo_mov_suc_g_C_insumo_mov_status" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_insumo_mov_suc_d_C_insumo_mov_suc_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_insumo_mov_suc_g_C_insumo_tipo_mov" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_insumo_sucursal_C_Zona_almacen_suc" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_insumo_sucursal_Sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_marca_config_C_marcas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_marcas_sociedades_C_marcas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_marcas_sociedades_C_sociedades" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_modulos_C_modulos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_pago_tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_parametros_sucursales_parametros" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_parametros_sucursales_Sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_pedido_status" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_anticipos_pedidos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_d_pedidos" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_pedidos_tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_pedidos_tracking_status" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_presentaciones_unidades_medida" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_producto_presentacion_presentaciones" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_Productos_cat_producto_clasificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_producto_presentacion_Productos_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_productos_precios_Productos_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_productos_sucursal_Productos_cat" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_productos_precios_zonas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_productos_sucursal_Sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_promocion_d_C_promociones_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_promocion_prods_C_promocion_d" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_promocion_sucursal_C_promociones_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_promocion_sucursal_C_Sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_modulos_C_servicios" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_sucursal_C_servicios" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_sucursal_C_sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_sociedades_empresas_C_sociedades" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_suc_invreal_d_C_suc_invreal" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_Sucursales_C_zonas" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_ventas_g_C_sucursales" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_ventas_d_ventas_g" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_ventas_g_ventas_tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__PERMISOS___ID_MO__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__ROLES__ID_PERFIL__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__USUARIOS__ID_PER__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__PERMISOS___ID_PE__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__PERMISOS___ID_RO__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__PERMISOS___ID_US__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__USUARIOS__ID_ROL__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK__CS_usuari__ID_US__73501C2F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QUESIPIZZAS_DEV1ModelStoreContainer" CdmEntityContainer="QUESIPIZZAS_DEV1Entities2">
+    <EntitySetMapping Name="MODULOS">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.MODULOS">
+        <MappingFragment StoreEntitySet="MODULOS">
+          <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERFILES">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERFILES">
+        <MappingFragment StoreEntitySet="PERFILES">
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERMISOS">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERMISOS">
+        <MappingFragment StoreEntitySet="PERMISOS">
+          <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERMISOS_ASIGNADOS">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERMISOS_ASIGNADOS">
+        <MappingFragment StoreEntitySet="PERMISOS_ASIGNADOS">
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+          <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ID_PERMISO_ASIGNADO" ColumnName="ID_PERMISO_ASIGNADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLES">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.ROLES">
+        <MappingFragment StoreEntitySet="ROLES">
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="REF" ColumnName="REF" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="TARJETA_EMPLEADO" ColumnName="TARJETA_EMPLEADO" />
+          <ScalarProperty Name="ESTADO_ACTUAL" ColumnName="ESTADO_ACTUAL" />
+          <ScalarProperty Name="GAFETE_IDENTIFICACION" ColumnName="GAFETE_IDENTIFICACION" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CALLCENTER_CLIENTES1Set">
+      <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.CALLCENTER_CLIENTES1">
+        <MappingFragment StoreEntitySet="CALLCENTER_CLIENTES">
+          <ScalarProperty Name="ULTIMA_COMPRA" ColumnName="ULTIMA_COMPRA" />
+          <ScalarProperty Name="APP_GCM" ColumnName="APP_GCM" />
+          <ScalarProperty Name="APP_PWD" ColumnName="APP_PWD" />
+          <ScalarProperty Name="APP_UBICACION" ColumnName="APP_UBICACION" />
+          <ScalarProperty Name="ADICIONALES" ColumnName="ADICIONALES" />
+          <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+          <ScalarProperty Name="COLONIA_ID" ColumnName="COLONIA_ID" />
+          <ScalarProperty Name="ESPECIFICACION" ColumnName="ESPECIFICACION" />
+          <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

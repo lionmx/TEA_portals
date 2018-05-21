@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QUESIPIZZAS_DEV1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MODULOS">
+    <Key>
+      <PropertyRef Name="ID_MODULO" />
+    </Key>
+    <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_MO__1DE57479" FromRole="MODULOS" ToRole="PERMISOS_ASIGNADOS" />
+  </EntityType>
+  <EntityType Name="PERFILES">
+    <Key>
+      <PropertyRef Name="ID_PERFIL" />
+    </Key>
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ROLES" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="PERFILES" ToRole="ROLES" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="PERFILES" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="PERMISOS">
+    <Key>
+      <PropertyRef Name="ID_PERMISO" />
+    </Key>
+    <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_PE__1CF15040" FromRole="PERMISOS" ToRole="PERMISOS_ASIGNADOS" />
+  </EntityType>
+  <EntityType Name="PERMISOS_ASIGNADOS">
+    <Key>
+      <PropertyRef Name="ID_PERMISO_ASIGNADO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="Boolean" />
+    <Property Name="ID_PERMISO_ASIGNADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="MODULOS" Relationship="Self.FK__PERMISOS___ID_MO__1DE57479" FromRole="PERMISOS_ASIGNADOS" ToRole="MODULOS" />
+    <NavigationProperty Name="PERMISOS" Relationship="Self.FK__PERMISOS___ID_PE__1CF15040" FromRole="PERMISOS_ASIGNADOS" ToRole="PERMISOS" />
+    <NavigationProperty Name="ROLES" Relationship="Self.FK__PERMISOS___ID_RO__1BFD2C07" FromRole="PERMISOS_ASIGNADOS" ToRole="ROLES" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__PERMISOS___ID_US__1B0907CE" FromRole="PERMISOS_ASIGNADOS" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="ROLES">
+    <Key>
+      <PropertyRef Name="ID_ROL" />
+    </Key>
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERFILES" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="ROLES" ToRole="PERFILES" />
+    <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_RO__1BFD2C07" FromRole="ROLES" ToRole="PERMISOS_ASIGNADOS" />
+    <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__ID_ROL__21B6055D" FromRole="ROLES" ToRole="USUARIOS" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="REF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TARJETA_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO_ACTUAL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="GAFETE_IDENTIFICACION" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PERFILES" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="USUARIOS" ToRole="PERFILES" />
+    <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_US__1B0907CE" FromRole="USUARIOS" ToRole="PERMISOS_ASIGNADOS" />
+    <NavigationProperty Name="ROLES" Relationship="Self.FK__USUARIOS__ID_ROL__21B6055D" FromRole="USUARIOS" ToRole="ROLES" />
+  </EntityType>
+  <Association Name="FK__PERMISOS___ID_MO__1DE57479">
+    <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
+    <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULOS">
+        <PropertyRef Name="ID_MODULO" />
+      </Principal>
+      <Dependent Role="PERMISOS_ASIGNADOS">
+        <PropertyRef Name="ID_MODULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ROLES__ID_PERFIL__145C0A3F">
+    <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERFILES">
+        <PropertyRef Name="ID_PERFIL" />
+      </Principal>
+      <Dependent Role="ROLES">
+        <PropertyRef Name="ID_PERFIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIOS__ID_PER__1920BF5C">
+    <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERFILES">
+        <PropertyRef Name="ID_PERFIL" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="ID_PERFIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_PE__1CF15040">
+    <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="0..1" />
+    <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERMISOS">
+        <PropertyRef Name="ID_PERMISO" />
+      </Principal>
+      <Dependent Role="PERMISOS_ASIGNADOS">
+        <PropertyRef Name="ID_PERMISO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_RO__1BFD2C07">
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+    <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="PERMISOS_ASIGNADOS">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_US__1B0907CE">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+    <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="PERMISOS_ASIGNADOS">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIOS__ID_ROL__21B6055D">
+    <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLES">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="USUARIOS">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QUESIPIZZAS_DEV1Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
+    <EntitySet Name="PERFILES" EntityType="Self.PERFILES" />
+    <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" />
+    <EntitySet Name="PERMISOS_ASIGNADOS" EntityType="Self.PERMISOS_ASIGNADOS" />
+    <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+    <AssociationSet Name="FK__PERMISOS___ID_MO__1DE57479" Association="Self.FK__PERMISOS___ID_MO__1DE57479">
+      <End Role="MODULOS" EntitySet="MODULOS" />
+      <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ROLES__ID_PERFIL__145C0A3F" Association="Self.FK__ROLES__ID_PERFIL__145C0A3F">
+      <End Role="PERFILES" EntitySet="PERFILES" />
+      <End Role="ROLES" EntitySet="ROLES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIOS__ID_PER__1920BF5C" Association="Self.FK__USUARIOS__ID_PER__1920BF5C">
+      <End Role="PERFILES" EntitySet="PERFILES" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_PE__1CF15040" Association="Self.FK__PERMISOS___ID_PE__1CF15040">
+      <End Role="PERMISOS" EntitySet="PERMISOS" />
+      <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_RO__1BFD2C07" Association="Self.FK__PERMISOS___ID_RO__1BFD2C07">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_US__1B0907CE" Association="Self.FK__PERMISOS___ID_US__1B0907CE">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIOS__ID_ROL__21B6055D" Association="Self.FK__USUARIOS__ID_ROL__21B6055D">
+      <End Role="ROLES" EntitySet="ROLES" />
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+    </AssociationSet>
+    <EntitySet Name="CALLCENTER_CLIENTES1Set" EntityType="QUESIPIZZAS_DEV1Model.CALLCENTER_CLIENTES1" />
+  </EntityContainer>
+  <EntityType Name="CALLCENTER_CLIENTES1">
+    <Key>
+      <PropertyRef Name="ID_CLIENTE" />
+      <PropertyRef Name="TELEFONO" />
+      <PropertyRef Name="NOMBRE" />
+    </Key>
+    <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
+    <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CALLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ESPECIFICACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="COLONIA_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="REFERENCIA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="ADICIONALES" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="APP_UBICACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="APP_PWD" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="APP_GCM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ULTIMA_COMPRA" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

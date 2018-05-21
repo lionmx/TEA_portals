@@ -1,0 +1,27 @@
+﻿@model Backoffice0._1.Models.PERFILES
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PERFILES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRIPCION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_PERFIL }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

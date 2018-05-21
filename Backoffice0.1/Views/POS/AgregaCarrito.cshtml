@@ -1,0 +1,57 @@
+﻿ <!--  <p>Add class <code>bulk_action</code> to table for bulk actions options on row select</p>-->
+<table class="table table-striped ">
+    <thead>
+        <tr class="headings">
+
+            <th class="column-title">#</th>
+            <th class="column-title">Producto </th>
+            <th class="column-title">Total</th>
+            <th class="bulk-actions" colspan="7">
+                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @if (Session["Carrito"] != null)
+        {
+            foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
+            {
+                <tr class="even pointer">
+                    <td class=" "><select><option>1</option><option>2</option></select></td>
+                    <td class=" ">@item.Cantidad</td>
+                    <td class=" ">@item.Producto </td>
+                    <td>  <a href="#" onclick="Removecarrito(1)" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>  </a> </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<table class="table table-striped ">
+
+    <tbody>
+        <tr class="even pointer">
+            <td class=" "></td>
+            <td class=" "></td>
+            <td class=" ">Subtotal</td>
+            <td class=" ">$69.90 </td>
+            
+        </tr>
+        <tr class="even pointer">
+            <td class=" "></td>
+            <td class=" "></td>
+            <td class=" ">IVA</td>
+            <td class=" ">$69.90 </td>
+            
+        </tr>
+        <tr class="even pointer">
+            <td class=" "></td>
+            <td class=" "></td>
+            <td class=" "><h2>Total</h2></td>
+            <td class=" "><h2>$69.90</h2> </td>
+          
+        </tr>
+    </tbody>
+</table>
+<button type="button" class="btn btn-danger" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
+

@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_CORPORATIVA_DEVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CS_modulos">
+    <Key>
+      <PropertyRef Name="ID_MODULO" />
+    </Key>
+    <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__PERMISOS___ID_MO__1FCDBCEB" FromRole="CS_modulos" ToRole="CS_permisos_asignados" />
+  </EntityType>
+  <EntityType Name="CS_perfiles">
+    <Key>
+      <PropertyRef Name="ID_PERFIL" />
+    </Key>
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_roles" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="CS_perfiles" ToRole="CS_roles" />
+    <NavigationProperty Name="CS_usuarios" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="CS_perfiles" ToRole="CS_usuarios" />
+  </EntityType>
+  <EntityType Name="CS_permisos">
+    <Key>
+      <PropertyRef Name="ID_PERMISO" />
+    </Key>
+    <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__PERMISOS___ID_PE__1ED998B2" FromRole="CS_permisos" ToRole="CS_permisos_asignados" />
+  </EntityType>
+  <EntityType Name="CS_permisos_asignados">
+    <Key>
+      <PropertyRef Name="ID_PERMISO_ASIGNADOS" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ID_PERMISO_ASIGNADOS" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="CS_modulos" Relationship="Self.FK__PERMISOS___ID_MO__1FCDBCEB" FromRole="CS_permisos_asignados" ToRole="CS_modulos" />
+    <NavigationProperty Name="CS_permisos" Relationship="Self.FK__PERMISOS___ID_PE__1ED998B2" FromRole="CS_permisos_asignados" ToRole="CS_permisos" />
+    <NavigationProperty Name="CS_roles" Relationship="Self.FK__PERMISOS___ID_RO__1DE57479" FromRole="CS_permisos_asignados" ToRole="CS_roles" />
+    <NavigationProperty Name="CS_usuarios" Relationship="Self.FK__PERMISOS___ID_US__1CF15040" FromRole="CS_permisos_asignados" ToRole="CS_usuarios" />
+  </EntityType>
+  <EntityType Name="CS_roles">
+    <Key>
+      <PropertyRef Name="ID_ROL" />
+    </Key>
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_perfiles" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="CS_roles" ToRole="CS_perfiles" />
+    <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__PERMISOS___ID_RO__1DE57479" FromRole="CS_roles" ToRole="CS_permisos_asignados" />
+    <NavigationProperty Name="CS_usuarios" Relationship="Self.FK__USUARIOS__ID_ROL__1A14E395" FromRole="CS_roles" ToRole="CS_usuarios" />
+  </EntityType>
+  <EntityType Name="CS_usuario_login">
+    <Key>
+      <PropertyRef Name="ID_LOGIN" />
+    </Key>
+    <Property Name="ID_LOGIN" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_usuarios" Relationship="Self.FK__CS_usuari__ID_US__73501C2F" FromRole="CS_usuario_login" ToRole="CS_usuarios" />
+    <Property Name="FECHA_LOGIN" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="CS_usuarios">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="REF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TARJETA_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO_ACTUAL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="GAFETE_IDENTIFICACION" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CS_perfiles" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="CS_usuarios" ToRole="CS_perfiles" />
+    <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__PERMISOS___ID_US__1CF15040" FromRole="CS_usuarios" ToRole="CS_permisos_asignados" />
+    <NavigationProperty Name="CS_roles" Relationship="Self.FK__USUARIOS__ID_ROL__1A14E395" FromRole="CS_usuarios" ToRole="CS_roles" />
+    <NavigationProperty Name="CS_usuario_login" Relationship="Self.FK__CS_usuari__ID_US__73501C2F" FromRole="CS_usuarios" ToRole="CS_usuario_login" />
+  </EntityType>
+  <EntityType Name="ELMAH_Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Guid" Nullable="false" />
+    <Property Name="Application" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusCode" Type="Int32" Nullable="false" />
+    <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AllXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="M_callcenter_clientes">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="telefono" />
+      <PropertyRef Name="nombre" />
+      <PropertyRef Name="ultima_compra" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="calle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="especificacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="colonia_id" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="referencia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="adicionales" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="app_ubicacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="app_pwd" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="app_gcm" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ultima_compra" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__PERMISOS___ID_MO__1FCDBCEB">
+    <End Role="CS_modulos" Type="Self.CS_modulos" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_modulos">
+        <PropertyRef Name="ID_MODULO" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_MODULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ROLES__ID_PERFIL__145C0A3F">
+    <End Role="CS_perfiles" Type="Self.CS_perfiles" Multiplicity="0..1" />
+    <End Role="CS_roles" Type="Self.CS_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_perfiles">
+        <PropertyRef Name="ID_PERFIL" />
+      </Principal>
+      <Dependent Role="CS_roles">
+        <PropertyRef Name="ID_PERFIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIOS__ID_PER__1920BF5C">
+    <End Role="CS_perfiles" Type="Self.CS_perfiles" Multiplicity="0..1" />
+    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_perfiles">
+        <PropertyRef Name="ID_PERFIL" />
+      </Principal>
+      <Dependent Role="CS_usuarios">
+        <PropertyRef Name="ID_PERFIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_PE__1ED998B2">
+    <End Role="CS_permisos" Type="Self.CS_permisos" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_permisos">
+        <PropertyRef Name="ID_PERMISO" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_PERMISO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_RO__1DE57479">
+    <End Role="CS_roles" Type="Self.CS_roles" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_roles">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PERMISOS___ID_US__1CF15040">
+    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_usuarios">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIOS__ID_ROL__1A14E395">
+    <End Role="CS_roles" Type="Self.CS_roles" Multiplicity="0..1" />
+    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_roles">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="CS_usuarios">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CS_usuari__ID_US__73501C2F">
+    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="0..1" />
+    <End Role="CS_usuario_login" Type="Self.CS_usuario_login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CS_usuarios">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="CS_usuario_login">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_CORPORATIVA_DEVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CS_modulos" EntityType="Self.CS_modulos" />
+    <EntitySet Name="CS_perfiles" EntityType="Self.CS_perfiles" />
+    <EntitySet Name="CS_permisos" EntityType="Self.CS_permisos" />
+    <EntitySet Name="CS_permisos_asignados" EntityType="Self.CS_permisos_asignados" />
+    <EntitySet Name="CS_roles" EntityType="Self.CS_roles" />
+    <EntitySet Name="CS_usuario_login" EntityType="Self.CS_usuario_login" />
+    <EntitySet Name="CS_usuarios" EntityType="Self.CS_usuarios" />
+    <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
+    <EntitySet Name="M_callcenter_clientes" EntityType="Self.M_callcenter_clientes" />
+    <AssociationSet Name="FK__PERMISOS___ID_MO__1FCDBCEB" Association="Self.FK__PERMISOS___ID_MO__1FCDBCEB">
+      <End Role="CS_modulos" EntitySet="CS_modulos" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ROLES__ID_PERFIL__145C0A3F" Association="Self.FK__ROLES__ID_PERFIL__145C0A3F">
+      <End Role="CS_perfiles" EntitySet="CS_perfiles" />
+      <End Role="CS_roles" EntitySet="CS_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIOS__ID_PER__1920BF5C" Association="Self.FK__USUARIOS__ID_PER__1920BF5C">
+      <End Role="CS_perfiles" EntitySet="CS_perfiles" />
+      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_PE__1ED998B2" Association="Self.FK__PERMISOS___ID_PE__1ED998B2">
+      <End Role="CS_permisos" EntitySet="CS_permisos" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_RO__1DE57479" Association="Self.FK__PERMISOS___ID_RO__1DE57479">
+      <End Role="CS_roles" EntitySet="CS_roles" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PERMISOS___ID_US__1CF15040" Association="Self.FK__PERMISOS___ID_US__1CF15040">
+      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIOS__ID_ROL__1A14E395" Association="Self.FK__USUARIOS__ID_ROL__1A14E395">
+      <End Role="CS_roles" EntitySet="CS_roles" />
+      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CS_usuari__ID_US__73501C2F" Association="Self.FK__CS_usuari__ID_US__73501C2F">
+      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
+      <End Role="CS_usuario_login" EntitySet="CS_usuario_login" />
+    </AssociationSet>
+    <FunctionImport Name="ELMAH_GetErrorsXml" ReturnType="Collection(String)">
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="TotalCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ELMAH_GetErrorXml" ReturnType="Collection(String)">
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="ErrorId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="ELMAH_LogError">
+      <Parameter Name="ErrorId" Mode="In" Type="Guid" />
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="Host" Mode="In" Type="String" />
+      <Parameter Name="Type" Mode="In" Type="String" />
+      <Parameter Name="Source" Mode="In" Type="String" />
+      <Parameter Name="Message" Mode="In" Type="String" />
+      <Parameter Name="User" Mode="In" Type="String" />
+      <Parameter Name="AllXml" Mode="In" Type="String" />
+      <Parameter Name="StatusCode" Mode="In" Type="Int32" />
+      <Parameter Name="TimeUtc" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

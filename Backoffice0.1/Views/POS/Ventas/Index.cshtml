@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_right">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3" id="Clientes">
+            @{Html.RenderAction("Clientes", "POS");}
+        </div>
+        <div class="" id="Productos">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" style="margin-bottom:-30px;">
+                    <div class="row" id="productos">
+                        <a onclick="Addcarrito(1)">
+                            <div class="col-md-55">
+                                <div class="thumbnail">
+                                    <div class="image view view-first">
+                                        <img style="width: 100%; display: block;" src="/Content/production/images/4.jpg" alt="image" />
+                                    </div>
+                                    <div class="caption">
+                                        <p><strong>click</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="x_panel ">
+                <div class="x_content" id="categorias">
+                    @{Html.RenderAction("ConsultaCategorias", "POS");}
+                </div>
+                <div class="x_content" id="paquetes">
+                    @{Html.RenderAction("BotonesEspeciales", "POS");}
+                </div>
+            </div>
+            <div id="slideshow" class="right">
+                @{Html.RenderAction("ConsultaBanners", "POS");}
+            </div>
+        </div>
+        aaasasas
+        <div class="" id="Carrito">
+            <div class="x_panel">
+                <div class="nav_menu" style="background:white;color:black;">
+                    @{Html.RenderAction("TrackingPedido", "POS");}
+                    <h2>Cuenta a pagar <small></small></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" id="carritodiv">
+                </div>
+                <div>
+                    <table class="table table-striped ">
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class=" "></td>
+                                <td class=" "></td>
+                                <td class=" ">Subtotal</td>
+                                <td class=" "><label id="total"></label> </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" "></td>
+                                <td class=" "></td>
+                                <td class=" "><h2>Total</h2></td>
+                                <td class=" "><h2>$69.90</h2> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
+
+                </div>
+                <input type="button" class="btn btn-danger" onclick="ChecarPerfil(0)" value="checar perfil"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-sm-8 col-xs-8">
+        </div>
+    </div>
+</div>
+<script>
+    function sumar() {
+        var totalInp = $('[name="precio"]');
+        var total = 0;
+
+        totalInp.each(function () {
+            total += parseFloat($(this).val());
+        });
+        $('#total').text(total);
+    }
+
+    var Addcarrito = function (idproduct) {
+        $.ajax({
+            url: "../POS/AgregaCarrito",
+            data: { id: idproduct },
+            success: function (result) {
+                $("#carritodiv").html(result);
+                sumar();
+            }
+        });
+    }
+    var Removecarrito = function (idproduct) {
+        $.ajax({
+            url: "../POS/RemueveCarrito",
+            data: { id: idproduct },
+            success: function (result) {
+                $("#carritodiv").html(result);
+                sumar();
+            }
+        });
+    }
+    var Visualizacarrito = function () {
+        $.ajax({
+            url: "../POS/VisualizaCarrito",
+            success: function (result) {
+                $("#visualizacarrito").html(result);
+            }
+
+        });
+    }
+    var FiltraProductos = function () {
+        $.ajax({
+            url: "../POS/FiltraProductos",
+            
+            success: function (result) {
+                $("#productos").html(result);
+            }
+
+        });
+    }
+    var ConsultaSubcategorias = function (id_tipo_producto) {
+        $.ajax({
+            url: "../POS/ConsultaSubCategorias",
+            data: { id_tipo_producto: id_tipo_producto },
+            success: function (result) {
+                $("#categorias").html(result);
+            }
+
+        });
+    }
+    var ConsultaCategorias = function (id_tipo_producto) {
+        $.ajax({
+            url: "../POS/ConsultaCategorias",
+            success: function (result) {
+                $("#categorias").html(result);
+            }
+
+        });
+    }
+    var ChecarPerfil = function (id_perfil) {
+        if (id_perfil == 1) {
+            document.getElementById("Clientes").style.display = "none";
+            document.getElementById("Productos").className = "col-md-8 col-sm-8";
+            document.getElementById("Carrito").className = "col-md-4 col-sm-4";
+        }
+        else {
+            document.getElementById("Productos").className = "col-md-6 col-sm-6";
+            document.getElementById("Carrito").className = "col-md-3 col-sm-3";
+        }
+    }
+    var RecogerPedido = function () {
+        $('#div1').style.display = "block";
+
+    }
+   
+    
+</script>
+
+

@@ -1,0 +1,585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QUESIPIZZAS_DEV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CALLCENTER_CLIENTES">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+            <PropertyRef Name="TELEFONO" />
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CALLE" Type="varchar(max)" />
+          <Property Name="ESPECIFICACION" Type="varchar(max)" />
+          <Property Name="COLONIA_ID" Type="varchar" MaxLength="45" />
+          <Property Name="REFERENCIA" Type="varchar" MaxLength="45" />
+          <Property Name="ADICIONALES" Type="varchar" MaxLength="2" />
+          <Property Name="APP_UBICACION" Type="varchar" MaxLength="100" />
+          <Property Name="APP_PWD" Type="varchar" MaxLength="45" />
+          <Property Name="APP_GCM" Type="varchar(max)" />
+          <Property Name="ULTIMA_COMPRA" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MODULOS">
+          <Key>
+            <PropertyRef Name="ID_MODULO" />
+          </Key>
+          <Property Name="ID_MODULO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PERFILES">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PERMISOS">
+          <Key>
+            <PropertyRef Name="ID_PERMISO" />
+          </Key>
+          <Property Name="ID_PERMISO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PERMISOS_ASIGNADOS">
+          <Key>
+            <PropertyRef Name="ID_PERMISO_ASIGNADOS" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="varchar" MaxLength="10" />
+          <Property Name="ID_ROL" Type="varchar" MaxLength="10" />
+          <Property Name="ID_PERMISO" Type="varchar" MaxLength="10" />
+          <Property Name="ID_MODULO" Type="varchar" MaxLength="10" />
+          <Property Name="STATUS" Type="char" MaxLength="1" />
+          <Property Name="ID_PERMISO_ASIGNADOS" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="varchar" MaxLength="10" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="USUARIO_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="varchar" MaxLength="10" />
+          <Property Name="PASS" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_LOGIN" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
+          <Property Name="REF" Type="varchar" MaxLength="10" />
+          <Property Name="PASS" Type="varchar" MaxLength="50" />
+          <Property Name="ID_PERFIL" Type="varchar" MaxLength="10" />
+          <Property Name="TARJETA_EMPLEADO" Type="varchar" MaxLength="10" />
+          <Property Name="ESTADO_ACTUAL" Type="varchar" MaxLength="25" />
+          <Property Name="GAFETE_IDENTIFICACION" Type="varchar" MaxLength="45" />
+          <Property Name="ID_ROL" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK__PERMISOS___ID_MO__7F2BE32F">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_PE__7E37BEF6">
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERMISOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_RO__7D439ABD">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_US__7C4F7684">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROLES__ID_PERFIL__145C0A3F">
+          <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="ROLES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO_L__ID_US__02FC7413">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="USUARIO_LOGIN" Type="Self.USUARIO_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="USUARIO_LOGIN">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIOS__ID_PER__1920BF5C">
+          <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIOS__ID_ROL__21B6055D">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUESIPIZZAS_DEV1ModelStoreContainer">
+          <EntitySet Name="CALLCENTER_CLIENTES" EntityType="Self.CALLCENTER_CLIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULOS" EntityType="Self.MODULOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERFILES" EntityType="Self.PERFILES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERMISOS_ASIGNADOS" EntityType="Self.PERMISOS_ASIGNADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO_LOGIN" EntityType="Self.USUARIO_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PERMISOS___ID_MO__7F2BE32F" Association="Self.FK__PERMISOS___ID_MO__7F2BE32F">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_PE__7E37BEF6" Association="Self.FK__PERMISOS___ID_PE__7E37BEF6">
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_RO__7D439ABD" Association="Self.FK__PERMISOS___ID_RO__7D439ABD">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_US__7C4F7684" Association="Self.FK__PERMISOS___ID_US__7C4F7684">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROLES__ID_PERFIL__145C0A3F" Association="Self.FK__ROLES__ID_PERFIL__145C0A3F">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="ROLES" EntitySet="ROLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO_L__ID_US__02FC7413" Association="Self.FK__USUARIO_L__ID_US__02FC7413">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="USUARIO_LOGIN" EntitySet="USUARIO_LOGIN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIOS__ID_PER__1920BF5C" Association="Self.FK__USUARIOS__ID_PER__1920BF5C">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIOS__ID_ROL__21B6055D" Association="Self.FK__USUARIOS__ID_ROL__21B6055D">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUESIPIZZAS_DEV1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MODULOS">
+          <Key>
+            <PropertyRef Name="ID_MODULO" />
+          </Key>
+          <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_MO__1DE57479" FromRole="MODULOS" ToRole="PERMISOS_ASIGNADOS" />
+        </EntityType>
+        <EntityType Name="PERFILES">
+          <Key>
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ROLES" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="PERFILES" ToRole="ROLES" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="PERFILES" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="PERMISOS">
+          <Key>
+            <PropertyRef Name="ID_PERMISO" />
+          </Key>
+          <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_PE__1CF15040" FromRole="PERMISOS" ToRole="PERMISOS_ASIGNADOS" />
+        </EntityType>
+        <EntityType Name="PERMISOS_ASIGNADOS">
+          <Key>
+            <PropertyRef Name="ID_PERMISO_ASIGNADOS" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PERMISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ID_MODULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="MODULOS" Relationship="Self.FK__PERMISOS___ID_MO__1DE57479" FromRole="PERMISOS_ASIGNADOS" ToRole="MODULOS" />
+          <NavigationProperty Name="PERMISOS" Relationship="Self.FK__PERMISOS___ID_PE__1CF15040" FromRole="PERMISOS_ASIGNADOS" ToRole="PERMISOS" />
+          <NavigationProperty Name="ROLES" Relationship="Self.FK__PERMISOS___ID_RO__1BFD2C07" FromRole="PERMISOS_ASIGNADOS" ToRole="ROLES" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK__PERMISOS___ID_US__1B0907CE" FromRole="PERMISOS_ASIGNADOS" ToRole="USUARIOS" />
+          <Property Name="ID_PERMISO_ASIGNADOS" Type="Decimal" Nullable="false" Precision="10" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ROLES">
+          <Key>
+            <PropertyRef Name="ID_ROL" />
+          </Key>
+          <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERFILES" Relationship="Self.FK__ROLES__ID_PERFIL__145C0A3F" FromRole="ROLES" ToRole="PERFILES" />
+          <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_RO__1BFD2C07" FromRole="ROLES" ToRole="PERMISOS_ASIGNADOS" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK__USUARIOS__ID_ROL__21B6055D" FromRole="ROLES" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REF" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PERFIL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TARJETA_EMPLEADO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_ACTUAL" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="GAFETE_IDENTIFICACION" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ID_ROL" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PERFILES" Relationship="Self.FK__USUARIOS__ID_PER__1920BF5C" FromRole="USUARIOS" ToRole="PERFILES" />
+          <NavigationProperty Name="PERMISOS_ASIGNADOS" Relationship="Self.FK__PERMISOS___ID_US__1B0907CE" FromRole="USUARIOS" ToRole="PERMISOS_ASIGNADOS" />
+          <NavigationProperty Name="ROLES" Relationship="Self.FK__USUARIOS__ID_ROL__21B6055D" FromRole="USUARIOS" ToRole="ROLES" />
+          <NavigationProperty Name="USUARIO_LOGIN" Relationship="QUESIPIZZAS_DEV1Model.FK__USUARIO_L__ID_US__02FC7413" FromRole="USUARIOS" ToRole="USUARIO_LOGIN" />
+        </EntityType>
+        <Association Name="FK__PERMISOS___ID_MO__1DE57479">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ROLES__ID_PERFIL__145C0A3F">
+          <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="ROLES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIOS__ID_PER__1920BF5C">
+          <End Role="PERFILES" Type="Self.PERFILES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFILES">
+              <PropertyRef Name="ID_PERFIL" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_PE__1CF15040">
+          <End Role="PERMISOS" Type="Self.PERMISOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERMISOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_PERMISO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_RO__1BFD2C07">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PERMISOS___ID_US__1B0907CE">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="0..1" />
+          <End Role="PERMISOS_ASIGNADOS" Type="Self.PERMISOS_ASIGNADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="PERMISOS_ASIGNADOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIOS__ID_ROL__21B6055D">
+          <End Role="ROLES" Type="Self.ROLES" Multiplicity="0..1" />
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLES">
+              <PropertyRef Name="ID_ROL" />
+            </Principal>
+            <Dependent Role="USUARIOS">
+              <PropertyRef Name="ID_ROL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUESIPIZZAS_DEV1Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
+          <EntitySet Name="PERFILES" EntityType="Self.PERFILES" />
+          <EntitySet Name="PERMISOS" EntityType="Self.PERMISOS" />
+          <EntitySet Name="PERMISOS_ASIGNADOS" EntityType="Self.PERMISOS_ASIGNADOS" />
+          <EntitySet Name="ROLES" EntityType="Self.ROLES" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK__PERMISOS___ID_MO__1DE57479" Association="Self.FK__PERMISOS___ID_MO__1DE57479">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ROLES__ID_PERFIL__145C0A3F" Association="Self.FK__ROLES__ID_PERFIL__145C0A3F">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="ROLES" EntitySet="ROLES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIOS__ID_PER__1920BF5C" Association="Self.FK__USUARIOS__ID_PER__1920BF5C">
+            <End Role="PERFILES" EntitySet="PERFILES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_PE__1CF15040" Association="Self.FK__PERMISOS___ID_PE__1CF15040">
+            <End Role="PERMISOS" EntitySet="PERMISOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_RO__1BFD2C07" Association="Self.FK__PERMISOS___ID_RO__1BFD2C07">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PERMISOS___ID_US__1B0907CE" Association="Self.FK__PERMISOS___ID_US__1B0907CE">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="PERMISOS_ASIGNADOS" EntitySet="PERMISOS_ASIGNADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIOS__ID_ROL__21B6055D" Association="Self.FK__USUARIOS__ID_ROL__21B6055D">
+            <End Role="ROLES" EntitySet="ROLES" />
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+          </AssociationSet>
+          <EntitySet Name="CALLCENTER_CLIENTES1Set" EntityType="QUESIPIZZAS_DEV1Model.CALLCENTER_CLIENTES1" />
+          <EntitySet Name="USUARIO_LOGIN" EntityType="QUESIPIZZAS_DEV1Model.USUARIO_LOGIN" />
+          <AssociationSet Name="FK__USUARIO_L__ID_US__02FC7413" Association="QUESIPIZZAS_DEV1Model.FK__USUARIO_L__ID_US__02FC7413">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="USUARIO_LOGIN" EntitySet="USUARIO_LOGIN" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CALLCENTER_CLIENTES1">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+            <PropertyRef Name="TELEFONO" />
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CALLE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIFICACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="COLONIA_ID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="REFERENCIA" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ADICIONALES" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="APP_UBICACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APP_PWD" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="APP_GCM" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ULTIMA_COMPRA" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="USUARIO_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="Decimal" Nullable="false" Precision="10" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USUARIOS" Relationship="QUESIPIZZAS_DEV1Model.FK__USUARIO_L__ID_US__02FC7413" FromRole="USUARIO_LOGIN" ToRole="USUARIOS" />
+          <Property Name="FECHA_LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__USUARIO_L__ID_US__02FC7413">
+          <End Type="QUESIPIZZAS_DEV1Model.USUARIOS" Role="USUARIOS" Multiplicity="0..1" />
+          <End Type="QUESIPIZZAS_DEV1Model.USUARIO_LOGIN" Role="USUARIO_LOGIN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="USUARIO_LOGIN">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUESIPIZZAS_DEV1ModelStoreContainer" CdmEntityContainer="QUESIPIZZAS_DEV1Entities2">
+          <EntitySetMapping Name="MODULOS">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.MODULOS">
+              <MappingFragment StoreEntitySet="MODULOS">
+                <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERFILES">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERFILES">
+              <MappingFragment StoreEntitySet="PERFILES">
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERMISOS">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERMISOS">
+              <MappingFragment StoreEntitySet="PERMISOS">
+                <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERMISOS_ASIGNADOS">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.PERMISOS_ASIGNADOS">
+              <MappingFragment StoreEntitySet="PERMISOS_ASIGNADOS">
+                <ScalarProperty Name="ID_PERMISO_ASIGNADOS" ColumnName="ID_PERMISO_ASIGNADOS" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+                <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLES">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.ROLES">
+              <MappingFragment StoreEntitySet="ROLES">
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="REF" ColumnName="REF" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="TARJETA_EMPLEADO" ColumnName="TARJETA_EMPLEADO" />
+                <ScalarProperty Name="ESTADO_ACTUAL" ColumnName="ESTADO_ACTUAL" />
+                <ScalarProperty Name="GAFETE_IDENTIFICACION" ColumnName="GAFETE_IDENTIFICACION" />
+                <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CALLCENTER_CLIENTES1Set">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.CALLCENTER_CLIENTES1">
+              <MappingFragment StoreEntitySet="CALLCENTER_CLIENTES">
+                <ScalarProperty Name="ULTIMA_COMPRA" ColumnName="ULTIMA_COMPRA" />
+                <ScalarProperty Name="APP_GCM" ColumnName="APP_GCM" />
+                <ScalarProperty Name="APP_PWD" ColumnName="APP_PWD" />
+                <ScalarProperty Name="APP_UBICACION" ColumnName="APP_UBICACION" />
+                <ScalarProperty Name="ADICIONALES" ColumnName="ADICIONALES" />
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+                <ScalarProperty Name="COLONIA_ID" ColumnName="COLONIA_ID" />
+                <ScalarProperty Name="ESPECIFICACION" ColumnName="ESPECIFICACION" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO_LOGIN">
+            <EntityTypeMapping TypeName="QUESIPIZZAS_DEV1Model.USUARIO_LOGIN">
+              <MappingFragment StoreEntitySet="USUARIO_LOGIN">
+                <ScalarProperty Name="FECHA_LOGIN" ColumnName="FECHA_LOGIN" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

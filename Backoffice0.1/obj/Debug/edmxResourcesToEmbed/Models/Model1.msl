@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_CORPORATIVA_DEVModelStoreContainer" CdmEntityContainer="DB_CORPORATIVA_DEVEntities">
+    <EntitySetMapping Name="CS_modulos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_modulos">
+        <MappingFragment StoreEntitySet="CS_modulos">
+          <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_perfiles">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_perfiles">
+        <MappingFragment StoreEntitySet="CS_perfiles">
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_permisos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_permisos">
+        <MappingFragment StoreEntitySet="CS_permisos">
+          <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_permisos_asignados">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_permisos_asignados">
+        <MappingFragment StoreEntitySet="CS_permisos_asignados">
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ID_PERMISO" ColumnName="ID_PERMISO" />
+          <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="ID_PERMISO_ASIGNADOS" ColumnName="ID_PERMISO_ASIGNADOS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_roles">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_roles">
+        <MappingFragment StoreEntitySet="CS_roles">
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_usuario_login">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_usuario_login">
+        <MappingFragment StoreEntitySet="CS_usuario_login">
+          <ScalarProperty Name="FECHA_LOGIN" ColumnName="FECHA_LOGIN" />
+          <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CS_usuarios">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.CS_usuarios">
+        <MappingFragment StoreEntitySet="CS_usuarios">
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="REF" ColumnName="REF" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="TARJETA_EMPLEADO" ColumnName="TARJETA_EMPLEADO" />
+          <ScalarProperty Name="ESTADO_ACTUAL" ColumnName="ESTADO_ACTUAL" />
+          <ScalarProperty Name="GAFETE_IDENTIFICACION" ColumnName="GAFETE_IDENTIFICACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ELMAH_Error">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.ELMAH_Error">
+        <MappingFragment StoreEntitySet="ELMAH_Error">
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="M_callcenter_clientes">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.M_callcenter_clientes">
+        <MappingFragment StoreEntitySet="M_callcenter_clientes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="especificacion" ColumnName="especificacion" />
+          <ScalarProperty Name="colonia_id" ColumnName="colonia_id" />
+          <ScalarProperty Name="referencia" ColumnName="referencia" />
+          <ScalarProperty Name="adicionales" ColumnName="adicionales" />
+          <ScalarProperty Name="app_ubicacion" ColumnName="app_ubicacion" />
+          <ScalarProperty Name="app_pwd" ColumnName="app_pwd" />
+          <ScalarProperty Name="app_gcm" ColumnName="app_gcm" />
+          <ScalarProperty Name="ultima_compra" ColumnName="ultima_compra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorsXml" FunctionName="DB_CORPORATIVA_DEVModel.Store.ELMAH_GetErrorsXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorXml" FunctionName="DB_CORPORATIVA_DEVModel.Store.ELMAH_GetErrorXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_LogError" FunctionName="DB_CORPORATIVA_DEVModel.Store.ELMAH_LogError" />
+  </EntityContainerMapping>
+</Mapping>
