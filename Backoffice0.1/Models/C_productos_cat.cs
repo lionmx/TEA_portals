@@ -19,33 +19,33 @@ namespace Backoffice0._1.Models
         {
             this.C_impuesto_producto = new HashSet<C_impuesto_producto>();
             this.C_producto_presentacion = new HashSet<C_producto_presentacion>();
-            this.C_productos_precios = new HashSet<C_productos_precios>();
-            this.C_productos_sucursal = new HashSet<C_productos_sucursal>();
         }
     
         public int id_producto { get; set; }
         public string sku { get; set; }
+        public string plu { get; set; }
+        public string codigo_barra { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public Nullable<int> it_producto_tipo { get; set; }
         public Nullable<int> id_producto_clasificacion { get; set; }
-        public string existencia { get; set; }
-        public string maximo { get; set; }
-        public string minimo { get; set; }
-        public string id_proveedor { get; set; }
-        public string fecha_ultima_compra { get; set; }
+        public Nullable<int> id_especialidad { get; set; }
+        public Nullable<int> id_catalogo_tamanos { get; set; }
+        public Nullable<decimal> existencia { get; set; }
+        public Nullable<decimal> maximo { get; set; }
+        public Nullable<decimal> minimo { get; set; }
+        public Nullable<int> id_proveedor { get; set; }
+        public Nullable<System.DateTime> fecha_ultima_compra { get; set; }
         public Nullable<bool> incluir_backorder { get; set; }
-        public string id_unidad_medida { get; set; }
-        public string id_producto_presentacion { get; set; }
+        public Nullable<int> id_unidad_medida { get; set; }
+        public Nullable<int> id_producto_presentacion { get; set; }
+        public Nullable<bool> insumos { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public string path_imagen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }
         public virtual C_producto_clasificacion C_producto_clasificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_producto_presentacion> C_producto_presentacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_productos_precios> C_productos_precios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_productos_sucursal> C_productos_sucursal { get; set; }
     }
 }

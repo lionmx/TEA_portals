@@ -31,7 +31,7 @@ namespace Backoffice0._1.Models
         public string direccion { get; set; }
         public string telefono { get; set; }
         public string correo { get; set; }
-        public string fecha_registro { get; set; }
+        public Nullable<System.DateTime> fecha_registro { get; set; }
         public string representante { get; set; }
         public bool activo { get; set; }
     

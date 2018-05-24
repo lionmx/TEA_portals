@@ -12,13 +12,12 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_promociones_sucursales
+    public partial class C_sval_clientes
     {
-        public string id_promocion_sucursal { get; set; }
-        public Nullable<int> id_promocion { get; set; }
-        public Nullable<int> id_sucursal { get; set; }
-    
-        public virtual C_promociones_g C_promociones_g { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
+        public int id_sval_cliente { get; set; }
+        public Nullable<int> id_cliente { get; set; }
+        public Nullable<System.DateTime> fecha_registro { get; set; }
+        public Nullable<int> id_servicios_contratados { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

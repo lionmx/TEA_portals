@@ -12,14 +12,18 @@
     <tbody>
         @if (Session["Carrito"] != null)
         {
-            foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
-            {
+          
+           foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
+             {
+             
         <tr class="even pointer">
-            <td class=" "><select><option>1</option><option>2</option></select></td>
-            <td class=" ">@item.Cantidad</td>
+            <!-- <td class=" "><select><option>1</option><option>2</option></select></td>-->
+            <td class=" ">@item.Prom_pos</td>
+            <td class=" ">@item.Index</td>
             <td class=" ">@item.Producto </td>
-            <td class=" "  ><input name="precio" value="10.00" class="control-label" style="width:50px;border-width:0px;"/></td>
-            <td>  <a href="#" onclick="Removecarrito(1)" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>  </a> </td>
+            <td class=" "><input name="precio" value="@item.Costo" class="control-label" style="width:50px;border-width:0px;" /></td>
+            <td>  <a href="#" onclick="Removecarrito('@item.Sku')" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a></td>
+
         </tr>
             }
         }

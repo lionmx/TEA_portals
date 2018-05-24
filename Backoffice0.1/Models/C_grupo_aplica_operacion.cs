@@ -12,13 +12,10 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_promociones_prods
+    public partial class C_grupo_aplica_operacion
     {
-        public int id_promocion_prods { get; set; }
-        public Nullable<int> id_promocion_det { get; set; }
-        public string id_producto { get; set; }
-        public string desc { get; set; }
-    
-        public virtual C_promociones_d C_promociones_d { get; set; }
+        public int id_grupo_aplica_operacion { get; set; }
+        public string nombre_regla { get; set; }
+        public Nullable<bool> activa { get; set; }
     }
 }

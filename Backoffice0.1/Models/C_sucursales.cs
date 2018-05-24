@@ -20,20 +20,20 @@ namespace Backoffice0._1.Models
             this.C_cajas = new HashSet<C_cajas>();
             this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
             this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
-            this.C_productos_sucursal = new HashSet<C_productos_sucursal>();
-            this.C_promociones_sucursales = new HashSet<C_promociones_sucursales>();
             this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
             this.C_ventas_g = new HashSet<C_ventas_g>();
         }
     
         public int Id_sucursal { get; set; }
+        public string codigo_sucursal { get; set; }
         public string nombre { get; set; }
         public string latitud { get; set; }
         public string longitud { get; set; }
-        public bool status { get; set; }
-        public string id_direccion { get; set; }
-        public int id_empresa { get; set; }
+        public bool activo { get; set; }
+        public Nullable<int> id_direccion { get; set; }
+        public Nullable<int> id_empresa { get; set; }
         public Nullable<int> id_zona_precio { get; set; }
+        public string ip { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_cajas> C_cajas { get; set; }
@@ -43,10 +43,6 @@ namespace Backoffice0._1.Models
         public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_parametros_sucursales> C_parametros_sucursales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_productos_sucursal> C_productos_sucursal { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_promociones_sucursales> C_promociones_sucursales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }

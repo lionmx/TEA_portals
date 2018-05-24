@@ -30,7 +30,7 @@ namespace Backoffice0._1.Controllers
                 {
                     listaPA.Add(mod1.ID_MODULO);
                     listaPA.Add(mod1.ID_PERMISO);
-                    ViewBag.perfil = perfil.ID_PERFIL;
+                    //ViewBag.perfil = perfil.ID_PERFIL;
                 }
             }
             ViewBag.data = listaPA;

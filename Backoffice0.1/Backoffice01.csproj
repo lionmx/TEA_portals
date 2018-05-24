@@ -445,26 +445,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\C_PRODUCTO_CLASIFICACIONController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\CALLCENTER_CLIENTES1Controller.cs" />
     <Compile Include="Controllers\Inventario\Almacen\ALMACEN_INVENTARIOController.cs" />
     <Compile Include="Controllers\Inventario\Compras\Backorder\BACKORDERController.cs" />
     <Compile Include="Controllers\POS\CALL_CENTER\CALL_CENTERController.cs" />
     <Compile Include="Controllers\Mercadotecnia\CAMPAÑASController.cs" />
     <Compile Include="Controllers\POS\COMANDA_COCINAController.cs" />
     <Compile Include="Controllers\POS\COMANDA_MESASController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\ConfiguracionController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\HomeController.cs" />
     <Compile Include="Controllers\POS\POS_MC_CATEGORIASController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\MODULOSController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\PERFILESController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOSController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOS_ASIGNADOSController.cs" />
     <Compile Include="Controllers\POS\POSController.cs" />
     <Compile Include="Controllers\POS\POS_PRODUCTOSController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\ROLESController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\UBICACIONController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOLOGINController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOSController.cs" />
     <Compile Include="Controllers\POS\POS_PRENOMINAController.cs" />
     <Compile Include="Controllers\POS\DELIVERY\DELIVERYController.cs" />
     <Compile Include="Controllers\POS\SUC_MOV_INSUMOSController.cs" />
@@ -537,6 +526,15 @@
     <Compile Include="Models\C_campaña_medios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_catalogo_consecutivos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_catalogo_sn.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_catalogo_tamanos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_cfdi_informacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -573,6 +571,27 @@
     <Compile Include="Models\C_facturas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_grupo_aplica_operacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_d.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_g.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_prods.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_subclases.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_sucursales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_grupo_productos_tipos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_impuestos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -580,6 +599,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_insumo_cat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_insumo_clasificacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_insumo_mov_status.cs">
@@ -592,6 +614,15 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_insumo_sucursal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_insumo_tipo_empaque.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_insumo_tipo_envase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_insumo_tipo_inventario.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_insumo_tipo_mov.cs">
@@ -645,6 +676,12 @@
     <Compile Include="Models\C_productos_cat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_productos_especialidades.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_productos_marca.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_productos_precios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -658,18 +695,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_producto_tipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C_promociones_d.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C_promociones_g.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C_promociones_prods.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C_promociones_sucursales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_proveedores.cs">
@@ -697,6 +722,42 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_suc_invreal_d.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_cat_desglose_billetes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_cat_desglose_monedas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_clientes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_cliente_servicios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_destinos_entrega.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_facturar_a.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_orden_billetes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_orden_monedas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_recepcion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_servicios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_tipo_moneda.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_tipo_servicios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_telefonos.cs">
@@ -759,12 +820,7 @@
     <Compile Include="Models\M_callcenter_clientes_adicionales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -926,6 +982,7 @@
     <Content Include="Views\POS\Ventas\_TrackingPedido.cshtml" />
     <Content Include="Views\POS\Ventas\_Clientes.cshtml" />
     <Content Include="Views\POS\Ventas\_BotonesEspeciales.cshtml" />
+    <Content Include="Views\POS\Ventas\_Pruebapromociones.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -972,7 +1029,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49810</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49810/</IISUrl>
+          <IISUrl>http://localhost:49811/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

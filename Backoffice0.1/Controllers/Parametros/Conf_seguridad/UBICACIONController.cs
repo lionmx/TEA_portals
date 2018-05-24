@@ -50,7 +50,7 @@ namespace Backoffice0._1.Controllers
 
             M_callcenter_clientes cc = new M_callcenter_clientes();
             var usuarios = db.M_callcenter_clientes.SqlQuery("SELECT * FROM dbo.M_callcenter_clientes").ToList();
-            cc.callcenterClientesList = usuarios;
+           // cc.callcenterClientesList = usuarios;
             return View(cc);
         }
     }

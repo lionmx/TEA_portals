@@ -30,7 +30,7 @@ namespace Backoffice0._1.Controllers
                 {
                     listaPA.Add(mod1.ID_MODULO);
                     listaPA.Add(mod1.ID_PERMISO);
-                    ViewBag.perfil = perfil.ID_PERFIL;
+                   // ViewBag.perfil = perfil.ID_PERFIL;
                 }
             }
             ViewBag.data = listaPA;
@@ -48,7 +48,7 @@ namespace Backoffice0._1.Controllers
             }
             ViewBag.data2 = listaPA2;
             #endregion
-            var rOLES = db.CS_roles.Include(r => r.CS_perfiles);
+            //var rOLES = db.CS_roles.Include(r => r.CS_perfiles);
             return View(rOLES.ToList());
         }
 

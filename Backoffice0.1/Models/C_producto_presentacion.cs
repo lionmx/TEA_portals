@@ -16,6 +16,7 @@ namespace Backoffice0._1.Models
     {
         public int id_producto_presentacion { get; set; }
         public Nullable<int> id_producto { get; set; }
+        public string sku_producto { get; set; }
         public Nullable<int> id_presentacion { get; set; }
     
         public virtual C_presentaciones C_presentaciones { get; set; }

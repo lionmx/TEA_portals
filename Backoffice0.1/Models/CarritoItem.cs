@@ -7,22 +7,36 @@ namespace Backoffice0._1.Models
 {
     public class CarritoItem
     {
+        private int _index;
+        private bool _promocion;
+        private bool _prom_pos;
+        private string _sku;
         private string _producto;
-        private int _cantidad;
+        private float _costo;
+       
 
         public CarritoItem()
         {
 
         }
 
-        public CarritoItem(string producto, int cantidad)
+        public CarritoItem(string producto, float cantidad, string sku,bool promocion,int index, bool prom_pos)
         {
+            this._index = index;
             this._producto = producto;
-            this._cantidad = cantidad;
+            this._costo = cantidad;
+            this._sku = sku;
+            this._promocion = promocion;
+            this._prom_pos = prom_pos;
 
         }
+        public int Index { get => _index; set => _index = value; }
+        public bool Promocion { get => _promocion; set => _promocion = value; }
+        public bool Prom_pos { get => _prom_pos; set => _prom_pos = value; }
+        public string Sku { get => _sku; set => _sku = value; }
+        public float Costo { get => _costo; set => _costo = value; }
+        public string Producto { get => _producto; set => _producto = value; } 
 
-        public int Cantidad { get => _cantidad; set => _cantidad = value; }
-        public string Producto { get => _producto; set => _producto = value; }
+       
     }
 }

@@ -10,13 +10,16 @@
 namespace Backoffice0._1.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class C_catalogo_consecutivos
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int id_consecutivos_globales { get; set; }
+        public Nullable<int> id_marca { get; set; }
+        public string concepto_consecutivo { get; set; }
+        public string nomenclatura { get; set; }
+        public Nullable<decimal> consecutivo { get; set; }
+        public Nullable<System.DateTime> fecha_activacion { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

@@ -82,7 +82,7 @@ namespace Backoffice0._1.Controllers
 
 
             var usuarios = db.CS_usuarios.ToList();
-            ViewModelUsuario.usuarios = usuarios;          
+           // ViewModelUsuario.usuarios = usuarios;          
             return View(ViewModelUsuario);
            
         }
@@ -100,7 +100,7 @@ namespace Backoffice0._1.Controllers
             var rol = db.Database.SqlQuery<SelectedUser>(
                 @"select a.NOMBRE as Nombre, b.DESCRIPCION as DescripcionRol FROM CS_USUARIOS a JOIN CS_ROLES b on a.ID_ROL = b.ID_ROL where id_usuario = '" + model.ID_USUARIO+ "'");
 
-            ViewModelUsuario.usuarios = usuarios;
+            //ViewModelUsuario.usuarios = usuarios;
             ViewModelUsuario.ID_USUARIO = model.ID_USUARIO;
             foreach (var a in usuario)
             {

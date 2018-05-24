@@ -14,19 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class CS_perfiles
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CS_perfiles()
-        {
-            this.CS_roles = new HashSet<CS_roles>();
-            this.CS_usuarios = new HashSet<CS_usuarios>();
-        }
-    
         public string ID_PERFIL { get; set; }
         public string DESCRIPCION { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CS_roles> CS_roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CS_usuarios> CS_usuarios { get; set; }
     }
 }

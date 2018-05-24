@@ -10,10 +10,13 @@
 namespace Backoffice0._1.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class C_sval_cat_desglose_monedas
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int id_sval_desglose_moneda { get; set; }
+        public string denominacion { get; set; }
+        public Nullable<int> id_sval_tipo_moneda { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

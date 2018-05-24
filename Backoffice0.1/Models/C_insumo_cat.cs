@@ -21,17 +21,20 @@ namespace Backoffice0._1.Models
         }
     
         public int id_insumo { get; set; }
-        public string insumo { get; set; }
-        public string id_categoria { get; set; }
-        public string id_tipo { get; set; }
-        public string nivel_insumo { get; set; }
-        public string caducidad { get; set; }
+        public string sku_insumo { get; set; }
+        public string nombre_insumo { get; set; }
+        public Nullable<int> id_categoria { get; set; }
+        public Nullable<int> id_tipo_inventario { get; set; }
+        public Nullable<decimal> nivel_reorden_insumo { get; set; }
+        public Nullable<decimal> dias_caducidad { get; set; }
         public Nullable<int> Id_tipo_empaque { get; set; }
-        public string presentacion_cantidad { get; set; }
+        public Nullable<int> Id_tipo_envase { get; set; }
+        public Nullable<decimal> presentacion_cantidad { get; set; }
         public Nullable<int> id_unidad { get; set; }
-        public string porc_proteccion { get; set; }
-        public string costo_real { get; set; }
-        public string costo_directo { get; set; }
+        public Nullable<decimal> porc_proteccion { get; set; }
+        public Nullable<decimal> costo_real { get; set; }
+        public Nullable<decimal> costo_directo { get; set; }
+        public Nullable<bool> activo { get; set; }
     
         public virtual C_tipo_empaque C_tipo_empaque { get; set; }
         public virtual C_unidades C_unidades { get; set; }

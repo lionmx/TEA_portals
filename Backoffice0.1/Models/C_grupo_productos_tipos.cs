@@ -12,23 +12,19 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_promociones_d
+    public partial class C_grupo_productos_tipos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_promociones_d()
+        public C_grupo_productos_tipos()
         {
-            this.C_promociones_prods = new HashSet<C_promociones_prods>();
+            this.C_grupo_productos_g = new HashSet<C_grupo_productos_g>();
         }
     
-        public int id_promocion_det { get; set; }
-        public Nullable<int> id_promocion { get; set; }
-        public Nullable<bool> combina_prod { get; set; }
-        public Nullable<int> no_prod_seleccion { get; set; }
-        public Nullable<int> aplica_mprecio { get; set; }
-        public Nullable<int> aplica_desc { get; set; }
+        public int id_grupo_producto_tipo { get; set; }
+        public string nombre_tipo { get; set; }
+        public Nullable<bool> activo { get; set; }
     
-        public virtual C_promociones_g C_promociones_g { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_promociones_prods> C_promociones_prods { get; set; }
+        public virtual ICollection<C_grupo_productos_g> C_grupo_productos_g { get; set; }
     }
 }

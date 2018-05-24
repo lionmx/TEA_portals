@@ -198,6 +198,38 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_campaña_codigos' n
     <Property Name="limite_aplicacion" Type="nchar" MaxLength="10" />
     <Property Name="plantilla_cupon" Type="nchar" MaxLength="10" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_catalogo_consecutivos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_catalogo_consecutivos">
+    <Key>
+      <PropertyRef Name="id_consecutivos_globales" />
+    </Key>
+    <Property Name="id_consecutivos_globales" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_marca" Type="int" />
+    <Property Name="concepto_consecutivo" Type="varchar" MaxLength="150" />
+    <Property Name="nomenclatura" Type="varchar" MaxLength="10" />
+    <Property Name="consecutivo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="fecha_activacion" Type="datetime" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_catalogo_sn' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_catalogo_sn">
+    <Key>
+      <PropertyRef Name="id_catalogo_sn" />
+    </Key>
+    <Property Name="id_catalogo_sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_catalogo_tamanos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_catalogo_tamanos">
+    <Key>
+      <PropertyRef Name="id_catalogo_tamanos" />
+    </Key>
+    <Property Name="id_catalogo_tamanos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="C_cfdi_informacion">
     <Key>
       <PropertyRef Name="id_CFDI_informacion" />
@@ -345,16 +377,16 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados_pos' no t
     <Key>
       <PropertyRef Name="id_empresa" />
     </Key>
-    <Property Name="id_empresa" Type="int" Nullable="false" />
-    <Property Name="codigo" Type="nchar" MaxLength="10" />
-    <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="razon_social" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="rfc" Type="nchar" MaxLength="10" />
-    <Property Name="direccion" Type="nchar" MaxLength="10" />
-    <Property Name="telefono" Type="nchar" MaxLength="10" />
-    <Property Name="correo" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_registro" Type="nchar" MaxLength="10" />
-    <Property Name="representante" Type="nchar" MaxLength="10" />
+    <Property Name="id_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar(max)" />
+    <Property Name="razon_social" Type="varchar(max)" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar(max)" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="150" />
+    <Property Name="correo" Type="varchar" MaxLength="150" />
+    <Property Name="fecha_registro" Type="datetime" />
+    <Property Name="representante" Type="varchar" MaxLength="250" />
     <Property Name="activo" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
@@ -405,6 +437,81 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     <Property Name="fecha" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="id_CFDI_informacion" Type="int" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_grupo_aplica_operacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_grupo_aplica_operacion">
+    <Key>
+      <PropertyRef Name="id_grupo_aplica_operacion" />
+    </Key>
+    <Property Name="id_grupo_aplica_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_regla" Type="varchar" MaxLength="50" />
+    <Property Name="activa" Type="bit" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_d">
+    <Key>
+      <PropertyRef Name="id_grupo_productos_det" />
+    </Key>
+    <Property Name="id_grupo_productos_det" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_grupo_productos" Type="int" />
+    <Property Name="combina_prod" Type="bit" />
+    <Property Name="no_prod_seleccion" Type="int" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_g">
+    <Key>
+      <PropertyRef Name="id_grupo_productos" />
+    </Key>
+    <Property Name="id_grupo_productos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="250" />
+    <Property Name="fecha_registro" Type="datetime" />
+    <Property Name="descripcion" Type="varchar(max)" />
+    <Property Name="id_grupo_producto_tipo" Type="int" />
+    <Property Name="id_grupo_producto_subclase" Type="int" />
+    <Property Name="id_grupo_aplica_operacion" Type="int" />
+    <Property Name="fecha_inicio" Type="datetime" />
+    <Property Name="fecha_final" Type="datetime" />
+    <Property Name="restricciones" Type="varchar" MaxLength="250" />
+    <Property Name="status" Type="bit" />
+    <Property Name="banner_pantalla" Type="varchar(max)" />
+    <Property Name="banner_pos" Type="varchar(max)" />
+    <Property Name="mayor_precio" Type="bit" />
+    <Property Name="descuento" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="precio_unico" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_prods">
+    <Key>
+      <PropertyRef Name="id_grupo_productos_prods" />
+    </Key>
+    <Property Name="id_grupo_productos_prods" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_grupo_productos_det" Type="int" />
+    <Property Name="sku_producto" Type="varchar" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_subclases">
+    <Key>
+      <PropertyRef Name="id_grupo_producto_subclase" />
+    </Key>
+    <Property Name="id_grupo_producto_subclase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_grupo_producto_tipo" Type="int" />
+    <Property Name="nombre_subclase" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="int" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_sucursales">
+    <Key>
+      <PropertyRef Name="id_grupo_productos_sucursal" />
+    </Key>
+    <Property Name="id_grupo_productos_sucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_grupo_productos" Type="int" />
+    <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <EntityType Name="C_grupo_productos_tipos">
+    <Key>
+      <PropertyRef Name="id_grupo_producto_tipo" />
+    </Key>
+    <Property Name="id_grupo_producto_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_tipo" Type="varchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
   <EntityType Name="C_impuesto_producto">
     <Key>
       <PropertyRef Name="id_impuesto_producto" />
@@ -425,18 +532,30 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     <Key>
       <PropertyRef Name="id_insumo" />
     </Key>
-    <Property Name="id_insumo" Type="int" Nullable="false" />
-    <Property Name="insumo" Type="nchar" MaxLength="10" />
-    <Property Name="id_categoria" Type="nchar" MaxLength="10" />
-    <Property Name="id_tipo" Type="nchar" MaxLength="10" />
-    <Property Name="nivel_insumo" Type="nchar" MaxLength="10" />
-    <Property Name="caducidad" Type="nchar" MaxLength="10" />
+    <Property Name="id_insumo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sku_insumo" Type="varchar" MaxLength="50" />
+    <Property Name="nombre_insumo" Type="varchar" MaxLength="150" />
+    <Property Name="id_categoria" Type="int" />
+    <Property Name="id_tipo_inventario" Type="int" />
+    <Property Name="nivel_reorden_insumo" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="dias_caducidad" Type="numeric" Precision="18" Scale="0" />
     <Property Name="Id_tipo_empaque" Type="int" />
-    <Property Name="presentacion_cantidad" Type="nchar" MaxLength="10" />
+    <Property Name="Id_tipo_envase" Type="int" />
+    <Property Name="presentacion_cantidad" Type="numeric" Precision="18" Scale="2" />
     <Property Name="id_unidad" Type="int" />
-    <Property Name="porc_proteccion" Type="nchar" MaxLength="10" />
-    <Property Name="costo_real" Type="nchar" MaxLength="10" />
-    <Property Name="costo_directo" Type="nchar" MaxLength="10" />
+    <Property Name="porc_proteccion" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="costo_real" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="costo_directo" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_clasificacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_insumo_clasificacion">
+    <Key>
+      <PropertyRef Name="id_insumo_clasif" />
+    </Key>
+    <Property Name="id_insumo_clasif" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_insumo" Type="varchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="C_insumo_mov_status">
     <Key>
@@ -489,6 +608,33 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     <Property Name="max" Type="nchar" MaxLength="10" />
     <Property Name="id_zona_almacenaje" Type="int" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_empaque' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_insumo_tipo_empaque">
+    <Key>
+      <PropertyRef Name="id_tipo_empaque" />
+    </Key>
+    <Property Name="id_tipo_empaque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_tipo" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_envase' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_insumo_tipo_envase">
+    <Key>
+      <PropertyRef Name="id_tipo_envase" />
+    </Key>
+    <Property Name="id_tipo_envase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_tipo" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventario' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_insumo_tipo_inventario">
+    <Key>
+      <PropertyRef Name="id_tipo_inventario" />
+    </Key>
+    <Property Name="id_tipo_inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_tipo" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="C_insumo_tipo_mov">
     <Key>
       <PropertyRef Name="id_tipo_mov" />
@@ -513,9 +659,9 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     <Key>
       <PropertyRef Name="id_marca" />
     </Key>
-    <Property Name="id_marca" Type="int" Nullable="false" />
-    <Property Name="nombre_marca" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_registro" Type="nchar" MaxLength="10" />
+    <Property Name="id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_marca" Type="varchar" MaxLength="150" />
+    <Property Name="fecha_registro" Type="datetime" />
   </EntityType>
   <EntityType Name="C_marcas_sociedades">
     <Key>
@@ -637,7 +783,7 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     <Key>
       <PropertyRef Name="id_producto_clasificacion" />
     </Key>
-    <Property Name="id_producto_clasificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_producto_clasificacion" Type="int" Nullable="false" />
     <Property Name="id_tipo_producto" Type="int" />
     <Property Name="nombre_producto_clasificacion" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -647,6 +793,7 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
     </Key>
     <Property Name="id_producto_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_producto" Type="int" />
+    <Property Name="sku_producto" Type="varchar" MaxLength="50" />
     <Property Name="id_presentacion" Type="int" />
   </EntityType>
   <!--Errores durante la generación:
@@ -663,84 +810,69 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_producto_tipo' no t
     <Key>
       <PropertyRef Name="id_producto" />
     </Key>
-    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sku" Type="varchar" MaxLength="50" />
-    <Property Name="nombre" Type="nchar" MaxLength="10" />
-    <Property Name="descripcion" Type="nchar" MaxLength="10" />
-    <Property Name="it_producto_tipo" Type="int" />
+    <Property Name="plu" Type="varchar" MaxLength="50" />
+    <Property Name="codigo_barra" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" />
+    <Property Name="descripcion" Type="varchar(max)" />
     <Property Name="id_producto_clasificacion" Type="int" />
-    <Property Name="existencia" Type="nchar" MaxLength="10" />
-    <Property Name="maximo" Type="nchar" MaxLength="10" />
-    <Property Name="minimo" Type="nchar" MaxLength="10" />
-    <Property Name="id_proveedor" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_ultima_compra" Type="nchar" MaxLength="10" />
+    <Property Name="id_especialidad" Type="int" />
+    <Property Name="id_catalogo_tamanos" Type="int" />
+    <Property Name="existencia" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="maximo" Type="numeric" Precision="18" Scale="3" />
+    <Property Name="minimo" Type="numeric" Precision="18" Scale="3" />
+    <Property Name="id_proveedor" Type="int" />
+    <Property Name="fecha_ultima_compra" Type="datetime" />
     <Property Name="incluir_backorder" Type="bit" />
-    <Property Name="id_unidad_medida" Type="nchar" MaxLength="10" />
-    <Property Name="id_producto_presentacion" Type="nchar" MaxLength="10" />
+    <Property Name="id_unidad_medida" Type="int" />
+    <Property Name="id_producto_presentacion" Type="int" />
+    <Property Name="insumos" Type="bit" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="path_imagen" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_productos_especialidades' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_productos_especialidades">
+    <Key>
+      <PropertyRef Name="id_producto_especialidad" />
+    </Key>
+    <Property Name="id_producto_especialidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_especialidad" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_productos_marca' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_productos_marca">
+    <Key>
+      <PropertyRef Name="id_producto_marca" />
+    </Key>
+    <Property Name="id_producto_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sku_marca" Type="varchar" MaxLength="50" />
+    <Property Name="id_marca" Type="int" />
+    <Property Name="activo" Type="bit" />
   </EntityType>
   <EntityType Name="C_productos_precios">
     <Key>
       <PropertyRef Name="id_producto_precio" />
     </Key>
-    <Property Name="id_producto_precio" Type="int" Nullable="false" />
-    <Property Name="id_producto" Type="int" />
-    <Property Name="precio_publico" Type="nchar" MaxLength="10" />
-    <Property Name="costo_directo" Type="nchar" MaxLength="10" />
-    <Property Name="costo_real" Type="nchar" MaxLength="10" />
+    <Property Name="id_producto_precio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sku_producto" Type="varchar" MaxLength="50" />
+    <Property Name="precio_publico" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="costo_directo" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="costo_real" Type="numeric" Precision="18" Scale="2" />
     <Property Name="id_zona" Type="int" />
+    <Property Name="cfdi_prodid" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="C_productos_sucursal">
     <Key>
       <PropertyRef Name="id_productos_sucursal" />
     </Key>
-    <Property Name="id_productos_sucursal" Type="int" Nullable="false" />
-    <Property Name="id_producto" Type="int" />
-    <Property Name="id_sucursal" Type="int" />
-    <Property Name="cantidad" Type="nchar" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="C_promociones_d">
-    <Key>
-      <PropertyRef Name="id_promocion_det" />
-    </Key>
-    <Property Name="id_promocion_det" Type="int" Nullable="false" />
-    <Property Name="id_promocion" Type="int" />
-    <Property Name="combina_prod" Type="bit" />
-    <Property Name="no_prod_seleccion" Type="int" />
-    <Property Name="aplica_mprecio" Type="int" />
-    <Property Name="aplica_desc" Type="int" />
-  </EntityType>
-  <EntityType Name="C_promociones_g">
-    <Key>
-      <PropertyRef Name="id_promocion" />
-    </Key>
-    <Property Name="id_promocion" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_registro" Type="nchar" MaxLength="10" />
-    <Property Name="descripcion" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_inicio" Type="nchar" MaxLength="10" />
-    <Property Name="fecha_final" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="restricciones" Type="nchar" MaxLength="10" />
-    <Property Name="status" Type="nchar" MaxLength="10" />
-    <Property Name="banner_pantalla" Type="nchar" MaxLength="10" />
-    <Property Name="banner_pos" Type="nchar" MaxLength="10" />
-    <Property Name="prec io_unico" Type="money" />
-  </EntityType>
-  <EntityType Name="C_promociones_prods">
-    <Key>
-      <PropertyRef Name="id_promocion_prods" />
-    </Key>
-    <Property Name="id_promocion_prods" Type="int" Nullable="false" />
-    <Property Name="id_promocion_det" Type="int" />
-    <Property Name="id_producto" Type="nchar" MaxLength="10" />
-    <Property Name="desc" Type="nchar" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="C_promociones_sucursales">
-    <Key>
-      <PropertyRef Name="id_promocion_sucursal" />
-    </Key>
-    <Property Name="id_promocion_sucursal" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="id_promocion" Type="int" />
-    <Property Name="id_sucursal" Type="int" />
+    <Property Name="id_productos_sucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sku_producto" Type="varchar" MaxLength="50" />
+    <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="saldo" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="activo" Type="bit" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_proveedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -772,6 +904,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_recetas' no tiene d
     </Key>
     <Property Name="id_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombre_servicio" Type="varchar" MaxLength="50" />
+    <Property Name="alias_servicio" Type="varchar" MaxLength="20" />
+    <Property Name="descripcion_servicio" Type="varchar" MaxLength="150" />
     <Property Name="fecha_registro" Type="datetime2" Precision="7" />
     <Property Name="activo" Type="bit" />
   </EntityType>
@@ -838,14 +972,16 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_recetas' no tiene d
     <Key>
       <PropertyRef Name="Id_sucursal" />
     </Key>
-    <Property Name="Id_sucursal" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="latitud" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="longitud" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="status" Type="bit" Nullable="false" />
-    <Property Name="id_direccion" Type="nchar" MaxLength="10" />
-    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="Id_sucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="nombre" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="latitud" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="longitud" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="id_direccion" Type="int" />
+    <Property Name="id_empresa" Type="int" />
     <Property Name="id_zona_precio" Type="int" />
+    <Property Name="ip" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sucursales_config' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
@@ -865,6 +1001,212 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sucursales_config' 
           <Property Name="geo_localizacion_lat" Type="varchar" MaxLength="50" />
           <Property Name="geo_localizacion_ing" Type="varchar" MaxLength="50" />
         </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_actas_diferencia' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="C_sval_actas_diferencia">
+          <Property Name="id_sval_actas" Type="int" />
+          <Property Name="id_sval_orden" Type="int" />
+          <Property Name="id_usuario_cajero" Type="int" />
+          <Property Name="fecha_acta" Type="datetime" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="datos_sucursal" Type="varchar" MaxLength="150" />
+          <Property Name="importe_diferencia" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="id_sval_tipo_moneda" Type="int" />
+          <Property Name="importe_faltante_fisico" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="piezas_sin_valor" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="sobrante_fisico" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="presuntamente_falso" Type="varchar" MaxLength="150" />
+          <Property Name="id_usuario_supervisor" Type="int" />
+          <Property Name="id_usuario_seguridad" Type="int" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_cat_desglose_billetes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_cat_desglose_billetes">
+    <Key>
+      <PropertyRef Name="id_sval_desglose_billetes" />
+    </Key>
+    <Property Name="id_sval_desglose_billetes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="denominacion" Type="varchar" MaxLength="50" />
+    <Property Name="id_sval_tipo_moneda" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_cat_desglose_monedas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_cat_desglose_monedas">
+    <Key>
+      <PropertyRef Name="id_sval_desglose_moneda" />
+    </Key>
+    <Property Name="id_sval_desglose_moneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="denominacion" Type="varchar" MaxLength="50" />
+    <Property Name="id_sval_tipo_moneda" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_cliente_servicios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_cliente_servicios">
+    <Key>
+      <PropertyRef Name="id_sval_servicios_contratados" />
+    </Key>
+    <Property Name="id_sval_servicios_contratados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sval_cliente" Type="int" />
+    <Property Name="id_sval_servicio" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_clientes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_clientes">
+    <Key>
+      <PropertyRef Name="id_sval_cliente" />
+    </Key>
+    <Property Name="id_sval_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="fecha_registro" Type="datetime" />
+    <Property Name="id_servicios_contratados" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_destinos_entrega' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_destinos_entrega">
+    <Key>
+      <PropertyRef Name="id_sval_destino_entrega" />
+    </Key>
+    <Property Name="id_sval_destino_entrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" />
+    <Property Name="id_clientes_direccion" Type="int" />
+    <Property Name="notas_entrega" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_documentos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="C_sval_documentos">
+          <Property Name="id_sval_documento" Type="int" />
+          <Property Name="no_documento" Type="varchar" MaxLength="50" />
+          <Property Name="nombre_documento" Type="varchar" MaxLength="150" />
+          <Property Name="path_documento_anexo" Type="varchar(max)" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_facturar_a' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_facturar_a">
+    <Key>
+      <PropertyRef Name="id_sval_facturar_a" />
+    </Key>
+    <Property Name="id_sval_facturar_a" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_concepto" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_orden_billetes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_orden_billetes">
+    <Key>
+      <PropertyRef Name="id_sval_orden_billetes" />
+    </Key>
+    <Property Name="id_sval_orden_billetes" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sval_orden" Type="int" />
+    <Property Name="id_sval_desglose_billetes" Type="int" />
+    <Property Name="no_piezas" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="fecha_captura" Type="datetime" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_orden_monedas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_orden_monedas">
+    <Key>
+      <PropertyRef Name="id_sval_orden_monedas" />
+    </Key>
+    <Property Name="id_sval_orden_monedas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sval_orden" Type="int" />
+    <Property Name="id_sval_desglose_monedas" Type="int" />
+    <Property Name="no_piezas" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="fecha_captura" Type="datetime" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_ordenes' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="C_sval_ordenes">
+          <Property Name="id_sval_orden" Type="int" />
+          <Property Name="id_empresa" Type="int" />
+          <Property Name="id_destinos_entrega" Type="int" />
+          <Property Name="fecha_entrega" Type="datetime" />
+          <Property Name="folio" Type="varchar" MaxLength="25" />
+          <Property Name="id_contrato" Type="int" />
+          <Property Name="id_sval_facturar" Type="int" />
+          <Property Name="importe_moneda_nacional" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="importe_moneda_extranjera" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="tipo_cambio" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="importe_equivalente" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="documentos_descripcion" Type="varchar(max)" />
+          <Property Name="otros_anexos" Type="varchar(max)" />
+          <Property Name="importe_total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="id_sval_tipo_servicio" Type="int" />
+          <Property Name="id_remitente_cliente" Type="int" />
+          <Property Name="id_firma_setravalsa" Type="int" />
+          <Property Name="fecha_setravalsa" Type="datetime" />
+          <Property Name="id_firma_consignatario" Type="int" />
+          <Property Name="fecha_consignatario" Type="datetime" />
+          <Property Name="notas_documento" Type="varchar" MaxLength="150" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_recepcion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_recepcion">
+    <Key>
+      <PropertyRef Name="id_recepcion_valores" />
+    </Key>
+    <Property Name="id_recepcion_valores" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecha_recepcion" Type="datetime" />
+    <Property Name="id_terminal_captura" Type="int" />
+    <Property Name="id_usuario_captura" Type="int" />
+    <Property Name="id_usuario_cajero" Type="int" />
+    <Property Name="nip_cajero" Type="varchar" MaxLength="50" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="id_sval_orden" Type="int" />
+    <Property Name="importe_contenido_efectivo" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="importe_contenido_documentos" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="total_importe_contenido" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="id_desglose_billetes" Type="int" />
+    <Property Name="id_desglose_monedas" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_recepcion_envases' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="C_sval_recepcion_envases">
+          <Property Name="id_sval_envases" Type="int" />
+          <Property Name="id_sval_orden" Type="int" />
+          <Property Name="no_sello_plomo" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_recepcion" Type="datetime" />
+          <Property Name="cantidad" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="activo" Type="bit" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_servicios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_servicios">
+    <Key>
+      <PropertyRef Name="id_sval_servicio" />
+    </Key>
+    <Property Name="id_sval_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_proceso" Type="varchar" MaxLength="80" />
+    <Property Name="descripcion_proceso" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_tipo_moneda' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_tipo_moneda">
+    <Key>
+      <PropertyRef Name="id_sval_tipo_moneda" />
+    </Key>
+    <Property Name="id_sval_tipo_moneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_moneda" Type="varchar" MaxLength="50" />
+    <Property Name="siglas_moneda" Type="varchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_tipo_servicios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="C_sval_tipo_servicios">
+    <Key>
+      <PropertyRef Name="id_sval_tipo_servicio" />
+    </Key>
+    <Property Name="id_sval_tipo_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_servicio" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
   <EntityType Name="C_telefonos">
     <Key>
       <PropertyRef Name="id_telefono" />
@@ -1014,9 +1356,10 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_ventas_status' no t
     <Key>
       <PropertyRef Name="id_zona" />
     </Key>
-    <Property Name="id_zona" Type="int" Nullable="false" />
-    <Property Name="zona" Type="nchar" MaxLength="10" />
-    <Property Name="descripcion" Type="nchar" MaxLength="10" />
+    <Property Name="id_zona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="zona" Type="varchar" MaxLength="150" />
+    <Property Name="descripcion" Type="varchar(max)" />
+    <Property Name="activo" Type="bit" />
   </EntityType>
   <EntityType Name="CS_callcenter_cliente">
     <Key>
@@ -1065,17 +1408,18 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_ventas_status' no t
     <Property Name="ID_USUARIO" Type="varchar" MaxLength="10" />
     <Property Name="ID_ROL" Type="varchar" MaxLength="10" />
     <Property Name="ID_PERMISO" Type="varchar" MaxLength="10" />
-    <Property Name="ID_MODULO" Type="varchar" MaxLength="10" />
-    <Property Name="STATUS" Type="char" MaxLength="1" />
     <Property Name="ID_PERMISO_ASIGNADOS" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_SERVICIOS_MODULOS" Type="int" />
+    <Property Name="ACTIVO" Type="bit" />
+    <Property Name="ID_MODULO" Type="int" />
   </EntityType>
   <EntityType Name="CS_roles">
     <Key>
       <PropertyRef Name="ID_ROL" />
     </Key>
     <Property Name="ID_ROL" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="ID_PERFIL" Type="varchar" MaxLength="10" />
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="20" />
+    <Property Name="ID_SERVICIO" Type="int" />
   </EntityType>
   <EntityType Name="CS_usuario_login">
     <Key>
@@ -1094,11 +1438,11 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_ventas_status' no t
     <Property Name="NOMBRE" Type="varchar" MaxLength="20" />
     <Property Name="REF" Type="varchar" MaxLength="10" />
     <Property Name="PASS" Type="varchar" MaxLength="50" />
-    <Property Name="ID_PERFIL" Type="varchar" MaxLength="10" />
     <Property Name="ID_ROL" Type="varchar" MaxLength="10" />
     <Property Name="TARJETA_EMPLEADO" Type="varchar" MaxLength="10" />
     <Property Name="ESTADO_ACTUAL" Type="varchar" MaxLength="25" />
     <Property Name="GAFETE_IDENTIFICACION" Type="varchar" MaxLength="45" />
+    <Property Name="ID_SERVICIO" Type="int" />
   </EntityType>
   <EntityType Name="ELMAH_Error">
     <Key>
@@ -1226,6 +1570,54 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_receta' n
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <Association Name="FK__CS_permis__ID_MO__6F6A7CB2">
+    <End Role="C_modulos" Type="Self.C_modulos" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_modulos">
+        <PropertyRef Name="IdModulo" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_MODULO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CS_permis__ID_SE__7E22B05D">
+    <End Role="C_servicios_modulos" Type="Self.C_servicios_modulos" Multiplicity="0..1" />
+    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_servicios_modulos">
+        <PropertyRef Name="id_servicios_modulos" />
+      </Principal>
+      <Dependent Role="CS_permisos_asignados">
+        <PropertyRef Name="ID_SERVICIOS_MODULOS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CS_roles__ID_SER__00FF1D08">
+    <End Role="C_servicios" Type="Self.C_servicios" Multiplicity="0..1" />
+    <End Role="CS_roles" Type="Self.CS_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="CS_roles">
+        <PropertyRef Name="ID_SERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CS_usuari__ID_SE__000AF8CF">
+    <End Role="C_servicios" Type="Self.C_servicios" Multiplicity="0..1" />
+    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="CS_usuarios">
+        <PropertyRef Name="ID_SERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__CS_usuari__ID_US__73501C2F">
     <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="0..1" />
     <End Role="CS_usuario_login" Type="Self.CS_usuario_login" Multiplicity="*" />
@@ -1235,18 +1627,6 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_receta' n
       </Principal>
       <Dependent Role="CS_usuario_login">
         <PropertyRef Name="ID_USUARIO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__PERMISOS___ID_MO__1FCDBCEB">
-    <End Role="CS_modulos" Type="Self.CS_modulos" Multiplicity="0..1" />
-    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CS_modulos">
-        <PropertyRef Name="ID_MODULO" />
-      </Principal>
-      <Dependent Role="CS_permisos_asignados">
-        <PropertyRef Name="ID_MODULO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1283,30 +1663,6 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_receta' n
       </Principal>
       <Dependent Role="CS_permisos_asignados">
         <PropertyRef Name="ID_USUARIO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ROLES__ID_PERFIL__145C0A3F">
-    <End Role="CS_perfiles" Type="Self.CS_perfiles" Multiplicity="0..1" />
-    <End Role="CS_roles" Type="Self.CS_roles" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CS_perfiles">
-        <PropertyRef Name="ID_PERFIL" />
-      </Principal>
-      <Dependent Role="CS_roles">
-        <PropertyRef Name="ID_PERFIL" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__USUARIOS__ID_PER__1920BF5C">
-    <End Role="CS_perfiles" Type="Self.CS_perfiles" Multiplicity="0..1" />
-    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CS_perfiles">
-        <PropertyRef Name="ID_PERFIL" />
-      </Principal>
-      <Dependent Role="CS_usuarios">
-        <PropertyRef Name="ID_PERFIL" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1461,11 +1817,11 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_c
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_C_campañas_C_promociones_g">
-    <End Role="C_promociones_g" Type="Self.C_promociones_g" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
     <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="C_promociones_g">
-        <PropertyRef Name="id_promocion" />
+      <Principal Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_productos" />
       </Principal>
       <Dependent Role="C_campañas">
         <PropertyRef Name="id_promocion" />
@@ -1487,6 +1843,78 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_c
   <!--Errores durante la generación:
 error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal', pero no se encuentra la tabla.
         <Association Name="FK_C_equipo_sucursal_C_sucursales" />-->
+  <Association Name="FK_C_grupo_productos_d_C_grupo_productos_g">
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_productos" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_d">
+        <PropertyRef Name="id_grupo_productos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_g_C_grupo_productos_subclases">
+    <End Role="C_grupo_productos_subclases" Type="Self.C_grupo_productos_subclases" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_subclases">
+        <PropertyRef Name="id_grupo_producto_subclase" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_producto_subclase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_g_C_grupo_productos_tipos">
+    <End Role="C_grupo_productos_tipos" Type="Self.C_grupo_productos_tipos" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_tipos">
+        <PropertyRef Name="id_grupo_producto_tipo" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_producto_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_prods_C_grupo_productos_d">
+    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_prods" Type="Self.C_grupo_productos_prods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_d">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_prods">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_prods_C_grupo_productos_d1">
+    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_prods" Type="Self.C_grupo_productos_prods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_d">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_prods">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_prods_C_grupo_productos_d2">
+    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_prods" Type="Self.C_grupo_productos_prods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_d">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_prods">
+        <PropertyRef Name="id_grupo_productos_det" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_Insumo_cat_C_tipo_empaque">
     <End Role="C_tipo_empaque" Type="Self.C_tipo_empaque" Multiplicity="0..1" />
     <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="*" />
@@ -1596,50 +2024,26 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_e
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_C_promocion_d_C_promociones_g">
-    <End Role="C_promociones_g" Type="Self.C_promociones_g" Multiplicity="0..1" />
-    <End Role="C_promociones_d" Type="Self.C_promociones_d" Multiplicity="*" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="C_promociones_g">
-        <PropertyRef Name="id_promocion" />
+      <Principal Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_productos" />
       </Principal>
-      <Dependent Role="C_promociones_d">
-        <PropertyRef Name="id_promocion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_C_promocion_prods_C_promocion_d">
-    <End Role="C_promociones_d" Type="Self.C_promociones_d" Multiplicity="0..1" />
-    <End Role="C_promociones_prods" Type="Self.C_promociones_prods" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_promociones_d">
-        <PropertyRef Name="id_promocion_det" />
-      </Principal>
-      <Dependent Role="C_promociones_prods">
-        <PropertyRef Name="id_promocion_det" />
+      <Dependent Role="C_grupo_productos_d">
+        <PropertyRef Name="id_grupo_productos" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_C_promocion_sucursal_C_promociones_g">
-    <End Role="C_promociones_g" Type="Self.C_promociones_g" Multiplicity="0..1" />
-    <End Role="C_promociones_sucursales" Type="Self.C_promociones_sucursales" Multiplicity="*" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_sucursales" Type="Self.C_grupo_productos_sucursales" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="C_promociones_g">
-        <PropertyRef Name="id_promocion" />
+      <Principal Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_productos" />
       </Principal>
-      <Dependent Role="C_promociones_sucursales">
-        <PropertyRef Name="id_promocion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_C_promocion_sucursal_C_Sucursales">
-    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
-    <End Role="C_promociones_sucursales" Type="Self.C_promociones_sucursales" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_sucursales">
-        <PropertyRef Name="Id_sucursal" />
-      </Principal>
-      <Dependent Role="C_promociones_sucursales">
-        <PropertyRef Name="id_sucursal" />
+      <Dependent Role="C_grupo_productos_sucursales">
+        <PropertyRef Name="id_grupo_productos" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1728,7 +2132,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_e
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_C_sucursales_C_empresas">
-    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="1" />
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
     <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="C_empresas">
@@ -2111,18 +2515,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_e
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_productos_precios_Productos_cat">
-    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
-    <End Role="C_productos_precios" Type="Self.C_productos_precios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_productos_cat">
-        <PropertyRef Name="id_producto" />
-      </Principal>
-      <Dependent Role="C_productos_precios">
-        <PropertyRef Name="id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_productos_precios_zonas">
     <End Role="C_zonas_precio" Type="Self.C_zonas_precio" Multiplicity="0..1" />
     <End Role="C_productos_precios" Type="Self.C_productos_precios" Multiplicity="*" />
@@ -2135,30 +2527,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_e
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_productos_sucursal_Productos_cat">
-    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
-    <End Role="C_productos_sucursal" Type="Self.C_productos_sucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_productos_cat">
-        <PropertyRef Name="id_producto" />
-      </Principal>
-      <Dependent Role="C_productos_sucursal">
-        <PropertyRef Name="id_producto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_productos_sucursal_Sucursales">
-    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
-    <End Role="C_productos_sucursal" Type="Self.C_productos_sucursal" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_sucursales">
-        <PropertyRef Name="Id_sucursal" />
-      </Principal>
-      <Dependent Role="C_productos_sucursal">
-        <PropertyRef Name="id_sucursal" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <!--Errores durante la generación:
 error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_recetas', pero no se encuentra la tabla.
         <Association Name="FK_Recetas_Insumo_cat" />-->
@@ -2166,7 +2534,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
 error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_recetas', pero no se encuentra la tabla.
         <Association Name="FK_Recetas_Productos_cat" />-->
   <Association Name="FK_Sucursales_Empresas">
-    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="1" />
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
     <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="C_empresas">
@@ -2201,59 +2569,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="ELMAH_GetErrorsXml" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Application" Type="nvarchar" Mode="In" />
-    <Parameter Name="PageIndex" Type="int" Mode="In" />
-    <Parameter Name="PageSize" Type="int" Mode="In" />
-    <Parameter Name="TotalCount" Type="int" Mode="InOut" />
-  </Function>
-  <Function Name="ELMAH_GetErrorXml" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Application" Type="nvarchar" Mode="In" />
-    <Parameter Name="ErrorId" Type="uniqueidentifier" Mode="In" />
-  </Function>
-  <Function Name="ELMAH_LogError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="ErrorId" Type="uniqueidentifier" Mode="In" />
-    <Parameter Name="Application" Type="nvarchar" Mode="In" />
-    <Parameter Name="Host" Type="nvarchar" Mode="In" />
-    <Parameter Name="Type" Type="nvarchar" Mode="In" />
-    <Parameter Name="Source" Type="nvarchar" Mode="In" />
-    <Parameter Name="Message" Type="nvarchar" Mode="In" />
-    <Parameter Name="User" Type="nvarchar" Mode="In" />
-    <Parameter Name="AllXml" Type="ntext" Mode="In" />
-    <Parameter Name="StatusCode" Type="int" Mode="In" />
-    <Parameter Name="TimeUtc" Type="datetime" Mode="In" />
-  </Function>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DB_CORPORATIVA_DEVModelStoreContainer">
     <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" Schema="dbo" store:Type="Tables" />
@@ -2280,6 +2595,12 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     <EntitySet Name="C_estados" EntityType="Self.C_estados" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_eventos" EntityType="Self.C_eventos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_facturas" EntityType="Self.C_facturas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_d" EntityType="Self.C_grupo_productos_d" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_g" EntityType="Self.C_grupo_productos_g" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_prods" EntityType="Self.C_grupo_productos_prods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_subclases" EntityType="Self.C_grupo_productos_subclases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_sucursales" EntityType="Self.C_grupo_productos_sucursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_grupo_productos_tipos" EntityType="Self.C_grupo_productos_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_impuesto_producto" EntityType="Self.C_impuesto_producto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_impuestos" EntityType="Self.C_impuestos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_insumo_cat" EntityType="Self.C_insumo_cat" Schema="dbo" store:Type="Tables" />
@@ -2308,10 +2629,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     <EntitySet Name="C_productos_cat" EntityType="Self.C_productos_cat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_precios" EntityType="Self.C_productos_precios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_sucursal" EntityType="Self.C_productos_sucursal" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="C_promociones_d" EntityType="Self.C_promociones_d" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="C_promociones_g" EntityType="Self.C_promociones_g" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="C_promociones_prods" EntityType="Self.C_promociones_prods" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="C_promociones_sucursales" EntityType="Self.C_promociones_sucursales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_servicios" EntityType="Self.C_servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_servicios_modulos" EntityType="Self.C_servicios_modulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_servicios_sucursal" EntityType="Self.C_servicios_sucursal" Schema="dbo" store:Type="Tables" />
@@ -2344,12 +2661,81 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     <EntitySet Name="M_callcenter_clientes" EntityType="Self.M_callcenter_clientes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="M_callcenter_clientes_adicionales" EntityType="Self.M_callcenter_clientes_adicionales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_catalogo_consecutivos" EntityType="Self.C_catalogo_consecutivos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_catalogo_consecutivos].[id_consecutivos_globales] AS [id_consecutivos_globales], 
+    [C_catalogo_consecutivos].[id_marca] AS [id_marca], 
+    [C_catalogo_consecutivos].[concepto_consecutivo] AS [concepto_consecutivo], 
+    [C_catalogo_consecutivos].[nomenclatura] AS [nomenclatura], 
+    [C_catalogo_consecutivos].[consecutivo] AS [consecutivo], 
+    [C_catalogo_consecutivos].[fecha_activacion] AS [fecha_activacion], 
+    [C_catalogo_consecutivos].[activo] AS [activo]
+    FROM [dbo].[C_catalogo_consecutivos] AS [C_catalogo_consecutivos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_catalogo_sn" EntityType="Self.C_catalogo_sn" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_catalogo_sn].[id_catalogo_sn] AS [id_catalogo_sn], 
+    [C_catalogo_sn].[nombre] AS [nombre]
+    FROM [dbo].[C_catalogo_sn] AS [C_catalogo_sn]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_catalogo_tamanos" EntityType="Self.C_catalogo_tamanos" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_catalogo_tamanos].[id_catalogo_tamanos] AS [id_catalogo_tamanos], 
+    [C_catalogo_tamanos].[nombre] AS [nombre]
+    FROM [dbo].[C_catalogo_tamanos] AS [C_catalogo_tamanos]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_grupo_aplica_operacion" EntityType="Self.C_grupo_aplica_operacion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_grupo_aplica_operacion].[id_grupo_aplica_operacion] AS [id_grupo_aplica_operacion], 
+    [C_grupo_aplica_operacion].[nombre_regla] AS [nombre_regla], 
+    [C_grupo_aplica_operacion].[activa] AS [activa]
+    FROM [dbo].[C_grupo_aplica_operacion] AS [C_grupo_aplica_operacion]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_insumo_clasificacion" EntityType="Self.C_insumo_clasificacion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_insumo_clasificacion].[id_insumo_clasif] AS [id_insumo_clasif], 
+    [C_insumo_clasificacion].[nombre_insumo] AS [nombre_insumo]
+    FROM [dbo].[C_insumo_clasificacion] AS [C_insumo_clasificacion]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_insumo_tipo_empaque" EntityType="Self.C_insumo_tipo_empaque" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_insumo_tipo_empaque].[id_tipo_empaque] AS [id_tipo_empaque], 
+    [C_insumo_tipo_empaque].[nombre_tipo] AS [nombre_tipo]
+    FROM [dbo].[C_insumo_tipo_empaque] AS [C_insumo_tipo_empaque]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_insumo_tipo_envase" EntityType="Self.C_insumo_tipo_envase" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_insumo_tipo_envase].[id_tipo_envase] AS [id_tipo_envase], 
+    [C_insumo_tipo_envase].[nombre_tipo] AS [nombre_tipo]
+    FROM [dbo].[C_insumo_tipo_envase] AS [C_insumo_tipo_envase]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_insumo_tipo_inventario" EntityType="Self.C_insumo_tipo_inventario" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_insumo_tipo_inventario].[id_tipo_inventario] AS [id_tipo_inventario], 
+    [C_insumo_tipo_inventario].[nombre_tipo] AS [nombre_tipo]
+    FROM [dbo].[C_insumo_tipo_inventario] AS [C_insumo_tipo_inventario]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="C_producto_tipo" EntityType="Self.C_producto_tipo" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [C_producto_tipo].[id_producto_tipo] AS [id_producto_tipo], 
     [C_producto_tipo].[nombre] AS [nombre], 
     [C_producto_tipo].[alias_sku] AS [alias_sku]
     FROM [dbo].[C_producto_tipo] AS [C_producto_tipo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_productos_especialidades" EntityType="Self.C_productos_especialidades" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_productos_especialidades].[id_producto_especialidad] AS [id_producto_especialidad], 
+    [C_productos_especialidades].[nombre_especialidad] AS [nombre_especialidad], 
+    [C_productos_especialidades].[activo] AS [activo]
+    FROM [dbo].[C_productos_especialidades] AS [C_productos_especialidades]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_productos_marca" EntityType="Self.C_productos_marca" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_productos_marca].[id_producto_marca] AS [id_producto_marca], 
+    [C_productos_marca].[sku_marca] AS [sku_marca], 
+    [C_productos_marca].[id_marca] AS [id_marca], 
+    [C_productos_marca].[activo] AS [activo]
+    FROM [dbo].[C_productos_marca] AS [C_productos_marca]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="C_proveedores" EntityType="Self.C_proveedores" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -2364,13 +2750,131 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     [C_proveedores].[rfc] AS [rfc]
     FROM [dbo].[C_proveedores] AS [C_proveedores]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="C_sval_cat_desglose_billetes" EntityType="Self.C_sval_cat_desglose_billetes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_cat_desglose_billetes].[id_sval_desglose_billetes] AS [id_sval_desglose_billetes], 
+    [C_sval_cat_desglose_billetes].[denominacion] AS [denominacion], 
+    [C_sval_cat_desglose_billetes].[id_sval_tipo_moneda] AS [id_sval_tipo_moneda], 
+    [C_sval_cat_desglose_billetes].[activo] AS [activo]
+    FROM [dbo].[C_sval_cat_desglose_billetes] AS [C_sval_cat_desglose_billetes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_cat_desglose_monedas" EntityType="Self.C_sval_cat_desglose_monedas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_cat_desglose_monedas].[id_sval_desglose_moneda] AS [id_sval_desglose_moneda], 
+    [C_sval_cat_desglose_monedas].[denominacion] AS [denominacion], 
+    [C_sval_cat_desglose_monedas].[id_sval_tipo_moneda] AS [id_sval_tipo_moneda], 
+    [C_sval_cat_desglose_monedas].[activo] AS [activo]
+    FROM [dbo].[C_sval_cat_desglose_monedas] AS [C_sval_cat_desglose_monedas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_cliente_servicios" EntityType="Self.C_sval_cliente_servicios" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_cliente_servicios].[id_sval_servicios_contratados] AS [id_sval_servicios_contratados], 
+    [C_sval_cliente_servicios].[id_sval_cliente] AS [id_sval_cliente], 
+    [C_sval_cliente_servicios].[id_sval_servicio] AS [id_sval_servicio]
+    FROM [dbo].[C_sval_cliente_servicios] AS [C_sval_cliente_servicios]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_clientes" EntityType="Self.C_sval_clientes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_clientes].[id_sval_cliente] AS [id_sval_cliente], 
+    [C_sval_clientes].[id_cliente] AS [id_cliente], 
+    [C_sval_clientes].[fecha_registro] AS [fecha_registro], 
+    [C_sval_clientes].[id_servicios_contratados] AS [id_servicios_contratados], 
+    [C_sval_clientes].[activo] AS [activo]
+    FROM [dbo].[C_sval_clientes] AS [C_sval_clientes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_destinos_entrega" EntityType="Self.C_sval_destinos_entrega" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_destinos_entrega].[id_sval_destino_entrega] AS [id_sval_destino_entrega], 
+    [C_sval_destinos_entrega].[id_empresa] AS [id_empresa], 
+    [C_sval_destinos_entrega].[id_clientes_direccion] AS [id_clientes_direccion], 
+    [C_sval_destinos_entrega].[notas_entrega] AS [notas_entrega], 
+    [C_sval_destinos_entrega].[activo] AS [activo]
+    FROM [dbo].[C_sval_destinos_entrega] AS [C_sval_destinos_entrega]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_facturar_a" EntityType="Self.C_sval_facturar_a" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_facturar_a].[id_sval_facturar_a] AS [id_sval_facturar_a], 
+    [C_sval_facturar_a].[nombre_concepto] AS [nombre_concepto], 
+    [C_sval_facturar_a].[activo] AS [activo]
+    FROM [dbo].[C_sval_facturar_a] AS [C_sval_facturar_a]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_orden_billetes" EntityType="Self.C_sval_orden_billetes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_orden_billetes].[id_sval_orden_billetes] AS [id_sval_orden_billetes], 
+    [C_sval_orden_billetes].[id_sval_orden] AS [id_sval_orden], 
+    [C_sval_orden_billetes].[id_sval_desglose_billetes] AS [id_sval_desglose_billetes], 
+    [C_sval_orden_billetes].[no_piezas] AS [no_piezas], 
+    [C_sval_orden_billetes].[fecha_captura] AS [fecha_captura]
+    FROM [dbo].[C_sval_orden_billetes] AS [C_sval_orden_billetes]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_orden_monedas" EntityType="Self.C_sval_orden_monedas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_orden_monedas].[id_sval_orden_monedas] AS [id_sval_orden_monedas], 
+    [C_sval_orden_monedas].[id_sval_orden] AS [id_sval_orden], 
+    [C_sval_orden_monedas].[id_sval_desglose_monedas] AS [id_sval_desglose_monedas], 
+    [C_sval_orden_monedas].[no_piezas] AS [no_piezas], 
+    [C_sval_orden_monedas].[fecha_captura] AS [fecha_captura]
+    FROM [dbo].[C_sval_orden_monedas] AS [C_sval_orden_monedas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_recepcion" EntityType="Self.C_sval_recepcion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_recepcion].[id_recepcion_valores] AS [id_recepcion_valores], 
+    [C_sval_recepcion].[fecha_recepcion] AS [fecha_recepcion], 
+    [C_sval_recepcion].[id_terminal_captura] AS [id_terminal_captura], 
+    [C_sval_recepcion].[id_usuario_captura] AS [id_usuario_captura], 
+    [C_sval_recepcion].[id_usuario_cajero] AS [id_usuario_cajero], 
+    [C_sval_recepcion].[nip_cajero] AS [nip_cajero], 
+    [C_sval_recepcion].[id_cliente] AS [id_cliente], 
+    [C_sval_recepcion].[id_sval_orden] AS [id_sval_orden], 
+    [C_sval_recepcion].[importe_contenido_efectivo] AS [importe_contenido_efectivo], 
+    [C_sval_recepcion].[importe_contenido_documentos] AS [importe_contenido_documentos], 
+    [C_sval_recepcion].[total_importe_contenido] AS [total_importe_contenido], 
+    [C_sval_recepcion].[id_desglose_billetes] AS [id_desglose_billetes], 
+    [C_sval_recepcion].[id_desglose_monedas] AS [id_desglose_monedas]
+    FROM [dbo].[C_sval_recepcion] AS [C_sval_recepcion]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_servicios" EntityType="Self.C_sval_servicios" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_servicios].[id_sval_servicio] AS [id_sval_servicio], 
+    [C_sval_servicios].[nombre_proceso] AS [nombre_proceso], 
+    [C_sval_servicios].[descripcion_proceso] AS [descripcion_proceso], 
+    [C_sval_servicios].[activo] AS [activo]
+    FROM [dbo].[C_sval_servicios] AS [C_sval_servicios]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_tipo_moneda" EntityType="Self.C_sval_tipo_moneda" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_tipo_moneda].[id_sval_tipo_moneda] AS [id_sval_tipo_moneda], 
+    [C_sval_tipo_moneda].[nombre_moneda] AS [nombre_moneda], 
+    [C_sval_tipo_moneda].[siglas_moneda] AS [siglas_moneda], 
+    [C_sval_tipo_moneda].[activo] AS [activo]
+    FROM [dbo].[C_sval_tipo_moneda] AS [C_sval_tipo_moneda]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="C_sval_tipo_servicios" EntityType="Self.C_sval_tipo_servicios" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [C_sval_tipo_servicios].[id_sval_tipo_servicio] AS [id_sval_tipo_servicio], 
+    [C_sval_tipo_servicios].[nombre_servicio] AS [nombre_servicio], 
+    [C_sval_tipo_servicios].[activo] AS [activo]
+    FROM [dbo].[C_sval_tipo_servicios] AS [C_sval_tipo_servicios]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__CS_permis__ID_MO__6F6A7CB2" Association="Self.FK__CS_permis__ID_MO__6F6A7CB2">
+      <End Role="C_modulos" EntitySet="C_modulos" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CS_permis__ID_SE__7E22B05D" Association="Self.FK__CS_permis__ID_SE__7E22B05D">
+      <End Role="C_servicios_modulos" EntitySet="C_servicios_modulos" />
+      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CS_roles__ID_SER__00FF1D08" Association="Self.FK__CS_roles__ID_SER__00FF1D08">
+      <End Role="C_servicios" EntitySet="C_servicios" />
+      <End Role="CS_roles" EntitySet="CS_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CS_usuari__ID_SE__000AF8CF" Association="Self.FK__CS_usuari__ID_SE__000AF8CF">
+      <End Role="C_servicios" EntitySet="C_servicios" />
+      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
+    </AssociationSet>
     <AssociationSet Name="FK__CS_usuari__ID_US__73501C2F" Association="Self.FK__CS_usuari__ID_US__73501C2F">
       <End Role="CS_usuarios" EntitySet="CS_usuarios" />
       <End Role="CS_usuario_login" EntitySet="CS_usuario_login" />
-    </AssociationSet>
-    <AssociationSet Name="FK__PERMISOS___ID_MO__1FCDBCEB" Association="Self.FK__PERMISOS___ID_MO__1FCDBCEB">
-      <End Role="CS_modulos" EntitySet="CS_modulos" />
-      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
     </AssociationSet>
     <AssociationSet Name="FK__PERMISOS___ID_PE__1ED998B2" Association="Self.FK__PERMISOS___ID_PE__1ED998B2">
       <End Role="CS_permisos" EntitySet="CS_permisos" />
@@ -2383,14 +2887,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     <AssociationSet Name="FK__PERMISOS___ID_US__1CF15040" Association="Self.FK__PERMISOS___ID_US__1CF15040">
       <End Role="CS_usuarios" EntitySet="CS_usuarios" />
       <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ROLES__ID_PERFIL__145C0A3F" Association="Self.FK__ROLES__ID_PERFIL__145C0A3F">
-      <End Role="CS_perfiles" EntitySet="CS_perfiles" />
-      <End Role="CS_roles" EntitySet="CS_roles" />
-    </AssociationSet>
-    <AssociationSet Name="FK__USUARIOS__ID_PER__1920BF5C" Association="Self.FK__USUARIOS__ID_PER__1920BF5C">
-      <End Role="CS_perfiles" EntitySet="CS_perfiles" />
-      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
     </AssociationSet>
     <AssociationSet Name="FK__USUARIOS__ID_ROL__1A14E395" Association="Self.FK__USUARIOS__ID_ROL__1A14E395">
       <End Role="CS_roles" EntitySet="CS_roles" />
@@ -2437,12 +2933,36 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
       <End Role="C_campañas" EntitySet="C_campañas" />
     </AssociationSet>
     <AssociationSet Name="FK_C_campañas_C_promociones_g" Association="Self.FK_C_campañas_C_promociones_g">
-      <End Role="C_promociones_g" EntitySet="C_promociones_g" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
       <End Role="C_campañas" EntitySet="C_campañas" />
     </AssociationSet>
     <AssociationSet Name="FK_C_campañas_C_tipos_codigo" Association="Self.FK_C_campañas_C_tipos_codigo">
       <End Role="C_tipos_codigo" EntitySet="C_tipos_codigo" />
       <End Role="C_campañas" EntitySet="C_campañas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_d_C_grupo_productos_g" Association="Self.FK_C_grupo_productos_d_C_grupo_productos_g">
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_g_C_grupo_productos_subclases" Association="Self.FK_C_grupo_productos_g_C_grupo_productos_subclases">
+      <End Role="C_grupo_productos_subclases" EntitySet="C_grupo_productos_subclases" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_g_C_grupo_productos_tipos" Association="Self.FK_C_grupo_productos_g_C_grupo_productos_tipos">
+      <End Role="C_grupo_productos_tipos" EntitySet="C_grupo_productos_tipos" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_prods_C_grupo_productos_d" Association="Self.FK_C_grupo_productos_prods_C_grupo_productos_d">
+      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
+      <End Role="C_grupo_productos_prods" EntitySet="C_grupo_productos_prods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_prods_C_grupo_productos_d1" Association="Self.FK_C_grupo_productos_prods_C_grupo_productos_d1">
+      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
+      <End Role="C_grupo_productos_prods" EntitySet="C_grupo_productos_prods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_prods_C_grupo_productos_d2" Association="Self.FK_C_grupo_productos_prods_C_grupo_productos_d2">
+      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
+      <End Role="C_grupo_productos_prods" EntitySet="C_grupo_productos_prods" />
     </AssociationSet>
     <AssociationSet Name="FK_C_Insumo_cat_C_tipo_empaque" Association="Self.FK_C_Insumo_cat_C_tipo_empaque">
       <End Role="C_tipo_empaque" EntitySet="C_tipo_empaque" />
@@ -2481,20 +3001,12 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
       <End Role="C_marcas_sociedades" EntitySet="C_marcas_sociedades" />
     </AssociationSet>
     <AssociationSet Name="FK_C_promocion_d_C_promociones_g" Association="Self.FK_C_promocion_d_C_promociones_g">
-      <End Role="C_promociones_g" EntitySet="C_promociones_g" />
-      <End Role="C_promociones_d" EntitySet="C_promociones_d" />
-    </AssociationSet>
-    <AssociationSet Name="FK_C_promocion_prods_C_promocion_d" Association="Self.FK_C_promocion_prods_C_promocion_d">
-      <End Role="C_promociones_d" EntitySet="C_promociones_d" />
-      <End Role="C_promociones_prods" EntitySet="C_promociones_prods" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
     </AssociationSet>
     <AssociationSet Name="FK_C_promocion_sucursal_C_promociones_g" Association="Self.FK_C_promocion_sucursal_C_promociones_g">
-      <End Role="C_promociones_g" EntitySet="C_promociones_g" />
-      <End Role="C_promociones_sucursales" EntitySet="C_promociones_sucursales" />
-    </AssociationSet>
-    <AssociationSet Name="FK_C_promocion_sucursal_C_Sucursales" Association="Self.FK_C_promocion_sucursal_C_Sucursales">
-      <End Role="C_sucursales" EntitySet="C_sucursales" />
-      <End Role="C_promociones_sucursales" EntitySet="C_promociones_sucursales" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+      <End Role="C_grupo_productos_sucursales" EntitySet="C_grupo_productos_sucursales" />
     </AssociationSet>
     <AssociationSet Name="FK_C_servicios_modulos_C_modulos" Association="Self.FK_C_servicios_modulos_C_modulos">
       <End Role="C_modulos" EntitySet="C_modulos" />
@@ -2652,21 +3164,9 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
       <End Role="C_producto_clasificacion" EntitySet="C_producto_clasificacion" />
       <End Role="C_productos_cat" EntitySet="C_productos_cat" />
     </AssociationSet>
-    <AssociationSet Name="FK_productos_precios_Productos_cat" Association="Self.FK_productos_precios_Productos_cat">
-      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
-      <End Role="C_productos_precios" EntitySet="C_productos_precios" />
-    </AssociationSet>
     <AssociationSet Name="FK_productos_precios_zonas" Association="Self.FK_productos_precios_zonas">
       <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
       <End Role="C_productos_precios" EntitySet="C_productos_precios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_productos_sucursal_Productos_cat" Association="Self.FK_productos_sucursal_Productos_cat">
-      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
-      <End Role="C_productos_sucursal" EntitySet="C_productos_sucursal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_productos_sucursal_Sucursales" Association="Self.FK_productos_sucursal_Sucursales">
-      <End Role="C_sucursales" EntitySet="C_sucursales" />
-      <End Role="C_productos_sucursal" EntitySet="C_productos_sucursal" />
     </AssociationSet>
     <AssociationSet Name="FK_Sucursales_Empresas" Association="Self.FK_Sucursales_Empresas">
       <End Role="C_empresas" EntitySet="C_empresas" />

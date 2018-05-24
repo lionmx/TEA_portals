@@ -24,6 +24,7 @@ namespace Backoffice0._1.Models
         public int id_zona { get; set; }
         public string zona { get; set; }
         public string descripcion { get; set; }
+        public Nullable<bool> activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_productos_precios> C_productos_precios { get; set; }

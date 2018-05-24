@@ -23,7 +23,7 @@ namespace Backoffice0._1.Models
     
         public int id_marca { get; set; }
         public string nombre_marca { get; set; }
-        public string fecha_registro { get; set; }
+        public Nullable<System.DateTime> fecha_registro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marca_config> C_marca_config { get; set; }

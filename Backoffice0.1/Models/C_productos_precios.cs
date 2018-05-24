@@ -15,13 +15,13 @@ namespace Backoffice0._1.Models
     public partial class C_productos_precios
     {
         public int id_producto_precio { get; set; }
-        public Nullable<int> id_producto { get; set; }
-        public string precio_publico { get; set; }
-        public string costo_directo { get; set; }
-        public string costo_real { get; set; }
+        public string sku_producto { get; set; }
+        public Nullable<decimal> precio_publico { get; set; }
+        public Nullable<decimal> costo_directo { get; set; }
+        public Nullable<decimal> costo_real { get; set; }
         public Nullable<int> id_zona { get; set; }
+        public string cfdi_prodid { get; set; }
     
-        public virtual C_productos_cat C_productos_cat { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
     }
 }

@@ -15,11 +15,9 @@ namespace Backoffice0._1.Models
     public partial class C_productos_sucursal
     {
         public int id_productos_sucursal { get; set; }
-        public Nullable<int> id_producto { get; set; }
-        public Nullable<int> id_sucursal { get; set; }
-        public string cantidad { get; set; }
-    
-        public virtual C_productos_cat C_productos_cat { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
+        public string sku_producto { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<decimal> saldo { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

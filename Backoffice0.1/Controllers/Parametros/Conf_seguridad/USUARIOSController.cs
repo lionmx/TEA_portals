@@ -93,7 +93,7 @@ namespace Backoffice0._1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_PERFIL = new SelectList(db.CS_usuarios, "ID_PERFIL", "DESCRIPCION", uSUARIOS.ID_PERFIL);
+           // ViewBag.ID_PERFIL = new SelectList(db.CS_usuarios, "ID_PERFIL", "DESCRIPCION", uSUARIOS.ID_PERFIL);
             ViewBag.ID_ROL = new SelectList(db.CS_roles, "ID_ROL", "DESCRIPCION", uSUARIOS.ID_ROL);
             return View(uSUARIOS);
         }

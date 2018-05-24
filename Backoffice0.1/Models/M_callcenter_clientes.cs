@@ -14,7 +14,6 @@ namespace Backoffice0._1.Models
     
     public partial class M_callcenter_clientes
     {
-        public ICollection<M_callcenter_clientes> callcenterClientesList { get; set; }
         public long id { get; set; }
         public string telefono { get; set; }
         public string nombre { get; set; }

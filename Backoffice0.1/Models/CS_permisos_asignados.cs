@@ -17,11 +17,13 @@ namespace Backoffice0._1.Models
         public string ID_USUARIO { get; set; }
         public string ID_ROL { get; set; }
         public string ID_PERMISO { get; set; }
-        public string ID_MODULO { get; set; }
-        public string STATUS { get; set; }
         public decimal ID_PERMISO_ASIGNADOS { get; set; }
+        public Nullable<int> ID_SERVICIOS_MODULOS { get; set; }
+        public Nullable<bool> ACTIVO { get; set; }
+        public Nullable<int> ID_MODULO { get; set; }
     
-        public virtual CS_modulos CS_modulos { get; set; }
+        public virtual C_modulos C_modulos { get; set; }
+        public virtual C_servicios_modulos C_servicios_modulos { get; set; }
         public virtual CS_permisos CS_permisos { get; set; }
         public virtual CS_roles CS_roles { get; set; }
         public virtual CS_usuarios CS_usuarios { get; set; }

@@ -12,8 +12,6 @@ namespace Backoffice0._1.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class DB_CORPORATIVA_DEVEntities1 : DbContext
     {
@@ -52,6 +50,12 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_estados> C_estados { get; set; }
         public virtual DbSet<C_eventos> C_eventos { get; set; }
         public virtual DbSet<C_facturas> C_facturas { get; set; }
+        public virtual DbSet<C_grupo_productos_d> C_grupo_productos_d { get; set; }
+        public virtual DbSet<C_grupo_productos_g> C_grupo_productos_g { get; set; }
+        public virtual DbSet<C_grupo_productos_prods> C_grupo_productos_prods { get; set; }
+        public virtual DbSet<C_grupo_productos_subclases> C_grupo_productos_subclases { get; set; }
+        public virtual DbSet<C_grupo_productos_sucursales> C_grupo_productos_sucursales { get; set; }
+        public virtual DbSet<C_grupo_productos_tipos> C_grupo_productos_tipos { get; set; }
         public virtual DbSet<C_impuesto_producto> C_impuesto_producto { get; set; }
         public virtual DbSet<C_impuestos> C_impuestos { get; set; }
         public virtual DbSet<C_insumo_cat> C_insumo_cat { get; set; }
@@ -80,10 +84,6 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_productos_cat> C_productos_cat { get; set; }
         public virtual DbSet<C_productos_precios> C_productos_precios { get; set; }
         public virtual DbSet<C_productos_sucursal> C_productos_sucursal { get; set; }
-        public virtual DbSet<C_promociones_d> C_promociones_d { get; set; }
-        public virtual DbSet<C_promociones_g> C_promociones_g { get; set; }
-        public virtual DbSet<C_promociones_prods> C_promociones_prods { get; set; }
-        public virtual DbSet<C_promociones_sucursales> C_promociones_sucursales { get; set; }
         public virtual DbSet<C_servicios> C_servicios { get; set; }
         public virtual DbSet<C_servicios_modulos> C_servicios_modulos { get; set; }
         public virtual DbSet<C_servicios_sucursal> C_servicios_sucursal { get; set; }
@@ -116,185 +116,29 @@ namespace Backoffice0._1.Models
         public virtual DbSet<M_callcenter_clientes> M_callcenter_clientes { get; set; }
         public virtual DbSet<M_callcenter_clientes_adicionales> M_callcenter_clientes_adicionales { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<C_catalogo_consecutivos> C_catalogo_consecutivos { get; set; }
+        public virtual DbSet<C_catalogo_sn> C_catalogo_sn { get; set; }
+        public virtual DbSet<C_catalogo_tamanos> C_catalogo_tamanos { get; set; }
+        public virtual DbSet<C_grupo_aplica_operacion> C_grupo_aplica_operacion { get; set; }
+        public virtual DbSet<C_insumo_clasificacion> C_insumo_clasificacion { get; set; }
+        public virtual DbSet<C_insumo_tipo_empaque> C_insumo_tipo_empaque { get; set; }
+        public virtual DbSet<C_insumo_tipo_envase> C_insumo_tipo_envase { get; set; }
+        public virtual DbSet<C_insumo_tipo_inventario> C_insumo_tipo_inventario { get; set; }
         public virtual DbSet<C_producto_tipo> C_producto_tipo { get; set; }
+        public virtual DbSet<C_productos_especialidades> C_productos_especialidades { get; set; }
+        public virtual DbSet<C_productos_marca> C_productos_marca { get; set; }
         public virtual DbSet<C_proveedores> C_proveedores { get; set; }
-    
-        public virtual ObjectResult<string> ELMAH_GetErrorsXml(string application, Nullable<int> pageIndex, Nullable<int> pageSize, ObjectParameter totalCount)
-        {
-            var applicationParameter = application != null ?
-                new ObjectParameter("Application", application) :
-                new ObjectParameter("Application", typeof(string));
-    
-            var pageIndexParameter = pageIndex.HasValue ?
-                new ObjectParameter("PageIndex", pageIndex) :
-                new ObjectParameter("PageIndex", typeof(int));
-    
-            var pageSizeParameter = pageSize.HasValue ?
-                new ObjectParameter("PageSize", pageSize) :
-                new ObjectParameter("PageSize", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ELMAH_GetErrorsXml", applicationParameter, pageIndexParameter, pageSizeParameter, totalCount);
-        }
-    
-        public virtual ObjectResult<string> ELMAH_GetErrorXml(string application, Nullable<System.Guid> errorId)
-        {
-            var applicationParameter = application != null ?
-                new ObjectParameter("Application", application) :
-                new ObjectParameter("Application", typeof(string));
-    
-            var errorIdParameter = errorId.HasValue ?
-                new ObjectParameter("ErrorId", errorId) :
-                new ObjectParameter("ErrorId", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ELMAH_GetErrorXml", applicationParameter, errorIdParameter);
-        }
-    
-        public virtual int ELMAH_LogError(Nullable<System.Guid> errorId, string application, string host, string type, string source, string message, string user, string allXml, Nullable<int> statusCode, Nullable<System.DateTime> timeUtc)
-        {
-            var errorIdParameter = errorId.HasValue ?
-                new ObjectParameter("ErrorId", errorId) :
-                new ObjectParameter("ErrorId", typeof(System.Guid));
-    
-            var applicationParameter = application != null ?
-                new ObjectParameter("Application", application) :
-                new ObjectParameter("Application", typeof(string));
-    
-            var hostParameter = host != null ?
-                new ObjectParameter("Host", host) :
-                new ObjectParameter("Host", typeof(string));
-    
-            var typeParameter = type != null ?
-                new ObjectParameter("Type", type) :
-                new ObjectParameter("Type", typeof(string));
-    
-            var sourceParameter = source != null ?
-                new ObjectParameter("Source", source) :
-                new ObjectParameter("Source", typeof(string));
-    
-            var messageParameter = message != null ?
-                new ObjectParameter("Message", message) :
-                new ObjectParameter("Message", typeof(string));
-    
-            var userParameter = user != null ?
-                new ObjectParameter("User", user) :
-                new ObjectParameter("User", typeof(string));
-    
-            var allXmlParameter = allXml != null ?
-                new ObjectParameter("AllXml", allXml) :
-                new ObjectParameter("AllXml", typeof(string));
-    
-            var statusCodeParameter = statusCode.HasValue ?
-                new ObjectParameter("StatusCode", statusCode) :
-                new ObjectParameter("StatusCode", typeof(int));
-    
-            var timeUtcParameter = timeUtc.HasValue ?
-                new ObjectParameter("TimeUtc", timeUtc) :
-                new ObjectParameter("TimeUtc", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELMAH_LogError", errorIdParameter, applicationParameter, hostParameter, typeParameter, sourceParameter, messageParameter, userParameter, allXmlParameter, statusCodeParameter, timeUtcParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
+        public virtual DbSet<C_sval_cat_desglose_billetes> C_sval_cat_desglose_billetes { get; set; }
+        public virtual DbSet<C_sval_cat_desglose_monedas> C_sval_cat_desglose_monedas { get; set; }
+        public virtual DbSet<C_sval_cliente_servicios> C_sval_cliente_servicios { get; set; }
+        public virtual DbSet<C_sval_clientes> C_sval_clientes { get; set; }
+        public virtual DbSet<C_sval_destinos_entrega> C_sval_destinos_entrega { get; set; }
+        public virtual DbSet<C_sval_facturar_a> C_sval_facturar_a { get; set; }
+        public virtual DbSet<C_sval_orden_billetes> C_sval_orden_billetes { get; set; }
+        public virtual DbSet<C_sval_orden_monedas> C_sval_orden_monedas { get; set; }
+        public virtual DbSet<C_sval_recepcion> C_sval_recepcion { get; set; }
+        public virtual DbSet<C_sval_servicios> C_sval_servicios { get; set; }
+        public virtual DbSet<C_sval_tipo_moneda> C_sval_tipo_moneda { get; set; }
+        public virtual DbSet<C_sval_tipo_servicios> C_sval_tipo_servicios { get; set; }
     }
 }

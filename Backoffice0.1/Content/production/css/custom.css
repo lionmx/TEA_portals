@@ -3845,7 +3845,6 @@ ul.project_files li a i {
 /* *********  media gallery  **************************** */
 
 .thumbnail .image {
-  height: 100px;
   overflow: hidden;
 }
 .caption {
@@ -3856,8 +3855,8 @@ ul.project_files li a i {
   margin-bottom: 5px;
 }
 .thumbnail {
-  height: 140px;
-  overflow: hidden;
+    height: 100px;
+    overflow: hidden;
 }
 .view {
   overflow: hidden;

@@ -17,12 +17,15 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_modulos()
         {
+            this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
             this.C_servicios_modulos = new HashSet<C_servicios_modulos>();
         }
     
         public int IdModulo { get; set; }
         public string Nombre { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_modulos> C_servicios_modulos { get; set; }
     }
