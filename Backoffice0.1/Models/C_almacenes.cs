@@ -14,7 +14,16 @@ namespace Backoffice0._1.Models
     
     public partial class C_almacenes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_almacenes()
+        {
+            this.C_almacen_insumos = new HashSet<C_almacen_insumos>();
+        }
+    
         public int id_almacen { get; set; }
         public string id_empresa { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_almacen_insumos> C_almacen_insumos { get; set; }
     }
 }

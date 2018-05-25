@@ -26,7 +26,6 @@ namespace Backoffice0._1.Models
         }
     
         public virtual DbSet<C_almacenes> C_almacenes { get; set; }
-        public virtual DbSet<C_bo_almacen> C_bo_almacen { get; set; }
         public virtual DbSet<C_bo_calculo> C_bo_calculo { get; set; }
         public virtual DbSet<C_bo_diafestivo_ap> C_bo_diafestivo_ap { get; set; }
         public virtual DbSet<C_bo_diasfestivos> C_bo_diasfestivos { get; set; }
@@ -115,7 +114,7 @@ namespace Backoffice0._1.Models
         public virtual DbSet<ELMAH_Error> ELMAH_Error { get; set; }
         public virtual DbSet<M_callcenter_clientes> M_callcenter_clientes { get; set; }
         public virtual DbSet<M_callcenter_clientes_adicionales> M_callcenter_clientes_adicionales { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<C_catalogo_consecutivos> C_catalogo_consecutivos { get; set; }
         public virtual DbSet<C_catalogo_sn> C_catalogo_sn { get; set; }
         public virtual DbSet<C_catalogo_tamanos> C_catalogo_tamanos { get; set; }
@@ -140,5 +139,26 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_sval_servicios> C_sval_servicios { get; set; }
         public virtual DbSet<C_sval_tipo_moneda> C_sval_tipo_moneda { get; set; }
         public virtual DbSet<C_sval_tipo_servicios> C_sval_tipo_servicios { get; set; }
+        public virtual DbSet<C_bo_almacen> C_bo_almacen { get; set; }
+        public virtual DbSet<C_almacen_insumos> C_almacen_insumos { get; set; }
+        public virtual DbSet<C_bo_calculo_pe> C_bo_calculo_pe { get; set; }
+        public virtual DbSet<C_bo_det_orden> C_bo_det_orden { get; set; }
+        public virtual DbSet<C_bo_orden_complemento> C_bo_orden_complemento { get; set; }
+        public virtual DbSet<C_campaña_codigos> C_campaña_codigos { get; set; }
+        public virtual DbSet<C_empleados> C_empleados { get; set; }
+        public virtual DbSet<C_empleados_pos> C_empleados_pos { get; set; }
+        public virtual DbSet<C_empresas_sucursales> C_empresas_sucursales { get; set; }
+        public virtual DbSet<C_equipo_sucursal> C_equipo_sucursal { get; set; }
+        public virtual DbSet<C_recetas> C_recetas { get; set; }
+        public virtual DbSet<C_sucursales_config> C_sucursales_config { get; set; }
+        public virtual DbSet<C_sval_actas_diferencia> C_sval_actas_diferencia { get; set; }
+        public virtual DbSet<C_sval_documentos> C_sval_documentos { get; set; }
+        public virtual DbSet<C_sval_ordenes> C_sval_ordenes { get; set; }
+        public virtual DbSet<C_sval_recepcion_envases> C_sval_recepcion_envases { get; set; }
+        public virtual DbSet<C_usuarios> C_usuarios { get; set; }
+        public virtual DbSet<C_usuarios_marca> C_usuarios_marca { get; set; }
+        public virtual DbSet<C_usuarios_pos> C_usuarios_pos { get; set; }
+        public virtual DbSet<C_usuarios_sucursales> C_usuarios_sucursales { get; set; }
+        public virtual DbSet<C_ventas_status> C_ventas_status { get; set; }
     }
 }

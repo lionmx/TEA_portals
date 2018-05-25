@@ -22,6 +22,7 @@ namespace Backoffice0._1.Controllers
             CS_permisos_asignados ViewModel = new CS_permisos_asignados();
             List<string> listaPA = new List<string>();
             string user = Session["LoggedUser"].ToString();
+            string loggedId = Session["LoggedId"].ToString();
             var id = from us in db.CS_usuarios
                      where us.NOMBRE.Equals(user)
                      select us;
@@ -32,22 +33,23 @@ namespace Backoffice0._1.Controllers
             }
             for (int i = 00; i <= 8; i++)
             {
-                var mod1 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO == "0" + i && a.ID_PERMISO == "07").FirstOrDefault();
+                var mod1 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO.Equals("0" + i) && a.ID_PERMISO == "07").FirstOrDefault();
+                var perfil = db.CS_usuarios.Where(a => a.ID_USUARIO.Equals(loggedId)).FirstOrDefault();
                 if (mod1 != null)
                 {
-                    listaPA.Add(mod1.ID_MODULO);
+                    listaPA.Add(mod1.ID_MODULO.ToString());
                     listaPA.Add(mod1.ID_PERMISO);
-
+                    ViewBag.perfil = perfil.ID_SERVICIO;
                 }
             }
             ViewBag.data = listaPA;
             List<string> listaPA2 = new List<string>();
             for (int i = 0; i <= 8; i++)
             {
-                var mod2 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO == "'0" + i + "'" && a.ID_PERMISO.Equals("08")).FirstOrDefault();
+                var mod2 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO.Equals("'0" + i + "'") && a.ID_PERMISO.Equals("08")).FirstOrDefault();
                 if (mod2 != null)
                 {
-                    listaPA2.Add(mod2.ID_MODULO);
+                    listaPA2.Add(mod2.ID_MODULO.ToString());
                     listaPA2.Add(mod2.ID_PERMISO);
                 }
             }

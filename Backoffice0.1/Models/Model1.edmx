@@ -4,18 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_CORPORATIVA_DEVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_almacen_insumos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+    <Schema Namespace="DB_CORPORATIVA_DEVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="C_almacen_insumos">
-          <Property Name="id_almacen_insumo" Type="nchar" MaxLength="10" />
+          <Key>
+            <PropertyRef Name="id_almacen_insumo" />
+          </Key>
           <Property Name="id_almacen" Type="int" />
           <Property Name="id_insumo" Type="int" />
           <Property Name="id_zona_almacenaje" Type="int" />
           <Property Name="cantidad" Type="nchar" MaxLength="10" />
           <Property Name="min" Type="nchar" MaxLength="10" />
           <Property Name="max" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+          <Property Name="id_almacen_insumo" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_almacenes">
           <Key>
             <PropertyRef Name="id_almacen" />
@@ -56,10 +57,10 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_almacen_insumos' no
           <Property Name="porc_proteccion" Type="nchar" MaxLength="10" />
           <Property Name="fecha_calculo" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_calculo_pe' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_bo_calculo_pe">
-          <Property Name="id_bo_calculo_pe" Type="nchar" MaxLength="10" />
+          <Key>
+            <PropertyRef Name="id_bo_calculo_pe" />
+          </Key>
           <Property Name="id_sucursal" Type="nchar" MaxLength="10" />
           <Property Name="id_categoria" Type="nchar" MaxLength="10" />
           <Property Name="id_bo_calculo" Type="int" />
@@ -67,12 +68,15 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_calculo_pe' no t
           <Property Name="cant_emp" Type="nchar" MaxLength="10" />
           <Property Name="cant_suelto" Type="nchar" MaxLength="10" />
           <Property Name="fecha" Type="nchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_det_orden' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_bo_calculo_pe" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_bo_det_orden">
+          <Key>
+            <PropertyRef Name="id_bo_det_orden" />
+          </Key>
           <Property Name="id" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+          <Property Name="id_bo_det_orden" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_bo_diafestivo_ap">
           <Key>
             <PropertyRef Name="id_bo_df_ap" />
@@ -115,16 +119,17 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_det_orden' no ti
           </Key>
           <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_orden_complemento' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_bo_orden_complemento">
-          <Property Name="id_bo_orden_complemento" Type="nchar" MaxLength="10" />
+          <Key>
+            <PropertyRef Name="id_bo_orden_complemento" />
+          </Key>
           <Property Name="id_bo_almacen" Type="nchar" MaxLength="10" />
           <Property Name="id_insumo" Type="nchar" MaxLength="10" />
           <Property Name="cantidad" Type="nchar" MaxLength="10" />
           <Property Name="status" Type="nchar" MaxLength="10" />
           <Property Name="nota" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+          <Property Name="id_bo_orden_complemento" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_bo_porc_df">
           <Key>
             <PropertyRef Name="id_bo_porc_df" />
@@ -154,10 +159,10 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_orden_complement
           <Property Name="status" Type="nchar" MaxLength="10" />
           <Property Name="id_sucursal" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_campaña_codigos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_campaña_codigos">
-          <Property Name="id_campaña_codigo" Type="nchar" MaxLength="10" />
+          <Key>
+            <PropertyRef Name="id_campaña_codigo" />
+          </Key>
           <Property Name="id_campaña" Type="int" />
           <Property Name="codigo" Type="nchar" MaxLength="10" />
           <Property Name="status" Type="nchar" MaxLength="10" />
@@ -165,7 +170,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_campaña_codigos' n
           <Property Name="id_usuario_canje" Type="int" />
           <Property Name="fecha_canje" Type="date" />
           <Property Name="id_cliente_canje" Type="int" />
-        </EntityType>-->
+          <Property Name="id_campaña_codigo" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_campaña_empresas">
           <Key>
             <PropertyRef Name="id_empresa_campaña" />
@@ -296,25 +302,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_catalogo_tamanos' n
           <Property Name="colonia" Type="nchar" MaxLength="10" />
           <Property Name="id_codigopostal" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_cp_mexico' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="C_cp_mexico">
-          <Property Name="d_codigo" Type="nvarchar(max)" />
-          <Property Name="d_asenta" Type="nvarchar(max)" />
-          <Property Name="d_tipo_asenta" Type="nvarchar(max)" />
-          <Property Name="d_mnpio" Type="nvarchar(max)" />
-          <Property Name="d_estado" Type="nvarchar(max)" />
-          <Property Name="d_ciudad" Type="nvarchar(max)" />
-          <Property Name="d_cp" Type="nvarchar(max)" />
-          <Property Name="c_estado" Type="nvarchar(max)" />
-          <Property Name="c_oficina" Type="nvarchar(max)" />
-          <Property Name="c_cp" Type="nvarchar(max)" />
-          <Property Name="c_tipo_asenta" Type="nvarchar(max)" />
-          <Property Name="c_mnpio" Type="nvarchar(max)" />
-          <Property Name="id_asenta_cpcons" Type="nvarchar(max)" />
-          <Property Name="d_zona" Type="nvarchar(max)" />
-          <Property Name="c_cve_ciudad" Type="nvarchar(max)" />
-        </EntityType>-->
         <EntityType Name="C_direcciones">
           <Key>
             <PropertyRef Name="id_direccion" />
@@ -328,10 +315,10 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_cp_mexico' no tiene
           <Property Name="entre_calle2" Type="nchar" MaxLength="10" />
           <Property Name="referencia" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_empleados">
-          <Property Name="id_empleado" Type="int" />
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
           <Property Name="nombres" Type="varchar" MaxLength="100" />
           <Property Name="apellido_paterno" Type="varchar" MaxLength="50" />
           <Property Name="apellido_materno" Type="varchar" MaxLength="50" />
@@ -352,11 +339,12 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados' no tiene
           <Property Name="telefono_casa" Type="varchar" MaxLength="50" />
           <Property Name="telefono_contacto" Type="varchar" MaxLength="50" />
           <Property Name="tipo_sangre" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados_pos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_empleado" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_empleados_pos">
-          <Property Name="id_empleado_pos" Type="int" />
+          <Key>
+            <PropertyRef Name="id_empleado_pos" />
+          </Key>
           <Property Name="nombres" Type="varchar" MaxLength="100" />
           <Property Name="apellido_paterno" Type="varchar" MaxLength="50" />
           <Property Name="apellido_materno" Type="varchar" MaxLength="50" />
@@ -377,7 +365,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados_pos' no t
           <Property Name="telefono_casa" Type="varchar" MaxLength="50" />
           <Property Name="telefono_contacto" Type="varchar" MaxLength="50" />
           <Property Name="tipo_sangre" Type="int" />
-        </EntityType>-->
+          <Property Name="id_empleado_pos" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_empresas">
           <Key>
             <PropertyRef Name="id_empresa" />
@@ -394,17 +383,18 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empleados_pos' no t
           <Property Name="representante" Type="varchar" MaxLength="250" />
           <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empresas_sucursales' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_empresas_sucursales">
-          <Property Name="id_empresa_sucursal" Type="int" />
+          <Key>
+            <PropertyRef Name="id_empresa_sucursal" />
+          </Key>
           <Property Name="id_empresa" Type="int" />
           <Property Name="id_sucursal" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_empresa_sucursal" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_equipo_sucursal">
-          <Property Name="id_equipo_sucursal" Type="nchar" MaxLength="10" />
+          <Key>
+            <PropertyRef Name="id_equipo_sucursal" />
+          </Key>
           <Property Name="id_sucursal" Type="int" />
           <Property Name="nombre_equipo" Type="nchar" MaxLength="10" />
           <Property Name="id_tipo_equipo" Type="nchar" MaxLength="10" />
@@ -414,7 +404,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal' no
           <Property Name="mac_address" Type="nchar" MaxLength="10" />
           <Property Name="ip_address" Type="nchar" MaxLength="10" />
           <Property Name="activo" Type="bit" />
-        </EntityType>-->
+          <Property Name="id_equipo_sucursal" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_estados">
           <Key>
             <PropertyRef Name="id_estado" />
@@ -895,14 +886,15 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_proveedores' no tie
           <Property Name="telefono_2" Type="varchar" MaxLength="50" />
           <Property Name="rfc" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_recetas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_recetas">
-          <Property Name="id_receta" Type="int" />
+          <Key>
+            <PropertyRef Name="id_receta" />
+          </Key>
           <Property Name="id_producto" Type="int" />
           <Property Name="id_insumo" Type="int" />
           <Property Name="cantidad" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+          <Property Name="id_receta" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_servicios">
           <Key>
             <PropertyRef Name="id_servicio" />
@@ -988,10 +980,10 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_recetas' no tiene d
           <Property Name="id_zona_precio" Type="int" />
           <Property Name="ip" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sucursales_config' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_sucursales_config">
-          <Property Name="id_sucursal_config" Type="int" />
+          <Key>
+            <PropertyRef Name="id_sucursal_config" />
+          </Key>
           <Property Name="id_sucursal" Type="int" />
           <Property Name="ip" Type="varchar" MaxLength="50" />
           <Property Name="ubicacion" Type="varchar(max)" />
@@ -1005,11 +997,12 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sucursales_config' 
           <Property Name="resolucion_pantalla" Type="varchar" MaxLength="50" />
           <Property Name="geo_localizacion_lat" Type="varchar" MaxLength="50" />
           <Property Name="geo_localizacion_ing" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_actas_diferencia' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_sucursal_config" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_sval_actas_diferencia">
-          <Property Name="id_sval_actas" Type="int" />
+          <Key>
+            <PropertyRef Name="id_sval_actas" />
+          </Key>
           <Property Name="id_sval_orden" Type="int" />
           <Property Name="id_usuario_cajero" Type="int" />
           <Property Name="fecha_acta" Type="datetime" />
@@ -1024,7 +1017,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_actas_diferenc
           <Property Name="id_usuario_supervisor" Type="int" />
           <Property Name="id_usuario_seguridad" Type="int" />
           <Property Name="activo" Type="bit" />
-        </EntityType>-->
+          <Property Name="id_sval_actas" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_cat_desglose_billetes' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="C_sval_cat_desglose_billetes">
@@ -1081,15 +1075,16 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_destinos_entre
           <Property Name="notas_entrega" Type="varchar" MaxLength="150" />
           <Property Name="activo" Type="bit" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_documentos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_sval_documentos">
-          <Property Name="id_sval_documento" Type="int" />
+          <Key>
+            <PropertyRef Name="id_sval_documento" />
+          </Key>
           <Property Name="no_documento" Type="varchar" MaxLength="50" />
           <Property Name="nombre_documento" Type="varchar" MaxLength="150" />
           <Property Name="path_documento_anexo" Type="varchar(max)" />
           <Property Name="activo" Type="bit" />
-        </EntityType>-->
+          <Property Name="id_sval_documento" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_facturar_a' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="C_sval_facturar_a">
@@ -1124,10 +1119,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_orden_monedas'
           <Property Name="no_piezas" Type="numeric" Precision="18" Scale="0" />
           <Property Name="fecha_captura" Type="datetime" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_ordenes' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_sval_ordenes">
-          <Property Name="id_sval_orden" Type="int" />
+          <Key>
+            <PropertyRef Name="id_sval_orden" />
+          </Key>
           <Property Name="id_empresa" Type="int" />
           <Property Name="id_destinos_entrega" Type="int" />
           <Property Name="fecha_entrega" Type="datetime" />
@@ -1149,7 +1144,8 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_ordenes' no ti
           <Property Name="fecha_consignatario" Type="datetime" />
           <Property Name="notas_documento" Type="varchar" MaxLength="150" />
           <Property Name="activo" Type="bit" />
-        </EntityType>-->
+          <Property Name="id_sval_orden" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_recepcion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="C_sval_recepcion">
@@ -1170,16 +1166,17 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_recepcion' no 
           <Property Name="id_desglose_billetes" Type="int" />
           <Property Name="id_desglose_monedas" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_recepcion_envases' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_sval_recepcion_envases">
-          <Property Name="id_sval_envases" Type="int" />
+          <Key>
+            <PropertyRef Name="id_sval_envases" />
+          </Key>
           <Property Name="id_sval_orden" Type="int" />
           <Property Name="no_sello_plomo" Type="varchar" MaxLength="100" />
           <Property Name="fecha_recepcion" Type="datetime" />
           <Property Name="cantidad" Type="numeric" Precision="18" Scale="2" />
           <Property Name="activo" Type="bit" />
-        </EntityType>-->
+          <Property Name="id_sval_envases" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_servicios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="C_sval_servicios">
@@ -1259,37 +1256,41 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_tipo_servicios
           <Property Name="unidad" Type="varchar" MaxLength="50" />
           <Property Name="clave" Type="nchar" MaxLength="3" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_usuarios' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_usuarios">
-          <Property Name="id_usuario" Type="int" />
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
           <Property Name="usuario" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="correo" Type="varchar" MaxLength="50" />
           <Property Name="id_rol" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_usuarios_marca' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_usuarios_marca">
-          <Property Name="id_usuario_marca" Type="nchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_usuarios_pos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Key>
+            <PropertyRef Name="id_usuario_marcas" />
+          </Key>
+          <Property Name="id_usuario_marcas" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_usuarios_pos">
-          <Property Name="id_usuario_pos" Type="int" />
+          <Key>
+            <PropertyRef Name="id_usuario_pos" />
+          </Key>
           <Property Name="usuario" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="correo" Type="varchar" MaxLength="50" />
           <Property Name="id_rol" Type="int" />
           <Property Name="id_sucursal" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_usuarios_sucursales' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Property Name="id_usuario_pos" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_usuarios_sucursales">
-          <Property Name="id_usuarios_sucursales" Type="int" />
+          <Key>
+            <PropertyRef Name="id_usuarios_sucursales" />
+          </Key>
           <Property Name="id_usuario" Type="int" />
           <Property Name="id_sucursal" Type="int" />
-        </EntityType>-->
+          <Property Name="id_usuarios_sucursales" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_ventas_d">
           <Key>
             <PropertyRef Name="id_venta_d" />
@@ -1319,12 +1320,13 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_usuarios_sucursales
           <Property Name="id_codigo" Type="int" />
           <Property Name="id_pedido" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_ventas_status' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="C_ventas_status">
-          <Property Name="id_venta_status" Type="int" />
+          <Key>
+            <PropertyRef Name="id_venta_status" />
+          </Key>
           <Property Name="venta_status" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+          <Property Name="id_venta_status" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="C_ventas_tipo">
           <Key>
             <PropertyRef Name="id_venta_tipo" />
@@ -1498,73 +1500,6 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_ventas_status' no t
           <Property Name="app_ubicacion" Type="varchar" MaxLength="250" />
           <Property Name="default_app" Type="varchar" MaxLength="45" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_insumos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_insumos">
-          <Property Name="id" Type="varchar" MaxLength="50" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="clasif_id" Type="varchar" MaxLength="50" />
-          <Property Name="clasif_nombre" Type="varchar" MaxLength="50" />
-          <Property Name="unidad_clave" Type="varchar" MaxLength="50" />
-          <Property Name="unidad_nombre" Type="varchar" MaxLength="50" />
-          <Property Name="costounidad" Type="varchar" MaxLength="50" />
-          <Property Name="inventario_corte" Type="varchar" MaxLength="50" />
-          <Property Name="inventario_general" Type="varchar" MaxLength="50" />
-          <Property Name="inventario_tipo" Type="varchar" MaxLength="50" />
-          <Property Name="bo_incluir" Type="varchar" MaxLength="50" />
-          <Property Name="bo_redondeo" Type="varchar" MaxLength="50" />
-          <Property Name="bo_provdirecto" Type="varchar" MaxLength="50" />
-          <Property Name="visible" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_insumos_clasif' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_insumos_clasif">
-          <Property Name="id" Type="varchar" MaxLength="50" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="clave" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_insumos_unidades' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_insumos_unidades">
-          <Property Name="id" Type="varchar" MaxLength="50" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="clave" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_productos">
-          <Property Name="Column 0" Type="varchar" MaxLength="50" />
-          <Property Name="Column 1" Type="varchar" MaxLength="50" />
-          <Property Name="Column 2" Type="varchar" MaxLength="50" />
-          <Property Name="Column 3" Type="varchar" MaxLength="50" />
-          <Property Name="Column 4" Type="varchar" MaxLength="50" />
-          <Property Name="Column 5" Type="varchar" MaxLength="50" />
-          <Property Name="Column 6" Type="varchar" MaxLength="50" />
-          <Property Name="Column 7" Type="varchar" MaxLength="50" />
-          <Property Name="Column 8" Type="varchar" MaxLength="50" />
-          <Property Name="Column 9" Type="varchar" MaxLength="50" />
-          <Property Name="Column 10" Type="varchar" MaxLength="50" />
-          <Property Name="Column 11" Type="varchar" MaxLength="50" />
-          <Property Name="Column 12" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_clasif' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_productos_clasif">
-          <Property Name="id" Type="varchar" MaxLength="50" />
-          <Property Name="nombre" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_receta' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="M_productos_receta">
-          <Property Name="id" Type="varchar" MaxLength="50" />
-          <Property Name="prod_id" Type="varchar" MaxLength="50" />
-          <Property Name="cantidad" Type="varchar" MaxLength="50" />
-          <Property Name="insumo_id" Type="varchar" MaxLength="50" />
-          <Property Name="insumo_nombre" Type="varchar" MaxLength="50" />
-          <Property Name="unidad" Type="varchar" MaxLength="50" />
-          <Property Name="costo_total" Type="varchar" MaxLength="50" />
-          <Property Name="costo_porcion" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -1683,15 +1618,42 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.M_productos_receta' n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_almacen_insumos', pero no se encuentra la tabla.
-        <Association Name="FK_C_almacen_insumos_C_almacenes" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_almacen_insumos', pero no se encuentra la tabla.
-        <Association Name="FK_C_almacen_insumos_C_Insumo_cat" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_almacen_insumos', pero no se encuentra la tabla.
-        <Association Name="FK_C_almacen_insumos_C_Zonas_almacenaje" />-->
+        <Association Name="FK_C_almacen_insumos_C_almacenes">
+          <End Role="C_almacenes" Type="Self.C_almacenes" Multiplicity="0..1" />
+          <End Role="C_almacen_insumos" Type="Self.C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_almacenes">
+              <PropertyRef Name="id_almacen" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_almacen_insumos_C_Insumo_cat">
+          <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="0..1" />
+          <End Role="C_almacen_insumos" Type="Self.C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_insumo_cat">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_almacen_insumos_C_Zonas_almacenaje">
+          <End Role="C_zonas_almacenaje" Type="Self.C_zonas_almacenaje" Multiplicity="0..1" />
+          <End Role="C_almacen_insumos" Type="Self.C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_zonas_almacenaje">
+              <PropertyRef Name="id_zona_almacen" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_zona_almacenaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_bo_calculo_C_bo_g">
           <End Role="C_bo_g" Type="Self.C_bo_g" Multiplicity="0..1" />
           <End Role="C_bo_calculo" Type="Self.C_bo_calculo" Multiplicity="*" />
@@ -1704,9 +1666,18 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_bo_calculo_pe', pero no se encuentra la tabla.
-        <Association Name="FK_C_bo_calculo_pe_C_bo_calculo" />-->
+        <Association Name="FK_C_bo_calculo_pe_C_bo_calculo">
+          <End Role="C_bo_calculo" Type="Self.C_bo_calculo" Multiplicity="0..1" />
+          <End Role="C_bo_calculo_pe" Type="Self.C_bo_calculo_pe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_bo_calculo">
+              <PropertyRef Name="id_bo_calculo" />
+            </Principal>
+            <Dependent Role="C_bo_calculo_pe">
+              <PropertyRef Name="id_bo_calculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_bo_diafestivo_ap_C_bo_diasfestivos">
           <End Role="C_bo_diasfestivos" Type="Self.C_bo_diasfestivos" Multiplicity="0..1" />
           <End Role="C_bo_diafestivo_ap" Type="Self.C_bo_diafestivo_ap" Multiplicity="*" />
@@ -1767,12 +1738,30 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_b
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_campaña_codigos', pero no se encuentra la tabla.
-        <Association Name="FK_C_campaña_codigos_C_campañas" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_campaña_codigos', pero no se encuentra la tabla.
-        <Association Name="FK_C_campaña_codigos_C_Sucursales" />-->
+        <Association Name="FK_C_campaña_codigos_C_campañas">
+          <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="0..1" />
+          <End Role="C_campaña_codigos" Type="Self.C_campaña_codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_campañas">
+              <PropertyRef Name="id_campaña" />
+            </Principal>
+            <Dependent Role="C_campaña_codigos">
+              <PropertyRef Name="id_campaña" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_campaña_codigos_C_Sucursales">
+          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+          <End Role="C_campaña_codigos" Type="Self.C_campaña_codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales">
+              <PropertyRef Name="Id_sucursal" />
+            </Principal>
+            <Dependent Role="C_campaña_codigos">
+              <PropertyRef Name="id_sucursal_canje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_campaña_medios_C_campañas">
           <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="0..1" />
           <End Role="C_campaña_medios" Type="Self.C_campaña_medios" Multiplicity="*" />
@@ -1845,9 +1834,18 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_equipo_sucursal', pero no se encuentra la tabla.
-        <Association Name="FK_C_equipo_sucursal_C_sucursales" />-->
+        <Association Name="FK_C_equipo_sucursal_C_sucursales">
+          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+          <End Role="C_equipo_sucursal" Type="Self.C_equipo_sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales">
+              <PropertyRef Name="Id_sucursal" />
+            </Principal>
+            <Dependent Role="C_equipo_sucursal">
+              <PropertyRef Name="id_sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_grupo_productos_d_C_grupo_productos_g">
           <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
           <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="*" />
@@ -2532,12 +2530,30 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_e
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_recetas', pero no se encuentra la tabla.
-        <Association Name="FK_Recetas_Insumo_cat" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_recetas', pero no se encuentra la tabla.
-        <Association Name="FK_Recetas_Productos_cat" />-->
+        <Association Name="FK_Recetas_Insumo_cat">
+          <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="0..1" />
+          <End Role="C_recetas" Type="Self.C_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_insumo_cat">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="C_recetas">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recetas_Productos_cat">
+          <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
+          <End Role="C_recetas" Type="Self.C_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_productos_cat">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="C_recetas">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sucursales_Empresas">
           <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
           <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
@@ -2575,16 +2591,21 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DB_CORPORATIVA_DEVModelStoreContainer">
+          <EntitySet Name="C_almacen_insumos" EntityType="Self.C_almacen_insumos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_calculo" EntityType="Self.C_bo_calculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_bo_calculo_pe" EntityType="Self.C_bo_calculo_pe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_bo_det_orden" EntityType="Self.C_bo_det_orden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_diafestivo_ap" EntityType="Self.C_bo_diafestivo_ap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_diasfestivos" EntityType="Self.C_bo_diasfestivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_g" EntityType="Self.C_bo_g" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_orden" EntityType="Self.C_bo_orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_bo_orden_complemento" EntityType="Self.C_bo_orden_complemento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_porc_df" EntityType="Self.C_bo_porc_df" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_suc_ir" EntityType="Self.C_bo_suc_ir" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_cajas" EntityType="Self.C_cajas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_campaña_codigos" EntityType="Self.C_campaña_codigos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campaña_empresas" EntityType="Self.C_campaña_empresas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campaña_medios" EntityType="Self.C_campaña_medios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campañas" EntityType="Self.C_campañas" Schema="dbo" store:Type="Tables" />
@@ -2596,7 +2617,11 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <EntitySet Name="C_codigos_postales" EntityType="Self.C_codigos_postales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_colonias" EntityType="Self.C_colonias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_direcciones" EntityType="Self.C_direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_empleados" EntityType="Self.C_empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_empleados_pos" EntityType="Self.C_empleados_pos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_empresas" EntityType="Self.C_empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_empresas_sucursales" EntityType="Self.C_empresas_sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_equipo_sucursal" EntityType="Self.C_equipo_sucursal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_estados" EntityType="Self.C_estados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_eventos" EntityType="Self.C_eventos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_facturas" EntityType="Self.C_facturas" Schema="dbo" store:Type="Tables" />
@@ -2634,6 +2659,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <EntitySet Name="C_productos_cat" EntityType="Self.C_productos_cat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_productos_precios" EntityType="Self.C_productos_precios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_productos_sucursal" EntityType="Self.C_productos_sucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_recetas" EntityType="Self.C_recetas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_servicios" EntityType="Self.C_servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_servicios_modulos" EntityType="Self.C_servicios_modulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_servicios_sucursal" EntityType="Self.C_servicios_sucursal" Schema="dbo" store:Type="Tables" />
@@ -2642,14 +2668,24 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <EntitySet Name="C_suc_invreal" EntityType="Self.C_suc_invreal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_suc_invreal_d" EntityType="Self.C_suc_invreal_d" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_sucursales" EntityType="Self.C_sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_sucursales_config" EntityType="Self.C_sucursales_config" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_sval_actas_diferencia" EntityType="Self.C_sval_actas_diferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_sval_documentos" EntityType="Self.C_sval_documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_sval_ordenes" EntityType="Self.C_sval_ordenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_sval_recepcion_envases" EntityType="Self.C_sval_recepcion_envases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_telefonos" EntityType="Self.C_telefonos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_tipo_empaque" EntityType="Self.C_tipo_empaque" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_tipos_codigo" EntityType="Self.C_tipos_codigo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_tracking_status" EntityType="Self.C_tracking_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_unidades" EntityType="Self.C_unidades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_unidades_medida" EntityType="Self.C_unidades_medida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_usuarios" EntityType="Self.C_usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_usuarios_marca" EntityType="Self.C_usuarios_marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_usuarios_pos" EntityType="Self.C_usuarios_pos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_usuarios_sucursales" EntityType="Self.C_usuarios_sucursales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_ventas_d" EntityType="Self.C_ventas_d" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_ventas_g" EntityType="Self.C_ventas_g" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_ventas_status" EntityType="Self.C_ventas_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_ventas_tipo" EntityType="Self.C_ventas_tipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_zona_almacen_suc" EntityType="Self.C_zona_almacen_suc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_zonas_almacenaje" EntityType="Self.C_zonas_almacenaje" Schema="dbo" store:Type="Tables" />
@@ -2897,9 +2933,25 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
             <End Role="CS_roles" EntitySet="CS_roles" />
             <End Role="CS_usuarios" EntitySet="CS_usuarios" />
           </AssociationSet>
+          <AssociationSet Name="FK_C_almacen_insumos_C_almacenes" Association="Self.FK_C_almacen_insumos_C_almacenes">
+            <End Role="C_almacenes" EntitySet="C_almacenes" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_almacen_insumos_C_Insumo_cat" Association="Self.FK_C_almacen_insumos_C_Insumo_cat">
+            <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_almacen_insumos_C_Zonas_almacenaje" Association="Self.FK_C_almacen_insumos_C_Zonas_almacenaje">
+            <End Role="C_zonas_almacenaje" EntitySet="C_zonas_almacenaje" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
           <AssociationSet Name="FK_C_bo_calculo_C_bo_g" Association="Self.FK_C_bo_calculo_C_bo_g">
             <End Role="C_bo_g" EntitySet="C_bo_g" />
             <End Role="C_bo_calculo" EntitySet="C_bo_calculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_bo_calculo_pe_C_bo_calculo" Association="Self.FK_C_bo_calculo_pe_C_bo_calculo">
+            <End Role="C_bo_calculo" EntitySet="C_bo_calculo" />
+            <End Role="C_bo_calculo_pe" EntitySet="C_bo_calculo_pe" />
           </AssociationSet>
           <AssociationSet Name="FK_C_bo_diafestivo_ap_C_bo_diasfestivos" Association="Self.FK_C_bo_diafestivo_ap_C_bo_diasfestivos">
             <End Role="C_bo_diasfestivos" EntitySet="C_bo_diasfestivos" />
@@ -2920,6 +2972,14 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <AssociationSet Name="FK_C_bo_suc_ir_C_suc_invreal" Association="Self.FK_C_bo_suc_ir_C_suc_invreal">
             <End Role="C_suc_invreal" EntitySet="C_suc_invreal" />
             <End Role="C_bo_suc_ir" EntitySet="C_bo_suc_ir" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="Self.FK_C_campaña_codigos_C_campañas">
+            <End Role="C_campañas" EntitySet="C_campañas" />
+            <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_campaña_codigos_C_Sucursales" Association="Self.FK_C_campaña_codigos_C_Sucursales">
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
+            <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
           </AssociationSet>
           <AssociationSet Name="FK_C_campaña_medios_C_campañas" Association="Self.FK_C_campaña_medios_C_campañas">
             <End Role="C_campañas" EntitySet="C_campañas" />
@@ -2944,6 +3004,10 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <AssociationSet Name="FK_C_campañas_C_tipos_codigo" Association="Self.FK_C_campañas_C_tipos_codigo">
             <End Role="C_tipos_codigo" EntitySet="C_tipos_codigo" />
             <End Role="C_campañas" EntitySet="C_campañas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_equipo_sucursal_C_sucursales" Association="Self.FK_C_equipo_sucursal_C_sucursales">
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
+            <End Role="C_equipo_sucursal" EntitySet="C_equipo_sucursal" />
           </AssociationSet>
           <AssociationSet Name="FK_C_grupo_productos_d_C_grupo_productos_g" Association="Self.FK_C_grupo_productos_d_C_grupo_productos_g">
             <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
@@ -3173,6 +3237,14 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
             <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
             <End Role="C_productos_precios" EntitySet="C_productos_precios" />
           </AssociationSet>
+          <AssociationSet Name="FK_Recetas_Insumo_cat" Association="Self.FK_Recetas_Insumo_cat">
+            <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+            <End Role="C_recetas" EntitySet="C_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recetas_Productos_cat" Association="Self.FK_Recetas_Productos_cat">
+            <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+            <End Role="C_recetas" EntitySet="C_recetas" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sucursales_Empresas" Association="Self.FK_Sucursales_Empresas">
             <End Role="C_empresas" EntitySet="C_empresas" />
             <End Role="C_sucursales" EntitySet="C_sucursales" />
@@ -3186,8 +3258,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
             <End Role="C_ventas_g" EntitySet="C_ventas_g" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_CORPORATIVA_DEVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -3197,23 +3268,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           </Key>
           <Property Name="id_almacen" Type="Int32" Nullable="false" />
           <Property Name="id_empresa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="C_bo_almacen">
-          <Key>
-            <PropertyRef Name="id_bo_almacen" />
-          </Key>
-          <Property Name="id_bo_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="id_bo_g" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cant_emp_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cant_suelto_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="comentarios_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes" FromRole="C_almacenes" ToRole="C_almacen_insumos" />
         </EntityType>
         <EntityType Name="C_bo_calculo">
           <Key>
@@ -3231,6 +3286,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="C_bo_g" Relationship="Self.FK_C_bo_calculo_C_bo_g" FromRole="C_bo_calculo" ToRole="C_bo_g" />
+          <NavigationProperty Name="C_bo_calculo_pe" Relationship="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo" FromRole="C_bo_calculo" ToRole="C_bo_calculo_pe" />
         </EntityType>
         <EntityType Name="C_bo_diafestivo_ap">
           <Key>
@@ -3358,6 +3414,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_campañas_C_Empresas" FromRole="C_campañas" ToRole="C_empresas" />
           <NavigationProperty Name="C_grupo_productos_g" Relationship="Self.FK_C_campañas_C_promociones_g" FromRole="C_campañas" ToRole="C_grupo_productos_g" />
           <NavigationProperty Name="C_tipos_codigo" Relationship="Self.FK_C_campañas_C_tipos_codigo" FromRole="C_campañas" ToRole="C_tipos_codigo" />
+          <NavigationProperty Name="C_campaña_codigos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas" FromRole="C_campañas" ToRole="C_campaña_codigos" />
         </EntityType>
         <EntityType Name="C_cfdi_informacion">
           <Key>
@@ -3623,6 +3680,8 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <NavigationProperty Name="C_tipo_empaque" Relationship="Self.FK_C_Insumo_cat_C_tipo_empaque" FromRole="C_insumo_cat" ToRole="C_tipo_empaque" />
           <NavigationProperty Name="C_unidades" Relationship="Self.FK_C_Insumo_cat_C_unidades" FromRole="C_insumo_cat" ToRole="C_unidades" />
           <NavigationProperty Name="C_insumo_sucursal" Relationship="Self.FK_insumo_sucursal_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_insumo_sucursal" />
+          <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_almacen_insumos" />
+          <NavigationProperty Name="C_recetas" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_recetas" />
         </EntityType>
         <EntityType Name="C_insumo_mov_status">
           <Key>
@@ -3902,6 +3961,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <NavigationProperty Name="C_impuesto_producto" Relationship="Self.FK_impuesto_producto_Productos_cat" FromRole="C_productos_cat" ToRole="C_impuesto_producto" />
           <NavigationProperty Name="C_producto_clasificacion" Relationship="Self.FK_Productos_cat_producto_clasificacion" FromRole="C_productos_cat" ToRole="C_producto_clasificacion" />
           <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_producto_presentacion_Productos_cat" FromRole="C_productos_cat" ToRole="C_producto_presentacion" />
+          <NavigationProperty Name="C_recetas" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat" FromRole="C_productos_cat" ToRole="C_recetas" />
         </EntityType>
         <EntityType Name="C_productos_precios">
           <Key>
@@ -4034,6 +4094,8 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <NavigationProperty Name="C_servicios_sucursal" Relationship="Self.FK_C_servicios_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_servicios_sucursal" />
           <NavigationProperty Name="C_zonas_precio" Relationship="Self.FK_C_Sucursales_C_zonas" FromRole="C_sucursales" ToRole="C_zonas_precio" />
           <NavigationProperty Name="C_ventas_g" Relationship="Self.FK_C_ventas_g_C_sucursales" FromRole="C_sucursales" ToRole="C_ventas_g" />
+          <NavigationProperty Name="C_campaña_codigos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales" FromRole="C_sucursales" ToRole="C_campaña_codigos" />
+          <NavigationProperty Name="C_equipo_sucursal" Relationship="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_equipo_sucursal" />
         </EntityType>
         <EntityType Name="C_telefonos">
           <Key>
@@ -4154,6 +4216,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <Property Name="ancho" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="alto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje" FromRole="C_zonas_almacenaje" ToRole="C_almacen_insumos" />
         </EntityType>
         <EntityType Name="C_zonas_precio">
           <Key>
@@ -4312,7 +4375,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <Property Name="app_ubicacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="default_app" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -5515,7 +5578,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
         </Association>
         <EntityContainer Name="DB_CORPORATIVA_DEVEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" />
-          <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" />
           <EntitySet Name="C_bo_calculo" EntityType="Self.C_bo_calculo" />
           <EntitySet Name="C_bo_diafestivo_ap" EntityType="Self.C_bo_diafestivo_ap" />
           <EntitySet Name="C_bo_diasfestivos" EntityType="Self.C_bo_diasfestivos" />
@@ -5604,7 +5666,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
           <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
           <EntitySet Name="M_callcenter_clientes" EntityType="Self.M_callcenter_clientes" />
           <EntitySet Name="M_callcenter_clientes_adicionales" EntityType="Self.M_callcenter_clientes_adicionales" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="C_catalogo_consecutivos" EntityType="Self.C_catalogo_consecutivos" />
           <EntitySet Name="C_catalogo_sn" EntityType="Self.C_catalogo_sn" />
           <EntitySet Name="C_catalogo_tamanos" EntityType="Self.C_catalogo_tamanos" />
@@ -5953,7 +6015,467 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
             <End Role="CS_usuarios" EntitySet="CS_usuarios" />
             <End Role="CS_usuario_login" EntitySet="CS_usuario_login" />
           </AssociationSet>
+          <EntitySet Name="C_bo_almacen" EntityType="DB_CORPORATIVA_DEVModel.C_bo_almacen" />
+          <EntitySet Name="C_almacen_insumos" EntityType="DB_CORPORATIVA_DEVModel.C_almacen_insumos" />
+          <AssociationSet Name="FK_C_almacen_insumos_C_almacenes" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes">
+            <End Role="C_almacenes" EntitySet="C_almacenes" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_almacen_insumos_C_Insumo_cat" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat">
+            <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_almacen_insumos_C_Zonas_almacenaje" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje">
+            <End Role="C_zonas_almacenaje" EntitySet="C_zonas_almacenaje" />
+            <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+          </AssociationSet>
+          <EntitySet Name="C_bo_calculo_pe" EntityType="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe" />
+          <AssociationSet Name="FK_C_bo_calculo_pe_C_bo_calculo" Association="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo">
+            <End Role="C_bo_calculo" EntitySet="C_bo_calculo" />
+            <End Role="C_bo_calculo_pe" EntitySet="C_bo_calculo_pe" />
+          </AssociationSet>
+          <EntitySet Name="C_bo_det_orden" EntityType="DB_CORPORATIVA_DEVModel.C_bo_det_orden" />
+          <EntitySet Name="C_bo_orden_complemento" EntityType="DB_CORPORATIVA_DEVModel.C_bo_orden_complemento" />
+          <EntitySet Name="C_campaña_codigos" EntityType="DB_CORPORATIVA_DEVModel.C_campaña_codigos" />
+          <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas">
+            <End Role="C_campañas" EntitySet="C_campañas" />
+            <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_campaña_codigos_C_Sucursales" Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales">
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
+            <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
+          </AssociationSet>
+          <EntitySet Name="C_empleados" EntityType="DB_CORPORATIVA_DEVModel.C_empleados" />
+          <EntitySet Name="C_empleados_pos" EntityType="DB_CORPORATIVA_DEVModel.C_empleados_pos" />
+          <EntitySet Name="C_empresas_sucursales" EntityType="DB_CORPORATIVA_DEVModel.C_empresas_sucursales" />
+          <EntitySet Name="C_equipo_sucursal" EntityType="DB_CORPORATIVA_DEVModel.C_equipo_sucursal" />
+          <AssociationSet Name="FK_C_equipo_sucursal_C_sucursales" Association="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales">
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
+            <End Role="C_equipo_sucursal" EntitySet="C_equipo_sucursal" />
+          </AssociationSet>
+          <EntitySet Name="C_recetas" EntityType="DB_CORPORATIVA_DEVModel.C_recetas" />
+          <AssociationSet Name="FK_Recetas_Insumo_cat" Association="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat">
+            <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+            <End Role="C_recetas" EntitySet="C_recetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recetas_Productos_cat" Association="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat">
+            <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+            <End Role="C_recetas" EntitySet="C_recetas" />
+          </AssociationSet>
+          <EntitySet Name="C_sucursales_config" EntityType="DB_CORPORATIVA_DEVModel.C_sucursales_config" />
+          <EntitySet Name="C_sval_actas_diferencia" EntityType="DB_CORPORATIVA_DEVModel.C_sval_actas_diferencia" />
+          <EntitySet Name="C_sval_documentos" EntityType="DB_CORPORATIVA_DEVModel.C_sval_documentos" />
+          <EntitySet Name="C_sval_ordenes" EntityType="DB_CORPORATIVA_DEVModel.C_sval_ordenes" />
+          <EntitySet Name="C_sval_recepcion_envases" EntityType="DB_CORPORATIVA_DEVModel.C_sval_recepcion_envases" />
+          <EntitySet Name="C_usuarios" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios" />
+          <EntitySet Name="C_usuarios_marca" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_marca" />
+          <EntitySet Name="C_usuarios_pos" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_pos" />
+          <EntitySet Name="C_usuarios_sucursales" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales" />
+          <EntitySet Name="C_ventas_status" EntityType="DB_CORPORATIVA_DEVModel.C_ventas_status" />
         </EntityContainer>
+        <EntityType Name="C_bo_almacen">
+          <Key>
+            <PropertyRef Name="id_bo_almacen" />
+          </Key>
+          <Property Name="id_bo_almacen" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_bo_g" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_emp_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_suelto_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="comentarios_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_almacen_insumos">
+          <Key>
+            <PropertyRef Name="id_almacen_insumo" />
+          </Key>
+          <Property Name="id_almacen" Type="Int32" />
+          <Property Name="id_insumo" Type="Int32" />
+          <Property Name="id_zona_almacenaje" Type="Int32" />
+          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="min" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="max" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_almacen_insumo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_almacenes" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes" FromRole="C_almacen_insumos" ToRole="C_almacenes" />
+          <NavigationProperty Name="C_insumo_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat" FromRole="C_almacen_insumos" ToRole="C_insumo_cat" />
+          <NavigationProperty Name="C_zonas_almacenaje" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje" FromRole="C_almacen_insumos" ToRole="C_zonas_almacenaje" />
+        </EntityType>
+        <Association Name="FK_C_almacen_insumos_C_almacenes">
+          <End Type="DB_CORPORATIVA_DEVModel.C_almacenes" Role="C_almacenes" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_almacenes">
+              <PropertyRef Name="id_almacen" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_almacen_insumos_C_Insumo_cat">
+          <End Type="DB_CORPORATIVA_DEVModel.C_insumo_cat" Role="C_insumo_cat" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_insumo_cat">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_almacen_insumos_C_Zonas_almacenaje">
+          <End Type="DB_CORPORATIVA_DEVModel.C_zonas_almacenaje" Role="C_zonas_almacenaje" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_zonas_almacenaje">
+              <PropertyRef Name="id_zona_almacen" />
+            </Principal>
+            <Dependent Role="C_almacen_insumos">
+              <PropertyRef Name="id_zona_almacenaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_bo_calculo_pe">
+          <Key>
+            <PropertyRef Name="id_bo_calculo_pe" />
+          </Key>
+          <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_bo_calculo" Type="Int32" />
+          <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_bo_calculo_pe" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_bo_calculo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo" FromRole="C_bo_calculo_pe" ToRole="C_bo_calculo" />
+        </EntityType>
+        <Association Name="FK_C_bo_calculo_pe_C_bo_calculo">
+          <End Type="DB_CORPORATIVA_DEVModel.C_bo_calculo" Role="C_bo_calculo" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe" Role="C_bo_calculo_pe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_bo_calculo">
+              <PropertyRef Name="id_bo_calculo" />
+            </Principal>
+            <Dependent Role="C_bo_calculo_pe">
+              <PropertyRef Name="id_bo_calculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_bo_det_orden">
+          <Key>
+            <PropertyRef Name="id_bo_det_orden" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_bo_det_orden" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_bo_orden_complemento">
+          <Key>
+            <PropertyRef Name="id_bo_orden_complemento" />
+          </Key>
+          <Property Name="id_bo_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="nota" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_bo_orden_complemento" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_campaña_codigos">
+          <Key>
+            <PropertyRef Name="id_campaña_codigo" />
+          </Key>
+          <Property Name="id_campaña" Type="Int32" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_sucursal_canje" Type="Int32" />
+          <Property Name="id_usuario_canje" Type="Int32" />
+          <Property Name="fecha_canje" Type="DateTime" Precision="0" />
+          <Property Name="id_cliente_canje" Type="Int32" />
+          <Property Name="id_campaña_codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_campañas" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas" FromRole="C_campaña_codigos" ToRole="C_campañas" />
+          <NavigationProperty Name="C_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales" FromRole="C_campaña_codigos" ToRole="C_sucursales" />
+        </EntityType>
+        <Association Name="FK_C_campaña_codigos_C_campañas">
+          <End Type="DB_CORPORATIVA_DEVModel.C_campañas" Role="C_campañas" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_campaña_codigos" Role="C_campaña_codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_campañas">
+              <PropertyRef Name="id_campaña" />
+            </Principal>
+            <Dependent Role="C_campaña_codigos">
+              <PropertyRef Name="id_campaña" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_C_campaña_codigos_C_Sucursales">
+          <End Type="DB_CORPORATIVA_DEVModel.C_sucursales" Role="C_sucursales" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_campaña_codigos" Role="C_campaña_codigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales">
+              <PropertyRef Name="Id_sucursal" />
+            </Principal>
+            <Dependent Role="C_campaña_codigos">
+              <PropertyRef Name="id_sucursal_canje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_empleados">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ciudad" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="municipio" Type="Int32" />
+          <Property Name="cp" Type="Int32" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
+          <Property Name="puesto" Type="Int32" />
+          <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_casa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_sangre" Type="Int32" />
+          <Property Name="id_empleado" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_empleados_pos">
+          <Key>
+            <PropertyRef Name="id_empleado_pos" />
+          </Key>
+          <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ciudad" Type="Int32" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="municipio" Type="Int32" />
+          <Property Name="cp" Type="Int32" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+          <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
+          <Property Name="puesto" Type="Int32" />
+          <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_casa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_sangre" Type="Int32" />
+          <Property Name="id_empleado_pos" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_empresas_sucursales">
+          <Key>
+            <PropertyRef Name="id_empresa_sucursal" />
+          </Key>
+          <Property Name="id_empresa" Type="Int32" />
+          <Property Name="id_sucursal" Type="Int32" />
+          <Property Name="id_empresa_sucursal" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_equipo_sucursal">
+          <Key>
+            <PropertyRef Name="id_equipo_sucursal" />
+          </Key>
+          <Property Name="id_sucursal" Type="Int32" />
+          <Property Name="nombre_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_tipo_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="modelo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="marca" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="nss" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="mac_address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ip_address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="id_equipo_sucursal" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales" FromRole="C_equipo_sucursal" ToRole="C_sucursales" />
+        </EntityType>
+        <Association Name="FK_C_equipo_sucursal_C_sucursales">
+          <End Type="DB_CORPORATIVA_DEVModel.C_sucursales" Role="C_sucursales" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_equipo_sucursal" Role="C_equipo_sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales">
+              <PropertyRef Name="Id_sucursal" />
+            </Principal>
+            <Dependent Role="C_equipo_sucursal">
+              <PropertyRef Name="id_sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_recetas">
+          <Key>
+            <PropertyRef Name="id_receta" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="id_insumo" Type="Int32" />
+          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_receta" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="C_insumo_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat" FromRole="C_recetas" ToRole="C_insumo_cat" />
+          <NavigationProperty Name="C_productos_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat" FromRole="C_recetas" ToRole="C_productos_cat" />
+        </EntityType>
+        <Association Name="FK_Recetas_Insumo_cat">
+          <End Type="DB_CORPORATIVA_DEVModel.C_insumo_cat" Role="C_insumo_cat" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_recetas" Role="C_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_insumo_cat">
+              <PropertyRef Name="id_insumo" />
+            </Principal>
+            <Dependent Role="C_recetas">
+              <PropertyRef Name="id_insumo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recetas_Productos_cat">
+          <End Type="DB_CORPORATIVA_DEVModel.C_productos_cat" Role="C_productos_cat" Multiplicity="0..1" />
+          <End Type="DB_CORPORATIVA_DEVModel.C_recetas" Role="C_recetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_productos_cat">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="C_recetas">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C_sucursales_config">
+          <Key>
+            <PropertyRef Name="id_sucursal_config" />
+          </Key>
+          <Property Name="id_sucursal" Type="Int32" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="proximidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="version_startup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version_pv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version_eventos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version_web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version_app" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="version_mesas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="resolucion_pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="geo_localizacion_lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="geo_localizacion_ing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_sucursal_config" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C_sval_actas_diferencia">
+          <Key>
+            <PropertyRef Name="id_sval_actas" />
+          </Key>
+          <Property Name="id_sval_orden" Type="Int32" />
+          <Property Name="id_usuario_cajero" Type="Int32" />
+          <Property Name="fecha_acta" Type="DateTime" Precision="3" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="datos_sucursal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="importe_diferencia" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_sval_tipo_moneda" Type="Int32" />
+          <Property Name="importe_faltante_fisico" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="piezas_sin_valor" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sobrante_fisico" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="presuntamente_falso" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_supervisor" Type="Int32" />
+          <Property Name="id_usuario_seguridad" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="id_sval_actas" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_sval_documentos">
+          <Key>
+            <PropertyRef Name="id_sval_documento" />
+          </Key>
+          <Property Name="no_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_documento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="path_documento_anexo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="id_sval_documento" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_sval_ordenes">
+          <Key>
+            <PropertyRef Name="id_sval_orden" />
+          </Key>
+          <Property Name="id_empresa" Type="Int32" />
+          <Property Name="id_destinos_entrega" Type="Int32" />
+          <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+          <Property Name="folio" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_contrato" Type="Int32" />
+          <Property Name="id_sval_facturar" Type="Int32" />
+          <Property Name="importe_moneda_nacional" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="importe_moneda_extranjera" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tipo_cambio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="importe_equivalente" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="documentos_descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="otros_anexos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="importe_total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_sval_tipo_servicio" Type="Int32" />
+          <Property Name="id_remitente_cliente" Type="Int32" />
+          <Property Name="id_firma_setravalsa" Type="Int32" />
+          <Property Name="fecha_setravalsa" Type="DateTime" Precision="3" />
+          <Property Name="id_firma_consignatario" Type="Int32" />
+          <Property Name="fecha_consignatario" Type="DateTime" Precision="3" />
+          <Property Name="notas_documento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="id_sval_orden" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_sval_recepcion_envases">
+          <Key>
+            <PropertyRef Name="id_sval_envases" />
+          </Key>
+          <Property Name="id_sval_orden" Type="Int32" />
+          <Property Name="no_sello_plomo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_recepcion" Type="DateTime" Precision="3" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="id_sval_envases" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_usuarios_marca">
+          <Key>
+            <PropertyRef Name="id_usuario_marcas" />
+          </Key>
+          <Property Name="id_usuario_marcas" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_usuarios_pos">
+          <Key>
+            <PropertyRef Name="id_usuario_pos" />
+          </Key>
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" />
+          <Property Name="id_sucursal" Type="Int32" />
+          <Property Name="id_usuario_pos" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_usuarios_sucursales">
+          <Key>
+            <PropertyRef Name="id_usuarios_sucursales" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="id_sucursal" Type="Int32" />
+          <Property Name="id_usuarios_sucursales" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C_ventas_status">
+          <Key>
+            <PropertyRef Name="id_venta_status" />
+          </Key>
+          <Property Name="venta_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_venta_status" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5965,24 +6487,6 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
               <MappingFragment StoreEntitySet="C_almacenes">
                 <ScalarProperty Name="id_almacen" ColumnName="id_almacen" />
                 <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C_bo_almacen">
-            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_almacen">
-              <MappingFragment StoreEntitySet="C_bo_almacen">
-                <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
-                <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
-                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
-                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
-                <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
-                <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
-                <ScalarProperty Name="cant_emp_pe" ColumnName="cant_emp_pe" />
-                <ScalarProperty Name="cant_suelto_pe" ColumnName="cant_suelto_pe" />
-                <ScalarProperty Name="porc_proteccion" ColumnName="porc_proteccion" />
-                <ScalarProperty Name="fecha_calculo" ColumnName="fecha_calculo" />
-                <ScalarProperty Name="comentarios_almacen" ColumnName="comentarios_almacen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7005,7 +7509,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.sysdiagram">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -7258,6 +7762,313 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="C_bo_almacen">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_almacen">
+              <MappingFragment StoreEntitySet="C_bo_almacen">
+                <ScalarProperty Name="comentarios_almacen" ColumnName="comentarios_almacen" />
+                <ScalarProperty Name="fecha_calculo" ColumnName="fecha_calculo" />
+                <ScalarProperty Name="porc_proteccion" ColumnName="porc_proteccion" />
+                <ScalarProperty Name="cant_suelto_pe" ColumnName="cant_suelto_pe" />
+                <ScalarProperty Name="cant_emp_pe" ColumnName="cant_emp_pe" />
+                <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
+                <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+                <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
+                <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_almacen_insumos">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_almacen_insumos">
+              <MappingFragment StoreEntitySet="C_almacen_insumos">
+                <ScalarProperty Name="id_almacen_insumo" ColumnName="id_almacen_insumo" />
+                <ScalarProperty Name="max" ColumnName="max" />
+                <ScalarProperty Name="min" ColumnName="min" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_zona_almacenaje" ColumnName="id_zona_almacenaje" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_almacen" ColumnName="id_almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_bo_calculo_pe">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe">
+              <MappingFragment StoreEntitySet="C_bo_calculo_pe">
+                <ScalarProperty Name="id_bo_calculo_pe" ColumnName="id_bo_calculo_pe" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
+                <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_bo_calculo" ColumnName="id_bo_calculo" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_bo_det_orden">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_det_orden">
+              <MappingFragment StoreEntitySet="C_bo_det_orden">
+                <ScalarProperty Name="id_bo_det_orden" ColumnName="id_bo_det_orden" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_bo_orden_complemento">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_orden_complemento">
+              <MappingFragment StoreEntitySet="C_bo_orden_complemento">
+                <ScalarProperty Name="id_bo_orden_complemento" ColumnName="id_bo_orden_complemento" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_campaña_codigos">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_campaña_codigos">
+              <MappingFragment StoreEntitySet="C_campaña_codigos">
+                <ScalarProperty Name="id_campaña_codigo" ColumnName="id_campaña_codigo" />
+                <ScalarProperty Name="id_cliente_canje" ColumnName="id_cliente_canje" />
+                <ScalarProperty Name="fecha_canje" ColumnName="fecha_canje" />
+                <ScalarProperty Name="id_usuario_canje" ColumnName="id_usuario_canje" />
+                <ScalarProperty Name="id_sucursal_canje" ColumnName="id_sucursal_canje" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="id_campaña" ColumnName="id_campaña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_empleados">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empleados">
+              <MappingFragment StoreEntitySet="C_empleados">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+                <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+                <ScalarProperty Name="telefono_casa" ColumnName="telefono_casa" />
+                <ScalarProperty Name="telefono_celular" ColumnName="telefono_celular" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
+                <ScalarProperty Name="no_interior" ColumnName="no_interior" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+                <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_empleados_pos">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empleados_pos">
+              <MappingFragment StoreEntitySet="C_empleados_pos">
+                <ScalarProperty Name="id_empleado_pos" ColumnName="id_empleado_pos" />
+                <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+                <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+                <ScalarProperty Name="telefono_casa" ColumnName="telefono_casa" />
+                <ScalarProperty Name="telefono_celular" ColumnName="telefono_celular" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
+                <ScalarProperty Name="no_interior" ColumnName="no_interior" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+                <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_empresas_sucursales">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empresas_sucursales">
+              <MappingFragment StoreEntitySet="C_empresas_sucursales">
+                <ScalarProperty Name="id_empresa_sucursal" ColumnName="id_empresa_sucursal" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_equipo_sucursal">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_equipo_sucursal">
+              <MappingFragment StoreEntitySet="C_equipo_sucursal">
+                <ScalarProperty Name="id_equipo_sucursal" ColumnName="id_equipo_sucursal" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="mac_address" ColumnName="mac_address" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="id_tipo_equipo" ColumnName="id_tipo_equipo" />
+                <ScalarProperty Name="nombre_equipo" ColumnName="nombre_equipo" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_recetas">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_recetas">
+              <MappingFragment StoreEntitySet="C_recetas">
+                <ScalarProperty Name="id_receta" ColumnName="id_receta" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_sucursales_config">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sucursales_config">
+              <MappingFragment StoreEntitySet="C_sucursales_config">
+                <ScalarProperty Name="id_sucursal_config" ColumnName="id_sucursal_config" />
+                <ScalarProperty Name="geo_localizacion_ing" ColumnName="geo_localizacion_ing" />
+                <ScalarProperty Name="geo_localizacion_lat" ColumnName="geo_localizacion_lat" />
+                <ScalarProperty Name="resolucion_pantalla" ColumnName="resolucion_pantalla" />
+                <ScalarProperty Name="version_mesas" ColumnName="version_mesas" />
+                <ScalarProperty Name="version_app" ColumnName="version_app" />
+                <ScalarProperty Name="version_web" ColumnName="version_web" />
+                <ScalarProperty Name="version_eventos" ColumnName="version_eventos" />
+                <ScalarProperty Name="version_pv" ColumnName="version_pv" />
+                <ScalarProperty Name="version_startup" ColumnName="version_startup" />
+                <ScalarProperty Name="proximidad" ColumnName="proximidad" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_sval_actas_diferencia">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_actas_diferencia">
+              <MappingFragment StoreEntitySet="C_sval_actas_diferencia">
+                <ScalarProperty Name="id_sval_actas" ColumnName="id_sval_actas" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="id_usuario_seguridad" ColumnName="id_usuario_seguridad" />
+                <ScalarProperty Name="id_usuario_supervisor" ColumnName="id_usuario_supervisor" />
+                <ScalarProperty Name="presuntamente_falso" ColumnName="presuntamente_falso" />
+                <ScalarProperty Name="sobrante_fisico" ColumnName="sobrante_fisico" />
+                <ScalarProperty Name="piezas_sin_valor" ColumnName="piezas_sin_valor" />
+                <ScalarProperty Name="importe_faltante_fisico" ColumnName="importe_faltante_fisico" />
+                <ScalarProperty Name="id_sval_tipo_moneda" ColumnName="id_sval_tipo_moneda" />
+                <ScalarProperty Name="importe_diferencia" ColumnName="importe_diferencia" />
+                <ScalarProperty Name="datos_sucursal" ColumnName="datos_sucursal" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="fecha_acta" ColumnName="fecha_acta" />
+                <ScalarProperty Name="id_usuario_cajero" ColumnName="id_usuario_cajero" />
+                <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_sval_documentos">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_documentos">
+              <MappingFragment StoreEntitySet="C_sval_documentos">
+                <ScalarProperty Name="id_sval_documento" ColumnName="id_sval_documento" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="path_documento_anexo" ColumnName="path_documento_anexo" />
+                <ScalarProperty Name="nombre_documento" ColumnName="nombre_documento" />
+                <ScalarProperty Name="no_documento" ColumnName="no_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_sval_ordenes">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_ordenes">
+              <MappingFragment StoreEntitySet="C_sval_ordenes">
+                <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="notas_documento" ColumnName="notas_documento" />
+                <ScalarProperty Name="fecha_consignatario" ColumnName="fecha_consignatario" />
+                <ScalarProperty Name="id_firma_consignatario" ColumnName="id_firma_consignatario" />
+                <ScalarProperty Name="fecha_setravalsa" ColumnName="fecha_setravalsa" />
+                <ScalarProperty Name="id_firma_setravalsa" ColumnName="id_firma_setravalsa" />
+                <ScalarProperty Name="id_remitente_cliente" ColumnName="id_remitente_cliente" />
+                <ScalarProperty Name="id_sval_tipo_servicio" ColumnName="id_sval_tipo_servicio" />
+                <ScalarProperty Name="importe_total" ColumnName="importe_total" />
+                <ScalarProperty Name="otros_anexos" ColumnName="otros_anexos" />
+                <ScalarProperty Name="documentos_descripcion" ColumnName="documentos_descripcion" />
+                <ScalarProperty Name="importe_equivalente" ColumnName="importe_equivalente" />
+                <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+                <ScalarProperty Name="importe_moneda_extranjera" ColumnName="importe_moneda_extranjera" />
+                <ScalarProperty Name="importe_moneda_nacional" ColumnName="importe_moneda_nacional" />
+                <ScalarProperty Name="id_sval_facturar" ColumnName="id_sval_facturar" />
+                <ScalarProperty Name="id_contrato" ColumnName="id_contrato" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="id_destinos_entrega" ColumnName="id_destinos_entrega" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_sval_recepcion_envases">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_recepcion_envases">
+              <MappingFragment StoreEntitySet="C_sval_recepcion_envases">
+                <ScalarProperty Name="id_sval_envases" ColumnName="id_sval_envases" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+                <ScalarProperty Name="no_sello_plomo" ColumnName="no_sello_plomo" />
+                <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_usuarios">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios">
+              <MappingFragment StoreEntitySet="C_usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_usuarios_marca">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_marca">
+              <MappingFragment StoreEntitySet="C_usuarios_marca">
+                <ScalarProperty Name="id_usuario_marcas" ColumnName="id_usuario_marcas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_usuarios_pos">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_pos">
+              <MappingFragment StoreEntitySet="C_usuarios_pos">
+                <ScalarProperty Name="id_usuario_pos" ColumnName="id_usuario_pos" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_usuarios_sucursales">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales">
+              <MappingFragment StoreEntitySet="C_usuarios_sucursales">
+                <ScalarProperty Name="id_usuarios_sucursales" ColumnName="id_usuarios_sucursales" />
+                <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_ventas_status">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_ventas_status">
+              <MappingFragment StoreEntitySet="C_ventas_status">
+                <ScalarProperty Name="id_venta_status" ColumnName="id_venta_status" />
+                <ScalarProperty Name="venta_status" ColumnName="venta_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -7272,7 +8083,7 @@ error 6004: Una relación hace referencia a la tabla 'DB_CORPORATIVA_DEV.dbo.C_r
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

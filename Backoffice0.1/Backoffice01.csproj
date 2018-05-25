@@ -445,15 +445,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\C_PRODUCTO_CLASIFICACIONController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\CALLCENTER_CLIENTES1Controller.cs" />
     <Compile Include="Controllers\Inventario\Almacen\ALMACEN_INVENTARIOController.cs" />
     <Compile Include="Controllers\Inventario\Compras\Backorder\BACKORDERController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\ROLESController.cs" />
     <Compile Include="Controllers\POS\CALL_CENTER\CALL_CENTERController.cs" />
     <Compile Include="Controllers\Mercadotecnia\CAMPAÑASController.cs" />
     <Compile Include="Controllers\POS\COMANDA_COCINAController.cs" />
     <Compile Include="Controllers\POS\COMANDA_MESASController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\ConfiguracionController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\HomeController.cs" />
     <Compile Include="Controllers\POS\POS_MC_CATEGORIASController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\MODULOSController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\PERFILESController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOSController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOS_ASIGNADOSController.cs" />
     <Compile Include="Controllers\POS\POSController.cs" />
     <Compile Include="Controllers\POS\POS_PRODUCTOSController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\UBICACIONController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOLOGINController.cs" />
+    <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOSController.cs" />
     <Compile Include="Controllers\POS\POS_PRENOMINAController.cs" />
     <Compile Include="Controllers\POS\DELIVERY\DELIVERYController.cs" />
     <Compile Include="Controllers\POS\SUC_MOV_INSUMOSController.cs" />
@@ -490,10 +501,19 @@
     <Compile Include="Models\C_almacenes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_almacen_insumos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_bo_almacen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_bo_calculo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_bo_calculo_pe.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_bo_det_orden.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_bo_diafestivo_ap.cs">
@@ -508,6 +528,9 @@
     <Compile Include="Models\C_bo_orden.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_bo_orden_complemento.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_bo_porc_df.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -518,6 +541,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_campañas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_campaña_codigos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_campaña_empresas.cs">
@@ -559,7 +585,19 @@
     <Compile Include="Models\C_direcciones.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_empleados.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_empleados_pos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_empresas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_empresas_sucursales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_equipo_sucursal.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_estados.cs">
@@ -700,6 +738,9 @@
     <Compile Include="Models\C_proveedores.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_recetas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_servicios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -718,10 +759,16 @@
     <Compile Include="Models\C_sucursales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_sucursales_config.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_suc_invreal.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_suc_invreal_d.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_actas_diferencia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sval_cat_desglose_billetes.cs">
@@ -739,7 +786,13 @@
     <Compile Include="Models\C_sval_destinos_entrega.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_sval_documentos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_sval_facturar_a.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_ordenes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sval_orden_billetes.cs">
@@ -749,6 +802,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sval_recepcion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sval_recepcion_envases.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sval_servicios.cs">
@@ -778,10 +834,25 @@
     <Compile Include="Models\C_unidades_medida.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_usuarios.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_usuarios_marca.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_usuarios_pos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_usuarios_sucursales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_ventas_d.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_ventas_g.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_ventas_status.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_ventas_tipo.cs">
@@ -822,8 +893,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\permisosServicioModulo.cs" />
-    <Compile Include="Models\Productos.cs" />
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -984,7 +1054,6 @@
     <Content Include="Views\POS\Ventas\_TrackingPedido.cshtml" />
     <Content Include="Views\POS\Ventas\_Clientes.cshtml" />
     <Content Include="Views\POS\Ventas\_BotonesEspeciales.cshtml" />
-    <Content Include="Views\POS\Ventas\_Pruebapromociones.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1031,7 +1100,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49810</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49811/</IISUrl>
+          <IISUrl>http://localhost:49810/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

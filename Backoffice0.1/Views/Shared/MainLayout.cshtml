@@ -47,155 +47,110 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li>
-                                    <a><i class="fa fa-home"></i>Administración <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @if (Session["LoggedUser"] != null)
-        {
+                                
 
-           
-                                        if (ViewBag.perfil.Equals("4"))
-                                        {
-                                            <li>
-                                              @Html.ActionLink("Seguridad", "Configuracion", "Configuracion")
-                                             </li>
-                                        }
+                            <a><i class="fa fa-home"></i>Administración <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: none;">
 
-                                        else
-                                        {
+                                @if (Session["LoggedUser"] != null)
+                                {
 
-                                        }
 
-                                        }
-
-                                        </li>
-                                        <li>
-                                            <a href="http://localhost:49810/elmah.axd">Log</a>
-                                        </li>
-                                        <li>
-                                            <a href="index3.html">Firma digital</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-usd"></i>Punto de Venta <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Ventas", "Index", "POS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Inventario", "Index", "POS_INVENTARIO")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Pedidos", "Index", "POS_PEDIDOS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Prenomina", "Index", "POS_PRENOMINA")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Gestion de mesas", "Index", "COMANDA_MESAS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Comanda cocina", "Index", "COMANDA_COCINA")
-                                        </li>
-                                        @if (Session["LoggedUser"] != null)
-                                        {
-
-                                            if (ViewBag.data == null || ViewBag.data.Count == 0)
-                                            {
-                                                <li>
-                                                    @Html.ActionLink("Inventario", "Inventario", "Inventario")
-                                                </li>
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                           /* if (ViewBag.data[0].Equals("01"))
-                                            {
-                                            }
-
-                                            else
-                                            {
-                                                <li>
-                                                    @Html.ActionLink("Inventario", "Inventario", "Inventario")
-                                                </li>
-                                            }*/
-
-                                        }
+                                    if (ViewBag.idServicio == 8)
+                                     {
 
                                         <li>
-                                            <a href="form_validation.html">Almacen</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_wizards.html">Form Wizard</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_upload.html">Form Upload</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_buttons.html">Form Buttons</a>
-                                        </li>
-                                    </ul>
+                                        @Html.ActionLink("Seguridad", "Configuracion", "Configuracion");
+                                       </li>
 
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-desktop"></i> Call Center<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Meseros", "Index", "POS_MESEROS")
-                                            @if (Session["LoggedUser"] != null)
-                                            {
+                                      <li>
+                                         <a href="http://localhost:49810/elmah.axd">Log</a>
+                                      </li>
+                                      <li>
+                                        <a href="index3.html">Firma digital</a>
+                                      </li>
+                                    }
 
-                                                if (ViewBag.data == null || ViewBag.data.Count == 0)
-                                                {
-                                                <li>
-                                                    @Html.ActionLink("Clientes", "Index", "CALLCENTER_CLIENTES1")
-                                                </li>
-                                                }
-                                                else
+                                    else
+                                    {
 
-                                                {
-                                                    if (ViewBag.data.Count == 4)
-                                                    {
-                                                        if (ViewBag.data[0].Equals("04") || ViewBag.data[2].Equals("04"))
-                                                        {
-                                                        }
-                                                    }
-                                                    if (ViewBag.data.Count == 6)
-                                                    {
-                                                        if (ViewBag.data[0].Equals("04") || ViewBag.data[2].Equals("04") || ViewBag.data[4].Equals("04"))
-                                                        {
-                                                        }
-                                                    }
-                                                    if (ViewBag.data.Count == 8)
-                                                    {
-                                                        if (ViewBag.data[0].Equals("04") || ViewBag.data[2].Equals("04") || ViewBag.data[4].Equals("04") || ViewBag.data[6].Equals("04"))
-                                                        {
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                    <li>
-                                                        @Html.ActionLink("Clientes", "Index", "CALLCENTER_CLIENTES1")
-                                                    </li>
-                                                }
+                                    }
 
-                                                }
-                                            }
+                                }
+                            </ul>
+                            </li>
+                            <li>
+                                <a><i class="fa fa-usd"></i>Punto de Venta <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: none;">
+                                    <li>
+                                        @Html.ActionLink("Ventas", "Index", "POS")
                                     </li>
                                     <li>
-                                        @Html.ActionLink("Ubicacion", "Index", "UBICACION")
+                                        @Html.ActionLink("Inventario", "Index", "POS_INVENTARIO")
                                     </li>
                                     <li>
-                                        @Html.ActionLink("Cortes de caja", "Index", "POS_MESEROS")
+                                        @Html.ActionLink("Pedidos", "Index", "POS_PEDIDOS")
                                     </li>
                                     <li>
-                                        <a href="#" data-toggle="modal" data-target=".cambio_turno"> Cambio de turno </a>
-
+                                        @Html.ActionLink("Prenomina", "Index", "POS_PRENOMINA")
                                     </li>
+                                    <li>
+                                        @Html.ActionLink("Gestion de mesas", "Index", "COMANDA_MESAS")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Comanda cocina", "Index", "COMANDA_COCINA")
+                                    </li>
+                                  
+       
+                            <li>
+                                @Html.ActionLink("Inventario", "Inventario", "Inventario")
+                            </li>
 
+                            <li>
+                                @Html.ActionLink("Inventario", "Inventario", "Inventario")
+                            </li>
+
+
+                                    <li>
+                                        <a href="form_validation.html">Almacen</a>
+                                    </li>
+                                    <li>
+                                        <a href="form_wizards.html">Form Wizard</a>
+                                    </li>
+                                    <li>
+                                        <a href="form_upload.html">Form Upload</a>
+                                    </li>
+                                    <li>
+                                        <a href="form_buttons.html">Form Buttons</a>
+                                    </li>
                                 </ul>
+
+                            </li>
+                            <li>
+                                <a><i class="fa fa-desktop"></i> Call Center<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: none;">
+                                      <li>
+                                        @Html.ActionLink("Meseros", "Index", "POS_MESEROS")
+                                      </li>
+         
+                                      <li>
+                                        @Html.ActionLink("Clientes", "~/Views/Call_center_clientes/Index", "~/Parametros/Conf_seguridad/CALLCENTER_CLIENTES1")
+                                     </li>
+
+                                     <li>
+                                       @Html.ActionLink("Clientes", "Index", "CALLCENTER_CLIENTES1")
+                                     </li>                             
+                                     <li>
+                                      @Html.ActionLink("Ubicacion", "Index", "UBICACION")
+                                     </li>
+                                     <li>
+                                      @Html.ActionLink("Cortes de caja", "Index", "POS_MESEROS")
+                                     </li>
+                                     <li>
+                                      <a href="#" data-toggle="modal" data-target=".cambio_turno"> Cambio de turno </a>
+                                    </li>
+
+                            </ul>
                                 </li>
                       
                                 <li>

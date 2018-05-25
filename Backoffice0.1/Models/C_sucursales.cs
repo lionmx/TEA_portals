@@ -22,6 +22,8 @@ namespace Backoffice0._1.Models
             this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
             this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
             this.C_ventas_g = new HashSet<C_ventas_g>();
+            this.C_campaña_codigos = new HashSet<C_campaña_codigos>();
+            this.C_equipo_sucursal = new HashSet<C_equipo_sucursal>();
         }
     
         public int Id_sucursal { get; set; }
@@ -48,5 +50,9 @@ namespace Backoffice0._1.Models
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_campaña_codigos> C_campaña_codigos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_equipo_sucursal> C_equipo_sucursal { get; set; }
     }
 }

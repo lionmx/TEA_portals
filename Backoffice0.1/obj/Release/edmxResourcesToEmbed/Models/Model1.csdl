@@ -6,23 +6,7 @@
     </Key>
     <Property Name="id_almacen" Type="Int32" Nullable="false" />
     <Property Name="id_empresa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="C_bo_almacen">
-    <Key>
-      <PropertyRef Name="id_bo_almacen" />
-    </Key>
-    <Property Name="id_bo_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="id_bo_g" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="cant_emp_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="cant_suelto_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="comentarios_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes" FromRole="C_almacenes" ToRole="C_almacen_insumos" />
   </EntityType>
   <EntityType Name="C_bo_calculo">
     <Key>
@@ -40,6 +24,7 @@
     <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_bo_g" Relationship="Self.FK_C_bo_calculo_C_bo_g" FromRole="C_bo_calculo" ToRole="C_bo_g" />
+    <NavigationProperty Name="C_bo_calculo_pe" Relationship="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo" FromRole="C_bo_calculo" ToRole="C_bo_calculo_pe" />
   </EntityType>
   <EntityType Name="C_bo_diafestivo_ap">
     <Key>
@@ -167,6 +152,7 @@
     <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_campañas_C_Empresas" FromRole="C_campañas" ToRole="C_empresas" />
     <NavigationProperty Name="C_grupo_productos_g" Relationship="Self.FK_C_campañas_C_promociones_g" FromRole="C_campañas" ToRole="C_grupo_productos_g" />
     <NavigationProperty Name="C_tipos_codigo" Relationship="Self.FK_C_campañas_C_tipos_codigo" FromRole="C_campañas" ToRole="C_tipos_codigo" />
+    <NavigationProperty Name="C_campaña_codigos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas" FromRole="C_campañas" ToRole="C_campaña_codigos" />
   </EntityType>
   <EntityType Name="C_cfdi_informacion">
     <Key>
@@ -432,6 +418,8 @@
     <NavigationProperty Name="C_tipo_empaque" Relationship="Self.FK_C_Insumo_cat_C_tipo_empaque" FromRole="C_insumo_cat" ToRole="C_tipo_empaque" />
     <NavigationProperty Name="C_unidades" Relationship="Self.FK_C_Insumo_cat_C_unidades" FromRole="C_insumo_cat" ToRole="C_unidades" />
     <NavigationProperty Name="C_insumo_sucursal" Relationship="Self.FK_insumo_sucursal_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_insumo_sucursal" />
+    <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_almacen_insumos" />
+    <NavigationProperty Name="C_recetas" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat" FromRole="C_insumo_cat" ToRole="C_recetas" />
   </EntityType>
   <EntityType Name="C_insumo_mov_status">
     <Key>
@@ -711,6 +699,7 @@
     <NavigationProperty Name="C_impuesto_producto" Relationship="Self.FK_impuesto_producto_Productos_cat" FromRole="C_productos_cat" ToRole="C_impuesto_producto" />
     <NavigationProperty Name="C_producto_clasificacion" Relationship="Self.FK_Productos_cat_producto_clasificacion" FromRole="C_productos_cat" ToRole="C_producto_clasificacion" />
     <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_producto_presentacion_Productos_cat" FromRole="C_productos_cat" ToRole="C_producto_presentacion" />
+    <NavigationProperty Name="C_recetas" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat" FromRole="C_productos_cat" ToRole="C_recetas" />
   </EntityType>
   <EntityType Name="C_productos_precios">
     <Key>
@@ -843,6 +832,8 @@
     <NavigationProperty Name="C_servicios_sucursal" Relationship="Self.FK_C_servicios_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_servicios_sucursal" />
     <NavigationProperty Name="C_zonas_precio" Relationship="Self.FK_C_Sucursales_C_zonas" FromRole="C_sucursales" ToRole="C_zonas_precio" />
     <NavigationProperty Name="C_ventas_g" Relationship="Self.FK_C_ventas_g_C_sucursales" FromRole="C_sucursales" ToRole="C_ventas_g" />
+    <NavigationProperty Name="C_campaña_codigos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales" FromRole="C_sucursales" ToRole="C_campaña_codigos" />
+    <NavigationProperty Name="C_equipo_sucursal" Relationship="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_equipo_sucursal" />
   </EntityType>
   <EntityType Name="C_telefonos">
     <Key>
@@ -963,6 +954,7 @@
     <Property Name="ancho" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="alto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_almacen_insumos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje" FromRole="C_zonas_almacenaje" ToRole="C_almacen_insumos" />
   </EntityType>
   <EntityType Name="C_zonas_precio">
     <Key>
@@ -1121,7 +1113,7 @@
     <Property Name="app_ubicacion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="default_app" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="sysdiagram">
+  <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
     </Key>
@@ -2324,7 +2316,6 @@
   </Association>
   <EntityContainer Name="DB_CORPORATIVA_DEVEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" />
-    <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" />
     <EntitySet Name="C_bo_calculo" EntityType="Self.C_bo_calculo" />
     <EntitySet Name="C_bo_diafestivo_ap" EntityType="Self.C_bo_diafestivo_ap" />
     <EntitySet Name="C_bo_diasfestivos" EntityType="Self.C_bo_diasfestivos" />
@@ -2413,7 +2404,7 @@
     <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
     <EntitySet Name="M_callcenter_clientes" EntityType="Self.M_callcenter_clientes" />
     <EntitySet Name="M_callcenter_clientes_adicionales" EntityType="Self.M_callcenter_clientes_adicionales" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="C_catalogo_consecutivos" EntityType="Self.C_catalogo_consecutivos" />
     <EntitySet Name="C_catalogo_sn" EntityType="Self.C_catalogo_sn" />
     <EntitySet Name="C_catalogo_tamanos" EntityType="Self.C_catalogo_tamanos" />
@@ -2762,5 +2753,465 @@
       <End Role="CS_usuarios" EntitySet="CS_usuarios" />
       <End Role="CS_usuario_login" EntitySet="CS_usuario_login" />
     </AssociationSet>
+    <EntitySet Name="C_bo_almacen" EntityType="DB_CORPORATIVA_DEVModel.C_bo_almacen" />
+    <EntitySet Name="C_almacen_insumos" EntityType="DB_CORPORATIVA_DEVModel.C_almacen_insumos" />
+    <AssociationSet Name="FK_C_almacen_insumos_C_almacenes" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes">
+      <End Role="C_almacenes" EntitySet="C_almacenes" />
+      <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_almacen_insumos_C_Insumo_cat" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat">
+      <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+      <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_almacen_insumos_C_Zonas_almacenaje" Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje">
+      <End Role="C_zonas_almacenaje" EntitySet="C_zonas_almacenaje" />
+      <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+    </AssociationSet>
+    <EntitySet Name="C_bo_calculo_pe" EntityType="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe" />
+    <AssociationSet Name="FK_C_bo_calculo_pe_C_bo_calculo" Association="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo">
+      <End Role="C_bo_calculo" EntitySet="C_bo_calculo" />
+      <End Role="C_bo_calculo_pe" EntitySet="C_bo_calculo_pe" />
+    </AssociationSet>
+    <EntitySet Name="C_bo_det_orden" EntityType="DB_CORPORATIVA_DEVModel.C_bo_det_orden" />
+    <EntitySet Name="C_bo_orden_complemento" EntityType="DB_CORPORATIVA_DEVModel.C_bo_orden_complemento" />
+    <EntitySet Name="C_campaña_codigos" EntityType="DB_CORPORATIVA_DEVModel.C_campaña_codigos" />
+    <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas">
+      <End Role="C_campañas" EntitySet="C_campañas" />
+      <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_campaña_codigos_C_Sucursales" Association="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
+    </AssociationSet>
+    <EntitySet Name="C_empleados" EntityType="DB_CORPORATIVA_DEVModel.C_empleados" />
+    <EntitySet Name="C_empleados_pos" EntityType="DB_CORPORATIVA_DEVModel.C_empleados_pos" />
+    <EntitySet Name="C_empresas_sucursales" EntityType="DB_CORPORATIVA_DEVModel.C_empresas_sucursales" />
+    <EntitySet Name="C_equipo_sucursal" EntityType="DB_CORPORATIVA_DEVModel.C_equipo_sucursal" />
+    <AssociationSet Name="FK_C_equipo_sucursal_C_sucursales" Association="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_equipo_sucursal" EntitySet="C_equipo_sucursal" />
+    </AssociationSet>
+    <EntitySet Name="C_recetas" EntityType="DB_CORPORATIVA_DEVModel.C_recetas" />
+    <AssociationSet Name="FK_Recetas_Insumo_cat" Association="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat">
+      <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+      <End Role="C_recetas" EntitySet="C_recetas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recetas_Productos_cat" Association="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_recetas" EntitySet="C_recetas" />
+    </AssociationSet>
+    <EntitySet Name="C_sucursales_config" EntityType="DB_CORPORATIVA_DEVModel.C_sucursales_config" />
+    <EntitySet Name="C_sval_actas_diferencia" EntityType="DB_CORPORATIVA_DEVModel.C_sval_actas_diferencia" />
+    <EntitySet Name="C_sval_documentos" EntityType="DB_CORPORATIVA_DEVModel.C_sval_documentos" />
+    <EntitySet Name="C_sval_ordenes" EntityType="DB_CORPORATIVA_DEVModel.C_sval_ordenes" />
+    <EntitySet Name="C_sval_recepcion_envases" EntityType="DB_CORPORATIVA_DEVModel.C_sval_recepcion_envases" />
+    <EntitySet Name="C_usuarios" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios" />
+    <EntitySet Name="C_usuarios_marca" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_marca" />
+    <EntitySet Name="C_usuarios_pos" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_pos" />
+    <EntitySet Name="C_usuarios_sucursales" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales" />
+    <EntitySet Name="C_ventas_status" EntityType="DB_CORPORATIVA_DEVModel.C_ventas_status" />
   </EntityContainer>
+  <EntityType Name="C_bo_almacen">
+    <Key>
+      <PropertyRef Name="id_bo_almacen" />
+    </Key>
+    <Property Name="id_bo_almacen" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_g" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_emp_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_suelto_pe" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fecha_calculo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="comentarios_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_almacen_insumos">
+    <Key>
+      <PropertyRef Name="id_almacen_insumo" />
+    </Key>
+    <Property Name="id_almacen" Type="Int32" />
+    <Property Name="id_insumo" Type="Int32" />
+    <Property Name="id_zona_almacenaje" Type="Int32" />
+    <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="min" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="max" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_almacen_insumo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_almacenes" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes" FromRole="C_almacen_insumos" ToRole="C_almacenes" />
+    <NavigationProperty Name="C_insumo_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Insumo_cat" FromRole="C_almacen_insumos" ToRole="C_insumo_cat" />
+    <NavigationProperty Name="C_zonas_almacenaje" Relationship="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje" FromRole="C_almacen_insumos" ToRole="C_zonas_almacenaje" />
+  </EntityType>
+  <Association Name="FK_C_almacen_insumos_C_almacenes">
+    <End Type="DB_CORPORATIVA_DEVModel.C_almacenes" Role="C_almacenes" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_almacenes">
+        <PropertyRef Name="id_almacen" />
+      </Principal>
+      <Dependent Role="C_almacen_insumos">
+        <PropertyRef Name="id_almacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_almacen_insumos_C_Insumo_cat">
+    <End Type="DB_CORPORATIVA_DEVModel.C_insumo_cat" Role="C_insumo_cat" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_insumo_cat">
+        <PropertyRef Name="id_insumo" />
+      </Principal>
+      <Dependent Role="C_almacen_insumos">
+        <PropertyRef Name="id_insumo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_almacen_insumos_C_Zonas_almacenaje">
+    <End Type="DB_CORPORATIVA_DEVModel.C_zonas_almacenaje" Role="C_zonas_almacenaje" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Role="C_almacen_insumos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_zonas_almacenaje">
+        <PropertyRef Name="id_zona_almacen" />
+      </Principal>
+      <Dependent Role="C_almacen_insumos">
+        <PropertyRef Name="id_zona_almacenaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_bo_calculo_pe">
+    <Key>
+      <PropertyRef Name="id_bo_calculo_pe" />
+    </Key>
+    <Property Name="id_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_categoria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_calculo" Type="Int32" />
+    <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_emp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cant_suelto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_calculo_pe" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_bo_calculo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_pe_C_bo_calculo" FromRole="C_bo_calculo_pe" ToRole="C_bo_calculo" />
+  </EntityType>
+  <Association Name="FK_C_bo_calculo_pe_C_bo_calculo">
+    <End Type="DB_CORPORATIVA_DEVModel.C_bo_calculo" Role="C_bo_calculo" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe" Role="C_bo_calculo_pe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_bo_calculo">
+        <PropertyRef Name="id_bo_calculo" />
+      </Principal>
+      <Dependent Role="C_bo_calculo_pe">
+        <PropertyRef Name="id_bo_calculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_bo_det_orden">
+    <Key>
+      <PropertyRef Name="id_bo_det_orden" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_det_orden" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_bo_orden_complemento">
+    <Key>
+      <PropertyRef Name="id_bo_orden_complemento" />
+    </Key>
+    <Property Name="id_bo_almacen" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_insumo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="nota" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_orden_complemento" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_campaña_codigos">
+    <Key>
+      <PropertyRef Name="id_campaña_codigo" />
+    </Key>
+    <Property Name="id_campaña" Type="Int32" />
+    <Property Name="codigo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_sucursal_canje" Type="Int32" />
+    <Property Name="id_usuario_canje" Type="Int32" />
+    <Property Name="fecha_canje" Type="DateTime" Precision="0" />
+    <Property Name="id_cliente_canje" Type="Int32" />
+    <Property Name="id_campaña_codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_campañas" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_campañas" FromRole="C_campaña_codigos" ToRole="C_campañas" />
+    <NavigationProperty Name="C_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_campaña_codigos_C_Sucursales" FromRole="C_campaña_codigos" ToRole="C_sucursales" />
+  </EntityType>
+  <Association Name="FK_C_campaña_codigos_C_campañas">
+    <End Type="DB_CORPORATIVA_DEVModel.C_campañas" Role="C_campañas" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_campaña_codigos" Role="C_campaña_codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_campañas">
+        <PropertyRef Name="id_campaña" />
+      </Principal>
+      <Dependent Role="C_campaña_codigos">
+        <PropertyRef Name="id_campaña" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_campaña_codigos_C_Sucursales">
+    <End Type="DB_CORPORATIVA_DEVModel.C_sucursales" Role="C_sucursales" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_campaña_codigos" Role="C_campaña_codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="Id_sucursal" />
+      </Principal>
+      <Dependent Role="C_campaña_codigos">
+        <PropertyRef Name="id_sucursal_canje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_empleados">
+    <Key>
+      <PropertyRef Name="id_empleado" />
+    </Key>
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ciudad" Type="Int32" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="municipio" Type="Int32" />
+    <Property Name="cp" Type="Int32" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+    <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
+    <Property Name="puesto" Type="Int32" />
+    <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_casa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_sangre" Type="Int32" />
+    <Property Name="id_empleado" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_empleados_pos">
+    <Key>
+      <PropertyRef Name="id_empleado_pos" />
+    </Key>
+    <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ciudad" Type="Int32" />
+    <Property Name="estado" Type="Int32" />
+    <Property Name="municipio" Type="Int32" />
+    <Property Name="cp" Type="Int32" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
+    <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
+    <Property Name="puesto" Type="Int32" />
+    <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_casa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_sangre" Type="Int32" />
+    <Property Name="id_empleado_pos" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_empresas_sucursales">
+    <Key>
+      <PropertyRef Name="id_empresa_sucursal" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="id_empresa_sucursal" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_equipo_sucursal">
+    <Key>
+      <PropertyRef Name="id_equipo_sucursal" />
+    </Key>
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="nombre_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_tipo_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="modelo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="marca" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="nss" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="mac_address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ip_address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_equipo_sucursal" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_equipo_sucursal_C_sucursales" FromRole="C_equipo_sucursal" ToRole="C_sucursales" />
+  </EntityType>
+  <Association Name="FK_C_equipo_sucursal_C_sucursales">
+    <End Type="DB_CORPORATIVA_DEVModel.C_sucursales" Role="C_sucursales" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_equipo_sucursal" Role="C_equipo_sucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="Id_sucursal" />
+      </Principal>
+      <Dependent Role="C_equipo_sucursal">
+        <PropertyRef Name="id_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_recetas">
+    <Key>
+      <PropertyRef Name="id_receta" />
+    </Key>
+    <Property Name="id_producto" Type="Int32" />
+    <Property Name="id_insumo" Type="Int32" />
+    <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_receta" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_insumo_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Insumo_cat" FromRole="C_recetas" ToRole="C_insumo_cat" />
+    <NavigationProperty Name="C_productos_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_Recetas_Productos_cat" FromRole="C_recetas" ToRole="C_productos_cat" />
+  </EntityType>
+  <Association Name="FK_Recetas_Insumo_cat">
+    <End Type="DB_CORPORATIVA_DEVModel.C_insumo_cat" Role="C_insumo_cat" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_recetas" Role="C_recetas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_insumo_cat">
+        <PropertyRef Name="id_insumo" />
+      </Principal>
+      <Dependent Role="C_recetas">
+        <PropertyRef Name="id_insumo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recetas_Productos_cat">
+    <End Type="DB_CORPORATIVA_DEVModel.C_productos_cat" Role="C_productos_cat" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_recetas" Role="C_recetas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="id_producto" />
+      </Principal>
+      <Dependent Role="C_recetas">
+        <PropertyRef Name="id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_sucursales_config">
+    <Key>
+      <PropertyRef Name="id_sucursal_config" />
+    </Key>
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="proximidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="version_startup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_pv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_eventos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_app" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_mesas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="resolucion_pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="geo_localizacion_lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="geo_localizacion_ing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_sucursal_config" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_sval_actas_diferencia">
+    <Key>
+      <PropertyRef Name="id_sval_actas" />
+    </Key>
+    <Property Name="id_sval_orden" Type="Int32" />
+    <Property Name="id_usuario_cajero" Type="Int32" />
+    <Property Name="fecha_acta" Type="DateTime" Precision="3" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="datos_sucursal" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="importe_diferencia" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="id_sval_tipo_moneda" Type="Int32" />
+    <Property Name="importe_faltante_fisico" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="piezas_sin_valor" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sobrante_fisico" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="presuntamente_falso" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="id_usuario_supervisor" Type="Int32" />
+    <Property Name="id_usuario_seguridad" Type="Int32" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_sval_actas" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_sval_documentos">
+    <Key>
+      <PropertyRef Name="id_sval_documento" />
+    </Key>
+    <Property Name="no_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_documento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="path_documento_anexo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_sval_documento" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_sval_ordenes">
+    <Key>
+      <PropertyRef Name="id_sval_orden" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_destinos_entrega" Type="Int32" />
+    <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+    <Property Name="folio" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="id_contrato" Type="Int32" />
+    <Property Name="id_sval_facturar" Type="Int32" />
+    <Property Name="importe_moneda_nacional" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe_moneda_extranjera" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="tipo_cambio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe_equivalente" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="documentos_descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="otros_anexos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="importe_total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="id_sval_tipo_servicio" Type="Int32" />
+    <Property Name="id_remitente_cliente" Type="Int32" />
+    <Property Name="id_firma_setravalsa" Type="Int32" />
+    <Property Name="fecha_setravalsa" Type="DateTime" Precision="3" />
+    <Property Name="id_firma_consignatario" Type="Int32" />
+    <Property Name="fecha_consignatario" Type="DateTime" Precision="3" />
+    <Property Name="notas_documento" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_sval_orden" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_sval_recepcion_envases">
+    <Key>
+      <PropertyRef Name="id_sval_envases" />
+    </Key>
+    <Property Name="id_sval_orden" Type="Int32" />
+    <Property Name="no_sello_plomo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_recepcion" Type="DateTime" Precision="3" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_sval_envases" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_usuarios">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_rol" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_usuarios_marca">
+    <Key>
+      <PropertyRef Name="id_usuario_marcas" />
+    </Key>
+    <Property Name="id_usuario_marcas" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_usuarios_pos">
+    <Key>
+      <PropertyRef Name="id_usuario_pos" />
+    </Key>
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_rol" Type="Int32" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="id_usuario_pos" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_usuarios_sucursales">
+    <Key>
+      <PropertyRef Name="id_usuarios_sucursales" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="id_usuarios_sucursales" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="C_ventas_status">
+    <Key>
+      <PropertyRef Name="id_venta_status" />
+    </Key>
+    <Property Name="venta_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_venta_status" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

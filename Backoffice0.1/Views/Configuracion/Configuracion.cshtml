@@ -1,14 +1,14 @@
 ﻿
-@model Backoffice0._1.Models.CS_usuarios
+@model Backoffice0._1.Models.modelConfigBase
 @{
                 /**/
 
-                ViewBag.Title = "Configuracion";
+                ViewBag.Title = "ConfiguraciÓn";
                 Layout = "~/Views/Shared/MainLayout.cshtml";
 
 }
 
-<h2>Configuracion</h2>
+<h2>Configuración</h2>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -18,7 +18,7 @@
 
             @Html.ActionLink("Modulos", "Index", "MODULOS", null, new { @class = "w3-bar-item w3-button" })
             @*<a href="~/Views/MODULOS/Index.cshtml" class="w3-bar-item w3-button">Modulos</a>*@
-            @Html.ActionLink("Perfiles", "Index", "PERFILES", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Servicios", "Index", "C_SERVICIOS", null, new { @class = "w3-bar-item w3-button" })
             @Html.ActionLink("Permisos", "Index", "PERMISOS", null, new { @class = "w3-bar-item w3-button" })
             @Html.ActionLink("Roles", "Index", "ROLES", null, new { @class = "w3-bar-item w3-button" })
             @Html.ActionLink("Usuarios", "Index", "USUARIOS", null, new { @class = "w3-bar-item w3-button" })
@@ -57,7 +57,7 @@
         });
     </script>
 
-    Perfil: @ViewBag.DescripcionPerfil
+   Servicio: @ViewBag.DescripcionServicio
     &nbsp;&nbsp;&nbsp;&nbsp; Rol: @ViewBag.DescripcionRol
 
     <script type="text/javascript">
@@ -101,149 +101,15 @@
     <link href="../src/skin-win8/ui.fancytree.css" rel="stylesheet">
     <script src="../src/jquery.fancytree.js"></script>
     <script type="text/javascript">
-        var permisos
-        var selKeys
-        var modulo
-        var selRadios
-        $(function () {
+       
+     
 
-            // --- Initialize sample trees
+     
 
-
-            // ---------------------------------------------------------------------
-
-         
-            $("#tree2").fancytree({
-            
-                checkbox: true,
-                selectMode: 2,
-                source: [
-                    {
-                        title: "Inventario", expanded: false, checkbox: false, selected: false
-                    },
-                    {
-                        title: "Almacen", expanded: false, checkbox: false, selected: false
-                    },
-                    {
-                        title: "Ventas", expanded: false, checkbox: false, selected: false
-                    },
-                    {
-                        title: "Clientes", expanded: false, checkbox: false, selected: false
-                    },
-                    {
-                        title: "Proveedores", expanded: false, checkbox: false, selected: false
-                    }
-                ],
-
-                //init: function (event, data) {
-                // Set key from first part of title (just for this demo output)
-                //       data.tree.visit(function (n) {
-
-                //           n.key = n.title.split(" ")[0];
-
-                //});
-                //},
-
-                activate: function (event, data) {
-                    $("#echoActive1").text(data.node.title);
-                    modulo = (data.node.title);
-                },
-
-                select: function (event, data) {
-                    // Display list of selected nodes
-                    var selNodes = data.tree.getSelectedNodes();
-                    // convert to title/key array
-                    var selKeys = $.map(selNodes, function (node) {
-                        return "'" + node.title + "'";
-                    });
-                    $("#echoSelection2").text(selKeys.join(", "));
-                },
-                // The following options are only required, if we have more than one tree on one page:
-                cookieId: "fancytree-Cb2",
-                idPrefix: "fancytree-Cb2-"
-            });
-
-        });
-
-        $(function () {
-           
-            $("#tree3").fancytree({
-                checkbox: true,
-
-                selectMode: 2,
-                source: [
-                    {
-                        title: "Guardar", checkbox: true, selected: false
-                    },
-                    {
-                        title: "Editar", checkbox: true, selected: false
-                    },
-                    {
-                        title: "Eliminar", checkbox: true, selected: false
-                    },
-                    {
-                        title: "Cancelar", checkbox: true, selected: false
-                    },
-                    {
-                        title: "Exportar", checkbox: true, selected: false
-                    },
-                    {
-                        title: "Imprimir", checkbox: true, selected: false
-                    }
-
-                ],
-
-
-
-                select: function (event, data) {
-                    // Display list of selected nodes
-                    var selNodes = data.tree.getSelectedNodes();
-                    // convert to title/key array
-                     selKeys = $.map(selNodes, function (node) {
-                        return "'" + node.title + "'";
-                    });
-                    $("#echoSelection2").text(selKeys.join(", "));
-
-
-
-
-                },
-
-
-            });
-
-        });
-        $(function () {
-            $("#tree4").fancytree({
-                checkbox: "radio",
-                selectMode: 1,
-                // tooltip: true,
-                // tooltip: function(event, data) { return data.node.title + "!"},
-                source: [
-
-                            { title: "Mostrar" },
-                            { title: "Ocultar" }
-
-
-
-                ],
-
-
-                select: function (event, data) {
-                    // Display list of selected nodes
-                    var s = data.tree.getSelectedNodes();
-                    selRadios = $.map(s, function (node) {
-                        return "'" + node.title + "'";
-                    });
-                    $("#echoSelection3").text(selRadios.join(", "));
-                    permisos = selRadios.join(", ")
-                },
-            });
-        });
-
-        var descPerfil = '@ViewBag.DescripcionPerfil'
+        var descPerfil = '@ViewBag.DescripcionServicio'
        var descRol = '@ViewBag.DescripcionRol'
         var descNombre = '@ViewBag.Nombre'
+       
         function foo() {
 
             if (selKeys != null)
@@ -253,7 +119,7 @@
                 url: '/Configuracion/GuardarPermisos',
                 type: "GET",
                 contentType: 'application/json',
-                data: { param1: permisos, perfil: descPerfil, rol: descRol, nombre: descNombre, modulo: modulo },
+                data: { param1: permisos, perfil: descPerfil, rol: descRol, nombre: descNombre, modulo: modulo, model: smodulo},
                success: alert("Datos Guardados")
 
             });
@@ -268,61 +134,59 @@
     }
 
     </script>
+
 </head>
 <body>
-    
-        <table cellspacing="10" >
+    <div>
+        <br />      
+        <p>Modulos:</p>
+
+        @using (Html.BeginForm("moduleSelected", "Configuracion", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken();
+
+            @Html.DropDownListFor(Model => Model.ID_MODULO, new SelectList(Model.modulos, "idModulo", "Nombre", Model.NOMBRE_MODULO), new { @id = "SelID" })
+            @Html.HiddenFor(Model => Model.SELECTED_MODULO)
+
+        <table cellspacing="10">
 
             <tr>
                 <th>
-                    <div id="tree2" >
-                        <br />
-                        <br />
-                        <br />
-                        <p>Modulos:</p>
-                    </div>
+
 
                 </th>
                 <th>
-                    <div id="tree3" >
+                    <div id="tree3">
                         <br />
-                        <br />
-                        <br />
-                        <br />
+                      
                         <p>Permisos:</p>
                     </div>
 
                 </th>
-                <th>
-                    <div id="tree4" >
-
-                        <p>Modulo en menu:</p>
-                    </div>
-                </th>
+               
             </tr>
 
         </table>
+
+            
+
+            for ( var i = 0; i < Model.permisos.Count(); i++)
+            {
+                @Html.CheckBoxFor(m => m.permisos[i].ACTIVO)
+                @Html.LabelFor(m => m.permisos[i].ACTIVO, Model.permisos[i].DESCRIPCION)<br />
+                @Html.HiddenFor(m => m.permisos[i].DESCRIPCION)
+            }
+        <br />
+        <br />
+
+
+
+        <input type="submit" value="Guardar" />
+
+    }
+
         
-        <br />
-        <br />
-
-        <div><b>Modulo seleccionado: <span id="echoActive1">-</span></b></div>
-        <div>Permisos: <span id="echoSelection2">-</span></div>
-        <div>Modulo en Menu: <span id="echoSelection3">-</span></div>
-        <div>
-
-            <input type="submit" value="Guardar" onclick="return foo()" />
-
-            <script type="text/javascript">
-
-
-
-            </script>
-            @*  @Html.Partial("~/UserControls/barra.cshtml")*@
-        </div>
-
-
-</body>
+    </body>
 </html>
 
 
