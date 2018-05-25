@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,78 +12,62 @@ namespace Backoffice0._1.Controllers
     public class ConfiguracionController : Controller
     {
         private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
-        //private QUESIPIZZAS_DEV1Entities2 db = new QUESIPIZZAS_DEV1Entities2();
+     
         // GET: Configuracion
-       CS_usuarios ViewModelUsuario = new CS_usuarios();
+       modelConfigBase ViewModelUsuario = new modelConfigBase();
         class SelectedUser
         {
-            public string DescripcionPerfil { get; set; }
-            public string  DescripcionRol { get; set; }
-
+            public int id_servicio { get; set; }
+            public string  nombre_servicio { get; set; }
+            public string descripcionRol { get; set; }
             public string Nombre { get; set; }
         }
 
         class PermisosAsignados
         {
             public string idUsuario { get; set; }
-            public string idPerfil { get; set; }
+            public int idServicio { get; set; }
             public string idRol { get; set; }
             public string idModulo { get; set; }
             public string status { get; set; }
-            public string idPermisoAsignado { get; set; }
+            public int idPermisoAsignado { get; set; }
         }
         public ActionResult Configuracion()
         {
             #region Viewbags 
 
-            CS_permisos_asignados ViewModel = new CS_permisos_asignados();
-            List<string> listaPA = new List<string>();
-            if (Session["LoggedUser"] != null)
-            {
+            //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
+            List<int> permisosLista = new List<int>();
+            string loggedId = Session["LoggedId"].ToString();
+            var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
 
-                string user = Session["LoggedUser"].ToString();
-                string loggedId = Session["LoggedId"].ToString();
-            var id = from us in db.CS_usuarios
-                     where us.NOMBRE.Equals(user)
-                     select us;
-
-            foreach (var i in id)
+            if (permisosServicioModulo != null)
             {
-                user = i.ID_USUARIO;
-            }
-            for (int i = 0; i <= 8; i++)
-            {
-                var mod1 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(loggedId) && a.ID_MODULO == "0" + i && a.ID_PERMISO.Equals("07")).FirstOrDefault();
-                if (mod1 != null)
+                foreach (var n in permisosServicioModulo)
                 {
-                    listaPA.Add(mod1.ID_MODULO);
-                    listaPA.Add(mod1.ID_PERMISO);
-
+                    permisosLista.Add(n.id_servicio);
+                    permisosLista.Add(n.id_modulo);
+                    permisosLista.Add(Convert.ToInt32(n.id_permiso));
                 }
             }
-            ViewBag.data = listaPA;
-            List<string> listaPA2 = new List<string>();
-            for (int i = 0; i <= 8; i++)
+
+            //get perfil (servicio) de usuario loggeado y guardarlo en ViewBag
+            var perfil = db.CS_usuarios.Where(a => a.ID_USUARIO.Equals(loggedId)).FirstOrDefault();
+            if (perfil != null)
             {
-                var mod2 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(loggedId) && a.ID_MODULO == "'0" + i + "'" && a.ID_PERMISO.Equals("08")).FirstOrDefault();
-                if (mod2 != null)
-                {
-                    listaPA2.Add(mod2.ID_MODULO);
-                    listaPA2.Add(mod2.ID_PERMISO);
-                }
+                ViewBag.idServicio = perfil.ID_SERVICIO;
             }
-            ViewBag.data2 = listaPA2;
-            }
-            else
-            {
-                CS_usuario_login vm = new CS_usuario_login();
-                RedirectToAction("UsuarioLogin", vm);
-            }
+            ViewBag.permisos = permisosLista;
             #endregion
 
 
             var usuarios = db.CS_usuarios.ToList();
-           // ViewModelUsuario.usuarios = usuarios;          
+            var modulos = db.C_modulos.ToList();
+            var permisos = db.CS_permisos.ToList();               
+            ViewModelUsuario.modulos = modulos;
+            ViewModelUsuario.usuarios = usuarios;
+            ViewModelUsuario.permisos = permisos;
+   
             return View(ViewModelUsuario);
            
         }
@@ -91,27 +76,34 @@ namespace Backoffice0._1.Controllers
       [HttpPost]
         public ActionResult UserSelected(CS_usuarios model)
         {
+            var permisos = db.CS_permisos.ToList();
+            var usuarios = db.CS_usuarios.ToList();  
+            var modulos = db.C_modulos.ToList();
 
-            var usuarios = db.CS_usuarios.SqlQuery("SELECT * FROM dbo.CS_USUARIOS").ToList();
             var usuario = db.Database.SqlQuery<SelectedUser>(
-                @"SELECT  b.DESCRIPCION as DescripcionPerfil FROM dbo.CS_USUARIOS a JOIN dbo.CS_PERFILES b on a.ID_PERFIL = b.ID_PERFIL
+                @"SELECT  b.nombre_servicio as nombre_servicio, b.id_servicio as id_servicio FROM dbo.CS_USUARIOS a JOIN dbo.c_servicios b on a.id_servicio = b.id_servicio
                             WHERE ID_USUARIO = '" + model.ID_USUARIO + "'");
 
             var rol = db.Database.SqlQuery<SelectedUser>(
-                @"select a.NOMBRE as Nombre, b.DESCRIPCION as DescripcionRol FROM CS_USUARIOS a JOIN CS_ROLES b on a.ID_ROL = b.ID_ROL where id_usuario = '" + model.ID_USUARIO+ "'");
-
-            //ViewModelUsuario.usuarios = usuarios;
+                @"select a.NOMBRE as Nombre, b.DESCRIPCION as descripcionRol FROM CS_USUARIOS a JOIN CS_ROLES b on a.ID_ROL = b.ID_ROL where id_usuario = '" + model.ID_USUARIO+ "'");
+            ViewModelUsuario.permisos = permisos;
+            ViewModelUsuario.usuarios = usuarios;
+            ViewModelUsuario.modulos = modulos;
             ViewModelUsuario.ID_USUARIO = model.ID_USUARIO;
+       
             foreach (var a in usuario)
             {
-                ViewBag.DescripcionPerfil = a.DescripcionPerfil;
-               
-             
+                ViewBag.DescripcionServicio = a.nombre_servicio;
+                ViewBag.idServicio = a.id_servicio;                       
             }
-
+            foreach (var m in modulos)
+            {
+                ViewModelUsuario.NOMBRE_MODULO = m.Nombre;
+                ViewBag.NombreModulo = ViewModelUsuario.NOMBRE_MODULO;
+            }
             foreach (var n in rol)
             {
-                ViewBag.DescripcionRol = n.DescripcionRol;
+                ViewBag.DescripcionRol = n.descripcionRol;
                 ViewModelUsuario.NOMBRE = n.Nombre;
                 ViewBag.Nombre = n.Nombre;
             }
@@ -119,160 +111,174 @@ namespace Backoffice0._1.Controllers
 
         }
 
-        public ActionResult GuardarPermisos(string param1, string perfil, string rol, string nombre, string modulo)
+        [HttpPost]
+        public ActionResult moduleSelected(modelConfigBase modelBase)
         {
 
-            #region Viewbags 
+            var permisos = db.CS_permisos.ToList();
+            var usuarios = db.CS_usuarios.ToList();
+            var modulos = db.C_modulos.SqlQuery("SELECT * FROM dbo.C_modulos where idmodulo = '"+modelBase.ID_MODULO+"'").ToList();
+            var usuario = db.Database.SqlQuery<SelectedUser>(
+                @"SELECT  b.nombre_servicio as nombre_servicio, b.id_servicio as id_servicio FROM dbo.CS_USUARIOS a JOIN dbo.c_servicios b on a.id_servicio = b.id_servicio
+                            WHERE ID_USUARIO = '" + Session["LoggedId"].ToString() + "'");
 
-            CS_permisos_asignados ViewModel = new CS_permisos_asignados();
-            List<string> listaPA = new List<string>();
-            string user = Session["LoggedUser"].ToString();
-            var ids = from us in db.CS_usuarios
-                     where us.NOMBRE.Equals(user)
-                     select us;
-
-            foreach (var i in ids)
+            var rol = db.Database.SqlQuery<SelectedUser>(
+                @"select a.NOMBRE as Nombre, b.DESCRIPCION as descripcionRol FROM CS_USUARIOS a JOIN CS_ROLES b on a.ID_ROL = b.ID_ROL where id_usuario = '" + Session["LoggedId"].ToString() + "'");
+            ViewModelUsuario.permisos = permisos;
+            ViewModelUsuario.usuarios = usuarios;
+            ViewModelUsuario.modulos = modulos;
+           
+            foreach (var a in usuario)
             {
-                user = i.ID_USUARIO;
+                ViewBag.DescripcionServicio = a.nombre_servicio;
+                ViewBag.idServicio = a.id_servicio;
+
             }
-            for (int i = 00; i <= 8; i++)
+            foreach (var m in modulos)
             {
-                var mod1 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO == "0" + i && a.ID_PERMISO == "07").FirstOrDefault();
-                if (mod1 != null)
-                {
-                    listaPA.Add(mod1.ID_MODULO);
-                    listaPA.Add(mod1.ID_PERMISO);
-
-                }
+                ViewModelUsuario.NOMBRE_MODULO = m.Nombre;
+                ViewBag.NombreModulo = ViewModelUsuario.NOMBRE_MODULO;
             }
-            ViewBag.data = listaPA;
-            List<string> listaPA2 = new List<string>();
-            for (int i = 0; i <= 8; i++)
+            foreach (var n in rol)
             {
-                var mod2 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO == "'0" + i + "'" && a.ID_PERMISO.Equals("08")).FirstOrDefault();
-                if (mod2 != null)
-                {
-                    listaPA2.Add(mod2.ID_MODULO);
-                    listaPA2.Add(mod2.ID_PERMISO);
-                }
+                ViewBag.DescripcionRol = n.descripcionRol;
+                ViewModelUsuario.NOMBRE = n.Nombre;
+                ViewBag.Nombre = n.Nombre;
             }
-            ViewBag.data2 = listaPA2;
 
-            #endregion
-
-           CS_permisos_asignados ViewModelPermisos = new CS_permisos_asignados();
-            
-            var items = db.Database.SqlQuery<PermisosAsignados>("SELECT ID_USUARIO as idUsuario, ID_PERFIL as idPerfil, ID_ROL as idRol FROM cs_USUARIOS WHERE NOMBRE = '" + nombre + "'");
-            var idModulo = db.Database.SqlQuery<PermisosAsignados>("SELECT ID_MODULO as idModulo FROM cs_MODULOS where NOMBRE = '" + modulo + "'");
-            string idPerfil;
+            var selectedModel = modelBase.ID_MODULO;
+            int idServicio=0;
+            CS_permisos_asignados ViewModelPermisos = new CS_permisos_asignados();
+            string query = "INSERT INTO CS_permisos_asignados VALUES (";
+            string id2;
+            var items = db.Database.SqlQuery<PermisosAsignados>("SELECT ID_USUARIO as idUsuario, ID_SERVICIO as idServicio, ID_ROL as idRol FROM cs_USUARIOS WHERE NOMBRE = '" + ViewBag.Nombre + "'");
+          
             foreach (var a in items)
             {
                 ViewModelPermisos.ID_USUARIO = a.idUsuario;
                 ViewModelPermisos.ID_ROL = a.idRol;
-                idPerfil = a.idPerfil;
-            }
-            foreach (var a in idModulo)
-            {
-                ViewModelPermisos.ID_MODULO = a.idModulo;
-            }
-
-            string cadena = param1;
-            string guardar = "Guardar", editar = "Editar", eliminar = "Eliminar", cancelar = "Cancelar", imprimir = "Imprimir", exportar = "Exportar", ocultar = "Ocultar", mostrar ="Mostrar";
-            string id;
-
-            if (cadena != null)
-            {
-
-            string query = "INSERT INTO CS_permisos_asignados VALUES (";
-            bool g = cadena.Contains(guardar);
-            if (g)
-            {
-                id = "01";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
-             
-
-            }
-            bool e = cadena.Contains(editar);
-            if (e)
-            {
-                id = "02";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
-            }
-            bool el = cadena.Contains(eliminar);
-            if (el)
-            {
-                id = "03";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
-            }
-            bool c = cadena.Contains(cancelar);
-            if (c)
-            {
-                id = "04";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
-            }
-            bool ex = cadena.Contains(exportar);
-            if (ex)
-            {
-                id = "05";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
-            }
-            bool i = cadena.Contains(imprimir);
-            if (i)
-            {
-                id = "06";
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
+                idServicio = a.idServicio;
+               
             }
            
-            bool o = cadena.Contains(ocultar);
-            if (o)
+           var servicioModulo = db.C_servicios_modulos.SqlQuery("SELECT * FROM C_SERVICIOS_MODULOS WHERE ID_SERVICIO = '" + idServicio + "' AND ID_MODULO = '" + modelBase.ID_MODULO+"'");
+            if (servicioModulo != null)
             {
-                id = "07";
-                var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '08' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
-                if (obj.Count() == 0)
+                foreach (var n in servicioModulo)
                 {
-                SqlCommand command = new SqlCommand();
-                db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
+                    ViewModelPermisos.ID_SERVICIOS_MODULOS = Convert.ToInt32(n.id_servicios_modulos);
                 }
-                else
-                {
-                    SqlCommand command = new SqlCommand();
-                    db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET STATUS = 'I' WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
-                }
-
             }
-
-            bool m = cadena.Contains(mostrar);
-            if (m)
+           
+          for (int i=0; i<modelBase.permisos.Count();i++)
             {
-                id = "08";
-                var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '07' AND ID_USUARIO = '" + ViewModelPermisos.ID_USUARIO + "', AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "', AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
-                if (obj == null)
+                if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "GUARDAR")
                 {
-                    SqlCommand command = new SqlCommand();
-                    db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id + "', '" + ViewModelPermisos.ID_MODULO + "', 'A')");
+                    id2 = "01";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '01' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '"+ViewModelPermisos.ID_SERVICIOS_MODULOS+ "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', "+ViewModelPermisos.ID_SERVICIOS_MODULOS+ ", 1)");
+
                 }
-                else
+                else if (modelBase.permisos[i].ACTIVO == false & modelBase.permisos[i].DESCRIPCION == "GUARDAR")
                 {
-                    SqlCommand command = new SqlCommand();
-                    db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET STATUS = 'I' WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    id2 = "01";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '01' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
+
                 }
-            
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "EDITAR")
+                {
+                    id2 = "02";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '02' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', " + ViewModelPermisos.ID_SERVICIOS_MODULOS + ", 1)");
+                }
+                else if (modelBase.permisos[i].ACTIVO == false & modelBase.permisos[i].DESCRIPCION == "EDITAR")
+                {
+                    id2 = "02";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '02' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
 
-            }
+                }
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "ELIMINAR")
+                {
+                    id2 = "03";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '03' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', " + ViewModelPermisos.ID_SERVICIOS_MODULOS + ", 1)");
+                }
+                else if (modelBase.permisos[i].ACTIVO == false & modelBase.permisos[i].DESCRIPCION == "ELIMINAR")
+                {
+                    id2 = "03";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '03' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
+                }
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "CANCELAR")
+                {
+                    id2 = "04";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '04' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', " + ViewModelPermisos.ID_SERVICIOS_MODULOS + ", 1)");
+                }
+                else if (modelBase.permisos[i].ACTIVO = false & modelBase.permisos[i].DESCRIPCION == "CANCELAR")
+                {
+                    id2 = "04";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '04' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
+                }
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "EXPORTAR")
+                {
+                    id2 = "05";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '05' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', " + ViewModelPermisos.ID_SERVICIOS_MODULOS + ", 1)");
+                }
+                else if (modelBase.permisos[i].ACTIVO == false & modelBase.permisos[i].DESCRIPCION == "EXPORTAR")
+                {
+                    id2 = "05";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '05' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
+                }
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "IMPRIMIR")
+                {
+                    id2 = "06";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '06' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ACTIVO = 1'");
+                    if (obj.Count() == 0)
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + modelBase.ID_MODULO + "', " + ViewModelPermisos.ID_SERVICIOS_MODULOS + ", 1)");
+                }
+                else if (modelBase.permisos[i].ACTIVO == false & modelBase.permisos[i].DESCRIPCION == "IMPRIMIR")
+                {
+                    id2 = "06";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '06' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() != 0)
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'" + "' AND ID_SERVICIOS_MODULOS = '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "'");
+                }
+                else if (modelBase.permisos[i].ACTIVO & modelBase.permisos[i].DESCRIPCION == "OCULTAR")
+                {
+                    id2 = "07";
+                    var obj = db.CS_permisos_asignados.SqlQuery("SELECT * FROM CS_PERMISOS_ASIGNADOS WHERE ID_PERMISO = '08' AND ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'");
+                    if (obj.Count() == 0)
+                    {
+                        db.Database.ExecuteSqlCommand(query + "'" + ViewModelPermisos.ID_USUARIO + "', '" + ViewModelPermisos.ID_ROL + "', '" + id2 + "', '" + ViewModelPermisos.ID_MODULO + "', '" + ViewModelPermisos.ID_SERVICIOS_MODULOS + "', 1,'");
+                    }
+                    else
+                    {               
+                        db.Database.ExecuteSqlCommand("UPDATE CS_PERMISOS_ASIGNADOS SET ACTIVO = 0 WHERE ID_USUARIO ='" + ViewModelPermisos.ID_USUARIO + "' AND ID_ROL = '" + ViewModelPermisos.ID_ROL + "' AND ID_MODULO = '" + ViewModelPermisos.ID_MODULO + "'"+ "' AND ID_SERVICIOS_MODULOS = '"+ViewModelPermisos.ID_SERVICIOS_MODULOS+"'");
+                    }
+                }
             }
 
-            var usuarios = db.CS_usuarios.SqlQuery("SELECT * FROM dbo.CS_usuarios").ToList();
-            ViewModelUsuario.usuarios = usuarios;
-            return View("Configuracion", ViewModelUsuario);
+            return View("Configuracion", modelBase);
         }
+    
 
-        // GET: Configuracion/Details/5
+       
         public ActionResult Details(int id)
         {
             return View();

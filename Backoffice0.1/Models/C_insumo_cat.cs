@@ -18,6 +18,8 @@ namespace Backoffice0._1.Models
         public C_insumo_cat()
         {
             this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
+            this.C_almacen_insumos = new HashSet<C_almacen_insumos>();
+            this.C_recetas = new HashSet<C_recetas>();
         }
     
         public int id_insumo { get; set; }
@@ -40,5 +42,9 @@ namespace Backoffice0._1.Models
         public virtual C_unidades C_unidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_almacen_insumos> C_almacen_insumos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_recetas> C_recetas { get; set; }
     }
 }

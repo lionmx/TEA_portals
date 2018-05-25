@@ -18,6 +18,7 @@ namespace Backoffice0._1.Models
         public C_campañas()
         {
             this.C_campaña_medios = new HashSet<C_campaña_medios>();
+            this.C_campaña_codigos = new HashSet<C_campaña_codigos>();
         }
     
         public int id_campaña { get; set; }
@@ -39,5 +40,7 @@ namespace Backoffice0._1.Models
         public virtual C_empresas C_empresas { get; set; }
         public virtual C_grupo_productos_g C_grupo_productos_g { get; set; }
         public virtual C_tipos_codigo C_tipos_codigo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_campaña_codigos> C_campaña_codigos { get; set; }
     }
 }

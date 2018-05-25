@@ -14,6 +14,12 @@ namespace Backoffice0._1.Models
     
     public partial class C_bo_calculo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_bo_calculo()
+        {
+            this.C_bo_calculo_pe = new HashSet<C_bo_calculo_pe>();
+        }
+    
         public int id_bo_calculo { get; set; }
         public Nullable<int> id_bo_g { get; set; }
         public string id_sucursal { get; set; }
@@ -27,5 +33,7 @@ namespace Backoffice0._1.Models
         public string fecha_calculo { get; set; }
     
         public virtual C_bo_g C_bo_g { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_bo_calculo_pe> C_bo_calculo_pe { get; set; }
     }
 }

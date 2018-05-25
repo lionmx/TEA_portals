@@ -9,24 +9,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="C_bo_almacen">
-      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_almacen">
-        <MappingFragment StoreEntitySet="C_bo_almacen">
-          <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
-          <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
-          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
-          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
-          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
-          <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
-          <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
-          <ScalarProperty Name="cant_emp_pe" ColumnName="cant_emp_pe" />
-          <ScalarProperty Name="cant_suelto_pe" ColumnName="cant_suelto_pe" />
-          <ScalarProperty Name="porc_proteccion" ColumnName="porc_proteccion" />
-          <ScalarProperty Name="fecha_calculo" ColumnName="fecha_calculo" />
-          <ScalarProperty Name="comentarios_almacen" ColumnName="comentarios_almacen" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="C_bo_calculo">
       <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_calculo">
         <MappingFragment StoreEntitySet="C_bo_calculo">
@@ -1046,7 +1028,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.sysdiagram">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1296,6 +1278,313 @@
           <ScalarProperty Name="id_sval_tipo_servicio" ColumnName="id_sval_tipo_servicio" />
           <ScalarProperty Name="nombre_servicio" ColumnName="nombre_servicio" />
           <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_bo_almacen">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_almacen">
+        <MappingFragment StoreEntitySet="C_bo_almacen">
+          <ScalarProperty Name="comentarios_almacen" ColumnName="comentarios_almacen" />
+          <ScalarProperty Name="fecha_calculo" ColumnName="fecha_calculo" />
+          <ScalarProperty Name="porc_proteccion" ColumnName="porc_proteccion" />
+          <ScalarProperty Name="cant_suelto_pe" ColumnName="cant_suelto_pe" />
+          <ScalarProperty Name="cant_emp_pe" ColumnName="cant_emp_pe" />
+          <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
+          <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
+          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
+          <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_almacen_insumos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_almacen_insumos">
+        <MappingFragment StoreEntitySet="C_almacen_insumos">
+          <ScalarProperty Name="id_almacen_insumo" ColumnName="id_almacen_insumo" />
+          <ScalarProperty Name="max" ColumnName="max" />
+          <ScalarProperty Name="min" ColumnName="min" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_zona_almacenaje" ColumnName="id_zona_almacenaje" />
+          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+          <ScalarProperty Name="id_almacen" ColumnName="id_almacen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_bo_calculo_pe">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_calculo_pe">
+        <MappingFragment StoreEntitySet="C_bo_calculo_pe">
+          <ScalarProperty Name="id_bo_calculo_pe" ColumnName="id_bo_calculo_pe" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="cant_suelto" ColumnName="cant_suelto" />
+          <ScalarProperty Name="cant_emp" ColumnName="cant_emp" />
+          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+          <ScalarProperty Name="id_bo_calculo" ColumnName="id_bo_calculo" />
+          <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_bo_det_orden">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_det_orden">
+        <MappingFragment StoreEntitySet="C_bo_det_orden">
+          <ScalarProperty Name="id_bo_det_orden" ColumnName="id_bo_det_orden" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_bo_orden_complemento">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_bo_orden_complemento">
+        <MappingFragment StoreEntitySet="C_bo_orden_complemento">
+          <ScalarProperty Name="id_bo_orden_complemento" ColumnName="id_bo_orden_complemento" />
+          <ScalarProperty Name="nota" ColumnName="nota" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+          <ScalarProperty Name="id_bo_almacen" ColumnName="id_bo_almacen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_campaña_codigos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_campaña_codigos">
+        <MappingFragment StoreEntitySet="C_campaña_codigos">
+          <ScalarProperty Name="id_campaña_codigo" ColumnName="id_campaña_codigo" />
+          <ScalarProperty Name="id_cliente_canje" ColumnName="id_cliente_canje" />
+          <ScalarProperty Name="fecha_canje" ColumnName="fecha_canje" />
+          <ScalarProperty Name="id_usuario_canje" ColumnName="id_usuario_canje" />
+          <ScalarProperty Name="id_sucursal_canje" ColumnName="id_sucursal_canje" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="id_campaña" ColumnName="id_campaña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_empleados">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empleados">
+        <MappingFragment StoreEntitySet="C_empleados">
+          <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+          <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+          <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+          <ScalarProperty Name="telefono_casa" ColumnName="telefono_casa" />
+          <ScalarProperty Name="telefono_celular" ColumnName="telefono_celular" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
+          <ScalarProperty Name="no_interior" ColumnName="no_interior" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+          <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_empleados_pos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empleados_pos">
+        <MappingFragment StoreEntitySet="C_empleados_pos">
+          <ScalarProperty Name="id_empleado_pos" ColumnName="id_empleado_pos" />
+          <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+          <ScalarProperty Name="telefono_contacto" ColumnName="telefono_contacto" />
+          <ScalarProperty Name="telefono_casa" ColumnName="telefono_casa" />
+          <ScalarProperty Name="telefono_celular" ColumnName="telefono_celular" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="puesto" ColumnName="puesto" />
+          <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+          <ScalarProperty Name="cp" ColumnName="cp" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
+          <ScalarProperty Name="no_interior" ColumnName="no_interior" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="colonia" ColumnName="colonia" />
+          <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
+          <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
+          <ScalarProperty Name="nombres" ColumnName="nombres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_empresas_sucursales">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_empresas_sucursales">
+        <MappingFragment StoreEntitySet="C_empresas_sucursales">
+          <ScalarProperty Name="id_empresa_sucursal" ColumnName="id_empresa_sucursal" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_equipo_sucursal">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_equipo_sucursal">
+        <MappingFragment StoreEntitySet="C_equipo_sucursal">
+          <ScalarProperty Name="id_equipo_sucursal" ColumnName="id_equipo_sucursal" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+          <ScalarProperty Name="mac_address" ColumnName="mac_address" />
+          <ScalarProperty Name="nss" ColumnName="nss" />
+          <ScalarProperty Name="marca" ColumnName="marca" />
+          <ScalarProperty Name="modelo" ColumnName="modelo" />
+          <ScalarProperty Name="id_tipo_equipo" ColumnName="id_tipo_equipo" />
+          <ScalarProperty Name="nombre_equipo" ColumnName="nombre_equipo" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_recetas">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_recetas">
+        <MappingFragment StoreEntitySet="C_recetas">
+          <ScalarProperty Name="id_receta" ColumnName="id_receta" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="id_insumo" ColumnName="id_insumo" />
+          <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_sucursales_config">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sucursales_config">
+        <MappingFragment StoreEntitySet="C_sucursales_config">
+          <ScalarProperty Name="id_sucursal_config" ColumnName="id_sucursal_config" />
+          <ScalarProperty Name="geo_localizacion_ing" ColumnName="geo_localizacion_ing" />
+          <ScalarProperty Name="geo_localizacion_lat" ColumnName="geo_localizacion_lat" />
+          <ScalarProperty Name="resolucion_pantalla" ColumnName="resolucion_pantalla" />
+          <ScalarProperty Name="version_mesas" ColumnName="version_mesas" />
+          <ScalarProperty Name="version_app" ColumnName="version_app" />
+          <ScalarProperty Name="version_web" ColumnName="version_web" />
+          <ScalarProperty Name="version_eventos" ColumnName="version_eventos" />
+          <ScalarProperty Name="version_pv" ColumnName="version_pv" />
+          <ScalarProperty Name="version_startup" ColumnName="version_startup" />
+          <ScalarProperty Name="proximidad" ColumnName="proximidad" />
+          <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_sval_actas_diferencia">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_actas_diferencia">
+        <MappingFragment StoreEntitySet="C_sval_actas_diferencia">
+          <ScalarProperty Name="id_sval_actas" ColumnName="id_sval_actas" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="id_usuario_seguridad" ColumnName="id_usuario_seguridad" />
+          <ScalarProperty Name="id_usuario_supervisor" ColumnName="id_usuario_supervisor" />
+          <ScalarProperty Name="presuntamente_falso" ColumnName="presuntamente_falso" />
+          <ScalarProperty Name="sobrante_fisico" ColumnName="sobrante_fisico" />
+          <ScalarProperty Name="piezas_sin_valor" ColumnName="piezas_sin_valor" />
+          <ScalarProperty Name="importe_faltante_fisico" ColumnName="importe_faltante_fisico" />
+          <ScalarProperty Name="id_sval_tipo_moneda" ColumnName="id_sval_tipo_moneda" />
+          <ScalarProperty Name="importe_diferencia" ColumnName="importe_diferencia" />
+          <ScalarProperty Name="datos_sucursal" ColumnName="datos_sucursal" />
+          <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+          <ScalarProperty Name="fecha_acta" ColumnName="fecha_acta" />
+          <ScalarProperty Name="id_usuario_cajero" ColumnName="id_usuario_cajero" />
+          <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_sval_documentos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_documentos">
+        <MappingFragment StoreEntitySet="C_sval_documentos">
+          <ScalarProperty Name="id_sval_documento" ColumnName="id_sval_documento" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="path_documento_anexo" ColumnName="path_documento_anexo" />
+          <ScalarProperty Name="nombre_documento" ColumnName="nombre_documento" />
+          <ScalarProperty Name="no_documento" ColumnName="no_documento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_sval_ordenes">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_ordenes">
+        <MappingFragment StoreEntitySet="C_sval_ordenes">
+          <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="notas_documento" ColumnName="notas_documento" />
+          <ScalarProperty Name="fecha_consignatario" ColumnName="fecha_consignatario" />
+          <ScalarProperty Name="id_firma_consignatario" ColumnName="id_firma_consignatario" />
+          <ScalarProperty Name="fecha_setravalsa" ColumnName="fecha_setravalsa" />
+          <ScalarProperty Name="id_firma_setravalsa" ColumnName="id_firma_setravalsa" />
+          <ScalarProperty Name="id_remitente_cliente" ColumnName="id_remitente_cliente" />
+          <ScalarProperty Name="id_sval_tipo_servicio" ColumnName="id_sval_tipo_servicio" />
+          <ScalarProperty Name="importe_total" ColumnName="importe_total" />
+          <ScalarProperty Name="otros_anexos" ColumnName="otros_anexos" />
+          <ScalarProperty Name="documentos_descripcion" ColumnName="documentos_descripcion" />
+          <ScalarProperty Name="importe_equivalente" ColumnName="importe_equivalente" />
+          <ScalarProperty Name="tipo_cambio" ColumnName="tipo_cambio" />
+          <ScalarProperty Name="importe_moneda_extranjera" ColumnName="importe_moneda_extranjera" />
+          <ScalarProperty Name="importe_moneda_nacional" ColumnName="importe_moneda_nacional" />
+          <ScalarProperty Name="id_sval_facturar" ColumnName="id_sval_facturar" />
+          <ScalarProperty Name="id_contrato" ColumnName="id_contrato" />
+          <ScalarProperty Name="folio" ColumnName="folio" />
+          <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+          <ScalarProperty Name="id_destinos_entrega" ColumnName="id_destinos_entrega" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_sval_recepcion_envases">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sval_recepcion_envases">
+        <MappingFragment StoreEntitySet="C_sval_recepcion_envases">
+          <ScalarProperty Name="id_sval_envases" ColumnName="id_sval_envases" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="fecha_recepcion" ColumnName="fecha_recepcion" />
+          <ScalarProperty Name="no_sello_plomo" ColumnName="no_sello_plomo" />
+          <ScalarProperty Name="id_sval_orden" ColumnName="id_sval_orden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_usuarios">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios">
+        <MappingFragment StoreEntitySet="C_usuarios">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_usuarios_marca">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_marca">
+        <MappingFragment StoreEntitySet="C_usuarios_marca">
+          <ScalarProperty Name="id_usuario_marcas" ColumnName="id_usuario_marcas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_usuarios_pos">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_pos">
+        <MappingFragment StoreEntitySet="C_usuarios_pos">
+          <ScalarProperty Name="id_usuario_pos" ColumnName="id_usuario_pos" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_usuarios_sucursales">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales">
+        <MappingFragment StoreEntitySet="C_usuarios_sucursales">
+          <ScalarProperty Name="id_usuarios_sucursales" ColumnName="id_usuarios_sucursales" />
+          <ScalarProperty Name="id_sucursal" ColumnName="id_sucursal" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_ventas_status">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_ventas_status">
+        <MappingFragment StoreEntitySet="C_ventas_status">
+          <ScalarProperty Name="id_venta_status" ColumnName="id_venta_status" />
+          <ScalarProperty Name="venta_status" ColumnName="venta_status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
