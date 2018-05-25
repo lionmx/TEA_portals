@@ -88,10 +88,10 @@
         $('.total').text(total);
     }
 
-    var Addcarrito = function (nombre, costo, sku, promocion,prom_pos) {
+    var Addcarrito = function (nombre, costo, sku, promocion,prom_pos,id_promocion) {
         $.ajax({
             url: "../POS/AgregaCarrito",
-            data: { nombre: nombre, costo: costo, sku: sku, promocion: promocion,prom_pos:prom_pos },
+            data: { nombre: nombre, costo: costo, sku: sku, promocion: promocion,prom_pos:prom_pos,id_promocion:id_promocion },
             success: function (result) {
                 $("#carritodiv").html(result);
                 sumar();

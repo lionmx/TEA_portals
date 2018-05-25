@@ -61,7 +61,7 @@ namespace Backoffice0._1.Controllers
             return View("Ventas/Index");
         }
        
-        public ActionResult AgregaCarrito(string nombre, float costo, string sku, bool promocion, bool prom_pos)
+        public ActionResult AgregaCarrito(string nombre, float costo, string sku, bool promocion, bool prom_pos, int id_promocion)
         {
             if (Session["Carrito"] == null)
             {
@@ -72,9 +72,9 @@ namespace Backoffice0._1.Controllers
                 compras = (List<CarritoItem>)Session["Carrito"];
             }
             index_carrito=compras.Count() + 1;
-            compras.Add(new CarritoItem(nombre, costo, sku, promocion,index_carrito,prom_pos));
+            compras.Add(new CarritoItem(nombre, costo, sku, promocion,index_carrito,prom_pos,id_promocion));
             Session["Carrito"] = compras;
-
+            
             /*Validar promociones*/
             var bandera = 0;
             if (Session["Carrito"] == null)
@@ -87,9 +87,11 @@ namespace Backoffice0._1.Controllers
             }
 
             var promocion_producto = from gpp in db.C_grupo_productos_prods
+                                     join gps in db.C_grupo_productos_sucursales on gpp.C_grupo_productos_d.id_grupo_productos equals gps.id_grupo_productos
                                      where gpp.sku_producto == sku && gpp.C_grupo_productos_d.C_grupo_productos_g.status == true
                                      && gpp.C_grupo_productos_d.C_grupo_productos_g.fecha_inicio <= DateTime.Now
                                      && gpp.C_grupo_productos_d.C_grupo_productos_g.fecha_final >= DateTime.Now
+                                     && gps.codigo_sucursal=="SUC001"
                                      select gpp;
 
             if (promocion_producto.Count() > 0)
@@ -107,17 +109,17 @@ namespace Backoffice0._1.Controllers
                         agregados = 0;
                         bandera = 0;
                         contador++;
-                        var promocion_1 = from gpp in db.C_grupo_productos_prods
+                        var productos = from gpp in db.C_grupo_productos_prods
                                           where gpp.id_grupo_productos_det
                                           == item3.id_grupo_productos_det
                                           select gpp;
-                        if (promocion_1.Count() > 0)
+                        if (productos.Count() > 0)
                         {
                             foreach (var item4 in compras)
                             {
                                 if ( item4.Promocion==false && agregados<item3.no_prod_seleccion)
                                 {
-                                    foreach (var item5 in promocion_1)
+                                    foreach (var item5 in productos)
                                     {
                                         if (item4.Sku == item5.sku_producto && item4.Prom_pos == false )
                                         {
@@ -131,8 +133,8 @@ namespace Backoffice0._1.Controllers
                                                 foreach (var item7 in productos_promocion)
                                                 {
                                                     compras.Find(x => x.Index == item7).Promocion = true;
+                                                    compras.Find(x => x.Index == item7).Id_promocion = item2.C_grupo_productos_d.C_grupo_productos_g.id_grupo_productos;
                                                     compras.Find(x => x.Index == item7).Producto = compras.Find(x => x.Index == item7).Producto+" promocion validada " +item2.descripcion;
-                                                    
                                                 }
                                                 productos_promocion.Clear();
                                             }
@@ -142,7 +144,7 @@ namespace Backoffice0._1.Controllers
                                 }
                             }
                         }
-                        if (bandera == 0)
+                        if (bandera == 0 || agregados!= item3.no_prod_seleccion)
                         {
                             break;
                         }
@@ -154,11 +156,10 @@ namespace Backoffice0._1.Controllers
                     }
                 }
             }
-
-
-
+           
+            compras.Sort((x, y) => x.Promocion.CompareTo(y.Promocion));
             return PartialView("Ventas/_AgregaCarrito");
-        }
+        } 
 
         public ActionResult RemueveCarrito(string sku)
         {
@@ -223,7 +224,6 @@ namespace Backoffice0._1.Controllers
         }          
         public PartialViewResult ConsultaPromocion(string nombre, float costo, string sku, bool promocion,int index_carrito,bool prom_pos)
         {
-           
             compras.ToList();
             return PartialView("Ventas/_AgregaCarrito");
         }
