@@ -9,7 +9,7 @@ null point), then the line above it should have the same gap - insert zeros
 instead of "null" if you want another behaviour. This also holds for the start
 and end of the chart. Note that stacking a mix of positive and negative values
 in most instances doesn't make sense (so it looks weird).
-
+       
 Two or more series are stacked when their "stack" attribute is set to the same
 key (which can be any number or string or just "true"). To specify the default
 stack, you can set the stack option like this:

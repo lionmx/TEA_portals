@@ -15,10 +15,12 @@ namespace Backoffice0._1.Models
     public partial class C_ventas_d
     {
         public int id_venta_d { get; set; }
-        public Nullable<int> id_producto_sucursal { get; set; }
+        public string sku_producto { get; set; }
         public Nullable<int> id_venta_g { get; set; }
-        public string cantidad { get; set; }
+        public Nullable<decimal> cantidad { get; set; }
         public Nullable<bool> status { get; set; }
+        public Nullable<int> id_promocion { get; set; }
+        public Nullable<decimal> precio { get; set; }
     
         public virtual C_ventas_g C_ventas_g { get; set; }
     }

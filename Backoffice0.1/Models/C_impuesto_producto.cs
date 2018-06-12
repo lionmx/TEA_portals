@@ -15,10 +15,9 @@ namespace Backoffice0._1.Models
     public partial class C_impuesto_producto
     {
         public string id_impuesto_producto { get; set; }
-        public Nullable<int> id_producto { get; set; }
+        public string id_producto { get; set; }
         public string id_impuesto { get; set; }
     
-        public virtual C_impuestos C_impuestos { get; set; }
         public virtual C_productos_cat C_productos_cat { get; set; }
     }
 }

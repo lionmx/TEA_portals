@@ -15,7 +15,7 @@ namespace Backoffice0._1.Models
     public partial class C_insumo_sucursal
     {
         public int id_insumo_sucursal { get; set; }
-        public Nullable<int> id_insumo { get; set; }
+        public string id_insumo { get; set; }
         public Nullable<int> id_sucursal { get; set; }
         public Nullable<int> cantidad { get; set; }
         public string C__proteccion { get; set; }
@@ -23,8 +23,6 @@ namespace Backoffice0._1.Models
         public string max { get; set; }
         public int id_zona_almacenaje { get; set; }
     
-        public virtual C_insumo_cat C_insumo_cat { get; set; }
         public virtual C_zona_almacen_suc C_zona_almacen_suc { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

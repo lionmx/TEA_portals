@@ -23,8 +23,6 @@ namespace Backoffice0._1.Models
         public string mac_address { get; set; }
         public string ip_address { get; set; }
         public Nullable<bool> activo { get; set; }
-        public string id_equipo_sucursal { get; set; }
-    
-        public virtual C_sucursales C_sucursales { get; set; }
+        public int id_equipo_sucursal { get; set; }
     }
 }

@@ -14,13 +14,13 @@ namespace Backoffice0._1.Models
     
     public partial class C_insumo_mov_suc_d
     {
-        public string id_insumo_mov_d { get; set; }
+        public int id_insumo_mov_d { get; set; }
         public Nullable<int> id_insumo_mov { get; set; }
-        public string id_sucursal { get; set; }
-        public string tipo_mov { get; set; }
-        public string id_insumo { get; set; }
-        public string cantidad { get; set; }
+        public string sku_insumo { get; set; }
+        public Nullable<double> cantidad { get; set; }
         public string observaciones { get; set; }
+        public Nullable<bool> entrada_salida { get; set; }
+        public string codigo_sucursal { get; set; }
     
         public virtual C_insumo_mov_suc_g C_insumo_mov_suc_g { get; set; }
     }

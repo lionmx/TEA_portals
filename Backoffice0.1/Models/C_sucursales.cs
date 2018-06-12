@@ -17,13 +17,8 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_sucursales()
         {
-            this.C_cajas = new HashSet<C_cajas>();
-            this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
-            this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
-            this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
+            this.C_pedidos = new HashSet<C_pedidos>();
             this.C_ventas_g = new HashSet<C_ventas_g>();
-            this.C_campaña_codigos = new HashSet<C_campaña_codigos>();
-            this.C_equipo_sucursal = new HashSet<C_equipo_sucursal>();
         }
     
         public int Id_sucursal { get; set; }
@@ -38,21 +33,9 @@ namespace Backoffice0._1.Models
         public string ip { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_cajas> C_cajas { get; set; }
-        public virtual C_empresas C_empresas { get; set; }
-        public virtual C_empresas C_empresas1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_parametros_sucursales> C_parametros_sucursales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
+        public virtual ICollection<C_pedidos> C_pedidos { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_campaña_codigos> C_campaña_codigos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_equipo_sucursal> C_equipo_sucursal { get; set; }
     }
 }

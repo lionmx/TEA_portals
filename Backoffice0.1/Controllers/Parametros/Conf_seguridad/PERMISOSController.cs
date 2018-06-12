@@ -19,42 +19,28 @@ namespace Backoffice0._1.Controllers
         {
             #region Viewbags 
 
-            CS_permisos_asignados ViewModel = new CS_permisos_asignados();
-            List<string> listaPA = new List<string>();
-            string user = Session["LoggedUser"].ToString();
-            string loggedId = Session["LoggedId"].ToString();
-            var id = from us in db.CS_usuarios
-                     where us.NOMBRE.Equals(user)
-                     select us;
+            //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
+            List<int> permisosLista = new List<int>();
+            int loggedId = Convert.ToInt32(Session["LoggedId"]);
+            var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
 
-            foreach (var i in id)
+            if (permisosServicioModulo != null)
             {
-                user = i.ID_USUARIO;
-            }
-            for (int i = 00; i <= 8; i++)
-            {
-                var mod1 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO.Equals("0" + i) && a.ID_PERMISO == "07").FirstOrDefault();
-                var perfil = db.CS_usuarios.Where(a => a.ID_USUARIO.Equals(loggedId)).FirstOrDefault();
-                if (mod1 != null)
+                foreach (var n in permisosServicioModulo)
                 {
-                    listaPA.Add(mod1.ID_MODULO.ToString());
-                    listaPA.Add(mod1.ID_PERMISO);
-                    ViewBag.perfil = perfil.ID_SERVICIO;
+                    permisosLista.Add(n.id_servicio);
+                    permisosLista.Add(n.id_modulo);
+                    permisosLista.Add(Convert.ToInt32(n.id_permiso));
                 }
             }
-            ViewBag.data = listaPA;
-            List<string> listaPA2 = new List<string>();
-            for (int i = 0; i <= 8; i++)
-            {
-                var mod2 = db.CS_permisos_asignados.Where(a => a.ID_USUARIO.Equals(user) && a.ID_MODULO.Equals("'0" + i + "'") && a.ID_PERMISO.Equals("08")).FirstOrDefault();
-                if (mod2 != null)
-                {
-                    listaPA2.Add(mod2.ID_MODULO.ToString());
-                    listaPA2.Add(mod2.ID_PERMISO);
-                }
-            }
-            ViewBag.data2 = listaPA2;
 
+            //get perfil (servicio) de usuario loggeado y guardarlo en ViewBag
+            var perfil = db.CS_usuarios.Where(a => a.ID_USUARIO.Equals(loggedId)).FirstOrDefault();
+            if (perfil != null)
+            {
+                ViewBag.idServicio = perfil.ID_SERVICIO;
+            }
+            ViewBag.permisos = permisosLista;
             #endregion
             return View(db.CS_permisos.ToList());
         }

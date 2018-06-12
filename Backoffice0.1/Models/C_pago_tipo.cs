@@ -14,16 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class C_pago_tipo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_pago_tipo()
-        {
-            this.C_pedidos = new HashSet<C_pedidos>();
-        }
-    
         public int id_pago_tipo { get; set; }
         public string nombre_pago_tipo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_pedidos> C_pedidos { get; set; }
     }
 }

@@ -21,16 +21,17 @@ namespace Backoffice0._1.Models
         }
     
         public int id_insumo_mov { get; set; }
+        public string origen_transaccion { get; set; }
         public string fuente_origen { get; set; }
         public string fuente_destino { get; set; }
-        public string usuario_solicitante { get; set; }
-        public string usuario_receptor { get; set; }
-        public string usuario_autorizacion { get; set; }
-        public string firma_usuario_sol { get; set; }
-        public string firma_usuario_rec { get; set; }
-        public string firma_usuario_autorizacion { get; set; }
-        public string fecha { get; set; }
-        public string id_usuario { get; set; }
+        public Nullable<int> usuario_solicitante { get; set; }
+        public Nullable<int> usuario_receptor { get; set; }
+        public Nullable<int> usuario_autorizacion { get; set; }
+        public Nullable<int> firma_usuario_sol { get; set; }
+        public Nullable<int> firma_usuario_rec { get; set; }
+        public Nullable<int> firma_usuario_autorizacion { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> id_usuario { get; set; }
         public Nullable<int> id_tipo_mov { get; set; }
         public string observaciones { get; set; }
         public Nullable<int> id_insumo_mov_status { get; set; }

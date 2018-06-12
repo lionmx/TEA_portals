@@ -1,0 +1,236 @@
+﻿<div class="x_panel">
+    <div class="x_title">
+        <h2>Datos cliente </h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Settings 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="telefono...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" style="padding:0px;">
+                    <li role="presentation" class="active">
+                        <a href="#tab_content_search" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i></a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tab_content_new" role="tab" id="nuevo" data-toggle="tab" aria-expanded="false">Nuevo</a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#tab_content_pe" role="tab" id="especial" data-toggle="tab" aria-expanded="false">P.E</a>
+                    </li>
+
+
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content_search" aria-labelledby="home-tab">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr class="headings">
+                                    <th class="column-title">Datos</th>
+                                    </th>
+                                    <th class="bulk-actions" colspan="7">
+                                        <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="radio" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><i class="fa fa-pencil">Editar</i></td>
+
+                                </tr>
+                                <tr class="even pointer">
+                                    <td class="a-center ">
+                                        <input type="radio" class="flat" name="table_records">
+                                    </td>
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><i class="fa fa-pencil">Editar</i></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                       
+                        <input class="flat iCheck-helper" name="iCheck" onclick="DomicilioPedido()" type="radio" checked />  Llevar a domicilio <br />
+                        <input class="iCheck-helper" name="iCheck" onclick="RecogerPedido()" type="radio" /> Recoger en sucursal
+                        <div id="div1"  style="display:none;">
+                            seleccione la sucursal
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab_content_pe" aria-labelledby="Especial">
+
+                        <div class="form-group form-group has-feedback ">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Nombre">
+                            <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
+                                <select class="select2_single form-control" tabindex="-1">
+                                    <option value="AK">C. Postal</option>
+                                    <option value="HI">27000</option>
+                                    <option value="CA">35158</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                <select class="select2_single form-control" style="padding:0px;" tabindex="-1">
+                                    <option style="width:500px;" value="AK">Colonia</option>
+                                    <option style="width:500px;" value="HI">Colonia 2</option>
+                                    <option style="width:500px;" value="CA">Colonia 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Calle">
+                            <i class=" form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" id="inputSuccess2" placeholder="No.">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Referencia">
+                                <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="form-group form-group has-feedback" style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Email">
+                            <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group form-group has-feedback" style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Evento">
+                            <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                            <input type="text" class="form-control " id="inputSuccess2" placeholder="Fecha">
+                        </div>
+                        <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                            <input type="text" class="form-control " id="inputSuccess2" placeholder="Hra">
+                        </div>
+                        <div class="form-group form-group " style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Contacto">
+                        </div>
+                        <div class="form-group form-group has-feedback">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Telefono 1">
+                            <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group form-group has-feedback">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Telefono 2">
+                            <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+
+                        <br>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Registrar cliente</button>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab_content_new" aria-labelledby="profile-tab">
+                        <div class="form-group form-group has-feedback ">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Nombre">
+                            <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
+                                <select class="select2_single form-control" tabindex="-1">
+                                    <option value="AK">C. Postal</option>
+                                    <option value="HI">27000</option>
+                                    <option value="CA">35158</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                <select class="select2_single form-control" style="padding:0px;" tabindex="-1">
+                                    <option style="width:500px;" value="AK">Colonia</option>
+                                    <option style="width:500px;" value="HI">Colonia 2</option>
+                                    <option style="width:500px;" value="CA">Colonia 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Calle">
+                            <i class=" form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" id="inputSuccess2" placeholder="No.">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Referencia">
+                                <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-1 col-sm-1 col-xs-1">
+                                <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="form-group form-group has-feedback" style="padding:0px;">
+                            <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Email">
+                            <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                        </div>
+                        <div class="panel">
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body" style="padding:0px;">
+                                    <div class="form-group form-group has-feedback" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Evento">
+                                        <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" class="form-control " id="inputSuccess2" placeholder="Fecha">
+                                    </div>
+                                    <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" class="form-control " id="inputSuccess2" placeholder="Hra">
+                                    </div>
+                                    <div class="form-group form-group " style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Contacto">
+                                    </div>
+                                    <div class="form-group form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Telefono 1">
+                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-right" id="inputSuccess2" placeholder="Telefono 2">
+                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Registrar cliente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -17,31 +17,30 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_pedidos()
         {
-            this.C_pedidos_pagos = new HashSet<C_pedidos_pagos>();
             this.C_pedidos_d = new HashSet<C_pedidos_d>();
         }
     
         public int id_pedido { get; set; }
         public Nullable<int> id_cliente { get; set; }
-        public string fecha_pedido { get; set; }
-        public string fecha_entrega { get; set; }
+        public Nullable<int> id_marca { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<System.DateTime> fecha_pedido { get; set; }
+        public Nullable<System.DateTime> fecha_entrega { get; set; }
         public Nullable<int> id_telefono { get; set; }
         public Nullable<int> id_direccion { get; set; }
-        public string monto { get; set; }
-        public Nullable<int> id_pago_tipo { get; set; }
-        public string pago_cantidad { get; set; }
-        public string id_pedido_tipo { get; set; }
+        public Nullable<decimal> monto { get; set; }
+        public Nullable<decimal> pago_recibido { get; set; }
+        public Nullable<int> id_pedido_tipo { get; set; }
         public Nullable<int> id_tracking_status { get; set; }
-        public Nullable<int> id_pedido_status { get; set; }
         public Nullable<int> id_evento { get; set; }
+        public Nullable<int> id_tipo_entrega { get; set; }
         public Nullable<int> id_bo_g { get; set; }
     
         public virtual C_clientes C_clientes { get; set; }
         public virtual C_eventos C_eventos { get; set; }
-        public virtual C_pago_tipo C_pago_tipo { get; set; }
-        public virtual C_pedido_status C_pedido_status { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_pedidos_pagos> C_pedidos_pagos { get; set; }
+        public virtual C_marcas C_marcas { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
+        public virtual C_tipo_entrega C_tipo_entrega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos_d> C_pedidos_d { get; set; }
         public virtual C_pedidos_tipo C_pedidos_tipo { get; set; }

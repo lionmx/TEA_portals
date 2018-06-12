@@ -14,7 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class C_clientes_telefono
     {
-        public string id_clientes_telefono { get; set; }
+        public int id_clientes_telefono { get; set; }
         public Nullable<int> id_cliente { get; set; }
         public Nullable<int> id_telefono { get; set; }
     

@@ -14,20 +14,18 @@ namespace Backoffice0._1.Models
     
     public partial class C_sval_actas_diferencia
     {
+        public int id_sval_actas { get; set; }
         public Nullable<int> id_sval_orden { get; set; }
-        public Nullable<int> id_usuario_cajero { get; set; }
         public Nullable<System.DateTime> fecha_acta { get; set; }
-        public Nullable<int> id_cliente { get; set; }
-        public string datos_sucursal { get; set; }
-        public Nullable<decimal> importe_diferencia { get; set; }
-        public Nullable<int> id_sval_tipo_moneda { get; set; }
+        public Nullable<int> id_ciudad { get; set; }
         public Nullable<decimal> importe_faltante_fisico { get; set; }
         public Nullable<decimal> piezas_sin_valor { get; set; }
         public Nullable<decimal> sobrante_fisico { get; set; }
-        public string presuntamente_falso { get; set; }
+        public Nullable<decimal> presuntamente_falso { get; set; }
+        public Nullable<int> id_usuario_cajero { get; set; }
         public Nullable<int> id_usuario_supervisor { get; set; }
         public Nullable<int> id_usuario_seguridad { get; set; }
+        public string notas { get; set; }
         public Nullable<bool> activo { get; set; }
-        public int id_sval_actas { get; set; }
     }
 }

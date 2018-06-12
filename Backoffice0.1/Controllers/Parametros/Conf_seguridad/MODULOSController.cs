@@ -21,7 +21,7 @@ namespace Backoffice0._1.Controllers
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
-            string loggedId = Session["LoggedId"].ToString();
+            int loggedId = Convert.ToInt32(Session["LoggedId"]);
             var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
 
             if (permisosServicioModulo != null)
@@ -43,7 +43,7 @@ namespace Backoffice0._1.Controllers
             ViewBag.permisos = permisosLista;
             #endregion
 
-            return View(db.CS_modulos.ToList());
+            return View(db.C_modulos.ToList());
         }
 
         // GET: MODULOS/Details/5
@@ -53,7 +53,7 @@ namespace Backoffice0._1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CS_modulos mODULOS = db.CS_modulos.Find(id);
+            C_modulos mODULOS = db.C_modulos.Find(id);
             if (mODULOS == null)
             {
                 return HttpNotFound();
@@ -72,11 +72,11 @@ namespace Backoffice0._1.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_MODULO,NOMBRE")] CS_modulos mODULOS)
+        public ActionResult Create([Bind(Include = "ID_MODULO,NOMBRE")] C_modulos mODULOS)
         {
             if (ModelState.IsValid)
             {
-                db.CS_modulos.Add(mODULOS);
+                db.C_modulos.Add(mODULOS);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -91,7 +91,7 @@ namespace Backoffice0._1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CS_modulos mODULOS = db.CS_modulos.Find(id);
+            C_modulos mODULOS = db.C_modulos.Find(id);
             if (mODULOS == null)
             {
                 return HttpNotFound();
@@ -104,7 +104,7 @@ namespace Backoffice0._1.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_MODULO,NOMBRE")] CS_modulos mODULOS)
+        public ActionResult Edit([Bind(Include = "ID_MODULO,NOMBRE")] C_modulos mODULOS)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace Backoffice0._1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CS_modulos mODULOS = db.CS_modulos.Find(id);
+            C_modulos mODULOS = db.C_modulos.Find(id);
             if (mODULOS == null)
             {
                 return HttpNotFound();
@@ -135,8 +135,8 @@ namespace Backoffice0._1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            CS_modulos mODULOS = db.CS_modulos.Find(id);
-            db.CS_modulos.Remove(mODULOS);
+            C_modulos mODULOS = db.C_modulos.Find(id);
+            db.C_modulos.Remove(mODULOS);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

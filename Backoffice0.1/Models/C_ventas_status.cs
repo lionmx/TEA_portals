@@ -14,7 +14,16 @@ namespace Backoffice0._1.Models
     
     public partial class C_ventas_status
     {
-        public string venta_status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_ventas_status()
+        {
+            this.C_ventas_g = new HashSet<C_ventas_g>();
+        }
+    
         public int id_venta_status { get; set; }
+        public string venta_status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
     }
 }

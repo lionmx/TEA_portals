@@ -1,4 +1,47 @@
-﻿ <!--Modal Mesas asignadas-->
+﻿
+<html>
+<head>
+
+    <script type="text/javascript">
+
+        var estado = Session["EstadoCaja"];
+        function prueba() {
+            window.close();
+        }
+
+        function cambioTurno() {
+            alert("as");
+        }
+        function abrirCaja() {
+            //alert("asdasd");
+            //var usuarioNombre = document.getElementById('usuario').value;
+            //var caja = document.getElementById('caja').value;
+            //var monto = document.getElementById('monto').value;
+            //var fecha = DateTime.Now.ToLongDateString()
+            //var observaciones = document.getElementById('observaciones').value;
+            //var estado = estado;
+
+
+
+            $.ajax({
+                url: '/CAJA/cajaMovimientos',
+                type: "POST",
+                contentType: 'application/json',
+                //data: { usuario: usuarioNombre, caja: caja, monto: monto, fecha: fecha, observaciones: observaciones, estado: estado },
+
+                success: function (result) {
+
+
+                }
+            });
+        }
+    </script>
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+</head>
+
+
+<!--Modal Mesas asignadas-->
 <div class="modal fade mesas_asignadas" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -146,71 +189,89 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <label class="control-label ">Entrega turno: </label>
-                    <label class="control-label ">Nallely Fernandez</label><br>
-                    <label class="control-label ">Recibe turno</label>
-                    <select class="select2_single form-control" tabindex="-1">
-                        <option value="AK">Samuel Gonzalez</option>
-                        <option value="HI">Cesar Cordova</option>
-                        <option value="CA">Jose perez</option>
-                    </select>
-                </div>
-                <br>
-                <div class="x_panel">
-                    <div class="x_title" style="margin:0px;padding:0px;">
-                        <h6>Movimientos <small></small></h6>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="" style="margin:0px;padding:0px;">
-                        <br />
-                        <form class="form-horizontal form-label-left input_mask" style="margin:0px;padding:0px;">
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Venta total</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label>
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Venta tarjeta</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label>
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Cancelaciones</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label>
-                            </div>
-                            <div class="verticalLine col-md-12 col-sm-12 col-xs-12" style="border-bottom:thin solid #b5b2b2;">
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Total venta efectivo =</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label><br><br>
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Fondo de caja =</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label>
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Retiros de efectivo=</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label>
-                            </div><div class="verticalLine col-md-12 col-sm-12 col-xs-12" style="border-bottom:thin solid #b5b2b2;">
-                            </div>
-                            <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Total efectivo =</label>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <label class="" style="text-align:left"> $1000.00</label><br><br>
-                            </div>
-                        </form>
-                        <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Cantidad recibida:</label>
-                        <div class="col-md-4 col-sm-4 col-xs-4">
-                            <input class="col-md-12 col-sm-12 col-xs-12" type="text" /><br>
-                        </div>
-                        <br>
-                        <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Cantidad faltante:</label>
-                        <div class="col-md-4 col-sm-4 col-xs-4">
-                            <label class="" style="text-align:left"> $1000.00</label>
-                        </div>
-                    </div>
+                    @{ var usuario = Session["LoggedUser"].ToString();
+                        var fecha = DateTime.Now.ToLongDateString();
+                        <label class="control-label ">@(fecha) </label><br />
+                        <label class="control-label ">Entrega turno: </label>
+                        <label class="control-label ">@(usuario)</label><br>
+                        <label class="control-label ">Recibe turno</label>
+                        if (ViewBag.Usuarios != null)
+                        {
+                            @Html.DropDownList("userid", new SelectList(ViewBag.Usuarios, "ID_USUARIO", "NOMBRE"))
+                        }
+                    }
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Cambio de turno</button>
+            <br>
+            <div class="x_panel">
+                <div class="x_title" style="margin:0px;padding:0px;">
+                    <h6>Movimientos <small></small></h6>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="" style="margin:0px;padding:0px;">
+                    <br />
+
+                    @{ 
+                        var nombre = string.Empty;
+                        decimal total = 0;
+                        decimal granTotal = 0;
+                        if (ViewBag.Ventas != null)
+                        {
+                            
+                            <table >
+                                @foreach (var n in ViewBag.Ventas)
+                                {
+
+                                    if (n.total > 0)
+                                    {
+
+                                        total = n.total;
+                                        granTotal = total + granTotal;
+                                        continue;
+
+                                    }
+                                    if (n.nombreTipoPago != null)
+                                    {
+                                        nombre = n.nombreTipoPago;
+
+                                    }
+                                    @*<form class="form-horizontal form-label-left input_mask" style="margin:0px;padding:0px;">*@
+
+                                <tr>
+                                    <td>@nombre</td>
+                                    <td style="width:150px"></td>
+                                    <td align="right" style="width:150px">@total</td>
+                                </tr>
+
+
+                                }
+                            </table>
+
+                        }
+                    }
+
+
+                    @*@ <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Cantidad faltante:</label>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                            <label class="" style="text-align:left"> $1000.00</label>
+                        </div>*@
+                    @*</div>
+                            </div>
+                        </div>*@
+                    <div class="modal-footer">
+                        <label class=" col-md-8 col-sm-8 col-xs-8" style="text-align:left">Cantidad recibida:</label>
+
+                        &nbsp;<input type="text" style="width:70px" value="@(granTotal)" /><br>
+
+                        <br />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Cambio de turno</button>
+                    </div>
+                    @*</div>*@
+                    @*</div>*@
+                    @*</div>*@
+
+                </div>
             </div>
         </div>
     </div>
@@ -245,7 +306,7 @@
                                     <a href="#step-2">
                                         <span class="step_no">2</span>
                                         <span class="step_descr">
-                                          
+
                                             <small></small>
                                         </span>
                                     </a>
@@ -291,7 +352,7 @@
                             </div>
                             <div id="step-2">
                                 <h2 class="StepTitle">Seleccione 1 producto</h2>
-                                <select  class="form-control" multiple style="height:200px;">
+                                <select class="form-control" multiple style="height:200px;">
                                     <optgroup label="Pizzas">
                                         <option value="volvo">Al pastor chica</option>
                                         <option value="volvo">Suprema chica</option>
@@ -314,7 +375,7 @@
                             </div>
                             <div id="step-3">
                                 <h2 class="StepTitle">Seleccione 1 producto</h2>
-                               
+
                                 <select class="form-control" multiple style="height:200px;">
                                     <optgroup label="Pizzas">
                                         <option value="volvo">Al pastor chica</option>
@@ -337,7 +398,7 @@
                             </div>
                             <div id="step-4">
                                 <h2 class="StepTitle">Seleccione 1 producto</h2>
-                                
+
                                 <select class="form-control" multiple style="height:200px;">
                                     <optgroup label="Pizzas">
                                         <option value="volvo">Al pastor chica</option>
@@ -372,11 +433,11 @@
                 <div class="col-md-12 col-xs-12 col-lg-12">
                     <button type="button" class="btn btn-primary right">Aceptar</button>
 
-               
+
                 </div>
             </div>
             <div class="modal-footer ">
-               
+
             </div>
         </div><br>
     </div>
@@ -1316,6 +1377,7 @@
 
                         <label>Registrar codigo</label>
                         <input type="text" /><a class="btn btn-success" onclick="sumar();">Validar</a>
+                        <label>Caja:</label>
                     </div>
 
                     <div class="col-md-8 col-sm-8 col-xs-12">
@@ -1585,3 +1647,104 @@
     </div>
 </div>
 <!--Modal google Maps-->
+<!--Modal caja-->
+<body>
+    @using (Html.BeginForm("cajaMovimientos", "CAJA", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        var userName = Session["LoggedUser"];
+        //var fecha = DateTime.Now.ToLongDateString();
+        var estado = "Caja cerrada";
+        if (Session["EstadoCaja"] != null)
+        {
+            estado = Session["EstadoCaja"].ToString();
+
+
+
+        }
+        <form action="" method="post">
+            <div class="modal fade caja" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h2>@(fecha)</h2>
+                            <h1 id="myModalLabel">Apertura de caja&nbsp; </h1>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="x_panel">
+                                <div class="form-group">
+
+
+                                    <table>
+
+                                        <tr>
+                                            <td><h2>Usuario: </h2></td>
+                                            <td><input type="text" name="usuario" value="@(userName)" style="width: 340px" class="form-control" /></td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td align="center"><h2>Monto base: $</h2></td>
+                                            <td><input type="number" name="monto" class="form-control" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><h2>Caja:</h2></td>
+                                            <td><select name="caja" style="width: 340px" class="form-control"><option>1</option><option>2</option></select></td>
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                            <td align="center"><h2>Observaciones:</h2></td>
+                                            <td>
+                                                <input type="text" name="observaciones" style="WIDTH: 228px; HEIGHT: 98px"
+                                                       size=32 />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                            </div><br>
+                            <div class="modal-footer">
+                                <table>
+                                    <tr>
+                                        <td><h1>Estado:</h1></td>
+                                        <td><h2 class="bg-red">@(estado)</h2></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                                        @if (ViewData["userFlag"] != null)
+                                        {
+                                            if ((bool)ViewData["userFlag"] == true)
+                                            {
+                                                <td><input type="submit" class="btn btn-primary" value="Guardar" disabled></td>
+                                                <td><button type="button" class="btn btn-primary" id="cambioTurno" data-toggle="modal" data-target=".cambio_turno" data-dismiss="modal">Cambio de turnos</button></td>
+                                                <td><button type="button" id="cierre" class="btn btn-primary">Realizar cierre</button></td>
+                                                <td><button type="button" id="reportes" class="btn btn-primary">Reportes</button></td>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <td><input type="submit" class="btn btn-primary" value="Guardar"></td>
+                                            <td><button type="button" id="cambioTurno" class="btn btn-primary" disabled>Cambio de turno</button></td>
+                                            <td><button type="button" id="cierre" class="btn btn-primary" disabled>Realizar cierre</button></td>
+                                            <td><button type="button" id="reportes" class="btn btn-primary" disabled>Reportes</button></td>
+                                        }
+
+
+                                    </tr>
+                                </table>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    }
+
+    <!--/Modal caja-->
+
+
+</body>
+</html>

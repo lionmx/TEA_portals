@@ -21,7 +21,7 @@ namespace Backoffice0._1.Models
         public string cant_emp { get; set; }
         public string cant_suelto { get; set; }
         public string fecha { get; set; }
-        public string id_bo_calculo_pe { get; set; }
+        public int id_bo_calculo_pe { get; set; }
     
         public virtual C_bo_calculo C_bo_calculo { get; set; }
     }

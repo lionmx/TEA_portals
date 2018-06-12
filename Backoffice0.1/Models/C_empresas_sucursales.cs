@@ -14,8 +14,11 @@ namespace Backoffice0._1.Models
     
     public partial class C_empresas_sucursales
     {
+        public int id_empresa_sucursal { get; set; }
         public Nullable<int> id_empresa { get; set; }
+        public string codigo_empresa { get; set; }
         public Nullable<int> id_sucursal { get; set; }
-        public string id_empresa_sucursal { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

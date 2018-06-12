@@ -1,0 +1,60 @@
+﻿@using Backoffice0._1.Models
+@model Backoffice0._1.Models.CS_permisos_asignados
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PERMISOS_ASIGNADOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_modulos.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_modulos.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_modulos.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_modulos.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_roles.ID_PERFIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_roles.ID_PERFIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_usuarios.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_usuarios.NOMBRE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_PERMISO_ASIGNADO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

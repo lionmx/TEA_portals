@@ -21,7 +21,7 @@ namespace Backoffice0._1.Models
             this.CS_usuarios = new HashSet<CS_usuarios>();
         }
     
-        public string ID_ROL { get; set; }
+        public int ID_ROL { get; set; }
         public string DESCRIPCION { get; set; }
         public Nullable<int> ID_SERVICIO { get; set; }
     

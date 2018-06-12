@@ -19,6 +19,7 @@ namespace Backoffice0._1.Models
         {
             this.C_marca_config = new HashSet<C_marca_config>();
             this.C_marcas_sociedades = new HashSet<C_marcas_sociedades>();
+            this.C_pedidos = new HashSet<C_pedidos>();
         }
     
         public int id_marca { get; set; }
@@ -29,5 +30,7 @@ namespace Backoffice0._1.Models
         public virtual ICollection<C_marca_config> C_marca_config { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marcas_sociedades> C_marcas_sociedades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos> C_pedidos { get; set; }
     }
 }

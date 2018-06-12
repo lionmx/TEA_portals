@@ -1,0 +1,20 @@
+﻿<table class="table table-striped ">
+    <tbody>
+        @if (Session["Carrito"] != null)
+        {
+            foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
+            {
+                <tr class="even pointer">
+                    <td class="a-center ">
+                        <input type="checkbox" class="flat" name="table_records">
+                    </td>
+                    <td class=" ">1</td>
+                    <td class=" ">@item.Cantidad</td>
+                    <td class=" " name="sumar" value="1">@item.Cantidad </td>
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>
+

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Backoffice0._1.Controllers.POS;
 
 namespace Backoffice0._1.Controllers
 {
@@ -17,7 +18,7 @@ namespace Backoffice0._1.Controllers
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
-            string loggedId = Session["LoggedId"].ToString();
+            int loggedId = Convert.ToInt32(Session["LoggedId"]);
             var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
 
             if (permisosServicioModulo != null)
@@ -25,7 +26,7 @@ namespace Backoffice0._1.Controllers
                 foreach (var n in permisosServicioModulo)
                 {
                     permisosLista.Add(n.id_servicio);
-                    permisosLista.Add(n.id_modulo);
+                    permisosLista.Add(n.id_modulo); 
                     permisosLista.Add(Convert.ToInt32(n.id_permiso));
                 }
             }
@@ -38,6 +39,7 @@ namespace Backoffice0._1.Controllers
             }
             ViewBag.permisos = permisosLista;
             #endregion
+            ViewBag.Usuarios = db.CS_usuarios.ToList();
             return View("Ventas/Index");
         }
         List<CarritoItem> compras;
@@ -50,10 +52,13 @@ namespace Backoffice0._1.Controllers
             else
             {
                 compras = (List<CarritoItem>)Session["Carrito"];
+               
             }
             compras.Add(new CarritoItem("Producto1", 1));
             Session["Carrito"] = compras;
             return PartialView("Ventas/_AgregaCarrito");
+           
+            
         }
 
         public ActionResult RemueveCarrito(int id)
@@ -96,27 +101,28 @@ namespace Backoffice0._1.Controllers
                                 where sc.id_tipo_producto == id_tipo_producto
                                 select sc;
 
+
             return PartialView("Ventas/_SubCategorias", subcategorias);
         }
 
 
-        public PartialViewResult FiltraProductos(int id_cla)
-        {
-            if(id_cla==0)
-            {
-                id_cla = 1;
-            }
-            var productos = from ps in db.C_productos_sucursal
-                            join p in db.C_productos_cat on ps.id_productos_sucursal equals p.id_producto
-                            where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal.Equals(1))
-                            select p;
+        //public PartialViewResult FiltraProductos(int id_cla)
+        //{
+        //    if(id_cla==0)
+        //    { 
+        //        id_cla = 1;
+        //    }
+        //    //var productos = from ps in db.C_productos_sucursal
+        //    //                join p in db.C_productos_cat on ps.id_productos_sucursal equals p.id_producto
+        //    //                where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal.Equals(1))
+        //    //                select p;
 
-            return PartialView("Ventas/_Productos", productos);
-        }
+        //    return PartialView("Ventas/_Productos", productos);
+        //}
         public PartialViewResult ConsultaBanners()
         {
             return PartialView("Ventas/_Banners");
-        }
+        } 
 
     }
 }

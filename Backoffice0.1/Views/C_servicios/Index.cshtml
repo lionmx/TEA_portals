@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_servicios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alias_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion_servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_registro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.activo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alias_servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion_servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_registro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.activo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_servicio }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_servicio }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_servicio })
+        </td>
+    </tr>
+}
+
+</table>

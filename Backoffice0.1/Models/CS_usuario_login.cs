@@ -14,11 +14,18 @@ namespace Backoffice0._1.Models
     
     public partial class CS_usuario_login
     {
-        public decimal ID_LOGIN { get; set; }
-        public string ID_USUARIO { get; set; }
+        public int ID_LOGIN { get; set; }
+        public Nullable<int> ID_USUARIO { get; set; }
+        public string CODIGO_USUARIO { get; set; }
         public string PASS { get; set; }
         public string FECHA_LOGIN { get; set; }
     
+        public virtual CS_usuario_login CS_usuario_login1 { get; set; }
+        public virtual CS_usuario_login CS_usuario_login2 { get; set; }
+        public virtual CS_usuario_login CS_usuario_login11 { get; set; }
+        public virtual CS_usuario_login CS_usuario_login3 { get; set; }
+        public virtual CS_usuario_login CS_usuario_login12 { get; set; }
+        public virtual CS_usuario_login CS_usuario_login4 { get; set; }
         public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }
