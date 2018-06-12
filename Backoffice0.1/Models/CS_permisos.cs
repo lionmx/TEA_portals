@@ -19,7 +19,7 @@ namespace Backoffice0._1.Models
         {
             this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
         }
-        public bool ACTIVO { get; set; }
+    
         public string ID_PERMISO { get; set; }
         public string DESCRIPCION { get; set; }
     

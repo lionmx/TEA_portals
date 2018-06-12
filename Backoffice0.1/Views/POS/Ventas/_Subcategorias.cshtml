@@ -4,9 +4,6 @@
 <button type="button" onclick="ConsultaCategorias()" class="btn btn-success"><</button>
 
 @foreach (var item in Model)
-
 {
-
     <button type="button" onclick="FiltraProductos(@Html.DisplayFor(modelItem => item.id_producto_clasificacion))" class="btn btn-default">@Html.DisplayFor(modelItem => item.nombre_producto_clasificacion)</button>
-
 }

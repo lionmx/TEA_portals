@@ -14,6 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class C_empleados
     {
+        public int id_empleado { get; set; }
         public string nombres { get; set; }
         public string apellido_paterno { get; set; }
         public string apellido_materno { get; set; }
@@ -34,6 +35,6 @@ namespace Backoffice0._1.Models
         public string telefono_casa { get; set; }
         public string telefono_contacto { get; set; }
         public Nullable<int> tipo_sangre { get; set; }
-        public string id_empleado { get; set; }
+        public string gaffete { get; set; }
     }
 }

@@ -14,17 +14,9 @@ namespace Backoffice0._1.Models
     
     public partial class C_empresas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_empresas()
-        {
-            this.C_campañas = new HashSet<C_campañas>();
-            this.C_sociedades_empresas = new HashSet<C_sociedades_empresas>();
-            this.C_sucursales = new HashSet<C_sucursales>();
-            this.C_sucursales1 = new HashSet<C_sucursales>();
-        }
-    
         public int id_empresa { get; set; }
-        public string codigo { get; set; }
+        public string codigo_empresa { get; set; }
+        public Nullable<int> id_tipo_empresa { get; set; }
         public string nombre { get; set; }
         public string razon_social { get; set; }
         public string rfc { get; set; }
@@ -33,15 +25,7 @@ namespace Backoffice0._1.Models
         public string correo { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public string representante { get; set; }
+        public string alias { get; set; }
         public bool activo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_campañas> C_campañas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_sociedades_empresas> C_sociedades_empresas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_sucursales> C_sucursales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_sucursales> C_sucursales1 { get; set; }
     }
 }

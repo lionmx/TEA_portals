@@ -17,13 +17,13 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_unidades()
         {
-            this.C_insumo_cat = new HashSet<C_insumo_cat>();
+            this.C_insumo_cat_old = new HashSet<C_insumo_cat_old>();
         }
     
         public int id_unidad { get; set; }
         public string unidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_insumo_cat> C_insumo_cat { get; set; }
+        public virtual ICollection<C_insumo_cat_old> C_insumo_cat_old { get; set; }
     }
 }

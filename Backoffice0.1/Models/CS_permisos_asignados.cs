@@ -14,8 +14,9 @@ namespace Backoffice0._1.Models
     
     public partial class CS_permisos_asignados
     {
-        public string ID_USUARIO { get; set; }
-        public string ID_ROL { get; set; }
+        public Nullable<int> ID_USUARIO { get; set; }
+        public string CODIGO_USUARIO { get; set; }
+        public Nullable<int> ID_ROL { get; set; }
         public string ID_PERMISO { get; set; }
         public decimal ID_PERMISO_ASIGNADOS { get; set; }
         public Nullable<int> ID_SERVICIOS_MODULOS { get; set; }

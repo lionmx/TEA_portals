@@ -16,7 +16,7 @@ namespace Backoffice0._1.Models
     {
         public int id_pedido_d { get; set; }
         public Nullable<int> id_pedido { get; set; }
-        public Nullable<int> id_producto { get; set; }
+        public string sku_producto { get; set; }
         public string cantidad { get; set; }
         public string pedido_d_status { get; set; }
     

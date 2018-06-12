@@ -20,9 +20,9 @@ namespace Backoffice0._1.Models
             this.C_pedidos = new HashSet<C_pedidos>();
         }
     
-        public string id_pedido_tipo { get; set; }
+        public int id_pedido_tipo { get; set; }
         public string tipo { get; set; }
-        public string pedido_tipo_status { get; set; }
+        public Nullable<bool> pedido_tipo_status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos> C_pedidos { get; set; }

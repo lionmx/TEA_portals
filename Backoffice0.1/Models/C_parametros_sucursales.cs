@@ -19,6 +19,5 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_sucursal { get; set; }
     
         public virtual C_parametros C_parametros { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

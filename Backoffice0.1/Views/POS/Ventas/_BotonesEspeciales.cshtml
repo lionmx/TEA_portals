@@ -1,5 +1,10 @@
-﻿<center>
-    <button type="button" class="btn btn-primary btn-lg">Promociones</button>
-    <button type="button" class="btn btn-success btn-lg">Paquetes</button>
-    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target=".configura_combo">Combos</button>
+﻿@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_tipos>
+
+<center>
+    @foreach (var item in Model)
+    {
+    <button type="button" onclick="ConsultaSubClases(@Html.DisplayFor(modelItem => item.id_grupo_producto_tipo))" class="btn btn-warning btn-lg" >@Html.DisplayFor(modelItem => item.nombre_tipo)</button>
+    }
+
+
 </center>

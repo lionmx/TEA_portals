@@ -20,12 +20,10 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_usuario_captura { get; set; }
         public Nullable<int> id_usuario_cajero { get; set; }
         public string nip_cajero { get; set; }
-        public Nullable<int> id_cliente { get; set; }
+        public Nullable<int> id_empresa { get; set; }
         public Nullable<int> id_sval_orden { get; set; }
         public Nullable<decimal> importe_contenido_efectivo { get; set; }
         public Nullable<decimal> importe_contenido_documentos { get; set; }
         public Nullable<decimal> total_importe_contenido { get; set; }
-        public Nullable<int> id_desglose_billetes { get; set; }
-        public Nullable<int> id_desglose_monedas { get; set; }
     }
 }

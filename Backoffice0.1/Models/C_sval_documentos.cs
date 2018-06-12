@@ -14,10 +14,11 @@ namespace Backoffice0._1.Models
     
     public partial class C_sval_documentos
     {
+        public int id_sval_documento { get; set; }
+        public Nullable<int> id_empresa { get; set; }
         public string no_documento { get; set; }
         public string nombre_documento { get; set; }
         public string path_documento_anexo { get; set; }
         public Nullable<bool> activo { get; set; }
-        public int id_sval_documento { get; set; }
     }
 }

@@ -14,12 +14,12 @@ namespace Backoffice0._1.Models
     
     public partial class C_recetas
     {
-        public Nullable<int> id_producto { get; set; }
-        public Nullable<int> id_insumo { get; set; }
-        public string cantidad { get; set; }
-        public string id_receta { get; set; }
-    
-        public virtual C_insumo_cat C_insumo_cat { get; set; }
-        public virtual C_productos_cat C_productos_cat { get; set; }
+        public int id_receta { get; set; }
+        public string sku { get; set; }
+        public string sku_insumo { get; set; }
+        public Nullable<double> cantidad { get; set; }
+        public Nullable<double> costo_total { get; set; }
+        public Nullable<double> costo_porcion { get; set; }
+        public Nullable<bool> status { get; set; }
     }
 }

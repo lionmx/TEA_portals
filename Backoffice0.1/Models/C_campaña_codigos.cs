@@ -21,9 +21,8 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_usuario_canje { get; set; }
         public Nullable<System.DateTime> fecha_canje { get; set; }
         public Nullable<int> id_cliente_canje { get; set; }
-        public string id_campaña_codigo { get; set; }
+        public int id_campaña_codigo { get; set; }
     
         public virtual C_campañas C_campañas { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

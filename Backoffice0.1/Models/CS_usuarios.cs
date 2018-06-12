@@ -17,25 +17,24 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CS_usuarios()
         {
+            this.C_usuarios_sucursales = new HashSet<C_usuarios_sucursales>();
             this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
-            this.CS_usuario_login = new HashSet<CS_usuario_login>();
         }
     
-        public string ID_USUARIO { get; set; }
+        public int ID_USUARIO { get; set; }
+        public string CODIGO_USUARIO { get; set; }
         public string NOMBRE { get; set; }
-        public string REF { get; set; }
         public string PASS { get; set; }
-        public string ID_ROL { get; set; }
-        public string TARJETA_EMPLEADO { get; set; }
+        public Nullable<int> ID_ROL { get; set; }
         public string ESTADO_ACTUAL { get; set; }
-        public string GAFETE_IDENTIFICACION { get; set; }
         public Nullable<int> ID_SERVICIO { get; set; }
+        public Nullable<int> NIVEL_USUARIO { get; set; }
+        public string PASS_VAL { get; set; }
     
-        public virtual C_servicios C_servicios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_usuarios_sucursales> C_usuarios_sucursales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
         public virtual CS_roles CS_roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CS_usuario_login> CS_usuario_login { get; set; }
     }
 }

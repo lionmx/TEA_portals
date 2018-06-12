@@ -20,6 +20,5 @@ namespace Backoffice0._1.Models
         public string fecha_registro { get; set; }
     
         public virtual C_servicios C_servicios { get; set; }
-        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

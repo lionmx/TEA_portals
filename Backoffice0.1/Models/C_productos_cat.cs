@@ -19,10 +19,9 @@ namespace Backoffice0._1.Models
         {
             this.C_impuesto_producto = new HashSet<C_impuesto_producto>();
             this.C_producto_presentacion = new HashSet<C_producto_presentacion>();
-            this.C_recetas = new HashSet<C_recetas>();
         }
     
-        public int id_producto { get; set; }
+        public string id_producto { get; set; }
         public string sku { get; set; }
         public string plu { get; set; }
         public string codigo_barra { get; set; }
@@ -45,10 +44,7 @@ namespace Backoffice0._1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }
-        public virtual C_producto_clasificacion C_producto_clasificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_producto_presentacion> C_producto_presentacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_recetas> C_recetas { get; set; }
     }
 }

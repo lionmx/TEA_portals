@@ -10,16 +10,223 @@
     <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-3 col-sm-3" id="Clientes">
-            @{Html.RenderAction("Clientes", "POS");}
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Datos cliente </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">Settings 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <div class="input-group">
+                            <input type="text" class="form-control" style="font-size:18px" id="telefono" placeholder="telefono...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="BuscarCliente()">Go!</button>
+                            </span>
+                        </div>
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" style="padding:0px;">
+                                <li role="presentation" id="tab_buscar" class="active">
+                                    <a href="#tab_content_search" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i></a>
+                                </li>
+                                <li role="presentation" class="" id="tab_new">
+                                    <a href="#tab_content_new" role="tab" id="nuevo" data-toggle="tab" aria-expanded="false">Nuevo</a>
+                                </li>
+                                <li role="presentation" class="" id="tab_esp">
+                                    <a href="#tab_content_pe" role="tab" id="especial" data-toggle="tab" aria-expanded="false">P.E</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content_search" aria-labelledby="home-tab">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                            <tr class="headings">
+                                                <th class="column-title">Datos</th>
+                                                <th class="bulk-actions" colspan="7">
+                                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ClienteInfo"></tbody>
+                                    </table>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content_pe" aria-labelledby="Especial">
+
+                                    <div class="form-group form-group has-feedback ">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_nombre" placeholder="Nombre">
+                                        <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
+                                            <select class="select2_single form-control" tabindex="-1">
+                                                <option value="AK">C. Postal</option>
+                                                <option value="HI">27000</option>
+                                                <option value="CA">35158</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                            <select class="select2_single form-control" style="padding:0px;" tabindex="-1">
+                                                <option style="width:500px;" value="AK">Colonia</option>
+                                                <option style="width:500px;" value="HI">Colonia 2</option>
+                                                <option style="width:500px;" value="CA">Colonia 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_calle" placeholder="Calle">
+                                        <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" id="esp_next" placeholder="No.">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                            <input type="text" class="form-control has-feedback-right" id="esp_referencia" placeholder="Referencia">
+                                            <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group has-feedback" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_email" placeholder="Email">
+                                        <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group form-group has-feedback" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_evento" placeholder="Evento">
+                                        <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" class="form-control " id="esp_fecha" placeholder="Fecha">
+                                    </div>
+                                    <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                        <input type="text" class="form-control " id="esp_hora" placeholder="Hra">
+                                    </div>
+                                    <div class="form-group form-group " style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_contratante" placeholder="Contacto">
+                                    </div>
+                                    <div class="form-group form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_tel1" placeholder="Telefono 1">
+                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group form-group has-feedback">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_tel2" placeholder="Telefono 2">
+                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+
+                                    <br>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                                        <button type="" class="btn btn-primary">Registrar cliente</button>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content_new" aria-labelledby="profile-tab">
+                                    <div class="form-group form-group has-feedback ">
+                                        <input type="text" class="form-control has-feedback-right" id="new_nombre" placeholder="Nombre">
+                                        <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                            <select class="select2_single form-control" style="padding:0px;" tabindex="-1">
+                                                <option style="width:500px;" value="AK">Colonia</option>
+                                                <option style="width:500px;" value="HI">Colonia 2</option>
+                                                <option style="width:500px;" value="CA">Colonia 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="new_calle" placeholder="Calle">
+                                        <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                        <input type="text" class="form-control" id="new_next" placeholder="No.">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                            <input type="text" class="form-control has-feedback-right" id="new_referencia" placeholder="Referencia">
+                                            <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group has-feedback" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="new_email" placeholder="Email">
+                                        <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                    </div>
+                                    <div class="panel">
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body" style="padding:0px;">
+                                                <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_evento" placeholder="Evento">
+                                                    <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                                    <input type="text" class="form-control " id="new_fecha" placeholder="Fecha">
+                                                </div>
+                                                <div class="form-group form-group col-md-6 col-sm-6 col-xs-6">
+                                                    <input type="text" class="form-control " id="new_hora" placeholder="Hra">
+                                                </div>
+                                                <div class="form-group form-group " style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_contacto" placeholder="Contacto">
+                                                </div>
+                                                <div class="form-group form-group has-feedback">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_tel1" placeholder="Telefono 1">
+                                                    <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="form-group form-group has-feedback">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_tel2" placeholder="Telefono 2">
+                                                    <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input class="flat iCheck-helper" name="iCheck" id="ent_dom" type="radio" checked /><label>Llevar a domicilio</label><br />
+                                <input class="iCheck-helper" name="iCheck" id="ent_suc" type="radio" /><label>Recoger en sucursal</label>
+                                <div id="div1" style="display:none;">
+                                    seleccione la sucursal
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class=""  id="Caja">
+
+        <div class="col-md-6 col-sm-6" id="Caja">
             <div class="x_panel">
                 <div class="x_title">
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" style="margin-bottom:-30px;height:300px;overflow:scroll;">
-                    <div class="row" id="productos" >
-                        
+                    <div class="row" id="productos">
                     </div>
                 </div>
             </div>
@@ -28,22 +235,23 @@
                     @{Html.RenderAction("ConsultaCategorias", "POS");}
                 </div>
                 <div class="x_content" id="paquetes">
-                    @{Html.RenderAction("BotonesEspeciales", "POS");}
+                    @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
                 </div>
             </div>
             <div id="slideshow" class="right">
                 @{Html.RenderAction("ConsultaBanners", "POS");}
             </div>
         </div>
-     
-        <div class="" id="Carrito">
+
+        <div class="col-md-4 col-sm-4" id="Carrito">
             <div class="x_panel">
                 <div class="nav_menu" style="background:white;color:black;">
-                    @{Html.RenderAction("TrackingPedido", "POS");}
+                    @{Html.RenderAction("ConsultaTrackingPedidos", "POS");}
                     <h2>Cuenta a pagar <small></small></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" id="carritodiv">
+                    @{Html.RenderAction("VisualizaCarrito1", "POS");}
                 </div>
                 <div>
                     <table class="table table-striped ">
@@ -52,7 +260,7 @@
                                 <td class=" "></td>
                                 <td class=" "></td>
                                 <td class=" ">Subtotal</td>
-                                <td class=" "><h><label class="total"></label> </h></td>
+                                <td class=" "><h>$ <label class="total"></label> </h></td>
                             </tr>
                             <tr class="even pointer">
                                 <td class=" "></td>
@@ -63,12 +271,6 @@
                         </tbody>
                     </table>
                     <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
-
-                </div>
-                <input type="button" class="btn btn-danger" onclick="ChecarPerfil(1)" value="checar perfil"/>
-                <div id="promocion">
-                    
-                    aqui productos
                 </div>
             </div>
         </div>
@@ -78,101 +280,527 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade configura_combo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Configura tu combo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="x_panel">
+                    <div class="col-md-6 col-xs-6 col-lg-6" id="combo_productos" style="max-height:300px;overflow:scroll;">
+                    </div>
+                    <div class="col-md-6 col-xs-6 col-lg-6">
+                        <div id="combo_detalle">
+                        </div>
+                        <div id="combo_carrito">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <div class="col-md-6 col-xs-6 col-lg-6">
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6">
+                    <button type="button" class="btn btn-primary right">Agregar combo</button>
+                </div>
+            </div>
+        </div><br>
+    </div>
+</div>
+<!-- /Modal Configura_combo -->
+<!-- Modal Asigna repartidor-->
+<div class="modal fade asigna_repartidor" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Asigna repartidor</h4>
+            </div>
+            <div class="">
+                <div class="col-md-6 col-xs-6 col-lg-6">
+                    <h3>Datos del pedido</h3>
+                    Pedido:
+                    <span>#1231234    </span><span>Hoy 4:30pm</span>
+                    <br />
+                    <span>Cliente: Juan Gonzalez </span>
+                    <br />
+                    <span>Direccion: Calle Nogales # 96 Col. Rosales II<br /> Lerdo, Dgo </span><br />
+                    <span>Tel: 2955139</span>
+                    <table class="table table-striped ">
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class=" ">1</td>
+                                <td class=" ">Al pastor chica</td>
+                                <td class=" ">$69.90 </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">1</td>
+                                <td class=" ">Al pastor chica</td>
+                                <td class=" ">$69.90 </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <table class="table">
+                        <tr class="">
+                            <td class=" "></td>
+                            <td class=" " style="text-align:right;">Subtotal </td>
+                            <td class=" ">$69.90 </td>
+                        </tr>
+                        <tr>
+                            <td class=" "></td>
+                            <td class=" " style="text-align:right;">IVA </td>
+                            <td class=" "> $69.90 </td>
+                        </tr>
+                        <tr>
+                            <td class=" "></td>
+                            <td class=" " style="text-align:right;">Total </td>
+                            <td class=" ">$69.90 </td>
+                        </tr>
+                        <tr class="">
+                            <td class=" "></td>
+                            <td class=" " style="text-align:right;">Pago cliente </td>
+                            <td class=" ">$69.90 </td>
+                        </tr>
+                        <tr class="">
+                            <td class=" "></td>
+                            <td class=" " style="text-align:right;">Cambio </td>
+                            <td class=" ">$69.90 </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="col-md-6 col-xs-6 col-lg-6">
+                    <center>
+                        <br />
+                        <br />
+                        <input class="form-control" placeholder="Escane el gaffet del repartidor" id="gaffette" />
+                        <br />
+                        <br />
+                        <i class="fa fa-barcode fa-4x" aria-hidden="true"></i>
+                        <div id="repartidordatos">
+
+                        </div>
+
+                        <h4>Repartidor</h4>
+                        <br>
+                    </center>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Asignar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Asigna repartidor-->
+
 <script>
-    function sumar() {
-        var totalInp = $('[name="precio"]');
-        var total = 0;
-        totalInp.each(function () {
-            total += parseFloat($(this).val());
-        });
-        $('.total').text(total);
-    }
-
-    var Addcarrito = function (nombre, costo, sku, promocion,prom_pos,id_promocion) {
-        $.ajax({
-            url: "../POS/AgregaCarrito",
-            data: { nombre: nombre, costo: costo, sku: sku, promocion: promocion,prom_pos:prom_pos,id_promocion:id_promocion },
-            success: function (result) {
-                $("#carritodiv").html(result);
-                sumar();
-            }
-        });
-        ConsultaProducPromocion();
-    }
-    var Removecarrito = function (sku) {
-        $.ajax({
-            url: "../POS/RemueveCarrito",
-            data: { sku: sku },
-            success: function (result) {
-                $("#carritodiv").html(result);
-                sumar();
-            }
-        });
-    }
-    var Visualizacarrito = function () {
-        $.ajax({
-            url: "../POS/VisualizaCarrito",
-            success: function (result) {
-                $("#visualizacarrito").html(result);
-            }
-
-        });
-    }
-    var FiltraProductos = function (id_clasificacion) {
-        $.ajax({
-            url: "../POS/FiltraProductos",
-            data: { id_cla: id_clasificacion },
-            success: function (result) {
-                $("#productos").html(result);
-            }
-
-        });
-    }
-    var ConsultaSubcategorias = function (id_tipo_producto) {
-        $.ajax({
-            url: "../POS/ConsultaSubCategorias",
-            data: { id_tipo_producto: id_tipo_producto },
-            success: function (result) {
-                $("#categorias").html(result);
-            }
-
-        });
-    }
-    var ConsultaCategorias = function (id_tipo_producto) {
-        $.ajax({
-            url: "../POS/ConsultaCategorias",
-            success: function (result) {
-                $("#categorias").html(result);
-            }
-
-        });
-    }
-    var ConsultaProducPromocion = function () {
-        $.ajax({
-            url: "../POS/ConsultaPromocion",
-            success: function (result) {
-                $("#promocion").html(result);
-            }
-
-        });
-    }
-    var ChecarPerfil = function (id_perfil) {
-        if (id_perfil == 1) {
-            document.getElementById("Clientes").style.display = "none";
-            document.getElementById("Caja").className = "col-md-8 col-sm-8";
-            document.getElementById("Carrito").className = "col-md-4 col-sm-4";
+        function codigopostal() {
+            var hola = 0;
+            $.ajax({
+                url: "../POS/BuscarCP",
+                data: {},
+                success: function (result) {
+                    $("#codigopostal").html(result);
+                }
+            });
         }
-        else {
-            document.getElementById("Caja").className = "col-md-6 col-sm-6";
-            document.getElementById("Carrito").className = "col-md-3 col-sm-3";
-        }
-    }
-    var RecogerPedido = function () {
-        $('#div1').style.display = "block";
 
-    }
-   
+        $(window).on("load", function () {
+            if (@ViewBag.tipo_usuario == 1) {
+                document.getElementById("Clientes").style.display = "none";
+                document.getElementById("Caja").className = "col-md-8 col-sm-8";
+                document.getElementById("Carrito").className = "col-md-4 col-sm-4";
+            }
+            if (@ViewBag.tipo_usuario == 2) {
+                $("#telefono").focus();
+                document.getElementById("Caja").className = "col-md-6 col-sm-6";
+                document.getElementById("Carrito").className = "col-md-3 col-sm-3";
+            }
+            sumar();
+           
+        });
+
+        function stopRKey(evt) {
+            var evt = (evt) ? evt : ((event) ? event : null);
+            var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+            if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+        }
+        document.onkeypress = stopRKey;
+        $("#gaffette").keypress(function (e) {
+            //no recuerdo la fuente pero lo recomiendan para
+            //mayor compatibilidad entre navegadores.
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                BuscarRepartidor();
+            }
+        });
+        $("#telefono").keypress(function (e) {
+            //no recuerdo la fuente pero lo recomiendan para
+            //mayor compatibilidad entre navegadores.
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                BuscarCliente();
+            }
+        });
+        function calculo() {
+            var apagar = 0;
+            var saldo = 0;
+            var totalInp = $('[name="apagar"]');
+            totalInp.each(function () {
+                if ($(this).is(':checked')) {
+                    apagar += parseFloat($(this).val());
+                }
+                else {
+                    saldo += parseFloat($(this).val());
+                }
+            });
+            $('#a_pagar').text(apagar.toFixed(2));
+            $('#saldo').text(saldo.toFixed(2));
+
+            var consumo = parseFloat($('#a_pagar').text());
+            var propina = parseFloat($('#propina').val());
+            if (isNaN(propina)) { propina = 0; }
+            if (consumo == null) { consumo = 0; }
+
+            var total = consumo + propina;
+            $('.total').text(total);
+
+            var pagado = 0;
+            var totalInp2 = $('[class="pago_cliente"]');
+            totalInp2.each(function ()
+                {
+                var pag_tipo = parseFloat($(this).val());
+                if (!isNaN(pag_tipo)) {
+                    pagado += parseFloat($(this).val());
+                }
+            });
+
+            var cambio = parseFloat(pagado - total);
+            $('#cambio').text(cambio.toFixed(2))
+            if (total > pagado)
+            {
+                $('#cambio').css({'color':'red'});
+            }
+
+        }
+        var ProductoCuenta = function (index) {
+            if ($('#a_pagar').is(':checked')) { }
+            else {
+                $.ajax({
+                    url: "../POS/ProductoCuenta",
+                    data: { index: index },
+                    success: function (result) {
+                    }
+                });
+            }
+            calculo();
+        }
+
+        function sumar() {
+            var totalInp = $('[name="precio"]');
+            var total = 0;
+            totalInp.each(function () {
+                total += parseFloat($(this).val());
+            });
+            $('.total').text(total.toFixed(2));
+            $('#a_pagar').text(total.toFixed(2));
+            $('#consumo_total').text(total.toFixed(2));
+            $('#cambio').text(0.00);
+           
+        }
+
+        var Addcarrito = function (nombre, costo, sku, promocion, prom_pos, id_promocion) {
+            $.ajax({
+                url: "../POS/AgregaCarrito",
+                data: { nombre: nombre, costo: costo, sku: sku, promocion: promocion, prom_pos: prom_pos, id_promocion: id_promocion },
+                success: function (result) {
+                    $("#carritodiv").html(result);
+                    sumar();
+                }
+            });
+        }
+        var Removecarrito = function (sku, index) {
+            $.ajax({
+                url: "../POS/RemueveCarrito",
+                data: { sku: sku, index_carrito: index },
+                success: function (result) {
+                    $("#carritodiv").html(result);
+                    sumar();
+                }
+            });
+            $.ajax({
+                url: "../POS/VisualizaCarrito1",
+                success: function (result) {
+                    $("#carritodiv").html(result);
+                    sumar();
+                }
+            });
+        }
+        var Visualizacarrito = function () {
+            $.ajax({
+                url: "../POS/VisualizaCarrito",
+                success: function (result) {
+                    $("#visualizacarrito").html(result);
+                }
+            });
+        }
+        var ConsultaCombos = function (id_subclase) {
+            $.ajax({
+                url: "../POS/ConsultaCombos",
+                data: { id_subclase: id_subclase },
+                success: function (result) {
+                    $("#productos").html(result);
+                }
+            });
+        }
+        var FiltraProductos = function (id_clasificacion) {
+            $.ajax({
+                url: "../POS/FiltraProductos",
+                data: { id_cla: id_clasificacion },
+                success: function (result) {
+                    $("#productos").html(result);
+                }
+            });
+        }
+        var ConsultaSubcategorias = function (id_tipo_producto) {
+            $.ajax({
+                url: "../POS/ConsultaSubCategorias",
+                data: { id_tipo_producto: id_tipo_producto },
+                success: function (result) {
+                    $("#categorias").html(result);
+                }
+            });
+        }
+
+        var ConsultaCombosProductos = function (sku,producto,costo,id_combo) {
+            $.ajax({
+                url: "../POS/ConsultaCombosProductos",
+                data: { sku: sku , producto:producto, costo:costo},
+                success: function (result) {
+                    $("#combo_productos").html(result);
+                    $.ajax({
+                        url: "../POS/AgregaCarritoCombo",
+                        success: function (result) {
+                            $("#combo_carrito").html(result);
+                        }
+                    });
+                }
+            });
+            $.ajax({
+                url: "../POS/ConsultaInformacionCombo",
+                data: { id_combo: id_combo },
+                success: function (result) {
+                    $("#combo_detalle").html(result);
+                }
+            });
+        }
+
+        var ConsultaDetallesCombo = function (id_combo) {
+            $.ajax({
+                url: "../POS/ConsultaDetallesCombo",
+                data: { id_combo: id_combo },
+                success: function (result) {
+                    $("#combo_carrito").html("");
+                    ConsultaCombosProductos("", "", 0);
+                }
+            });
+            $.ajax({
+                url: "../POS/ConsultaInformacionCombo",
+                data: { id_combo: id_combo },
+                success: function (result) {
+                    $("#combo_detalle").html(result);
+                }
+            });
+        }
+
+        var ConsultaSubClases = function (id_grupo_producto_tipo) {
+            $.ajax({
+                url: "../POS/ConsultaSubClases",
+                data: { id_grupo_producto_tipo: id_grupo_producto_tipo },
+                success: function (result) {
+                    $("#paquetes").html(result);
+                }
+            });
+        }
+        var ConsultaCategorias = function () {
+            $.ajax({
+                url: "../POS/ConsultaCategorias",
+                success: function (result) {
+                    $("#categorias").html(result);
+                }
+            });
+        }
+
+        var ConsultaBotonesEspeciales = function () {
+            $.ajax({
+                url: "../POS/ConsultaBotonesEspeciales",
+                success: function (result) {
+                    $("#paquetes").html(result);
+                }
+            });
+        }
+
+    var RegistrarPedido = function () {
+            c_pedidos = {};
+            c_ventas_g = {};
+            c_telefonos = {};
+            c_direcciones = {};
+            c_direcciones.calle = "";
+            c_eventos = {};
+            c_eventos.descripcion_evento = $("#esp_evento").val();
+            c_clientes = {};
+
+            if ($("#ent_dom").is(':checked')) {
+                c_pedidos.id_tipo_entrega = 1;
+            }
+            if ($("#ent_suc").is(':checked')) {
+                c_pedidos.id_tipo_entrega = 2;
+            }
+        
+            c_pedidos.monto = $("#consumo_total").text();
+            c_pedidos.pago_recibido = $("#pago_cliente").val();
+            c_pedidos.id_pedido_status = 1;
+        
+            c_telefonos.telefono = $("#telefono").val();
+        
+            c_ventas_g.subtotal = $("#consumo_total").text();
+            c_ventas_g.id_caja = null;
+            c_ventas_g.id_codigo = null;
+            c_ventas_g.propina = $("#propina").val();
+        
+            var c_ventas_pagos_tipo = [];
+            c_ventas_pagos_tipo[0] = [1];
+            c_ventas_pagos_tipo[1] = [2];
+            c_ventas_pagos_tipo[2] = [3];
+
+            var c_ventas_pagos_montos = [];
+            c_ventas_pagos_montos[0] = [$("#pago_efectivo").val()];
+            c_ventas_pagos_montos[1] = [$("#pago_tarjeta").val()];
+            c_ventas_pagos_montos[2] = [$("#pago_teamcard").val()];
+        
+            if ($("#tab_buscar").hasClass("active"))
+            {
+                c_pedidos.id_pedido_tipo = 1
+            }
+
+            if ($("#tab_new").hasClass("active")) {
+                
+                c_clientes.nombre = $("#new_nombre").val();
+                c_clientes.email = $("#new_email").val();
+                c_clientes.clave_cliente = $("#telefono").val();
+
+                c_pedidos.id_pedido_tipo = 2
+                c_direcciones.calle = $("#new_calle").val();
+                c_direcciones.numero_ext = $("#new_next").val();
+                c_direcciones.id_colonia = 1; //cambiar
+                c_direcciones.entre_calle1 = "calle1";//cambiar
+                c_direcciones.entre_calle2 = "calle2";
+                c_direcciones.referencia = $("#new_referencia").val();
+                c_direcciones.d_codigo = 1;//cambiar
+                c_direcciones.id_asenta_cpcons = 1;//cambiar
+                c_direcciones.id_ciudad = 1;//cambiar
+                c_direcciones.id_estado = 1;//cambiar
+            }
+            if ($("#tab_esp").hasClass("active")) {
+                c_clientes.nombre = $("#esp_nombre").val();
+                c_clientes.email = $("#esp_email").val();
+                c_clientes.clave_cliente = $("#telefono").val();
+
+                c_pedidos.fecha_entrega = $("#esp_fecha").val();
+                c_pedidos.id_pedido_tipo = 3
+
+                c_direcciones.calle = $("#esp_calle").val();
+                c_direcciones.numero_ext = $("#esp_next").val();
+                c_direcciones.id_colonia = 1; //cambiar
+                c_direcciones.entre_calle1 = "calle1";//cambiar
+                c_direcciones.entre_calle2 = "calle2";
+                c_direcciones.referencia = $("#esp_referencia").val();
+                c_direcciones.d_codigo = 1;//cambiar
+                c_direcciones.id_asenta_cpcons = 1;//cambiar
+                c_direcciones.id_ciudad = 1;//cambiar
+                c_direcciones.id_estado = 1;//cambiar
+
+                c_eventos.descripcion_evento = $("#esp_evento").val();
+                c_eventos.fecha = $("#esp_fecha").val();
+                c_eventos.hora = $("#esp_hora").val();
+                c_eventos.contratante = $("#esp_contratante").val();
+                
+
+            }
+
+            
+            
+            $.ajax({
+                type: "POST",
+                url: "../PEDIDOS/Create2",
+                data: { 
+                    c_pedidos: c_pedidos,
+                    c_clientes: c_clientes,
+                    c_direcciones: c_direcciones,
+                    c_telefonos: c_telefonos,
+                    c_ventas_g: c_ventas_g,
+                    c_eventos: c_eventos,
+                    c_ventas_pagos_tipo: c_ventas_pagos_tipo,
+                    c_ventas_pagos_montos: c_ventas_pagos_montos,
+                    
+                },
+                success: function (result) {
+                    $("#paquetes").html(result);
+                }
+            });
+        }
+
+        var BuscarCliente = function () {
+            var telefono = $("#telefono").val();
+            $.ajax({
+                url: "../CLIENTES/BuscarClienteTelefono",
+                    data: { telefono:telefono },
+                    success: function (result) {
+                        $("#ClienteInfo").html(result);
+                    }
+             });
+        }
     
+        var BuscarRepartidor = function () {
+            var gaffette = $("#gaffette").val();
+            $.ajax({
+                url: "../POS/BuscarRepartidor",
+                data: {
+                    gaffette: gaffette
+                },
+                success: function (result) {
+                    $("#repartidordatos").html(result);
+                }
+            });
+        }
+
+    var AsignarRepartidor = function () {
+        var id_empleado = $("#idempleado").text();
+        var id_pedido = 1;
+        $.ajax({
+            url: "../POS/AsignarRepartidor",
+            data: {
+                id_empleados: id_empleado,
+                id_pedido:id_pedido
+            },
+            success: function (result) {
+              
+            }
+        });
+    }
+
+
+
+
 </script>
 
 

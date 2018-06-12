@@ -16,5 +16,7 @@ namespace Backoffice0._1.Models
     {
         public int id_insumo_clasif { get; set; }
         public string nombre_insumo { get; set; }
+        public string alias_sku { get; set; }
+        public Nullable<bool> activo { get; set; }
     }
 }

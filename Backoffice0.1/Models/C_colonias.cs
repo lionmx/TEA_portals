@@ -14,18 +14,17 @@ namespace Backoffice0._1.Models
     
     public partial class C_colonias
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_colonias()
-        {
-            this.C_direcciones = new HashSet<C_direcciones>();
-        }
-    
-        public string id_colonia { get; set; }
+        public int id_colonia { get; set; }
+        public Nullable<int> cve_colonia { get; set; }
         public string colonia { get; set; }
-        public Nullable<int> id_codigopostal { get; set; }
+        public Nullable<int> id_codigo_postal { get; set; }
+        public Nullable<int> d_codigo { get; set; }
+        public Nullable<int> id_asenta_cpcons { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<System.DateTime> fecha_alta { get; set; }
+        public Nullable<System.DateTime> usuario_alta { get; set; }
+        public Nullable<decimal> costo_envio { get; set; }
     
         public virtual C_codigos_postales C_codigos_postales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_direcciones> C_direcciones { get; set; }
     }
 }

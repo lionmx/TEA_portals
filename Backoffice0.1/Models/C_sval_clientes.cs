@@ -16,8 +16,8 @@ namespace Backoffice0._1.Models
     {
         public int id_sval_cliente { get; set; }
         public Nullable<int> id_cliente { get; set; }
+        public string representante { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
-        public Nullable<int> id_servicios_contratados { get; set; }
         public Nullable<bool> activo { get; set; }
     }
 }

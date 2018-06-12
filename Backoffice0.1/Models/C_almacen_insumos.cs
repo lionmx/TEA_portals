@@ -15,15 +15,14 @@ namespace Backoffice0._1.Models
     public partial class C_almacen_insumos
     {
         public Nullable<int> id_almacen { get; set; }
-        public Nullable<int> id_insumo { get; set; }
+        public string id_insumo { get; set; }
         public Nullable<int> id_zona_almacenaje { get; set; }
         public string cantidad { get; set; }
         public string min { get; set; }
         public string max { get; set; }
-        public string id_almacen_insumo { get; set; }
+        public int id_almacen_insumo { get; set; }
     
         public virtual C_almacenes C_almacenes { get; set; }
-        public virtual C_insumo_cat C_insumo_cat { get; set; }
         public virtual C_zonas_almacenaje C_zonas_almacenaje { get; set; }
     }
 }

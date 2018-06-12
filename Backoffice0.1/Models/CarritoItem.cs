@@ -14,6 +14,7 @@ namespace Backoffice0._1.Models
         private string _sku;
         private string _producto;
         private float _costo;
+        private bool _cuenta;
        
 
         public CarritoItem()
@@ -21,7 +22,7 @@ namespace Backoffice0._1.Models
 
         }
 
-        public CarritoItem(string producto, float cantidad, string sku, bool promocion, int index, bool prom_pos, int id_promocion)
+        public CarritoItem(string producto, float cantidad, string sku, bool promocion, int index, bool prom_pos, int id_promocion, bool cuenta)
         {
             this._index = index;
             this._producto = producto;
@@ -30,6 +31,7 @@ namespace Backoffice0._1.Models
             this._promocion = promocion;
             this._prom_pos = prom_pos;
             this._id_promocion = id_promocion;
+            this._cuenta = cuenta;
         }
 
         
@@ -39,8 +41,8 @@ namespace Backoffice0._1.Models
         public bool Prom_pos { get => _prom_pos; set => _prom_pos = value; }
         public string Sku { get => _sku; set => _sku = value; }
         public float Costo { get => _costo; set => _costo = value; }
-        public string Producto { get => _producto; set => _producto = value; } 
+        public string Producto { get => _producto; set => _producto = value; }
+        public bool Cuenta { get => _cuenta; set => _cuenta = value; }
 
-       
     }
 }
