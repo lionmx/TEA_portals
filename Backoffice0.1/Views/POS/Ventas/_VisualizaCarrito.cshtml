@@ -6,11 +6,11 @@
             {
                 <tr class="even pointer">
                     <td class="a-center ">
-                        <input type="checkbox" class="flat" name="table_records">
+                        <input onclick="ProductoCuenta(@item.Index)" type="checkbox" id="@item.Index" value="@item.Costo" checked class="flat" name="apagar">
                     </td>
                     <td class=" ">1</td>
-                    <td class=" ">@item.Cantidad</td>
-                    <td class=" " name="sumar" value="1">@item.Cantidad </td>
+                    <td class=" ">@item.Producto</td>
+                    <td class=" " name="precio" value="1">@item.Costo </td>
                 </tr>
 
             }

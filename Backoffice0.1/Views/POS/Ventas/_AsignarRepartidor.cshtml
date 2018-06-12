@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_empleados>
+@using System.Web.Mvc.Html;
+
+@foreach (var item in Model)
+{
+    <label id="idempleado">@item.id_empleado</label>
+    <h3>@item.nombres @item.apellido_paterno @item.apellido_materno</h3>
+
+    <button type="button" class="btn btn-primary" onclick="AsignarRepartidor(@item.id_empleado);">Asignar</button>
+}
+
+

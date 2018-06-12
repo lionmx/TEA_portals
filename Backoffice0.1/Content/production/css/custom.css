@@ -1175,7 +1175,7 @@ table.display {
   width: 100%;
 }
 table.display thead th {
-  padding: 8px 18px 8px 10px;
+  padding: 1px 18px 8px 10px;
   border-bottom: 1px solid black;
   font-weight: bold;
   cursor: pointer;

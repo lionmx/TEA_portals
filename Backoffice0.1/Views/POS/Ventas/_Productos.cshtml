@@ -1,16 +1,17 @@
-﻿@model IEnumerable<Backoffice0._1.Models.C_productos_cat>
+﻿@model IEnumerable<Backoffice0._1.Models.Productos>
 @using System.Web.Mvc.Html;
 
 @foreach (var item in Model)
 {
-    <a onclick="Addcarrito(1)">
+    <a onclick="Addcarrito('@item.c_productos_cat.nombre',@item.c_productos_precios.precio_publico, '@item.c_productos_sucursal.sku_producto',false,false,0)">
         <div class="col-md-55">
             <div class="thumbnail">
                 <div class="image view view-first">
                     <img style="width: 100%; display: block;" src="/Content/production/images/4.jpg" alt="image" />
                 </div>
-                <div class="caption">
-                    <p><strong>@Html.DisplayFor(modelItem => item.nombre)</strong>
+                <div>
+                    <label><strong>@Html.DisplayFor(modelItem => item.c_productos_cat.nombre)</strong></label>
+                    <!-- <label><strong>@Html.DisplayFor(modelItem => item.c_productos_precios.precio_publico)</strong></label> -->
                 </div>
             </div>
         </div>
