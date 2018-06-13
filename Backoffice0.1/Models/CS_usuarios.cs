@@ -36,5 +36,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
         public virtual CS_roles CS_roles { get; set; }
+
+        public virtual C_servicios C_Servicios { get; set; }
     }
 }

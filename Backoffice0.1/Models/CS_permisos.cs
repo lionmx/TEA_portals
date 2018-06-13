@@ -25,5 +25,7 @@ namespace Backoffice0._1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
+
+        public bool ACTIVO { get; set; }
     }
 }

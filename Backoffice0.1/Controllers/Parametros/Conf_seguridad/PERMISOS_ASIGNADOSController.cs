@@ -28,7 +28,7 @@ namespace Backoffice0._1.Controllers
 
             foreach (var i in id)
             {
-                user = i.ID_USUARIO;
+                user = i.ID_USUARIO.ToString();
             }
             for (int i = 00; i <= 8; i++)
             {

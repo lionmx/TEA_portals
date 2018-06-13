@@ -22,7 +22,7 @@ namespace Backoffice0._1.Controllers
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
-            string loggedId = Session["LoggedId"].ToString();
+            int loggedId = Convert.ToInt32(Session["LoggedId"]);
             var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
 
             if (permisosServicioModulo != null)

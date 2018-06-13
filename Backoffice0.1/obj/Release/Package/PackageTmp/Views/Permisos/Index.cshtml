@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Backoffice0._1.Models.CS_permisos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+<h2>Configuracion</h2>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .MakeWide {
+        font-size: xx-small;
+    }
+</style>
+<header id="header">
+    <div class="w3-bar w3-dark-grey">
+        <nav id="nav">
+            @Html.ActionLink("Modulos", "Index", "MODULOS", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Perfiles", "Index", "PERFILES", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Permisos", "Index", "PERMISOS", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Roles", "Index", "ROLES", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Usuarios", "Index", "USUARIOS", null, new { @class = "w3-bar-item w3-button" })
+            @Html.ActionLink("Configuracion", "Configuracion", "Configuracion", null, new { @class = "w3-bar-item w3-button" })
+        </nav>
+    </div>
+</header>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label class="MakeWide">
+                @Html.DisplayNameFor(model => model.DESCRIPCION)</label>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+
+        <td>
+            <label class="MakeWide">
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </label>
+        </td>
+        <td>
+            <label class="MakeWide">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_PERMISO }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_PERMISO }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_PERMISO })
+            </label>
+        </td>
+    </tr>
+    }
+
+</table>

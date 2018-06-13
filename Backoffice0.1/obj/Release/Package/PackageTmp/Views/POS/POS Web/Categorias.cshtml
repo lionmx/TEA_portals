@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <!--  <div class="title_left">
+            <h3> Punto de venta <small> QuesiPizzas</small> </h3>
+          </div>-->
+        <div class="title_right">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h1>
+                        ¡Bienvenido!
+                        <div class="clearfix"></div>
+                        </h1>
+                </div>
+                <div class="x_content" style="margin-bottom:-30px;">
+                    <div class="row">
+                        <h3>Realiza tu pedido ahora</h3>
+                        <!--    <p>Media gallery design emelents</p>-->
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                   <a href="@Url.Action("Index", "POS_PRODUCTOS")"> <img style="width: 100%; display: block;" src="https://www.cocinavital.mx/wp-content/uploads/2017/08/sopa-mexicana-de-granos-de-elote-y-tortilla-video.jpg" alt="image" />
+                                </div>
+                                <div class="caption">
+                                    <center> <p><h2>ENTRADAS</h2></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                    <a href="@Url.Action("Index", "POS_PRODUCTOS")"><img style="width: 100%; display: block;" src="http://www.vanguardia.com/sites/default/files/imagecache/Noticia_600x400/foto_grandes_400x300_noticia/2015/09/21/de_entradas_para__antes_de_las_comidas_recetas_0.jpg" alt="image" /></a>
+                                </div>
+                                <div class="caption">
+                                    <p><h2>PLATILLO PRINCIPAL</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                    <a href="@Url.Action("Index", "POS_PRODUCTOS")"> <img style="width: 100%; display: block;" src="http://www.supermercadoslatorre.com/wp-content/uploads/2017/08/Recetas-de-ensaladas-saludables-522x261.png" alt="image" /></a>
+                                </div>
+                                <div class="caption">
+                                    <p><h2><center>ENSALADAS</center></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                    <a href="@Url.Action("Index", "POS_PRODUCTOS")"> <img style="width: 100%; display: block;" src="http://burgersdc.com/i/categories/cat_1.jpg" alt="image" /></a>
+                                </div>
+                                <div class="caption">
+                                    <p><strong><h2><center>COMBOS</h2></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                    <a href="@Url.Action("Index", "POS_PRODUCTOS")"> <img style="width: 100%; display: block;" src="http://www.codigosanluis.com/wp-content/uploads/2017/11/bebidas-alcoholicas.jpg.imgo_.jpg" alt="image" /></a>
+                                </div>
+                                <div class="caption">
+                                    <p><strong><h2><center>BEBIDAS</h2></strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <div class="">
+                                <div class="image view view-first">
+                                    <a href="@Url.Action("Index", "POS_PRODUCTOS")"> <img style="width: 100%; display: block;" src="http://www.vanguardia.com/sites/default/files/imagecache/Noticia_600x400/foto_grandes_400x300_noticia/2018/02/05/web_postres_big_ce.jpg" alt="image" /></a> 
+                                </div>
+                                <div class="caption">
+                                    <p><h2><center>POSTRES</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <button class="btn btn-success btn-lg flotante right" data-toggle="modal" data-target=".pedido_resumen" >VER PEDIDO</button>
+                            <button class="btn btn-success btn-lg flotante left"  data-toggle="modal" data-target=".ingresa_nombre">INICIAR PEDIDO </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- /page content -->
+</div>
+

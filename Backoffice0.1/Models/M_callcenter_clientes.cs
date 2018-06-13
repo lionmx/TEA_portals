@@ -26,5 +26,7 @@ namespace Backoffice0._1.Models
         public string app_pwd { get; set; }
         public string app_gcm { get; set; }
         public string ultima_compra { get; set; }
+
+        public List<M_callcenter_clientes> callcenterClientesList { get; set; }
     }
 }

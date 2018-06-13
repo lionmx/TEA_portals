@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8f415ed0ce224373a51b84b7f5b774a1" Name="Diagram1">
+      <Diagram DiagramId="a387ac8f31b04e51a2fcf028cdfe2bb1" Name="Diagram1" ZoomLevel="68">
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_almacen_insumos" Width="1.5" PointX="12" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_almacenes" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_bo_almacen" Width="1.5" PointX="14.75" PointY="4.375" IsExpanded="true" />
@@ -139,9 +139,9 @@
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.M_callcenter_clientes" Width="1.5" PointX="34.75" PointY="33.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.M_callcenter_clientes_adicionales" Width="1.5" PointX="34.75" PointY="38.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.P_Usuarios" Width="1.5" PointX="0.75" PointY="39.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.sysdiagram" Width="1.5" PointX="35.75" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.UserLevelPermission" Width="1.5" PointX="35.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.UserLevel" Width="1.5" PointX="35.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.sysdiagrams" Width="1.5" PointX="35.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.UserLevelPermissions" Width="1.5" PointX="35.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.UserLevels" Width="1.5" PointX="35.75" PointY="16.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_catalogo_consecutivos" Width="1.5" PointX="15.75" PointY="39.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_catalogo_sn" Width="1.5" PointX="35.75" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_catalogo_tamanos" Width="1.5" PointX="17.75" PointY="39.375" IsExpanded="true" />
@@ -180,8 +180,6 @@
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.C_sval_tipo_servicios" Width="1.5" PointX="29.75" PointY="42.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.P_encuesta_1" Width="1.5" PointX="38.75" PointY="34.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.P_opciones" Width="1.5" PointX="31.75" PointY="42.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.Acta_v1" Width="1.5" PointX="33.75" PointY="42.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_CORPORATIVA_DEVModel.V_empresas_sucursales" Width="1.5" PointX="38.75" PointY="38.375" IsExpanded="true" />
         <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_almacenes" ManuallyRouted="false" />
         <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_almacen_insumos_C_Zonas_almacenaje" ManuallyRouted="false" />
         <AssociationConnector Association="DB_CORPORATIVA_DEVModel.FK_C_bo_calculo_C_bo_g" ManuallyRouted="false" />

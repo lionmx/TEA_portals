@@ -1,0 +1,91 @@
+﻿
+@model Backoffice0._1.Models.M_callcenter_clientes
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CALLCENTER_CLIENTES</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.especificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.especificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.colonia_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colonia_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.referencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adicionales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adicionales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.app_ubicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.app_ubicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.app_pwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.app_pwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.app_gcm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.app_gcm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ultima_compra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ultima_compra)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
