@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos>
+@using System.Web.Mvc.Html;
+<h4 class="modal-title" id="myModalLabel">Pedidos Recibidos</h4>
+<ul id="menu1" class="list-unstyled msg_list " role="menu">
+    @foreach (var item in Model.Where(x => x.id_tracking_status == ViewBag.status))
+    {
+        <li>
+            <div class="col-md-8 col-sm-8">
+                <span>#PEDIDO @item.id_pedido</span><br />
+                @if (@item.id_cliente.HasValue)
+                {
+                    <span> CLIENTE: @item.C_clientes.nombre</span><br />
+                }
+                else
+                {
+                    <span> CLIENTE:MOSTRADOR</span><br />
+                }
+                <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm")</span>
+            </div>
+            <div>
+                @if (ViewBag.status == 1)
+                {
+                    <a class="btn btn-success btn-xs" onclick="CambiarStatus(2,@item.id_pedido)"> Enviar a cocina</a><br />
+                }
+                @if (ViewBag.status == 3)
+                {
+                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".asigna_repartidor"> Asignar repartidor</a><br />
+                }
+                @if (ViewBag.status == 4)
+                {
+                    <a class="btn btn-success btn-xs" onclick="CambiarStatus(5,@item.id_pedido)">> Entregado </a><br />
+                }
+                <a> Ver detalle</a>
+                @if (@item.id_marca.HasValue)
+                {
+                    <a> @item.C_marcas.nombre_marca</a>
+                }
+            </div>
+        </li>
+    }
+</ul>

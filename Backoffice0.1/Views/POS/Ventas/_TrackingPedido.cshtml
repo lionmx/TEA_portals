@@ -3,81 +3,57 @@
 
 <ul class="nav navbar-nav navbar-right">
     <li role="presentation" class="dropdown">
-        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+        <a href="javascript:;" class=" info-number" onclick="ConsultaTracking1(1)"  data-toggle="modal" data-target=".tracking1" aria-expanded="false">
             <i class="fa fa-exclamation-triangle fa-2x"></i>
             <span class="badge bg-green" style="color:white;"> @Model.Where(x => x.id_tracking_status == 1).Count()</span>
-
         </a>
-        <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-            @foreach (var item in Model.Where(x => x.id_tracking_status == 1))
-            {
-                <li>
-                    <div class="col-md-8 col-sm-8">
-                        <span>#PEDIDO @item.id_pedido</span><br />
-                        @if (@item.id_cliente.HasValue)
-                        {
-                            <span> CLIENTE: @item.C_clientes.nombre</span><br />
-                        }
-                        else
-                        {
-                            <span> CLIENTE:MOSTRADOR</span><br />
-                        }
-                        <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm")</span>
-                    </div>
-                    <div>
-                        <a class="btn btn-success btn-xs" onclick="CambiarStatus(2,@item.id_pedido)"> Enviar a cocina</a><br />
-                        <a> Ver detalle</a>
-                        @if (@item.id_marca.HasValue)
-                        {
-                            <a> @item.C_marcas.nombre_marca</a>
-                        }
-                    </div>
-                </li>
-            }
-        </ul>
+        
     </li>
     <li role="presentation" class="dropdown">
-        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+        <a href="javascript:;" class="dropdown-toggle info-number" onclick="ConsultaTracking1(2)"  data-toggle="modal" data-target=".tracking1" aria-expanded="false">
             <i class="fa fa-cutlery fa-2x"></i>
             <span class="badge bg-red" style="color:white;">@Model.Where(x => x.id_tracking_status == 2).Count()</span>
         </a>
-        <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-            @foreach (var item in Model.Where(x => x.id_tracking_status == 2))
-            {
+        <form>
+            <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
+                @foreach (var item in Model.Where(x => x.id_tracking_status == 2))
+                {
+                    <li>
+                        <div class="col-md-8 col-sm-8">
+                            <span>#PEDIDO @item.id_pedido</span><br />
+                            @if (@item.id_cliente.HasValue)
+                            {
+                                <span> CLIENTE: @item.C_clientes.nombre</span><br />
+                            }
+                            else
+                            {
+                                <span> CLIENTE:MOSTRADOR</span><br />
+                            }
+                            <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm")</span>
+
+                        </div>
+                        <div>
+                            <a> Ver detalle</a>
+                            @if (@item.id_marca.HasValue)
+                            {
+                                <a> @item.C_marcas.nombre_marca</a>
+                            }
+                        </div>
+                    </li>
+                }
                 <li>
-                    <div class="col-md-8 col-sm-8">
-                        <span>#PEDIDO @item.id_pedido</span><br />
-                        @if (@item.id_cliente.HasValue)
-                        {
-                            <span> CLIENTE: @item.C_clientes.nombre</span><br />
-                        }
-                        else
-                        {
-                            <span> CLIENTE:MOSTRADOR</span><br />
-                        }
-                        <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm")</span>
-                    </div>
-                    <div>
-                        <a> Ver detalle</a>
-                        @if (@item.id_marca.HasValue)
-                        {
-                            <a> @item.C_marcas.nombre_marca</a>
-                        }
+                    <div class="text-center">
+                        <a>
+                            <strong>Ver todos los pedidos</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
                 </li>
-            }
-            <li>
-                <div class="text-center">
-                    <a>
-                        <strong>Ver todos los pedidos</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-            </li>
-        </ul>
+            </ul>
+        </form>
     </li>
     <li role="presentation" class="dropdown">
-        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+        <a href="javascript:;" class="dropdown-toggle info-number"onclick="ConsultaTracking1(3)"  data-toggle="modal" data-target=".tracking1" aria-expanded="false">
             <i class="fa fa-exclamation-triangle fa-2x"></i>
             <span class="badge bg-green" style="color:white;"> @Model.Where(x => x.id_tracking_status == 3).Count()</span>
         </a>
@@ -118,7 +94,7 @@
         </ul>
     </li>
     <li role="presentation" class="dropdown">
-        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+        <a href="javascript:;" class="dropdown-toggle info-number" onclick="ConsultaTracking1(4)"  data-toggle="modal" data-target=".tracking1" aria-expanded="false">
             <i class="fa fa-truck fa-2x"></i>
             <span class="badge bg-red" style="color:white;">@Model.Where(x => x.id_tracking_status == 4).Count()</span>
         </a>

@@ -77,20 +77,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
-                                            <select class="select2_single form-control" tabindex="-1">
-                                                <option value="AK">C. Postal</option>
-                                                <option value="HI">27000</option>
-                                                <option value="CA">35158</option>
-                                            </select>
+                                           CP @Html.DropDownList("CP", null, String.Empty, new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-                                            <select class="select2_single form-control" style="padding:0px;" tabindex="-1">
-                                                <option style="width:500px;" value="AK">Colonia</option>
-                                                <option style="width:500px;" value="HI">Colonia 2</option>
-                                                <option style="width:500px;" value="CA">Colonia 3</option>
-                                            </select>
+                                        <div class="col-md-8 col-sm-8 col-xs-8" style="padding:0px;">
+                                          Colonia  @Html.DropDownList("Colonias", null, String.Empty, new { @class = "form-control" })
                                         </div>
                                     </div>
                                     <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
@@ -246,7 +238,8 @@
         <div class="col-md-4 col-sm-4" id="Carrito">
             <div class="x_panel">
                 <div class="nav_menu" style="background:white;color:black;">
-                    @{Html.RenderAction("ConsultaTrackingPedidos", "POS");}
+                    <div id="tracking"></div>
+                  
                     <h2>Cuenta a pagar <small></small></h2>
                     <div class="clearfix"></div>
                 </div>
@@ -403,16 +396,26 @@
 <!--Modal Asigna repartidor-->
 
 <script>
-        function codigopostal() {
-            var hola = 0;
+        function ConsultaTracking() {
             $.ajax({
-                url: "../POS/BuscarCP",
+                url: "../POS/ConsultaTrackingPedidos",
                 data: {},
                 success: function (result) {
-                    $("#codigopostal").html(result);
+                    $("#tracking").html(result);
                 }
             });
-        }
+           
+    }
+    function ConsultaTracking1(status) {
+       
+        $.ajax({
+            url: "../POS/ConsultaTrackingPedidos1",
+            data: {status:status},
+            success: function (result) {
+                $("#tracking1").html(result);
+            }
+        });
+    }
 
         $(window).on("load", function () {
             if (@ViewBag.tipo_usuario == 1) {
@@ -426,6 +429,7 @@
                 document.getElementById("Carrito").className = "col-md-3 col-sm-3";
             }
             sumar();
+            setInterval(ConsultaTracking, 3000);
            
         });
 
@@ -654,7 +658,6 @@
             c_ventas_g = {};
             c_telefonos = {};
             c_direcciones = {};
-            c_direcciones.calle = "";
             c_eventos = {};
             c_eventos.descripcion_evento = $("#esp_evento").val();
             c_clientes = {};
@@ -733,12 +736,8 @@
                 c_eventos.fecha = $("#esp_fecha").val();
                 c_eventos.hora = $("#esp_hora").val();
                 c_eventos.contratante = $("#esp_contratante").val();
-                
-
             }
-
-            
-            
+        
             $.ajax({
                 type: "POST",
                 url: "../PEDIDOS/Create2",
@@ -751,7 +750,6 @@
                     c_eventos: c_eventos,
                     c_ventas_pagos_tipo: c_ventas_pagos_tipo,
                     c_ventas_pagos_montos: c_ventas_pagos_montos,
-                    
                 },
                 success: function (result) {
                     $("#paquetes").html(result);

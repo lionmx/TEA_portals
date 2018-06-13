@@ -76,7 +76,7 @@ namespace Backoffice0._1.Controllers.POS
                     db.C_direcciones.Add(c_direcciones);
                     db.SaveChanges();
 
-                    /*C_clientes_direccion_old c_clientes_direccion = new C_clientes_direccion_old();
+                   /* C_clientes_direccion_old c_clientes_direccion = new C_clientes_direccion_old();
                     c_clientes_direccion.id_cliente = c_clientes.id_cliente;
                     c_clientes_direccion.id_direccion = c_direcciones.id_direccion;
                     db.C_clientes_direccion_old.Add(c_clientes_direccion);

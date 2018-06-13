@@ -1195,6 +1195,7 @@
     <Content Include="Views\CLIENTES\Index.cshtml" />
     <Content Include="Views\POS\Ventas\Direcciones\_CP.cshtml" />
     <Content Include="Views\POS\Ventas\_AsignarRepartidor.cshtml" />
+    <Content Include="Views\POS\Ventas\_TrackingPedido1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -31,8 +31,11 @@ namespace Backoffice0._1.Controllers
         CarritoItem promocion_remover;
         public ActionResult Index()
         {
-           // var collection = db.C_cp_mexico.ToList();
-           // ViewBag.Titulos = new SelectList(collection, "d_codigo", "d_codigo");
+            var collection = db.C_cp_mexico.Select(m => m.d_codigo).Distinct().ToList();
+            ViewBag.CP = new SelectList(collection, "", "");
+
+            var collection2 = db.C_cp_mexico.Select(m => m.d_asenta).Distinct().ToList();
+            ViewBag.Colonias = new SelectList(collection2, "", "");
 
             /*#region Viewbags 
 
@@ -431,7 +434,15 @@ namespace Backoffice0._1.Controllers
 
             return PartialView("Ventas/_TrackingPedido", pedidos);
         }
+        public PartialViewResult ConsultaTrackingPedidos1(int status)
+        {
+            ViewBag.status = status;
+            var pedidos = from p in db.C_pedidos
+                          where p.codigo_sucursal == "SUC001"
+                          select p;
 
+            return PartialView("Ventas/_TrackingPedido1", pedidos);
+        }
         public PartialViewResult BuscarRepartidor(string gaffette)
         {
             var repartidores = from e in db.C_empleados
