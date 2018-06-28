@@ -15,7 +15,6 @@ namespace Backoffice0._1.Models
     public partial class C_producto_presentacion
     {
         public int id_producto_presentacion { get; set; }
-        public string id_producto { get; set; }
         public string sku_producto { get; set; }
         public Nullable<int> id_presentacion { get; set; }
     

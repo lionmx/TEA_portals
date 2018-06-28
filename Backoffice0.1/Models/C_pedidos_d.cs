@@ -17,9 +17,11 @@ namespace Backoffice0._1.Models
         public int id_pedido_d { get; set; }
         public Nullable<int> id_pedido { get; set; }
         public string sku_producto { get; set; }
-        public string cantidad { get; set; }
-        public string pedido_d_status { get; set; }
+        public Nullable<decimal> cantidad { get; set; }
+        public Nullable<bool> pedido_d_status { get; set; }
+        public Nullable<decimal> costo { get; set; }
     
         public virtual C_pedidos C_pedidos { get; set; }
+        public virtual C_productos_cat C_productos_cat { get; set; }
     }
 }

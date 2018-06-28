@@ -30,5 +30,10 @@ namespace Backoffice0._1.Models
         public string id_asenta_cpcons { get; set; }
         public string d_zona { get; set; }
         public string c_cve_ciudad { get; set; }
+        public string version { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<decimal> costo_envio { get; set; }
+        public string latitud { get; set; }
+        public string longitud { get; set; }
     }
 }

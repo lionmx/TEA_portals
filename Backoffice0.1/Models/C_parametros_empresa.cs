@@ -21,5 +21,7 @@ namespace Backoffice0._1.Models
         public string valor_string { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<bool> activo { get; set; }
+    
+        public virtual C_empresas C_empresas { get; set; }
     }
 }

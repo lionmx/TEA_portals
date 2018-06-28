@@ -2,10 +2,14 @@
 @using System.Web.Mvc.Html;
 
 
-@foreach (var item in Model)
-   
+@if (Model != null)
 {
+
+    foreach (var item in Model)
+
+    {
 
 <button type="button" onclick="ConsultaSubcategorias(@Html.DisplayFor(modelItem => item.id_producto_tipo))" class="btn btn-default">@Html.DisplayFor(modelItem => item.nombre)</button>
 
+    }
 }

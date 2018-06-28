@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos>
+@using System.Web.Mvc.Html;
+
+
+<h4 class="modal-title" id="m_tracking_tittle">Pedidos Especiales</h4>
+
+
+@foreach (var item in Model)
+{
+
+    <div class="col-md-12 col-sm-12" style="margin-bottom:5px; margin-top:5px; background:#f3f3f3;">
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            @if (@item.id_marca.HasValue)
+            {
+                <a> @item.C_marcas.nombre_marca</a>
+                <img src="@item.C_marcas.logo" style="width:50px;" />
+            }
+        </div>
+        <div class="col-md-6 col-sm-6">
+
+            <span><b>#PEDIDO @item.id_pedido</b></span> <br />
+            @if (@item.id_cliente.HasValue)
+            {
+                <span> CLIENTE : @item.C_clientes.nombre</span><br />
+            }
+            else
+            {
+                <span> CLIENTE : MOSTRADOR</span><br />
+            }
+            <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm:ss") </span>
+            <br />
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <a> Ver <i class="fa fa-search"></i></a><br />
+            @if (item.id_tipo_entrega == 1)
+            {
+                <span>A domicilio</span>
+            }
+            else
+            {<span> En sucursal</span>}
+            <a onclick="ImprimirTicket(@item.id_pedido)"> Imp. ticket <i class="fa fa-print"></i></a><br />
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <a class="btn btn-primary btn-sm" onclick="CambiarStatus(1,2,@item.id_pedido)"> Enviar a cocina</a><br />
+            <a class="btn btn-success btn-sm" onclick="CerrarPedido()"> Cerrar Pedido</a><br />
+            <a class="btn btn-success btn-sm" onclick="CerrarPedido()"> Cerrar Pedido</a><br />
+        </div>
+    </div>
+    <br /><br />
+}
+
+

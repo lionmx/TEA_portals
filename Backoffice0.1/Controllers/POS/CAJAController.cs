@@ -43,6 +43,7 @@ namespace Backoffice0._1.Controllers
             ViewData["userFlag"] = true; 
             ViewBag.Usuarios = db.CS_usuarios.ToList();
             Session["EstadoCaja"] = "Caja abierta";
+            
             cambioDeTurno();
             return View("/Views/POS/Ventas/Index.cshtml");
             //return Json("Caja Abierta!", JsonRequestBehavior.AllowGet);
@@ -60,7 +61,7 @@ namespace Backoffice0._1.Controllers
                 if (n.id_pago_tipo != id)
                 {
                     //to do: mejorar la consulta con un join y añadir un solo objeto a la lista
-                    var ventas = db.Database.SqlQuery<Backoffice0._1.Models.SumaTotal>("SELECT SUM(total) as total FROM C_VENTAS_PAGOS WHERE FECHA >=  '2018-06-07' AND ID_PAGO_TIPO=" + n.id_pago_tipo + "");
+                    var ventas = db.Database.SqlQuery<Backoffice0._1.Models.SumaTotal>("SELECT SUM(total) as total FROM C_VENTAS_PAGOS WHERE FECHA >=  '2018-06-07'  GROUP BY ID_PAGO_TIPO");
                     objVentas.Add(ventas.FirstOrDefault());
                     var nombreTipoPago = db.Database.SqlQuery<Backoffice0._1.Models.SumaTotal>("SELECT nombre_pago_tipo as nombreTipoPago FROM C_PAGO_TIPO WHERE id_pago_tipo =" + n.id_pago_tipo + "");
                     objVentas.Add(nombreTipoPago.FirstOrDefault());

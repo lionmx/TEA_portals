@@ -14,9 +14,18 @@ namespace Backoffice0._1.Models
     
     public partial class C_empresas_tipo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_empresas_tipo()
+        {
+            this.C_empresas = new HashSet<C_empresas>();
+        }
+    
         public int id_tipo_empresa { get; set; }
         public string nombre_tipo { get; set; }
         public string descripcion { get; set; }
         public Nullable<bool> activo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empresas> C_empresas { get; set; }
     }
 }

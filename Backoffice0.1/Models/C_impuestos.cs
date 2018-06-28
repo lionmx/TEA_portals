@@ -14,8 +14,17 @@ namespace Backoffice0._1.Models
     
     public partial class C_impuestos
     {
-        public string id_impuesto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_impuestos()
+        {
+            this.C_impuesto_producto = new HashSet<C_impuesto_producto>();
+        }
+    
+        public int id_impuesto { get; set; }
         public string impuesto { get; set; }
         public string valor { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }
     }
 }

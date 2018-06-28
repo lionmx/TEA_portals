@@ -17,7 +17,7 @@ namespace Backoffice0._1.Controllers
        
         public ActionResult Index()
         {
-            #region Viewbags 
+            /*#region Viewbags 
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
@@ -28,7 +28,7 @@ namespace Backoffice0._1.Controllers
             {
                 foreach (var n in permisosServicioModulo)
                 {
-                    permisosLista.Add(n.id_servicio);
+                    permisosLista.Add(n.);
                     permisosLista.Add(n.id_modulo);
                     permisosLista.Add(Convert.ToInt32(n.id_permiso));
                 }
@@ -41,7 +41,7 @@ namespace Backoffice0._1.Controllers
                 ViewBag.idServicio = perfil.ID_SERVICIO;
             }
             ViewBag.permisos = permisosLista;
-            #endregion
+            #endregion*/
             return View();
         }
     }

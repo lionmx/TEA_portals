@@ -15,14 +15,16 @@ namespace Backoffice0._1.Models
     public partial class C_insumo_sucursal
     {
         public int id_insumo_sucursal { get; set; }
-        public string id_insumo { get; set; }
-        public Nullable<int> id_sucursal { get; set; }
-        public Nullable<int> cantidad { get; set; }
-        public string C__proteccion { get; set; }
-        public string min { get; set; }
-        public string max { get; set; }
+        public string sku_insumo { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<decimal> saldo { get; set; }
+        public Nullable<decimal> porc_proteccion { get; set; }
+        public Nullable<decimal> min { get; set; }
+        public Nullable<decimal> max { get; set; }
+        public Nullable<System.DateTime> fecha_ultimo_movimiento { get; set; }
         public int id_zona_almacenaje { get; set; }
     
-        public virtual C_zona_almacen_suc C_zona_almacen_suc { get; set; }
+        public virtual C_insumo_cat C_insumo_cat { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

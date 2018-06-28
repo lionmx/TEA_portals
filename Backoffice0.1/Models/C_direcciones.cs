@@ -15,17 +15,15 @@ namespace Backoffice0._1.Models
     public partial class C_direcciones
     {
         public int id_direccion { get; set; }
-        public string cp { get; set; }
         public string calle { get; set; }
-        public string numero_int { get; set; }
         public string numero_ext { get; set; }
         public Nullable<int> id_colonia { get; set; }
         public string entre_calle1 { get; set; }
         public string entre_calle2 { get; set; }
         public string referencia { get; set; }
         public Nullable<int> d_codigo { get; set; }
-        public Nullable<int> id_asenta_cpcons { get; set; }
         public Nullable<int> id_ciudad { get; set; }
         public Nullable<int> id_estado { get; set; }
+        public Nullable<int> id_colonia_mx { get; set; }
     }
 }

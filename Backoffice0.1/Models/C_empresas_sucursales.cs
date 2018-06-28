@@ -16,9 +16,10 @@ namespace Backoffice0._1.Models
     {
         public int id_empresa_sucursal { get; set; }
         public Nullable<int> id_empresa { get; set; }
-        public string codigo_empresa { get; set; }
-        public Nullable<int> id_sucursal { get; set; }
         public string codigo_sucursal { get; set; }
         public Nullable<bool> activo { get; set; }
+    
+        public virtual C_empresas C_empresas { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

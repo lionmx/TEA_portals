@@ -16,8 +16,9 @@ namespace Backoffice0._1.Models
     {
         public string caja { get; set; }
         public string status { get; set; }
-        public Nullable<int> id_sucursal { get; set; }
+        public string codigo_sucursal { get; set; }
         public int id_caja { get; set; }
-        public  C_sucursales C_sucursales { get; set; }
+    
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

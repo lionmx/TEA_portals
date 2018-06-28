@@ -14,6 +14,15 @@ namespace Backoffice0._1.Models
     
     public partial class C_empresas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_empresas()
+        {
+            this.C_empresas_servicios_contratados = new HashSet<C_empresas_servicios_contratados>();
+            this.C_empresas_sucursales = new HashSet<C_empresas_sucursales>();
+            this.C_parametros_empresa = new HashSet<C_parametros_empresa>();
+            this.C_sociedades_empresas = new HashSet<C_sociedades_empresas>();
+        }
+    
         public int id_empresa { get; set; }
         public string codigo_empresa { get; set; }
         public Nullable<int> id_tipo_empresa { get; set; }
@@ -27,5 +36,15 @@ namespace Backoffice0._1.Models
         public string representante { get; set; }
         public string alias { get; set; }
         public bool activo { get; set; }
+    
+        public virtual C_empresas_tipo C_empresas_tipo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empresas_servicios_contratados> C_empresas_servicios_contratados { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empresas_sucursales> C_empresas_sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_parametros_empresa> C_parametros_empresa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sociedades_empresas> C_sociedades_empresas { get; set; }
     }
 }

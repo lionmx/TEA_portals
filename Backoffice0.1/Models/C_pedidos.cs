@@ -17,9 +17,12 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_pedidos()
         {
+
+            this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
             this.C_pedidos_d = new HashSet<C_pedidos_d>();
+            this.C_pedidos_empleados = new HashSet<C_pedidos_empleados>();
         }
-    
+        public TimeSpan tiempo_pedido { get; set; }
         public int id_pedido { get; set; }
         public Nullable<int> id_cliente { get; set; }
         public Nullable<int> id_marca { get; set; }
@@ -35,14 +38,20 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_evento { get; set; }
         public Nullable<int> id_tipo_entrega { get; set; }
         public Nullable<int> id_bo_g { get; set; }
+        public Nullable<int> id_usuario_corporativo { get; set; }
     
         public virtual C_clientes C_clientes { get; set; }
         public virtual C_eventos C_eventos { get; set; }
-        public virtual C_marcas C_marcas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_grupo_productos_codigos_movs> C_grupo_productos_codigos_movs { get; set; }
+        public virtual C_marcas_g C_marcas_g { get; set; }
         public virtual C_sucursales C_sucursales { get; set; }
         public virtual C_tipo_entrega C_tipo_entrega { get; set; }
+        public virtual C_usuarios_corporativo C_usuarios_corporativo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos_d> C_pedidos_d { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos_empleados> C_pedidos_empleados { get; set; }
         public virtual C_pedidos_tipo C_pedidos_tipo { get; set; }
         public virtual C_tracking_status C_tracking_status { get; set; }
     }

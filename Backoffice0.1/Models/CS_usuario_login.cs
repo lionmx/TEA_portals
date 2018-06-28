@@ -14,6 +14,8 @@ namespace Backoffice0._1.Models
     
     public partial class CS_usuario_login
     {
+        public virtual CS_usuarios CS_usuarios { get; set; }
+
         public int ID_LOGIN { get; set; }
         public Nullable<int> ID_USUARIO { get; set; }
         public string CODIGO_USUARIO { get; set; }
@@ -26,6 +28,5 @@ namespace Backoffice0._1.Models
         public virtual CS_usuario_login CS_usuario_login3 { get; set; }
         public virtual CS_usuario_login CS_usuario_login12 { get; set; }
         public virtual CS_usuario_login CS_usuario_login4 { get; set; }
-        public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }

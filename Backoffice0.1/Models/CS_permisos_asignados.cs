@@ -23,10 +23,6 @@ namespace Backoffice0._1.Models
         public Nullable<bool> ACTIVO { get; set; }
         public Nullable<int> ID_MODULO { get; set; }
     
-        public virtual C_modulos C_modulos { get; set; }
-        public virtual C_servicios_modulos C_servicios_modulos { get; set; }
-        public virtual CS_permisos CS_permisos { get; set; }
-        public virtual CS_roles CS_roles { get; set; }
         public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }

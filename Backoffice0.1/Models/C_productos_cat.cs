@@ -18,10 +18,15 @@ namespace Backoffice0._1.Models
         public C_productos_cat()
         {
             this.C_impuesto_producto = new HashSet<C_impuesto_producto>();
+            this.C_pedidos_d = new HashSet<C_pedidos_d>();
             this.C_producto_presentacion = new HashSet<C_producto_presentacion>();
+            this.C_productos_marca = new HashSet<C_productos_marca>();
+            this.C_productos_sucursal = new HashSet<C_productos_sucursal>();
+            this.C_recetas = new HashSet<C_recetas>();
+            this.C_ventas_d = new HashSet<C_ventas_d>();
         }
     
-        public string id_producto { get; set; }
+        public int id_producto { get; set; }
         public string sku { get; set; }
         public string plu { get; set; }
         public string codigo_barra { get; set; }
@@ -45,6 +50,18 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos_d> C_pedidos_d { get; set; }
+        public virtual C_producto_clasificacion C_producto_clasificacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_producto_presentacion> C_producto_presentacion { get; set; }
+        public virtual C_productos_especialidades C_productos_especialidades { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_productos_marca> C_productos_marca { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_productos_sucursal> C_productos_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_recetas> C_recetas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_ventas_d> C_ventas_d { get; set; }
     }
 }

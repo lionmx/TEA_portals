@@ -17,10 +17,10 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CS_usuarios()
         {
-            this.C_usuarios_sucursales = new HashSet<C_usuarios_sucursales>();
             this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
         }
-    
+        public virtual C_servicios C_Servicios { get; set; }
+
         public int ID_USUARIO { get; set; }
         public string CODIGO_USUARIO { get; set; }
         public string NOMBRE { get; set; }
@@ -32,11 +32,6 @@ namespace Backoffice0._1.Models
         public string PASS_VAL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_usuarios_sucursales> C_usuarios_sucursales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
-        public virtual CS_roles CS_roles { get; set; }
-
-        public virtual C_servicios C_Servicios { get; set; }
     }
 }

@@ -22,9 +22,11 @@ namespace Backoffice0._1.Models
     
         public int id_evento { get; set; }
         public string descripcion_evento { get; set; }
-        public string fecha { get; set; }
-        public string hora { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<System.TimeSpan> hora { get; set; }
         public string contratante { get; set; }
+        public string tel1 { get; set; }
+        public string tel2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos> C_pedidos { get; set; }

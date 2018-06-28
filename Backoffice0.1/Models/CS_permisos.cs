@@ -14,18 +14,8 @@ namespace Backoffice0._1.Models
     
     public partial class CS_permisos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CS_permisos()
-        {
-            this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
-        }
-    
+        public bool ACTIVO { get; set; }
         public string ID_PERMISO { get; set; }
         public string DESCRIPCION { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
-
-        public bool ACTIVO { get; set; }
     }
 }

@@ -14,8 +14,17 @@ namespace Backoffice0._1.Models
     
     public partial class C_grupo_aplica_operacion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_grupo_aplica_operacion()
+        {
+            this.C_grupo_productos_g = new HashSet<C_grupo_productos_g>();
+        }
+    
         public int id_grupo_aplica_operacion { get; set; }
         public string nombre_regla { get; set; }
         public Nullable<bool> activa { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_grupo_productos_g> C_grupo_productos_g { get; set; }
     }
 }

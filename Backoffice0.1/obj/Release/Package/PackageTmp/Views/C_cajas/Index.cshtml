@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.C_sucursales.nombre)
+            @Html.DisplayNameFor(model => model.id_sucursal)
         </th>
         <th></th>
     </tr>
@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.C_sucursales.nombre)
+            @Html.DisplayFor(modelItem => item.id_sucursal)
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.id_caja }) |

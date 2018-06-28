@@ -4,16 +4,30 @@
         {
             foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
             {
-                <tr class="even pointer">
-                    <td class="a-center ">
-                        <input onclick="ProductoCuenta(@item.Index)" type="checkbox" id="@item.Index" value="@item.Costo" checked class="flat" name="apagar">
-                    </td>
-                    <td class=" ">1</td>
-                    <td class=" ">@item.Producto</td>
-                    <td class=" " name="precio" value="1">@item.Costo </td>
-                </tr>
+                if (item.Pagado == false)
+                {
+                    <tr class="even pointer">
+                        <td class="a-center ">
+                            <input  type="checkbox" id="@item.Index" value="@item.Costo" checked class="dc_check" onclick="calculo()"style="display:none;" name="apagar">
+                        </td>
+                        <td class=" ">1</td>
+                        <td class=" ">@item.Producto</td>
+                        <td class=" " name="precio" value="1">@item.Costo </td>
+                    </tr>
+                }
+                if (item.Pagado == true)
+                {
+                    <tr class="even pointer">
+                        <td class="a-center ">
+                         <i class="fa fa-check"></i>   
+                        </td>
+                        <td class=" ">1</td>
+                        <td class=" ">@item.Producto</td>
+                        <td class=" " name="precio" value="1">@item.Costo </td>
+                    </tr>
+                }
 
-            }
+            } 
         }
     </tbody>
 </table>

@@ -14,7 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class C_equipo_sucursal
     {
-        public Nullable<int> id_sucursal { get; set; }
+        public string codigo_sucursal { get; set; }
         public string nombre_equipo { get; set; }
         public string id_tipo_equipo { get; set; }
         public string modelo { get; set; }
@@ -24,5 +24,7 @@ namespace Backoffice0._1.Models
         public string ip_address { get; set; }
         public Nullable<bool> activo { get; set; }
         public int id_equipo_sucursal { get; set; }
+    
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

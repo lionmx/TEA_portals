@@ -22,6 +22,7 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_promocion { get; set; }
         public Nullable<decimal> precio { get; set; }
     
+        public virtual C_productos_cat C_productos_cat { get; set; }
         public virtual C_ventas_g C_ventas_g { get; set; }
     }
 }

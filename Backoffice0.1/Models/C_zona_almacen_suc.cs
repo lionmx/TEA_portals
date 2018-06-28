@@ -14,12 +14,6 @@ namespace Backoffice0._1.Models
     
     public partial class C_zona_almacen_suc
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_zona_almacen_suc()
-        {
-            this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
-        }
-    
         public int id_zona_almacen_suc { get; set; }
         public string nombre { get; set; }
         public string descripcio { get; set; }
@@ -27,8 +21,5 @@ namespace Backoffice0._1.Models
         public string largo { get; set; }
         public string alto { get; set; }
         public string status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
     }
 }

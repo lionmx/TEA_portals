@@ -19,6 +19,7 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_empresa { get; set; }
         public Nullable<int> fecha_registro { get; set; }
     
+        public virtual C_empresas C_empresas { get; set; }
         public virtual C_sociedades C_sociedades { get; set; }
     }
 }

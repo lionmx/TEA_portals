@@ -10,17 +10,30 @@ using Backoffice0._1.Models;
 
 namespace Backoffice0._1.Controllers.POS
 {
+   
     public class PEDIDOSController : Controller
     {
         private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+
+        // variables de la session 
+        string codigo_sucursal;
+        int id_caja = 1;
+        int id_marca = 1;
+        int id_usuario = 1;
+        int tipo_usuario = 0 ;
+        IQueryable<C_marcas_sociedades> marca;
+
+
+        // Variables
+        int id_pedido = 0;
 
         // GET: PEDIDOS
         public ActionResult Index()
         {
             var c_pedidos = db.C_pedidos.Include(c => c.C_clientes).Include(c => c.C_eventos).Include(c => c.C_pedidos_tipo).Include(c => c.C_tracking_status);
             return View(c_pedidos.ToList());
+            
         }
-
         // GET: PEDIDOS/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,108 +48,201 @@ namespace Backoffice0._1.Controllers.POS
             }
             return View(c_pedidos);
         }
-
-
-        public ActionResult Create2(C_pedidos c_pedidos, C_clientes c_clientes, C_direcciones c_direcciones, C_telefonos c_telefonos, C_ventas_g c_ventas_g, C_eventos c_eventos, int[] c_ventas_pagos_tipo, Decimal[] c_ventas_pagos_montos)
+      
+        public ActionResult Create2(C_pedidos c_pedidos, C_clientes c_clientes, C_direcciones_mx c_direcciones, C_telefonos c_telefonos, C_ventas_g c_ventas_g, C_eventos c_eventos, int[] c_ventas_pagos_tipo, Decimal[] c_ventas_pagos_montos, string[] c_ventas_pagos_tarjetas, float saldo)
         {
-            DateTime now = DateTime.Now;
+            codigo_sucursal= (string)Session["codigo_sucursal"];
 
+            id_marca = ConsultarMarca(codigo_sucursal);
+
+            tipo_usuario = (int)Session["LoggedIdRol"];
+            List<CarritoItem> compras = Session["Carrito"] as List<CarritoItem>;
+            DateTime now = DateTime.Now;
+            c_pedidos.id_usuario_corporativo = (int)Session["LoggedId"];
             c_pedidos.fecha_entrega = now;
             c_pedidos.fecha_pedido = now;
-            c_pedidos.codigo_sucursal = "SUC001"; //cambiar
-            c_pedidos.id_marca = 1; //cambiar
-
-            if (c_pedidos.id_pedido_tipo==1) // pedido de mostrador
+            c_pedidos.id_marca = id_marca; 
+            c_pedidos.id_tracking_status = 1;
+            if (Session["id_pedido"] == null)
+            {id_pedido=0;}
+            else
+            { id_pedido = (int)Session["id_pedido"];}
+            if (c_pedidos.id_tipo_entrega == 1)
             {
-                
-            }
-            if (c_pedidos.id_pedido_tipo == 2 || c_pedidos.id_pedido_tipo == 3) // pedido de call center
-            {
-               
-                if(c_pedidos.id_tipo_entrega == 1 || c_pedidos.id_tipo_entrega == 2)
+                if (c_pedidos.id_pedido_tipo == 1)
                 {
-                    c_clientes.ultimacompra = now.ToString();
-                    db.C_clientes.Add(c_clientes);
-                    db.SaveChanges();
-
-                    db.C_telefonos.Add(c_telefonos);
-                    db.SaveChanges();
-
-                    C_clientes_telefono c_clientes_telefono = new C_clientes_telefono();
-                    c_clientes_telefono.id_cliente = c_clientes.id_cliente;
-                    c_clientes_telefono.id_telefono = c_telefonos.id_telefono;
-                    db.C_clientes_telefono.Add(c_clientes_telefono);
-                    db.SaveChanges();
-
-                    c_pedidos.id_cliente = c_clientes.id_cliente;
-                    c_pedidos.id_telefono = c_telefonos.id_telefono;
+                    C_direcciones_mx direccion = db.C_direcciones_mx.FirstOrDefault(m => m.id_direccion == c_pedidos.id_direccion);
+                    c_pedidos.codigo_sucursal=AsignarSucursal( (int)direccion.id_colonia);
                 }
-                if(c_pedidos.id_tipo_entrega == 2)
+                else
                 {
-                    db.C_direcciones.Add(c_direcciones);
-                    db.SaveChanges();
-
-                   /* C_clientes_direccion_old c_clientes_direccion = new C_clientes_direccion_old();
-                    c_clientes_direccion.id_cliente = c_clientes.id_cliente;
-                    c_clientes_direccion.id_direccion = c_direcciones.id_direccion;
-                    db.C_clientes_direccion_old.Add(c_clientes_direccion);
-                    db.SaveChanges();*/
+                    c_pedidos.codigo_sucursal=AsignarSucursal((int)c_direcciones.id_colonia);
                 }
             }
-
-            if (c_pedidos.id_pedido_tipo == 3) // pedido de especial
+            if(tipo_usuario==6 && c_pedidos.id_pedido_tipo==1)
             {
-                db.C_eventos.Add(c_eventos);
+                c_pedidos.codigo_sucursal = codigo_sucursal;
+            }
+            if (id_pedido == 0)
+            {
+                if (c_pedidos.id_pedido_tipo == 2 || c_pedidos.id_pedido_tipo == 3) // pedido de nuevo cliente o especial
+                {
+                    if (c_pedidos.id_tipo_entrega == 1 || c_pedidos.id_tipo_entrega == 2)
+                    {
+                        c_clientes.ultimacompra = now.ToString();
+                        db.C_clientes.Add(c_clientes);
+                        db.SaveChanges();
+                        c_telefonos.status = true;
+                        db.C_telefonos.Add(c_telefonos);
+                        db.SaveChanges();
+
+                        C_clientes_telefono c_clientes_telefono = new C_clientes_telefono();
+                        c_clientes_telefono.id_cliente = c_clientes.id_cliente;
+                        c_clientes_telefono.id_telefono = c_telefonos.id_telefono;
+                        db.C_clientes_telefono.Add(c_clientes_telefono);
+                        db.SaveChanges();
+
+                        c_pedidos.id_cliente = c_clientes.id_cliente;
+                        c_pedidos.id_telefono = c_telefonos.id_telefono;
+                    }
+                    if (c_pedidos.id_tipo_entrega == 1)
+                    {
+                        db.C_direcciones_mx.Add(c_direcciones);
+                        db.SaveChanges();
+                        C_clientes_direccion c_clientes_direccion = new C_clientes_direccion();
+                        c_clientes_direccion.id_cliente = c_clientes.id_cliente;
+                        c_clientes_direccion.id_direccion = c_direcciones.id_direccion;
+                        db.C_clientes_direccion.Add(c_clientes_direccion);
+                        db.SaveChanges();
+                    }
+                }
+                if ( c_pedidos.id_pedido_tipo == 1 || c_pedidos.id_pedido_tipo == 2) // asignacion de pedido tipo real
+                {
+                    if(tipo_usuario == 6)
+                    {
+                        c_pedidos.id_pedido_tipo = 1;
+                    }
+                    else if (tipo_usuario == 28)
+                    {
+                        c_pedidos.id_pedido_tipo = 2;
+                    }
+                }
+                if (c_pedidos.id_pedido_tipo == 3) // pedido de especial
+                {
+                    c_pedidos.id_tracking_status = 1;
+                    db.C_eventos.Add(c_eventos);
+                    db.SaveChanges();
+                    c_pedidos.id_evento = c_eventos.id_evento;
+                }
+                if (c_pedidos.id_cliente == null)
+                {
+                    c_pedidos.id_tipo_entrega = 2;
+                }
+                c_pedidos.id_direccion = c_direcciones.id_direccion;
+                db.C_pedidos.Add(c_pedidos);
                 db.SaveChanges();
+                
+                foreach (var item in compras)
+                {
+                    if (id_pedido == 0)
+                    {
+                        if (item.Sku != "")
+                        {
+                            C_pedidos_d c_pedidos_d = new C_pedidos_d
+                            {
+                                cantidad = 1,//cambiar
+                                sku_producto = item.Sku,
+                                id_pedido = c_pedidos.id_pedido,
+                                pedido_d_status = true,
+                                costo = (Decimal)item.Costo
+                            };
+                            db.C_pedidos_d.Add(c_pedidos_d);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                Session["id_pedido"] = c_pedidos.id_pedido;
+                id_pedido =(int) Session["id_pedido"];
+            }
+             c_ventas_g.id_pedido = id_pedido;
+             c_ventas_g.codigo_sucursal = codigo_sucursal;//cambiar
+             c_ventas_g.id_caja = id_caja;//cambiar
+             c_ventas_g.folio = "folio" + id_pedido;//cambiar
+             c_ventas_g.fecha = now;
+             c_ventas_g.id_usuario = id_usuario;//cambiar
+             c_ventas_g.id_impuesto = null;//cambiar
+             c_ventas_g.id_venta_status = 1;
+             
+             db.C_ventas_g.Add(c_ventas_g);
+             db.SaveChanges();
 
-                c_pedidos.id_evento = c_eventos.id_evento;
-
+             for (int i = 0; i < c_ventas_pagos_montos.Length; i++)
+             {
+                 if (c_ventas_pagos_montos[i] > 0)
+                 {
+                     C_ventas_pagos c_ventas_pagos = new C_ventas_pagos();
+                     c_ventas_pagos.id_venta = c_ventas_g.id_venta_g;
+                     c_ventas_pagos.total = c_ventas_pagos_montos[i];
+                     c_ventas_pagos.fecha = now;
+                     c_ventas_pagos.id_pago_tipo = c_ventas_pagos_tipo[i];
+                    if (c_ventas_pagos_tarjetas[i] != null)
+                    {
+                        c_ventas_pagos.tarjeta = c_ventas_pagos_tarjetas[i];
+                    }
+                   
+                     db.C_ventas_pagos.Add(c_ventas_pagos);
+                     db.SaveChanges();
+                 }
+             }
+          
+             foreach (var item in compras)
+             {
+                if (item.Cuenta == true && item.Sku != "" && item.Pagado == false)
+                 {
+                     C_ventas_d c_ventas_d = new C_ventas_d
+                     {
+                         sku_producto = item.Sku,
+                         id_promocion = item.Id_promocion,
+                         id_venta_g = c_ventas_g.id_venta_g,
+                         status = true,
+                         cantidad = 1,//cambiar
+                         precio = (Decimal)item.Costo
+                     };
+                     db.C_ventas_d.Add(c_ventas_d);
+                     db.SaveChanges();
+                     compras.Find(x => x.Index == item.Index).Pagado = true;
+                 }
+             }
+            
+            Session["Carrito"] = compras;
+            IMPRIMIRController ctl = new IMPRIMIRController();
+           // ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
+            
+            if (saldo == 0)
+            {
+                Session["Carrito"] = null;
+                Session["id_pedido"] = null;
+                id_pedido = 0;
             }
             
-          
-            db.C_pedidos.Add(c_pedidos);
-            db.SaveChanges();
+            return Content("True");
+            
+        }
 
-            c_ventas_g.codigo_sucursal = "SUC001";//cambiar
-            c_ventas_g.id_caja = 1;//cambiar
-            c_ventas_g.folio = "folio" + c_pedidos.id_pedido;//cambiar
-            c_ventas_g.fecha = now;
-            c_ventas_g.id_usuario = 1;//cambiar
-            c_ventas_g.id_impuesto = 1;//cambiar
-            c_ventas_g.total = 111; // checar el impuesto para definir totales
-            c_ventas_g.id_venta_status = 1;
-            c_ventas_g.id_pedido = c_pedidos.id_pedido;
-            db.C_ventas_g.Add(c_ventas_g);
-            db.SaveChanges();
-
-            for (int i = 0; i < c_ventas_pagos_tipo.Length; i++)
+        public bool RegistroMovimiento(int id_pedido)
+        {
+            DateTime now = DateTime.Now;
+            codigo_sucursal = (string)Session["codigo_sucursal"];
+            var pedido = from p in db.C_pedidos
+                          where p.id_pedido == id_pedido
+                          select p;
+            C_insumo_mov_suc_g c_insumo_mov_suc_g = new C_insumo_mov_suc_g();
+            foreach (var item in pedido)
             {
-                if (c_ventas_pagos_montos[i] > 0)
+                c_insumo_mov_suc_g = new C_insumo_mov_suc_g
                 {
-                    C_ventas_pagos c_ventas_pagos = new C_ventas_pagos();
-                    c_ventas_pagos.id_venta = c_ventas_g.id_venta_g;
-                    c_ventas_pagos.total = c_ventas_pagos_montos[i];
-                    c_ventas_pagos.fecha = now;
-                    c_ventas_pagos.id_pago_tipo = c_ventas_pagos_tipo[i];
-                    db.C_ventas_pagos.Add(c_ventas_pagos);
-                    db.SaveChanges();
-                }
-            }
-            foreach (var item in Session["Carrito"] as List<CarritoItem>)
-            {
-                C_pedidos_d c_pedidos_d = new C_pedidos_d
-                {
-                    cantidad = "1",//cambiar
-                    sku_producto = item.Sku,
-                    id_pedido = c_pedidos.id_pedido
-                };
-                db.C_pedidos_d.Add(c_pedidos_d);
-                db.SaveChanges();
-
-                C_insumo_mov_suc_g c_insumo_mov_suc_g = new C_insumo_mov_suc_g
-                {
-                    fuente_origen = "SUC001",//cambiar
-                    origen_transaccion = c_ventas_g.folio,
+                    fuente_origen = codigo_sucursal,//cambiar
+                    origen_transaccion = "pedido:"+item.id_pedido,
                     fecha = now,
                     id_usuario = null,
                     id_tipo_mov = 4,//cambiar
@@ -144,10 +250,19 @@ namespace Backoffice0._1.Controllers.POS
                     id_insumo_mov_status = 5//cambiar
                 };
                 db.C_insumo_mov_suc_g.Add(c_insumo_mov_suc_g);
-                db.SaveChanges();
+                
+            }
+
+            db.SaveChanges();
+
+            var pedido_detalle = from p in db.C_pedidos_d
+                                 where p.id_pedido == id_pedido
+                                 select p;
+            foreach (var item in pedido_detalle)
+            {
 
                 var insumos = from insumo in db.C_recetas
-                              where insumo.sku == item.Sku && insumo.status == true
+                              where insumo.sku == item.sku_producto && insumo.status == true
                               select insumo;
                 foreach (var item_insumo in insumos)
                 {
@@ -157,33 +272,53 @@ namespace Backoffice0._1.Controllers.POS
                         sku_insumo = item_insumo.sku_insumo,
                         cantidad = item_insumo.cantidad,
                         entrada_salida = false,
-                        codigo_sucursal = "SUC001" //cambiar
+                        codigo_sucursal = codigo_sucursal //cambiar
                     };
+
                     db.C_insumo_mov_suc_d.Add(c_insumo_suc_d);
-
+                    C_insumo_sucursal c_insumo_sucursal = db.C_insumo_sucursal.FirstOrDefault(m => m.sku_insumo == item_insumo.sku_insumo && m.codigo_sucursal == codigo_sucursal);
+                  
+                    var saldo = (Decimal)c_insumo_sucursal.saldo - (Decimal)item_insumo.cantidad;
+                    c_insumo_sucursal.saldo = saldo;
+                 
                 }
-                db.SaveChanges();
-
-                if (item.Cuenta == true && item.Sku != "")
-                {
-                    C_ventas_d c_ventas_d = new C_ventas_d
-                    {
-                        sku_producto = item.Sku,
-                        id_promocion = item.Id_promocion,
-                        id_venta_g = c_ventas_g.id_venta_g,
-                        status = true,
-                        cantidad = 1,//cambiar
-                        precio = (Decimal)item.Costo
-                    };
-                    db.C_ventas_d.Add(c_ventas_d);
-                    db.SaveChanges();
-                }
+                
             }
-            //Registro c_ventas_pagos
-
-            return RedirectToAction("Index");
+            db.SaveChanges();
+            return true;
         }
+        public string AsignarSucursal(int id_colonia)
+        {
+            codigo_sucursal = "";
+            id_marca = ConsultarMarca((string)Session["codigo_sucursal"]);
+            IQueryable<C_sucursales_colonias> sucursal;
+            sucursal = from sc in db.C_sucursales_colonias
+                       join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
+                       where sm.id_marca == id_marca && sc.id_colonia == id_colonia
+                       select sc;
+            foreach (var item in sucursal)
+            {
+                codigo_sucursal = item.codigo_sucursal;
+            }
+            return codigo_sucursal;
 
+        }
+        public double ConsultarCostoEnvio(int id_colonia)
+        {
+            id_marca = ConsultarMarca((string)Session["codigo_sucursal"]);
+            double costo= 0.0;
+            IQueryable<C_sucursales_colonias> sucursal;
+            sucursal = from sc in db.C_sucursales_colonias
+                       join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
+                       where sm.id_marca == id_marca && sc.id_colonia == id_colonia
+                       select sc;
+            foreach (var item in sucursal)
+            {
+                costo = (double)item.costo_envio;
+            }
+            return costo;
+
+        }
         // GET: PEDIDOS/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -262,9 +397,32 @@ namespace Backoffice0._1.Controllers.POS
         {
             C_pedidos c_pedidos = db.C_pedidos.Find(id_pedido);
             c_pedidos.id_tracking_status = status;
+            if (status == 2)
+            {
+                RegistroMovimiento(id_pedido);
+            }
             db.SaveChanges();
            
         }
+        public int ConsultarMarca(string codigo_sucursal)
+        {
+            marca = from ms in db.C_marcas_sociedades
+                        join se in db.C_sociedades_empresas on ms.id_sociedad equals se.id_sociedad
+                        join es in db.C_empresas_sucursales on se.id_empresa equals es.id_empresa
+                        where es.codigo_sucursal == codigo_sucursal && es.activo == true
+                        select ms;
+
+            if (marca.Count() > 0)
+            {
+                foreach (var item in marca)
+                {
+                    id_marca = (int)item.C_marcas_g.id_marca;
+                }
+            }
+            return id_marca;
+        }
+     
+
 
     }
 }
