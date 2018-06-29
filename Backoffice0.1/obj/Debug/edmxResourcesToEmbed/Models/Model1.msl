@@ -291,10 +291,43 @@
     <EntitySetMapping Name="C_cajas">
       <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas">
         <MappingFragment StoreEntitySet="C_cajas">
+          <ScalarProperty Name="id_caja" ColumnName="id_caja" />
           <ScalarProperty Name="caja" ColumnName="caja" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_cajas_g">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_g">
+        <MappingFragment StoreEntitySet="C_cajas_g">
           <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+          <ScalarProperty Name="codigo_caja" ColumnName="codigo_caja" />
+          <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+          <ScalarProperty Name="marca_caja" ColumnName="marca_caja" />
+          <ScalarProperty Name="no_serie" ColumnName="no_serie" />
+          <ScalarProperty Name="modelo" ColumnName="modelo" />
+          <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_cajas_sucursales">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_sucursales">
+        <MappingFragment StoreEntitySet="C_cajas_sucursales">
+          <ScalarProperty Name="id_cajas_sucursal" ColumnName="id_cajas_sucursal" />
+          <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
+          <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_cajas_tipo_mov">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_tipo_mov">
+        <MappingFragment StoreEntitySet="C_cajas_tipo_mov">
+          <ScalarProperty Name="id_cajas_tipo_mov" ColumnName="id_cajas_tipo_mov" />
+          <ScalarProperty Name="concepto_mov" ColumnName="concepto_mov" />
+          <ScalarProperty Name="entrada_salida" ColumnName="entrada_salida" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1144,6 +1177,7 @@
         <MappingFragment StoreEntitySet="C_marcas_g">
           <ScalarProperty Name="id_marca" ColumnName="id_marca" />
           <ScalarProperty Name="nombre_marca" ColumnName="nombre_marca" />
+          <ScalarProperty Name="nombre_matriz" ColumnName="nombre_matriz" />
           <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
           <ScalarProperty Name="logo" ColumnName="logo" />
           <ScalarProperty Name="sitio_web" ColumnName="sitio_web" />
@@ -1689,7 +1723,6 @@
       <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sucursales_direcciones">
         <MappingFragment StoreEntitySet="C_sucursales_direcciones">
           <ScalarProperty Name="id_sucursal_direccion" ColumnName="id_sucursal_direccion" />
-          <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
           <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
           <ScalarProperty Name="id_estado" ColumnName="id_estado" />
           <ScalarProperty Name="cp" ColumnName="cp" />

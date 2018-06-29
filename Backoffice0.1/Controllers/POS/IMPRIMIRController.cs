@@ -36,14 +36,14 @@ namespace Backoffice0._1.Controllers.POS
               
                 impresion.AddDatos(item.C_marcas_g.nombre_marca.ToString(), "25", "10");
                 impresion.AddDatos("Matriz: ", "5", "13");
-               /* var marca_direcccion = from md in db.C_marcas_direcciones
+                var marca_direcccion = from md in db.C_marcas_direcciones
                                        where md.id_marca == item.id_marca
                                        select md;
                 impresion.AddDatos("Comercial Edujes, S.A de C.V", "5", "16");
                 impresion.AddDatos("Libramiento Periférico Torreón. Gomez Km.6.7", "5", "19");
                 impresion.AddDatos("CP: 35019, Residencial Hamburgo", "5", "22");
                 impresion.AddDatos("Gomez Palacio, Dgo", "5", "25");
-                impresion.AddDatos("RFC: CED140401881", "5", "28");*/
+                impresion.AddDatos("RFC: CED140401881", "5", "28");
                 if (item.id_marca==1)
                 {
                     impresion.AddDatos("Comercial Edujes, S.A de C.V", "5", "16");
@@ -66,9 +66,12 @@ namespace Backoffice0._1.Controllers.POS
                     impresion.AddDatos("RFC: 0000000000000", "5", "27");*/
                 }
 
-                // informacion de la sucursal
+                // Informacion de la sucursal
                 impresion.AddDatos("Sucursal: "+item.C_sucursales.nombre, "5", "30");
-                impresion.AddDatos("Direccion: " + item.C_sucursales.nombre, "5", "33");
+                impresion.AddDatos(item.C_sucursales.C_sucursales_direcciones.calle+" #"+ item.C_sucursales.C_sucursales_direcciones.num_exterior, "5", "33");
+                impresion.AddDatos(item.C_sucursales.C_sucursales_direcciones.colonia, "5", "36");
+                impresion.AddDatos(item.C_sucursales.C_sucursales_direcciones.calle, "5", "39");
+
                 // informacion del pedido
                 impresion.AddDatos("# PEDIDO: " + item.id_pedido.ToString(), "5", "60");
                 impresion.AddDatos("Fecha - Hora : " + item.fecha_pedido.ToString(), "5", "63");

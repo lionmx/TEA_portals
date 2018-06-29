@@ -310,10 +310,40 @@ advertencia 6013: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_bo_semanas_trans_f1
           <Key>
             <PropertyRef Name="id_caja" />
           </Key>
+          <Property Name="id_caja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="caja" Type="nchar" MaxLength="10" />
           <Property Name="status" Type="nchar" MaxLength="10" />
           <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="C_cajas_g">
+          <Key>
+            <PropertyRef Name="id_caja" />
+          </Key>
           <Property Name="id_caja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_caja" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_alta" Type="datetime" />
+          <Property Name="marca_caja" Type="nchar" MaxLength="10" />
+          <Property Name="no_serie" Type="varchar" MaxLength="50" />
+          <Property Name="modelo" Type="varchar" MaxLength="50" />
+          <Property Name="id_proveedor" Type="int" />
+          <Property Name="estatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="C_cajas_sucursales">
+          <Key>
+            <PropertyRef Name="id_cajas_sucursal" />
+          </Key>
+          <Property Name="id_cajas_sucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+          <Property Name="id_caja" Type="int" />
+          <Property Name="fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="C_cajas_tipo_mov">
+          <Key>
+            <PropertyRef Name="id_cajas_tipo_mov" />
+          </Key>
+          <Property Name="id_cajas_tipo_mov" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="concepto_mov" Type="varchar" MaxLength="150" />
+          <Property Name="entrada_salida" Type="bit" />
         </EntityType>
         <EntityType Name="C_campaña_codigos">
           <Key>
@@ -1282,6 +1312,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
           </Key>
           <Property Name="id_marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_marca" Type="varchar" MaxLength="250" />
+          <Property Name="nombre_matriz" Type="varchar" MaxLength="250" />
           <Property Name="fecha_registro" Type="datetime" />
           <Property Name="logo" Type="varchar" MaxLength="250" />
           <Property Name="sitio_web" Type="varchar" MaxLength="250" />
@@ -1809,7 +1840,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_proveedores' no tie
             <PropertyRef Name="id_sucursal_direccion" />
           </Key>
           <Property Name="id_sucursal_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
           <Property Name="id_ciudad" Type="int" />
           <Property Name="id_estado" Type="int" />
           <Property Name="cp" Type="varchar" MaxLength="50" />
@@ -2910,18 +2940,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_C_cajas_C_sucursales">
-          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
-          <End Role="C_cajas" Type="Self.C_cajas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="C_sucursales">
-              <PropertyRef Name="codigo_sucursal" />
-            </Principal>
-            <Dependent Role="C_cajas">
-              <PropertyRef Name="codigo_sucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_C_campaña_codigos_C_campañas">
           <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="0..1" />
           <End Role="C_campaña_codigos" Type="Self.C_campaña_codigos" Multiplicity="*" />
@@ -3870,6 +3888,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_sucursales_C_sucursales_direcciones">
+          <End Role="C_sucursales_direcciones" Type="Self.C_sucursales_direcciones" Multiplicity="0..1" />
+          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales_direcciones">
+              <PropertyRef Name="id_sucursal_direccion" />
+            </Principal>
+            <Dependent Role="C_sucursales">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_Sucursales_C_zonas">
           <End Role="C_zonas_precio" Type="Self.C_zonas_precio" Multiplicity="0..1" />
           <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
@@ -4304,6 +4334,9 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <EntitySet Name="C_bo_semanas_trans_rp" EntityType="Self.C_bo_semanas_trans_rp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_bo_suc_ir" EntityType="Self.C_bo_suc_ir" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_cajas" EntityType="Self.C_cajas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_cajas_g" EntityType="Self.C_cajas_g" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_cajas_sucursales" EntityType="Self.C_cajas_sucursales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_cajas_tipo_mov" EntityType="Self.C_cajas_tipo_mov" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campaña_codigos" EntityType="Self.C_campaña_codigos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campaña_empresas" EntityType="Self.C_campaña_empresas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="C_campaña_medios" EntityType="Self.C_campaña_medios" Schema="dbo" store:Type="Tables" />
@@ -4853,10 +4886,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             <End Role="C_suc_invreal" EntitySet="C_suc_invreal" />
             <End Role="C_bo_suc_ir" EntitySet="C_bo_suc_ir" />
           </AssociationSet>
-          <AssociationSet Name="FK_C_cajas_C_sucursales" Association="Self.FK_C_cajas_C_sucursales">
-            <End Role="C_sucursales" EntitySet="C_sucursales" />
-            <End Role="C_cajas" EntitySet="C_cajas" />
-          </AssociationSet>
           <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="Self.FK_C_campaña_codigos_C_campañas">
             <End Role="C_campañas" EntitySet="C_campañas" />
             <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
@@ -5172,6 +5201,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <AssociationSet Name="FK_C_sucursales_C_sucursales" Association="Self.FK_C_sucursales_C_sucursales">
             <End Role="C_sucursales" EntitySet="C_sucursales" />
             <End Role="C_sucursales1" EntitySet="C_sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_sucursales_C_sucursales_direcciones" Association="Self.FK_C_sucursales_C_sucursales_direcciones">
+            <End Role="C_sucursales_direcciones" EntitySet="C_sucursales_direcciones" />
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
           </AssociationSet>
           <AssociationSet Name="FK_C_Sucursales_C_zonas" Association="Self.FK_C_Sucursales_C_zonas">
             <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
@@ -5598,11 +5631,40 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Key>
             <PropertyRef Name="id_caja" />
           </Key>
+          <Property Name="id_caja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="caja" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C_cajas_g">
+          <Key>
+            <PropertyRef Name="id_caja" />
+          </Key>
           <Property Name="id_caja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_cajas_C_sucursales" FromRole="C_cajas" ToRole="C_sucursales" />
+          <Property Name="codigo_caja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+          <Property Name="marca_caja" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="no_serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_proveedor" Type="Int32" />
+          <Property Name="estatus" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="C_cajas_sucursales">
+          <Key>
+            <PropertyRef Name="id_cajas_sucursal" />
+          </Key>
+          <Property Name="id_cajas_sucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_caja" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="C_cajas_tipo_mov">
+          <Key>
+            <PropertyRef Name="id_cajas_tipo_mov" />
+          </Key>
+          <Property Name="id_cajas_tipo_mov" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="concepto_mov" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="entrada_salida" Type="Boolean" />
         </EntityType>
         <EntityType Name="C_campaña_codigos">
           <Key>
@@ -6476,6 +6538,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           </Key>
           <Property Name="id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_marca" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_matriz" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="fecha_registro" Type="DateTime" Precision="3" />
           <Property Name="logo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="sitio_web" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -7016,7 +7079,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="activo" Type="Boolean" />
           <Property Name="sucursal_desvio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="C_cajas" Relationship="Self.FK_C_cajas_C_sucursales" FromRole="C_sucursales" ToRole="C_cajas" />
           <NavigationProperty Name="C_empresas_sucursales" Relationship="Self.FK_C_empresas_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_empresas_sucursales" />
           <NavigationProperty Name="C_equipo_sucursal" Relationship="Self.FK_C_equipo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_equipo_sucursal" />
           <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_sucursales" FromRole="C_sucursales" ToRole="C_grupo_productos_codigos_movs" />
@@ -7027,6 +7089,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <NavigationProperty Name="C_sucursal_status_motivo" Relationship="Self.FK_C_sucursales_C_sucursal_status_motivo" FromRole="C_sucursales" ToRole="C_sucursal_status_motivo" />
           <NavigationProperty Name="C_sucursales1" Relationship="Self.FK_C_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_sucursales1" />
           <NavigationProperty Name="C_sucursales2" Relationship="Self.FK_C_sucursales_C_sucursales" FromRole="C_sucursales1" ToRole="C_sucursales" />
+          <NavigationProperty Name="C_sucursales_direcciones" Relationship="Self.FK_C_sucursales_C_sucursales_direcciones" FromRole="C_sucursales" ToRole="C_sucursales_direcciones" />
           <NavigationProperty Name="C_zonas_precio" Relationship="Self.FK_C_Sucursales_C_zonas" FromRole="C_sucursales" ToRole="C_zonas_precio" />
           <NavigationProperty Name="C_sucursales_colonias" Relationship="Self.FK_C_sucursales_colonias_C_sucursales" FromRole="C_sucursales" ToRole="C_sucursales_colonias" />
           <NavigationProperty Name="C_sucursales_config" Relationship="Self.FK_C_sucursales_config_C_sucursales" FromRole="C_sucursales" ToRole="C_sucursales_config" />
@@ -7070,7 +7133,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             <PropertyRef Name="id_sucursal_direccion" />
           </Key>
           <Property Name="id_sucursal_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id_ciudad" Type="Int32" />
           <Property Name="id_estado" Type="Int32" />
           <Property Name="cp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -7083,6 +7145,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Property Name="referencia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="d_codigo" Type="Int32" />
           <Property Name="id_asenta_cpcons" Type="Int32" />
+          <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_sucursales_C_sucursales_direcciones" FromRole="C_sucursales_direcciones" ToRole="C_sucursales" />
         </EntityType>
         <EntityType Name="C_sucursales_marcas">
           <Key>
@@ -8194,18 +8257,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_C_cajas_C_sucursales">
-          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
-          <End Role="C_cajas" Type="Self.C_cajas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="C_sucursales">
-              <PropertyRef Name="codigo_sucursal" />
-            </Principal>
-            <Dependent Role="C_cajas">
-              <PropertyRef Name="codigo_sucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_C_campaña_codigos_C_campañas">
           <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="0..1" />
           <End Role="C_campaña_codigos" Type="Self.C_campaña_codigos" Multiplicity="*" />
@@ -9322,6 +9373,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_sucursales_C_sucursales_direcciones">
+          <End Role="C_sucursales_direcciones" Type="Self.C_sucursales_direcciones" Multiplicity="0..1" />
+          <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_sucursales_direcciones">
+              <PropertyRef Name="id_sucursal_direccion" />
+            </Principal>
+            <Dependent Role="C_sucursales">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_Sucursales_C_zonas">
           <End Role="C_zonas_precio" Type="Self.C_zonas_precio" Multiplicity="0..1" />
           <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
@@ -9600,6 +9663,9 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <EntitySet Name="C_bo_semanas_trans_rp" EntityType="Self.C_bo_semanas_trans_rp" />
           <EntitySet Name="C_bo_suc_ir" EntityType="Self.C_bo_suc_ir" />
           <EntitySet Name="C_cajas" EntityType="Self.C_cajas" />
+          <EntitySet Name="C_cajas_g" EntityType="Self.C_cajas_g" />
+          <EntitySet Name="C_cajas_sucursales" EntityType="Self.C_cajas_sucursales" />
+          <EntitySet Name="C_cajas_tipo_mov" EntityType="Self.C_cajas_tipo_mov" />
           <EntitySet Name="C_campaña_codigos" EntityType="Self.C_campaña_codigos" />
           <EntitySet Name="C_campaña_empresas" EntityType="Self.C_campaña_empresas" />
           <EntitySet Name="C_campaña_medios" EntityType="Self.C_campaña_medios" />
@@ -9828,10 +9894,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <AssociationSet Name="FK_C_bo_suc_ir_C_suc_invreal" Association="Self.FK_C_bo_suc_ir_C_suc_invreal">
             <End Role="C_suc_invreal" EntitySet="C_suc_invreal" />
             <End Role="C_bo_suc_ir" EntitySet="C_bo_suc_ir" />
-          </AssociationSet>
-          <AssociationSet Name="FK_C_cajas_C_sucursales" Association="Self.FK_C_cajas_C_sucursales">
-            <End Role="C_sucursales" EntitySet="C_sucursales" />
-            <End Role="C_cajas" EntitySet="C_cajas" />
           </AssociationSet>
           <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="Self.FK_C_campaña_codigos_C_campañas">
             <End Role="C_campañas" EntitySet="C_campañas" />
@@ -10204,6 +10266,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <AssociationSet Name="FK_C_sucursales_C_sucursales" Association="Self.FK_C_sucursales_C_sucursales">
             <End Role="C_sucursales" EntitySet="C_sucursales" />
             <End Role="C_sucursales1" EntitySet="C_sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_sucursales_C_sucursales_direcciones" Association="Self.FK_C_sucursales_C_sucursales_direcciones">
+            <End Role="C_sucursales_direcciones" EntitySet="C_sucursales_direcciones" />
+            <End Role="C_sucursales" EntitySet="C_sucursales" />
           </AssociationSet>
           <AssociationSet Name="FK_C_Sucursales_C_zonas" Association="Self.FK_C_Sucursales_C_zonas">
             <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
@@ -10586,10 +10652,43 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <EntitySetMapping Name="C_cajas">
             <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas">
               <MappingFragment StoreEntitySet="C_cajas">
+                <ScalarProperty Name="id_caja" ColumnName="id_caja" />
                 <ScalarProperty Name="caja" ColumnName="caja" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_cajas_g">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_g">
+              <MappingFragment StoreEntitySet="C_cajas_g">
                 <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+                <ScalarProperty Name="codigo_caja" ColumnName="codigo_caja" />
+                <ScalarProperty Name="fecha_alta" ColumnName="fecha_alta" />
+                <ScalarProperty Name="marca_caja" ColumnName="marca_caja" />
+                <ScalarProperty Name="no_serie" ColumnName="no_serie" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_cajas_sucursales">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_sucursales">
+              <MappingFragment StoreEntitySet="C_cajas_sucursales">
+                <ScalarProperty Name="id_cajas_sucursal" ColumnName="id_cajas_sucursal" />
+                <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
+                <ScalarProperty Name="id_caja" ColumnName="id_caja" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_cajas_tipo_mov">
+            <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_cajas_tipo_mov">
+              <MappingFragment StoreEntitySet="C_cajas_tipo_mov">
+                <ScalarProperty Name="id_cajas_tipo_mov" ColumnName="id_cajas_tipo_mov" />
+                <ScalarProperty Name="concepto_mov" ColumnName="concepto_mov" />
+                <ScalarProperty Name="entrada_salida" ColumnName="entrada_salida" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -11439,6 +11538,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
               <MappingFragment StoreEntitySet="C_marcas_g">
                 <ScalarProperty Name="id_marca" ColumnName="id_marca" />
                 <ScalarProperty Name="nombre_marca" ColumnName="nombre_marca" />
+                <ScalarProperty Name="nombre_matriz" ColumnName="nombre_matriz" />
                 <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
                 <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="sitio_web" ColumnName="sitio_web" />
@@ -11984,7 +12084,6 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_sucursales_direcciones">
               <MappingFragment StoreEntitySet="C_sucursales_direcciones">
                 <ScalarProperty Name="id_sucursal_direccion" ColumnName="id_sucursal_direccion" />
-                <ScalarProperty Name="codigo_sucursal" ColumnName="codigo_sucursal" />
                 <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
                 <ScalarProperty Name="id_estado" ColumnName="id_estado" />
                 <ScalarProperty Name="cp" ColumnName="cp" />

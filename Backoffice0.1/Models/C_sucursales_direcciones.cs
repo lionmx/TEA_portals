@@ -14,8 +14,13 @@ namespace Backoffice0._1.Models
     
     public partial class C_sucursales_direcciones
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_sucursales_direcciones()
+        {
+            this.C_sucursales = new HashSet<C_sucursales>();
+        }
+    
         public int id_sucursal_direccion { get; set; }
-        public string codigo_sucursal { get; set; }
         public Nullable<int> id_ciudad { get; set; }
         public Nullable<int> id_estado { get; set; }
         public string cp { get; set; }
@@ -28,5 +33,8 @@ namespace Backoffice0._1.Models
         public string referencia { get; set; }
         public Nullable<int> d_codigo { get; set; }
         public Nullable<int> id_asenta_cpcons { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales> C_sucursales { get; set; }
     }
 }

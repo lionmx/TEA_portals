@@ -578,6 +578,15 @@
     <Compile Include="Models\C_cajas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_cajas_g.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_cajas_sucursales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_cajas_tipo_mov.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_campañas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -50,6 +50,9 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_bo_semanas_trans_rp> C_bo_semanas_trans_rp { get; set; }
         public virtual DbSet<C_bo_suc_ir> C_bo_suc_ir { get; set; }
         public virtual DbSet<C_cajas> C_cajas { get; set; }
+        public virtual DbSet<C_cajas_g> C_cajas_g { get; set; }
+        public virtual DbSet<C_cajas_sucursales> C_cajas_sucursales { get; set; }
+        public virtual DbSet<C_cajas_tipo_mov> C_cajas_tipo_mov { get; set; }
         public virtual DbSet<C_campaña_codigos> C_campaña_codigos { get; set; }
         public virtual DbSet<C_campaña_empresas> C_campaña_empresas { get; set; }
         public virtual DbSet<C_campaña_medios> C_campaña_medios { get; set; }

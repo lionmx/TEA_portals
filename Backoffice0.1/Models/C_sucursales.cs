@@ -17,7 +17,6 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_sucursales()
         {
-            this.C_cajas = new HashSet<C_cajas>();
             this.C_empresas_sucursales = new HashSet<C_empresas_sucursales>();
             this.C_equipo_sucursal = new HashSet<C_equipo_sucursal>();
             this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
@@ -48,8 +47,6 @@ namespace Backoffice0._1.Models
         public string sucursal_desvio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_cajas> C_cajas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_empresas_sucursales> C_empresas_sucursales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_equipo_sucursal> C_equipo_sucursal { get; set; }
@@ -67,6 +64,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_sucursales> C_sucursales1 { get; set; }
         public virtual C_sucursales C_sucursales2 { get; set; }
+        public virtual C_sucursales_direcciones C_sucursales_direcciones { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_sucursales_colonias> C_sucursales_colonias { get; set; }

@@ -12,11 +12,10 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_cajas
+    public partial class C_cajas_tipo_mov
     {
-        public int id_caja { get; set; }
-        public string caja { get; set; }
-        public string status { get; set; }
-        public string codigo_sucursal { get; set; }
+        public int id_cajas_tipo_mov { get; set; }
+        public string concepto_mov { get; set; }
+        public Nullable<bool> entrada_salida { get; set; }
     }
 }

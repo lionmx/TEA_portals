@@ -25,6 +25,7 @@ namespace Backoffice0._1.Models
     
         public int id_marca { get; set; }
         public string nombre_marca { get; set; }
+        public string nombre_matriz { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public string logo { get; set; }
         public string sitio_web { get; set; }
