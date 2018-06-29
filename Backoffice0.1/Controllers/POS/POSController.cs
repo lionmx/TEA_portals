@@ -43,11 +43,7 @@ namespace Backoffice0._1.Controllers
 
         public ActionResult Index()
         {
-            foreach (var item in Session["LoggedUserSucursales"] as List<string>)
-            {
-                codigo_sucursal = item;
-            }
-            Session["codigo_sucursal"] = codigo_sucursal;
+           
             ViewBag.compras = 0;
             var sucursales = db.C_sucursales.Where(m => m.activo == true).Select(m => m.nombre).Distinct().ToList();
             ViewBag.Sucursales = new SelectList(sucursales, "", "");
@@ -91,13 +87,13 @@ namespace Backoffice0._1.Controllers
                  eliminar = compras.Find(x => x.Id_promocion == item.Id_promocion+2);
                 compras.Remove(eliminar);
             }
-
+            compras.Remove(item);
             var id_promo = promocion_remover.Id_promocion;
             if (id_promo != 0)
             {
                 promocion_rem(id_promo);// revalidar_promocion
             }
-            compras.Remove(item);
+           
             if (compras.Count() == 0)
             {
                 Session["Carrito"] = null;
@@ -570,6 +566,17 @@ namespace Backoffice0._1.Controllers
                        select s;
 
             return PartialView("Ventas/_Sucursales", sucursales);
+        }
+        public PartialViewResult ConsultaDesvioSucursales()
+        {
+            PEDIDOSController pc = new PEDIDOSController();
+           int id_marca = pc.ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+            var sucursales = from s in db.C_sucursales
+                             join sm in db.C_sucursales_marcas on s.codigo_sucursal equals sm.codigo_sucursal
+                             where  sm.id_marca == id_marca
+                             select s;
+
+            return PartialView("Ventas/_DesviosSucursales", sucursales);
         }
 
         public PartialViewResult ValidarCupon(string cupon)

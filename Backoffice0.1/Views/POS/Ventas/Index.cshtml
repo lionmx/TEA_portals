@@ -92,14 +92,14 @@
                                         </div>
                                     </div>
                                     <!--
-                                    <div class="form-group">
-                                        <div class="input-group" style="padding:0px;">
-                                            <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </div>-->
+                                <div class="form-group">
+                                    <div class="input-group" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>-->
                                     <div class="form-group">
                                         <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
                                             <input type="text" class="form-control has-feedback-right" id="new_referencia" placeholder="Referencia">
@@ -128,20 +128,20 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-                                            <select class="select2_single form-control" name="select_colonia"id="esp_colonias" style="padding:0px;width:249px;" tabindex="-1">
+                                            <select class="select2_single form-control" name="select_colonia" id="esp_colonias" style="padding:0px;width:249px;" tabindex="-1">
                                                 @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
                                             </select>
                                         </div>
                                     </div>
                                     <!--
-                                    <div class="form-group">
-                                        <div class="input-group" style="padding:0px;">
-                                            <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </div>-->
+                                <div class="form-group">
+                                    <div class="input-group" style="padding:0px;">
+                                        <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>-->
                                     <div class="form-group">
                                         <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
                                             <input type="text" class="form-control has-feedback-right" id="esp_referencia" placeholder="Referencia">
@@ -162,7 +162,7 @@
                                     <div class="form-group form-group col-md-4 col-sm-4 col-xs-4">
                                         <input type="text" class="form-control " id="esp_fecha" placeholder="Fecha">
                                     </div>
-                                 
+
                                     <div class="form-group form-group col-md-8 col-sm-8 col-xs-8">
                                         <input type="time" class="form-control " id="esp_hora" placeholder="Hra">
                                     </div>
@@ -178,7 +178,7 @@
                                         <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
                                     </div>
                                 </div>
-                                <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio"/><label>Llevar a domicilio</label><br />
+                                <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label>Llevar a domicilio</label><br />
                                 <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label>Recoger en sucursal</label>
                                 <div class="form-group" id="div_suc" style="display:none;">
                                     <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
@@ -224,10 +224,10 @@
                     @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
                 </div>
             </div>
-            <div id="slideshow" class="right">
-                @{Html.RenderAction("ConsultaBanners", "POS");}
-            </div>
+
+
         </div>
+
         <div class="col-md-4 col-sm-4" id="Carrito">
             <div class="x_panel">
                 <div class="nav_menu" style="background:white;color:black;">
@@ -259,6 +259,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="col-md-3" id="desvios">
+                @{Html.RenderAction("ConsultaDesvioSucursales", "POS");}
+            </div>
+            <div id="slideshow" class="right col-md-4">
+                @{Html.RenderAction("ConsultaBanners", "POS");}
+            </div>
+        </div>
+      
         <div class="row">
             <div class="col-md-8 col-sm-8 col-xs-8">
             </div>
@@ -266,7 +275,7 @@
     </div>
     <div class="col-md-12 col-xs-12">
         <button class="btn btn-success btn-lg flotante right" id="btn_pc" style="margin-bottom:70px;" data-toggle="modal" data-target=".pedidos_cancelados">P.C</button>
-        <button class="btn btn-success btn-lg flotante left" id="btn_pc" style="margin-bottom:70px;" onclick="MostrarPE()" >Nuevo P.E</button>
+        <button class="btn btn-success btn-lg flotante left" id="btn_nuevope" style="margin-bottom:70px;" onclick="MostrarPE()" >Nuevo P.E</button>
     </div>
     <br />
     <div class="col-md-12 col-xs-12">
@@ -355,19 +364,23 @@
                    
                     document.getElementById("Caja").className = "col-md-8 col-sm-8";
                     document.getElementById("Carrito").className = "col-md-4 col-sm-4";
+                    document.getElementById("btn_nuevope").style.display = "Block";
+                    document.getElementById("desvios").style.display = "None";
                     $(".costo_servicio").css("display", "none");
                     $("#ent_suc").prop("checked", true);
                 }
                 if (@ViewBag.IdRol == 28) {
                     $("#telefono").focus();
                     document.getElementById("Clientes").style.display = "Block";
+                    document.getElementById("desvios").style.display = "Block";
+                    document.getElementById("btn_nuevope").style.display = "None";
                     document.getElementById("Caja").className = "col-md-6 col-sm-6";
                     document.getElementById("Carrito").className = "col-md-3 col-sm-3";
                     $("#tracking").css("display", "none");
                     $("#btn_pe").css("display", "none");
                     $("#btn_pc").css("display", "none");
                     $("#ent_dom").prop("checked", true);
-                    ConsultaCostoEnvio();
+                    ConsultaCostoEnvio(0);
                 }
             
                 sumar();
@@ -1110,7 +1123,7 @@
                     success: function (result) {
                         $("#carritodiv").html(result);
                         sumar();
-                        var objO = document.getElementByid("close_combo");
+                        var objO = document.getElementById("close_combo");
                         objO.click();
                     }
                 });
@@ -1154,7 +1167,8 @@
                 var esp_contratante = $("#esp_contratante").val();
                 var esp_tel1 = $("#esp_tel1").val();
                 var esp_tel2 = $("#esp_tel2").val();
-
+                var id_direccion=0;
+                var id_cliente=0;
                 var valido = true;
               
                     if (@ViewBag.IdRol == 6) {
@@ -1162,7 +1176,17 @@
                     }
                     if (@ViewBag.IdRol == 28) {
                         if ($("#tab_buscar").hasClass("active")) {
-
+                            var totalInp = $('[name="clientes"]');
+                            totalInp.each(function () {
+                                if ($(this).is(':checked')) {
+                                    id_direccion = $(this).val();
+                                    id_cliente = $(this).attr("id");
+                                }
+                            });
+                            if (id_direccion == 0 && $("#ent_dom").is(':checked') ) {
+                                swal("", "Seleccione la direccion del cliente  o registrelo nuevamente", "error");
+                                return false;
+                            }
                         }
                         if ($("#tab_new").hasClass("active")) {
                             if (new_calle == "" || new_next == "" || new_nombre == "") {

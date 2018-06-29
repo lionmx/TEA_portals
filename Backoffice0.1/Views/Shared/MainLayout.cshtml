@@ -82,7 +82,10 @@
                                 <i class="fa fa-bars" style="left: 85px; top: 16px;"></i>
                             </a>
                         </div>
-                        <img src="https://paginas.seccionamarilla.com.mx/img/2070/976.jpg" style="height:70px;" />
+                        @if (Session["LoggedUser"] != null)
+                        {
+                            <img src=@Session["logo_marca"] style="height:70px;" />
+                        }
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a class="user-profile dropdown-toggle" aria-expanded="false" href="javascript:;" data-toggle="dropdown">

@@ -53,7 +53,7 @@ namespace Backoffice0._1.Controllers.POS
         {
             codigo_sucursal= (string)Session["codigo_sucursal"];
 
-            id_marca = ConsultarMarca(codigo_sucursal);
+            id_marca = ConsultarMarcaPrincipal(codigo_sucursal);
 
             tipo_usuario = (int)Session["LoggedIdRol"];
             List<CarritoItem> compras = Session["Carrito"] as List<CarritoItem>;
@@ -215,9 +215,12 @@ namespace Backoffice0._1.Controllers.POS
              }
             
             Session["Carrito"] = compras;
-            IMPRIMIRController ctl = new IMPRIMIRController();
-           // ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
-            
+            if (c_pedidos.id_pedido_tipo == 1)
+            {
+                IMPRIMIRController ctl = new IMPRIMIRController();
+                 ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
+            }
+
             if (saldo == 0)
             {
                 Session["Carrito"] = null;
@@ -280,9 +283,7 @@ namespace Backoffice0._1.Controllers.POS
                   
                     var saldo = (Decimal)c_insumo_sucursal.saldo - (Decimal)item_insumo.cantidad;
                     c_insumo_sucursal.saldo = saldo;
-                 
                 }
-                
             }
             db.SaveChanges();
             return true;
@@ -290,7 +291,7 @@ namespace Backoffice0._1.Controllers.POS
         public string AsignarSucursal(int id_colonia)
         {
             codigo_sucursal = "";
-            id_marca = ConsultarMarca((string)Session["codigo_sucursal"]);
+            id_marca = ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
             IQueryable<C_sucursales_colonias> sucursal;
             sucursal = from sc in db.C_sucursales_colonias
                        join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
@@ -298,14 +299,21 @@ namespace Backoffice0._1.Controllers.POS
                        select sc;
             foreach (var item in sucursal)
             {
-                codigo_sucursal = item.codigo_sucursal;
+                if (item.C_sucursales.status_servicio==false)
+                {
+                    codigo_sucursal = item.C_sucursales.sucursal_desvio;
+                }
+                else
+                {
+                    codigo_sucursal = item.codigo_sucursal;
+                }
             }
             return codigo_sucursal;
 
         }
         public double ConsultarCostoEnvio(int id_colonia)
         {
-            id_marca = ConsultarMarca((string)Session["codigo_sucursal"]);
+            id_marca = ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
             double costo= 0.0;
             IQueryable<C_sucursales_colonias> sucursal;
             sucursal = from sc in db.C_sucursales_colonias
@@ -404,7 +412,7 @@ namespace Backoffice0._1.Controllers.POS
             db.SaveChanges();
            
         }
-        public int ConsultarMarca(string codigo_sucursal)
+        public int ConsultarMarcaPrincipal(string codigo_sucursal)
         {
             marca = from ms in db.C_marcas_sociedades
                         join se in db.C_sociedades_empresas on ms.id_sociedad equals se.id_sociedad

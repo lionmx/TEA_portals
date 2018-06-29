@@ -1284,6 +1284,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
     <Property Name="facebook" Type="varchar" MaxLength="150" />
     <Property Name="twitter" Type="varchar" MaxLength="150" />
     <Property Name="status" Type="bit" />
+    <Property Name="telefono" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="C_marcas_sociedades">
     <Key>
@@ -3852,6 +3853,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_sucursales_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_sucursales1" Type="Self.C_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_sucursales1">
+        <PropertyRef Name="sucursal_desvio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_Sucursales_C_zonas">
     <End Role="C_zonas_precio" Type="Self.C_zonas_precio" Multiplicity="0..1" />
     <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
@@ -5150,6 +5163,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
     <AssociationSet Name="FK_C_sucursales_C_sucursal_status_motivo" Association="Self.FK_C_sucursales_C_sucursal_status_motivo">
       <End Role="C_sucursal_status_motivo" EntitySet="C_sucursal_status_motivo" />
       <End Role="C_sucursales" EntitySet="C_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_sucursales_C_sucursales" Association="Self.FK_C_sucursales_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_sucursales1" EntitySet="C_sucursales" />
     </AssociationSet>
     <AssociationSet Name="FK_C_Sucursales_C_zonas" Association="Self.FK_C_Sucursales_C_zonas">
       <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />

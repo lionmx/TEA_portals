@@ -36,6 +36,14 @@ namespace Backoffice0._1.Controllers.POS
               
                 impresion.AddDatos(item.C_marcas_g.nombre_marca.ToString(), "25", "10");
                 impresion.AddDatos("Matriz: ", "5", "13");
+               /* var marca_direcccion = from md in db.C_marcas_direcciones
+                                       where md.id_marca == item.id_marca
+                                       select md;
+                impresion.AddDatos("Comercial Edujes, S.A de C.V", "5", "16");
+                impresion.AddDatos("Libramiento Periférico Torreón. Gomez Km.6.7", "5", "19");
+                impresion.AddDatos("CP: 35019, Residencial Hamburgo", "5", "22");
+                impresion.AddDatos("Gomez Palacio, Dgo", "5", "25");
+                impresion.AddDatos("RFC: CED140401881", "5", "28");*/
                 if (item.id_marca==1)
                 {
                     impresion.AddDatos("Comercial Edujes, S.A de C.V", "5", "16");
@@ -46,11 +54,16 @@ namespace Backoffice0._1.Controllers.POS
                 }
                 if (item.id_marca == 2)
                 {
-                    impresion.AddDatos("Razon social", "5", "16");
+                    impresion.AddDatos("Comercial Edujes, S.A de C.V", "5", "16");
+                    impresion.AddDatos("Libramiento Periférico Torreón. Gomez Km.6.7", "5", "19");
+                    impresion.AddDatos("CP: 35019, Residencial Hamburgo", "5", "22");
+                    impresion.AddDatos("Gomez Palacio, Dgo", "5", "25");
+                    impresion.AddDatos("RFC: CED140401881", "5", "28");
+                    /*impresion.AddDatos("Razon social", "5", "16");
                     impresion.AddDatos("Calle", "5", "19");
                     impresion.AddDatos("CP: , Colonia", "5", "21");
                     impresion.AddDatos("Ciudad, Estado", "5", "24");
-                    impresion.AddDatos("RFC: 0000000000000", "5", "27");
+                    impresion.AddDatos("RFC: 0000000000000", "5", "27");*/
                 }
 
                 // informacion de la sucursal

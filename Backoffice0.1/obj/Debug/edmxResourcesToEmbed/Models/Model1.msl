@@ -1151,6 +1151,7 @@
           <ScalarProperty Name="facebook" ColumnName="facebook" />
           <ScalarProperty Name="twitter" ColumnName="twitter" />
           <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

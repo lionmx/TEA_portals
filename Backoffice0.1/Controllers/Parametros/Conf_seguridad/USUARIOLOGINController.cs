@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Backoffice0._1.Models;
 using Backoffice0._1.Helper;
+using Backoffice0._1.Controllers.POS;
 
 namespace Backoffice0._1.Controllers
 {
@@ -19,6 +20,7 @@ namespace Backoffice0._1.Controllers
         List<SubmodulosUsuario> submodulos;
         List<ModulosUsuario> modulos;
         List<string> sucursales_asignadas;
+        string codigo_sucursal;
         //GET: USUARIOLOGIN
         public ActionResult UsuarioLogin()
         {
@@ -67,7 +69,22 @@ namespace Backoffice0._1.Controllers
                                 }
                                 Session["LoggedUserSucursales"] = sucursales_asignadas;
                             }
-                            
+                            foreach (var item in Session["LoggedUserSucursales"] as List<string>)
+                            {
+                                codigo_sucursal = item;
+                            }
+                            Session["codigo_sucursal"] = codigo_sucursal;
+                            PEDIDOSController pc = new PEDIDOSController();
+                            int id_marca = pc.ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+                            Session["id_marca"] = id_marca;
+                            var logo_marca = from m in db.C_marcas_g
+                                             where m.id_marca == id_marca
+                                             select m;
+                            foreach(var item in logo_marca)
+                            {
+                                Session["logo_marca"] = item.logo;
+                            }
+
                             uSUARIO_LOGIN.ID_USUARIO = n.id_usuario_corporativo;
                             uSUARIO_LOGIN.PASS = encodingPasswordString;
                             uSUARIO_LOGIN.FECHA_LOGIN = DateTime.Now.ToString();
@@ -124,8 +141,6 @@ namespace Backoffice0._1.Controllers
               
                     return View("/Views/Home/Index.cshtml");
                 
-              
-
             }
 
             ViewBag.Message = "Usuario o contraseña incorrectos";

@@ -7,7 +7,7 @@
     {
     <tr class="even pointer">
     <td class="a-center ">
-        <input type="radio" class="flat" checked name="clientes" id="@item.id_cliente" value="@item.id_direccion">
+        <input type="radio" class="flat"  name="clientes" id="@item.id_cliente" onclick="ConsultaCostoEnvio(@item.C_direcciones_mx.id_colonia)"  value="@item.id_direccion">
     </td>
     <td>
         @{if (item.C_clientes.nombre != "")

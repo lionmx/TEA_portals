@@ -17,7 +17,6 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_pedidos()
         {
-
             this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
             this.C_pedidos_d = new HashSet<C_pedidos_d>();
             this.C_pedidos_empleados = new HashSet<C_pedidos_empleados>();

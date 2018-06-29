@@ -32,6 +32,7 @@ namespace Backoffice0._1.Models
         public string facebook { get; set; }
         public string twitter { get; set; }
         public Nullable<bool> status { get; set; }
+        public string telefono { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marcas_direcciones> C_marcas_direcciones { get; set; }

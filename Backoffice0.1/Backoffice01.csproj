@@ -1344,6 +1344,7 @@
     <Content Include="Views\POS\Ventas\_DetallePedidoProductos.cshtml" />
     <Content Include="Views\POS\Ventas\_PedidosEspeciales.cshtml" />
     <Content Include="Views\UsuarioLogin\_VisualizaModulos.cshtml" />
+    <Content Include="Views\POS\Ventas\_DesviosSucursales.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

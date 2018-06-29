@@ -25,6 +25,7 @@ namespace Backoffice0._1.Models
             this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
             this.C_pedidos = new HashSet<C_pedidos>();
             this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
+            this.C_sucursales1 = new HashSet<C_sucursales>();
             this.C_sucursales_colonias = new HashSet<C_sucursales_colonias>();
             this.C_sucursales_config = new HashSet<C_sucursales_config>();
             this.C_sucursales_marcas = new HashSet<C_sucursales_marcas>();
@@ -63,6 +64,9 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
         public virtual C_sucursal_status_motivo C_sucursal_status_motivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales> C_sucursales1 { get; set; }
+        public virtual C_sucursales C_sucursales2 { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_sucursales_colonias> C_sucursales_colonias { get; set; }
