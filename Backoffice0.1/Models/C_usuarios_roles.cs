@@ -17,6 +17,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_usuarios_roles()
         {
+            this.C_modulos_sub_permisos = new HashSet<C_modulos_sub_permisos>();
             this.C_servicios_roles = new HashSet<C_servicios_roles>();
             this.C_usuarios_corporativo = new HashSet<C_usuarios_corporativo>();
         }
@@ -25,6 +26,8 @@ namespace Backoffice0._1.Models
         public string nombre_rol { get; set; }
         public Nullable<bool> estatus { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_modulos_sub_permisos> C_modulos_sub_permisos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_roles> C_servicios_roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

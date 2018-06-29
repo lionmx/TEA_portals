@@ -19,7 +19,8 @@ namespace Backoffice0._1.Models
         {
             this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
         }
-    
+        public virtual C_servicios C_Servicios { get; set; }
+
         public int ID_USUARIO { get; set; }
         public string CODIGO_USUARIO { get; set; }
         public string NOMBRE { get; set; }
@@ -32,8 +33,5 @@ namespace Backoffice0._1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
-        public virtual CS_roles CS_roles { get; set; }
-
-        public virtual C_servicios C_Servicios { get; set; }
     }
 }

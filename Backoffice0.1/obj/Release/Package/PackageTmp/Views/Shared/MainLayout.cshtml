@@ -7,12 +7,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Administrativo| </title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/production/css/select/select2.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Software Administrativo|Lion Group </title>
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/js")
 
 </head>
-<body class="pace-done nav-md">
+<body class="pace-done nav-sm">
     <div class="pace  pace-inactive">
         <div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
             <div class="pace-progress-inner"></div>
@@ -23,7 +26,6 @@
         <div class="main_container" style="top: 0px;">
             <div class="col-md-3 left_col">
                 <div tabindex="5000" class="left_col">
-
                     <div class="clearfix"></div>
                     <!-- menu prile quick info -->
                     <div class="profile">
@@ -36,7 +38,6 @@
                             {
                                 <h2>@Session["LoggedUser"].ToString()</h2>
                             }
-
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -46,176 +47,16 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
-
-
-                                    <a><i class="fa fa-home"></i>Administración <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-
-                                        @if (Session["LoggedUser"] != null)
-                                        {
-
-
-                                            if (ViewBag.idServicio == 8)
-                                            {
-
-                                                <li>
-                                                    @Html.ActionLink("Seguridad", "Configuracion", "Configuracion")
-                                                </li>
-
-                                                <li>
-                                                    <a href="http://localhost:49810/elmah.axd">Log</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index3.html">Firma digital</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index3.html">Usuarios de sucursal</a>
-                                                </li>
-                                                <li>
-                                                    @Html.ActionLink("Apertura de caja", "Index", "C_cajas")
-                                                </li>
-                                            }
-
-                                            else
-                                            {
-
-                                            }
-
-                                        }
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-usd"></i>Punto de Venta <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Ventas", "Index", "POS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Inventario", "Index", "POS_INVENTARIO")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Pedidos", "Index", "POS_PEDIDOS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Prenomina", "Index", "POS_PRENOMINA")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Gestion de mesas", "Index", "COMANDA_MESAS")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Comanda cocina", "Index", "COMANDA_COCINA")
-                                        </li>
-
-
-
-                                        <li>
-                                            @Html.ActionLink("Inventario", "Inventario", "Inventario")
-                                        </li>
-
-                                        <li>
-                                            @Html.ActionLink("Inventario", "Inventario", "Inventario")
-                                        </li>
-
-
-                                        <li>
-                                            <a href="form_validation.html">Almacen</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_wizards.html">Form Wizard</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_upload.html">Form Upload</a>
-                                        </li>
-                                        <li>
-                                            <a href="form_buttons.html">Form Buttons</a>
-                                        </li>
-                                    </ul>
-
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-desktop"></i> Call Center<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Meseros", "Index", "POS_MESEROS")
-                                        </li>
-
-                                        <li>
-                                            @Html.ActionLink("Clientes", "~/Views/Call_center_clientes/Index", "~/Parametros/Conf_seguridad/CALLCENTER_CLIENTES1")
-                                        </li>
-
-                                        <li>
-                                            @Html.ActionLink("Clientes", "Index", "CALLCENTER_CLIENTES1")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Ubicacion", "Index", "UBICACION")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Cortes de caja", "Index", "POS_MESEROS")
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target=".cambio_turno"> Cambio de turno </a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a><i class="fa fa-motorcycle"></i> Delivery <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Delivery", "Index", "DELIVERY")
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-pie-chart"></i> Compras <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Generar Backorder", "Index", "BACKORDER")
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-cubes"></i> Almacen <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Backorders", "Index", "ALMACEN_BACKORDER")
-                                        </li>
-                                        <li>
-                                            @Html.ActionLink("Inventario", "Index", "ALMACEN_INVENTARIO")
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-bullhorn"></i> Mercadotecnia <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Campañas", "Index", "CAMPAÑAS")
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-cutlery"></i> Menu Clientes <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none;">
-                                        <li>
-                                            @Html.ActionLink("Menu clientes", "Index", "POS_BANNERS")
-                                        </li>
-
-                                    </ul>
-                                </li>
-
+                                @if (Session["LoggedUser"] != null)
+                                {
+                                    Html.RenderAction("ConsultarModulos", "USUARIOLOGIN", new { id_rol = Session["LoggedIdRol"] });
+                                }
                             </ul>
                         </div>
-
                     </div>
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small" style="display: block;">
+                   <!-- <div class="sidebar-footer hidden-small" style="display: block;">
                         <a title="" data-original-title="Settings" data-toggle="tooltip" data-placement="top">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                         </a>
@@ -228,7 +69,7 @@
                         <a title="" data-original-title="Logout" data-toggle="tooltip" data-placement="top">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
-                    </div>
+                    </div> -->
                     <!-- /menu footer buttons -->
                 </div>
             </div>
@@ -368,6 +209,7 @@
             </div>
 
         </div>
+
         @Html.Partial("/Views/MODALS.cshtml")
 
 

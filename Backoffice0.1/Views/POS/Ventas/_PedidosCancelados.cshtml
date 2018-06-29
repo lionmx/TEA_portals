@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos>
+@using System.Web.Mvc.Html;
+<h4 class="modal-title" id="m_tracking_tittle">Pedidos Cancelados</h4>
+
+
+@foreach (var item in Model.Where(x => x.id_tracking_status == 6 ||  x.id_tracking_status == 7 || x.id_tracking_status == 8 || x.id_tracking_status == 9))
+{
+
+    <div class="col-md-12 col-sm-12" style="margin-bottom:5px; margin-top:5px; background:#f3f3f3;">
+        <div class="col-md-8 col-sm-8">
+
+            <span><b>#PEDIDO @item.id_pedido</b></span> <span><br></span> <br />
+            @if (@item.id_cliente.HasValue)
+            {
+                <span> CLIENTE : @item.C_clientes.nombre</span><br />
+            }
+            else
+            {
+                <span> CLIENTE : MOSTRADOR</span><br />
+            }
+
+            <span>HORA: @Convert.ToDateTime(item.fecha_entrega).ToString("hh:mm:ss") </span>
+            <br />
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <br />
+            @if (item.id_tracking_status == 6)
+            {
+                <a class="btn btn-success btn-xs" onclick="CambiarStatus(6,7,@item.id_pedido)"> Solicitar<br /> Cancelacion</a><br />
+            }
+            @if (item.id_tracking_status == 7)
+            {
+                <label>En espera de respuesta</label>
+            }
+            @if (item.id_tracking_status == 8)
+            {
+                <label>Cancelada</label>
+            }
+            @if (item.id_tracking_status == 9)
+            {
+                <label>La cancelacion se ha rechazado</label>
+            }
+            <a> Ver <i class="fa fa-search"></i></a>
+            @if (@item.id_marca.HasValue)
+            {
+                <a> @item.C_marcas.nombre_marca</a>
+            }
+        </div>
+    </div>
+    <br /><br />
+}
+
+

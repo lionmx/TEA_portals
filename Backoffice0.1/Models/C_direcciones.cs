@@ -14,12 +14,6 @@ namespace Backoffice0._1.Models
     
     public partial class C_direcciones
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_direcciones()
-        {
-            this.C_clientes_direccion = new HashSet<C_clientes_direccion>();
-        }
-    
         public int id_direccion { get; set; }
         public string calle { get; set; }
         public string numero_ext { get; set; }
@@ -28,12 +22,8 @@ namespace Backoffice0._1.Models
         public string entre_calle2 { get; set; }
         public string referencia { get; set; }
         public Nullable<int> d_codigo { get; set; }
-        public Nullable<int> id_asenta_cpcons { get; set; }
         public Nullable<int> id_ciudad { get; set; }
         public Nullable<int> id_estado { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_clientes_direccion> C_clientes_direccion { get; set; }
-        public virtual C_cp_mexico C_cp_mexico { get; set; }
+        public Nullable<int> id_colonia_mx { get; set; }
     }
 }

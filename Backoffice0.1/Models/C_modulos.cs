@@ -17,6 +17,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_modulos()
         {
+            this.C_modulos_sub = new HashSet<C_modulos_sub>();
             this.C_servicios_modulos = new HashSet<C_servicios_modulos>();
         }
     
@@ -28,6 +29,8 @@ namespace Backoffice0._1.Models
         public string parametros { get; set; }
         public Nullable<bool> activo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_modulos_sub> C_modulos_sub { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_modulos> C_servicios_modulos { get; set; }
     }

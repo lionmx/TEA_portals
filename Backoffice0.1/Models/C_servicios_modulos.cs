@@ -14,19 +14,11 @@ namespace Backoffice0._1.Models
     
     public partial class C_servicios_modulos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_servicios_modulos()
-        {
-            this.CS_permisos_asignados = new HashSet<CS_permisos_asignados>();
-        }
-    
         public int id_servicios_modulos { get; set; }
         public Nullable<int> id_servicio { get; set; }
         public Nullable<int> id_modulo { get; set; }
     
-        public virtual C_servicios C_servicios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
         public virtual C_modulos C_modulos { get; set; }
+        public virtual C_servicios C_servicios { get; set; }
     }
 }

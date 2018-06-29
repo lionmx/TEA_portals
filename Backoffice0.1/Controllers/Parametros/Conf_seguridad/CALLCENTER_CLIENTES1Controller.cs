@@ -18,7 +18,7 @@ namespace Backoffice0._1.Controllers
         // GET: CALLCENTER_CLIENTES1
         public ActionResult Index()
         {
-            #region Viewbags 
+            /*#region Viewbags 
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
@@ -42,7 +42,7 @@ namespace Backoffice0._1.Controllers
                 ViewBag.idServicio = perfil.ID_SERVICIO;
             }
             ViewBag.permisos = permisosLista;
-            #endregion
+            #endregion*/
             return View(db.M_callcenter_clientes.ToList());
         }
 

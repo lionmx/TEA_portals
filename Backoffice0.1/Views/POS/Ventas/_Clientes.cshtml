@@ -1,16 +1,35 @@
-﻿@model IEnumerable<Backoffice0._1.Models.C_clientes>
+﻿@model IEnumerable<Backoffice0._1.Models.C_clientes_direccion>
 @using System.Web.Mvc.Html;
 
 @if (Model != null)
+{
+    foreach (var item in Model)
     {
-
-        foreach (var item in Model)
-        {
     <tr class="even pointer">
-        <td class="a-center ">
-            <input type="radio" class="flat" name="table_records">
-        </td>
-        <td class=" "><label style="font-size:14px">@item.nombre</label><br> Calle <br> Colonia </td>
+    <td class="a-center ">
+        <input type="radio" class="flat"  name="clientes" id="@item.id_cliente" onclick="ConsultaCostoEnvio(@item.C_direcciones_mx.id_colonia)"  value="@item.id_direccion">
+    </td>
+    <td>
+        @{if (item.C_clientes.nombre != "")
+            {
+                <label >@item.C_clientes.nombre</label>
+            }
+            if (item.C_direcciones_mx.calle != "")
+            {
+                <label style="font-size:12px" >@item.C_direcciones_mx.calle</label>
+            }
+
+            if (@item.C_direcciones_mx.id_asenta_cpcons.GetValueOrDefault(0) != 0)
+            {
+                if (item.C_direcciones_mx.C_colonias_mx.d_asenta != "")
+                {
+                    <label >@item.C_direcciones_mx.C_colonias_mx.d_asenta</label>
+
+                }
+            }
+        }
+    </td>
+
         <td class=" "><i class="fa fa-pencil">Editar</i></td>
     </tr>
         }

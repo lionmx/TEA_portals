@@ -16,7 +16,7 @@ namespace Backoffice0._1.Controllers
         // GET: UBICACION
         public ActionResult Index()
         {
-            #region Viewbags 
+           /* #region Viewbags 
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
@@ -41,7 +41,7 @@ namespace Backoffice0._1.Controllers
             }
             ViewBag.permisos = permisosLista;
 
-            #endregion
+            #endregion*/
 
             M_callcenter_clientes cc = new M_callcenter_clientes();
             var usuarios = db.M_callcenter_clientes.SqlQuery("SELECT * FROM dbo.M_callcenter_clientes").ToList();

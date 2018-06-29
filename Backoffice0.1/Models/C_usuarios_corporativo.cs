@@ -17,6 +17,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_usuarios_corporativo()
         {
+            this.C_pedidos = new HashSet<C_pedidos>();
             this.C_usuarios_servicios = new HashSet<C_usuarios_servicios>();
             this.C_usuarios_sucursales = new HashSet<C_usuarios_sucursales>();
             this.C_usuarios_sucursales1 = new HashSet<C_usuarios_sucursales>();
@@ -32,6 +33,8 @@ namespace Backoffice0._1.Models
         public Nullable<System.DateTime> fecha_alta { get; set; }
         public Nullable<bool> Activo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos> C_pedidos { get; set; }
         public virtual C_usuarios_roles C_usuarios_roles { get; set; }
         public virtual C_usuarios_tipo C_usuarios_tipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -57,6 +57,10 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Factura, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Factura.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -295,6 +299,7 @@
     <Content Include="Content\production\js\cropping\main.js" />
     <Content Include="Content\production\js\cropping\main2.js" />
     <Content Include="Content\production\js\custom.js" />
+    <Content Include="Content\production\js\custom2.js" />
     <Content Include="Content\production\js\datatables\buttons.bootstrap.min.css" />
     <Content Include="Content\production\js\datatables\buttons.bootstrap.min.js" />
     <Content Include="Content\production\js\datatables\buttons.html5.min.js" />
@@ -390,6 +395,7 @@
     <Content Include="Content\production\js\sidebar\sidebarEffects.js" />
     <Content Include="Content\production\js\skycons\skycons.min.js" />
     <Content Include="Content\production\js\sparkline\jquery.sparkline.min.js" />
+    <Content Include="Content\production\js\alert\sweetalert.min.js" />
     <Content Include="Content\production\js\switchery\switchery.min.js" />
     <Content Include="Content\production\js\tags\jquery.tagsinput.min.js" />
     <Content Include="Content\production\js\textarea\autosize.min.js" />
@@ -465,6 +471,10 @@
     <Compile Include="Controllers\Parametros\Conf_seguridad\ConfiguracionController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\HomeController.cs" />
     <Compile Include="Controllers\POS\C_cajasController.cs" />
+    <Compile Include="Controllers\POS\IMPRIMIRController.cs" />
+    <Compile Include="Controllers\POS\PEDIDOSController.cs" />
+    <Compile Include="Controllers\POS\PEDIDOS_DController.cs" />
+    <Compile Include="Controllers\POS\POS_INVENTARIOController.cs" />
     <Compile Include="Controllers\POS\POS_MC_CATEGORIASController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\MODULOSController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOSController.cs" />
@@ -477,7 +487,6 @@
     <Compile Include="Controllers\POS\POS_PRENOMINAController.cs" />
     <Compile Include="Controllers\POS\SUC_MOV_INSUMOSController.cs" />
     <Compile Include="Controllers\POS\TrackingStatus.cs" />
-    <Compile Include="Controllers\POS\TrackingViewStatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -623,6 +632,9 @@
     <Compile Include="Models\C_colonias.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_colonias_mx.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_compras_destinos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -669,6 +681,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_direcciones_3_.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_direcciones_mx.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_empleados.cs">
@@ -782,7 +797,13 @@
     <Compile Include="Models\C_insumo_tipo_mov.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C_marcas.cs">
+    <Compile Include="Models\C_marcas_datos_fiscales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_marcas_direcciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_marcas_g.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_marcas_sociedades.cs">
@@ -792,6 +813,18 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_modulos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_modulos_roles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_modulos_sub.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_modulos_sub_permisos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_modulos_tipo_permisos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_notificaciones_mensajes.cs">
@@ -896,10 +929,16 @@
     <Compile Include="Models\C_sucursales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_sucursales_colonias.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_sucursales_config.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sucursales_direcciones.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_sucursales_marcas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_sucursal_status_motivo.cs">
@@ -1101,16 +1140,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\modelConfigBase.cs" />
-    <Compile Include="Models\modulosPermisos.cs" />
+    <Compile Include="Models\ModulosUsuario.cs" />
     <Compile Include="Models\M_callcenter_clientes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\M_callcenter_clientes_adicionales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\permisosServicioModulo.cs" />
-    <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\P_encuesta_1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1120,14 +1156,25 @@
     <Compile Include="Models\P_Usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubmodulosUsuario.cs" />
+    <Compile Include="Models\PermisosUsuario.cs" />
+    <Compile Include="Models\CarritoComboItem.cs" />
+    <Compile Include="Models\CarritoItem.cs" />
+    <Compile Include="Helper\ElmahErrorAttribute.cs" />
+    <Compile Include="Helper\PasswordHelper.cs" />
+    <Compile Include="Models\Imprimir.cs" />
+    <Compile Include="Models\modelConfigBase.cs" />
+    <Compile Include="Models\modulosPermisos.cs" />
+    <Compile Include="Models\permisosServicioModulo.cs" />
+    <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\SumaTotal.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserLevelPermissions.cs">
+    <Compile Include="Models\UserLevel.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserLevels.cs">
+    <Compile Include="Models\UserLevelPermission.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1256,8 +1303,6 @@
     <Content Include="Views\CALLCENTER_CLIENTES1\Edit.cshtml" />
     <Content Include="Views\CALLCENTER_CLIENTES1\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Login.cshtml" />
-    <Content Include="Views\UsuarioLogin\Index.cshtml" />
     <Content Include="Views\UsuarioLogin\UsuarioLogin.cshtml" />
     <Content Include="Views\Ubicacion\Index.cshtml" />
     <Content Include="Views\POS\POS Web\Inicio.cshtml" />
@@ -1270,7 +1315,7 @@
     <Content Include="Views\Almacen_inventario\Index.cshtml" />
     <Content Include="Views\Almacen_backorder\Index.cshtml" />
     <Content Include="Views\POS\Empleados.cshtml" />
-    <Content Include="Views\POS\Prenomina.cshtml" />
+    <Content Include="Views\POS\Prenomina\Index.cshtml" />
     <Content Include="Views\Campañas\Index.cshtml" />
     <Content Include="Views\Campañas\Details.cshtml" />
     <Content Include="Views\Suc_mov_insumos\Index.cshtml" />
@@ -1299,20 +1344,22 @@
     <Content Include="Views\C_cajas\Details.cshtml" />
     <Content Include="Views\C_cajas\Edit.cshtml" />
     <Content Include="Views\C_cajas\Index.cshtml" />
-    <Content Include="Views\POS\Ventas\TrackingViewStatus.cshtml" />
-    <Content Include="Views\POS\Cocina.cshtml" />
-    <Content Include="Views\C_usuarios_sucursales\Create.cshtml" />
-    <Content Include="Views\C_usuarios_sucursales\Delete.cshtml" />
-    <Content Include="Views\C_usuarios_sucursales\Details.cshtml" />
-    <Content Include="Views\C_usuarios_sucursales\Edit.cshtml" />
-    <Content Include="Views\C_usuarios_sucursales\Index.cshtml" />
-    <Content Include="Views\Delivery\repartidorModalView.cshtml" />
-    <Content Include="Views\Delivery\pedidosCocinaModalView.cshtml" />
-    <Content Include="Views\Delivery\PedidosRecibidosModalView.cshtml" />
-    <Content Include="Views\Delivery\pedidosPorAsignarModalView.cshtml" />
-    <Content Include="Views\Delivery\pedidosEntregadosModalView.cshtml" />
-    <Content Include="Views\Delivery\pedidosEntregandoModalView.cshtml" />
-    <Content Include="Views\Delivery\estatusCajaModalView.cshtml" />
+    <Content Include="Views\POS\Ventas\_AgregaCarritoCombo.cshtml" />
+    <Content Include="Views\POS\Ventas\_AsignarRepartidor.cshtml" />
+    <Content Include="Views\POS\Ventas\_Combos.cshtml" />
+    <Content Include="Views\POS\Ventas\_ConfiguraCombo.cshtml" />
+    <Content Include="Views\POS\Ventas\_DetalleCombo.cshtml" />
+    <Content Include="Views\POS\Ventas\_Pruebapromociones.cshtml" />
+    <Content Include="Views\POS\Ventas\_SubClases.cshtml" />
+    <Content Include="Views\POS\Ventas\_TrackingPedido1.cshtml" />
+    <Content Include="Views\POS\Ventas\_Colonias.cshtml" />
+    <Content Include="Views\POS\Ventas\_Sucursales.cshtml" />
+    <Content Include="Views\POS\Ventas\_PedidosCancelados.cshtml" />
+    <Content Include="Views\POS\Ventas\_DetallePedido.cshtml" />
+    <Content Include="Views\POS\Ventas\_DetallePedidoProductos.cshtml" />
+    <Content Include="Views\POS\Ventas\_PedidosEspeciales.cshtml" />
+    <Content Include="Views\UsuarioLogin\_VisualizaModulos.cshtml" />
+    <Content Include="Views\POS\Ventas\_DesviosSucursales.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1341,12 +1388,58 @@
     <Folder Include="Controllers\Servicios\MICROSIP\" />
     <Folder Include="Controllers\Servicios\RELOJ_CHECADOR\" />
     <Folder Include="Views\CAJA\" />
-    <Folder Include="Views\COCINA\" />
-    <Folder Include="Views\TrackingViewStatus\" />
+    <Folder Include="Views\Imprimir\" />
     <Folder Include="Views\TRACKING\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MediaPlayer">
+      <Guid>{22D6F304-B0F6-11D0-94AB-0080C74C7E95}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPDXMLib">
+      <Guid>{73F0DD5C-D071-46B6-A8BF-897C84EAAC49}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLauncher">
+      <Guid>{5CB42160-CD7C-4806-9367-1C4A65153F4A}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

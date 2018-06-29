@@ -15,7 +15,7 @@ namespace Backoffice0._1.Controllers
         //private QUESIPIZZAS_DEV1Entities2 db = new QUESIPIZZAS_DEV1Entities2();
         private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         // GET: PERMISOS_ASIGNADOS
-        public ActionResult Index()
+        public void Index()
         {
             #region Viewbags 
 
@@ -54,8 +54,8 @@ namespace Backoffice0._1.Controllers
             ViewBag.data2 = listaPA2;
 
             #endregion
-            var pERMISOS_ASIGNADOS = db.CS_permisos_asignados.Include(p => p).Include(p => p.CS_permisos).Include(p => p.CS_roles).Include(p => p.CS_usuarios);
-            return View(pERMISOS_ASIGNADOS.ToList());
+           /* var pERMISOS_ASIGNADOS = db.CS_permisos_asignados.Include(p => p).Include(p => p.CS_permisos).Include(p => p.CS_roles).Include(p => p.CS_usuarios);
+            return View(pERMISOS_ASIGNADOS.ToList());*/
         }
 
         // GET: PERMISOS_ASIGNADOS/Details/5

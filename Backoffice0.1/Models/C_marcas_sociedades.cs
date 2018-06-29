@@ -18,7 +18,7 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_marca { get; set; }
         public Nullable<int> id_sociedad { get; set; }
     
-        public virtual C_marcas C_marcas { get; set; }
+        public virtual C_marcas_g C_marcas_g { get; set; }
         public virtual C_sociedades C_sociedades { get; set; }
     }
 }

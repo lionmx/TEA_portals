@@ -8,14 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using Backoffice0._1.Models;
 using Backoffice0._1.Helper;
+using Backoffice0._1.Controllers.POS;
 
 namespace Backoffice0._1.Controllers
 {
     public class USUARIOLOGINController : Controller
     {
 
-        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
-
+        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        List<PermisosUsuario> permisos; 
+        List<SubmodulosUsuario> submodulos;
+        List<ModulosUsuario> modulos;
+        List<string> sucursales_asignadas;
+        string codigo_sucursal;
         //GET: USUARIOLOGIN
         public ActionResult UsuarioLogin()
         {
@@ -29,8 +34,10 @@ namespace Backoffice0._1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UsuarioLogin(CS_usuario_login uSUARIO_LOGIN)
         {
+
             var encodingPasswordString = string.Empty;
-            var items = db.CS_usuarios.Where(u => u.NOMBRE.Equals(uSUARIO_LOGIN.CS_usuarios.NOMBRE));
+            var items = db.C_usuarios_corporativo.Where(u => u.usuario.Equals(uSUARIO_LOGIN.CS_usuarios.NOMBRE));
+
             if (items != null)
             {
                 if (uSUARIO_LOGIN.PASS != null)
@@ -40,13 +47,45 @@ namespace Backoffice0._1.Controllers
 
                 foreach (var n in items)
                 {
-                    if (n.PASS != null)
+                    if (n.password != null)
                     {
-                        if (uSUARIO_LOGIN.CS_usuarios.NOMBRE.Equals(n.NOMBRE) && n.PASS.Equals(encodingPasswordString))
+                        if (uSUARIO_LOGIN.CS_usuarios.NOMBRE.Equals(n.usuario) && n.password.Equals(encodingPasswordString))
                         {
-                            Session["LoggedUser"] = n.NOMBRE;
-                            Session["LoggedId"] = n.ID_USUARIO;
-                            uSUARIO_LOGIN.ID_USUARIO = n.ID_USUARIO;
+                            Session["LoggedUser"] = n.usuario;
+                            Session["LoggedId"] = n.id_usuario_corporativo;
+                            Session["LoggedIdRol"] = n.id_rol;
+                            ViewBag.idusuario = n.id_usuario_corporativo;
+                            ViewBag.compras = 0;
+                            Session["LoggedTipoUsuario"] = n.id_usuario_tipo;
+                            var sucursales = from s in db.C_usuarios_sucursales
+                                             where s.id_usuario_corporativo == n.id_usuario_corporativo
+                                             select s;
+                            sucursales_asignadas = new List<string>();
+                            if (sucursales.Count() > 0)
+                            {
+                                foreach (var item in sucursales)
+                                {
+                                    sucursales_asignadas.Add(item.codigo_sucursal);
+                                }
+                                Session["LoggedUserSucursales"] = sucursales_asignadas;
+                            }
+                            foreach (var item in Session["LoggedUserSucursales"] as List<string>)
+                            {
+                                codigo_sucursal = item;
+                            }
+                            Session["codigo_sucursal"] = codigo_sucursal;
+                            PEDIDOSController pc = new PEDIDOSController();
+                            int id_marca = pc.ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+                            Session["id_marca"] = id_marca;
+                            var logo_marca = from m in db.C_marcas_g
+                                             where m.id_marca == id_marca
+                                             select m;
+                            foreach(var item in logo_marca)
+                            {
+                                Session["logo_marca"] = item.logo;
+                            }
+
+                            uSUARIO_LOGIN.ID_USUARIO = n.id_usuario_corporativo;
                             uSUARIO_LOGIN.PASS = encodingPasswordString;
                             uSUARIO_LOGIN.FECHA_LOGIN = DateTime.Now.ToString();
                         }
@@ -62,35 +101,46 @@ namespace Backoffice0._1.Controllers
             {
                 //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
                 List<int> permisosLista = new List<int>();
-                int loggedId = Convert.ToInt32(Session["LoggedId"].ToString());
-                var permisosServicioModulo = db.Database.SqlQuery<permisosServicioModulo>("SELECT b.id_servicio as id_servicio, b.id_modulo as id_modulo, a.id_permiso as id_permiso from CS_PERMISOS_ASIGNADOS a JOIN C_SERVICIOS_MODULOS b on a.id_servicios_modulos = b.id_servicios_modulos WHERE a.ID_USUARIO = '" + Session["LoggedId"] + "'");
+                int RolId = (int)Session["LoggedIdRol"];
+                var permisosServicioModulo = from p in db.C_modulos_sub_permisos
+                                             where p.id_rol == RolId && p.estatus == true
+                                             select p;
 
-                if (permisosServicioModulo != null)
+                if (permisosServicioModulo.Count()>0)
                 {
+                    permisos = new List<PermisosUsuario>();
+                    submodulos = new List<SubmodulosUsuario>();
+                    modulos = new List<ModulosUsuario>();
                     foreach (var n in permisosServicioModulo)
                     {
-                        permisosLista.Add(n.id_servicio);
-                        permisosLista.Add(n.id_modulo);
+                        permisosLista.Add((int)n.id_modulos_sub);
+                        permisosLista.Add((int)n.C_modulos_sub.id_modulo);
                         permisosLista.Add(Convert.ToInt32(n.id_permiso));
+                        permisos.Add(new PermisosUsuario((int)n.C_modulos_sub.id_modulo,n.C_modulos_sub.C_modulos.nombre, (int)n.id_modulos_sub, (int)n.id_permiso));
+                    }
+                    foreach (var item in permisosServicioModulo.Select(m => new {m.C_modulos_sub.id_modulo, m.id_modulos_sub, m.C_modulos_sub.nombre, m.C_modulos_sub.funcion, m.C_modulos_sub.controlador, m.C_modulos_sub.parametros }).Distinct())
+                    {
+                            submodulos.Add(new SubmodulosUsuario((int)item.id_modulo,(int)item.id_modulos_sub, item.nombre,item.funcion, item.controlador, item.parametros));
+                    }
+                    foreach (var item in permisosServicioModulo.Select(m => new { m.C_modulos_sub.id_modulo, m.C_modulos_sub.C_modulos.nombre, m.C_modulos_sub.C_modulos.icono }).Distinct())
+                    {
+                            modulos.Add(new ModulosUsuario((int)item.id_modulo, item.nombre, item.icono));
                     }
                 }
-
-                //get perfil (servicio) de usuario loggeado y guardarlo en ViewBag
-                var perfil = db.CS_usuarios.Where(a => a.ID_USUARIO.Equals(loggedId)).FirstOrDefault();
-                if (perfil != null)
-                {
-                    ViewBag.idServicio = perfil.ID_SERVICIO;
-                }
+                
+                Session["modulos"] = modulos;
+                Session["submodulos"] = submodulos;
+               
                 ViewBag.permisos = permisosLista;
-
                 CS_usuario_login obj = new CS_usuario_login();
                 obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
                 obj.PASS = uSUARIO_LOGIN.PASS;
                 obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
                 db.CS_usuario_login.Add(obj);
                 db.SaveChanges();
-                return View("/Views/Home/Index.cshtml");
-
+              
+                    return View("/Views/Home/Index.cshtml");
+                
             }
 
             ViewBag.Message = "Usuario o contraseña incorrectos";
@@ -104,6 +154,14 @@ namespace Backoffice0._1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult ConsultarModulos(int id_rol)
+        {
+            var modulos = from m in db.C_modulos_sub_permisos
+                          where m.id_rol == id_rol && m.estatus == true
+                          select m;
+                          
+            return PartialView("_VisualizaModulos",modulos);
         }
     }
 }

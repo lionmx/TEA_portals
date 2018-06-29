@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Backoffice0._1.Models;
@@ -124,14 +126,19 @@ namespace Backoffice0._1.Controllers.Clientes
             base.Dispose(disposing);
         }
 
-        public PartialViewResult BuscarClienteTelefono(string telefono)
+        public ActionResult BuscarClienteTelefono(string telefono)
         {
-            var cliente = from c in db.C_clientes
+            var cliente_direccion = from c in db.C_clientes
                           join c_t in db.C_clientes_telefono on c.id_cliente equals c_t.id_cliente
-                          where (c_t.C_telefonos.telefono.Contains(telefono) )
-                          select c;
+                          join c_d in db.C_clientes_direccion on c.id_cliente equals c_d.id_cliente
+                          where (c_t.C_telefonos.telefono.Contains(telefono) || c.clave_cliente.Contains(telefono))
+                          select c_d;
+            if (cliente_direccion.Count()==0)
+            {
+                return Content("False");
+            }
 
-            return PartialView("../POS/Ventas/_Clientes", cliente);
+            return PartialView("../POS/Ventas/_Clientes", cliente_direccion);
         }
     }
 }

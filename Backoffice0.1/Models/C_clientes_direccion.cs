@@ -20,6 +20,6 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_direccion { get; set; }
     
         public virtual C_clientes C_clientes { get; set; }
-        public virtual C_direcciones C_direcciones { get; set; }
+        public virtual C_direcciones_mx C_direcciones_mx { get; set; }
     }
 }

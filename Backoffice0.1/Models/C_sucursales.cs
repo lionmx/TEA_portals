@@ -25,8 +25,12 @@ namespace Backoffice0._1.Models
             this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
             this.C_pedidos = new HashSet<C_pedidos>();
             this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
-            this.C_ventas_g = new HashSet<C_ventas_g>();
+            this.C_sucursales1 = new HashSet<C_sucursales>();
+            this.C_sucursales_colonias = new HashSet<C_sucursales_colonias>();
             this.C_sucursales_config = new HashSet<C_sucursales_config>();
+            this.C_sucursales_marcas = new HashSet<C_sucursales_marcas>();
+            this.C_usuarios_sucursales = new HashSet<C_usuarios_sucursales>();
+            this.C_ventas_g = new HashSet<C_ventas_g>();
         }
     
         public int Id_sucursal { get; set; }
@@ -41,6 +45,7 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_zona_precio { get; set; }
         public string ip { get; set; }
         public Nullable<bool> activo { get; set; }
+        public string sucursal_desvio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_cajas> C_cajas { get; set; }
@@ -59,10 +64,19 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
         public virtual C_sucursal_status_motivo C_sucursal_status_motivo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales> C_sucursales1 { get; set; }
+        public virtual C_sucursales C_sucursales2 { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
+        public virtual ICollection<C_sucursales_colonias> C_sucursales_colonias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_sucursales_config> C_sucursales_config { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales_marcas> C_sucursales_marcas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_usuarios_sucursales> C_usuarios_sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
     }
 }

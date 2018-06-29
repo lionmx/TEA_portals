@@ -22,7 +22,7 @@ namespace Backoffice0._1.Models
         public string calle { get; set; }
         public string num_interior { get; set; }
         public string num_exterior { get; set; }
-        public Nullable<int> id_colonia { get; set; }
+        public string colonia { get; set; }
         public string entre_calle1 { get; set; }
         public string entre_calle2 { get; set; }
         public string referencia { get; set; }

@@ -15,14 +15,17 @@ namespace Backoffice0._1.Models
         private string _producto;
         private float _costo;
         private bool _cuenta;
-       
+        private int _id_producto;
+        private bool _pagado;
+        private int _id_promocion_real;
+        private int _id_tipo_promocion;
 
         public CarritoItem()
         {
 
         }
 
-        public CarritoItem(string producto, float cantidad, string sku, bool promocion, int index, bool prom_pos, int id_promocion, bool cuenta)
+        public CarritoItem(string producto, float cantidad, string sku, bool promocion, int index, bool prom_pos, int id_promocion, bool cuenta, int id_producto, bool pagado, int id_promocion_real, int id_tipo_promocion)
         {
             this._index = index;
             this._producto = producto;
@@ -32,6 +35,10 @@ namespace Backoffice0._1.Models
             this._prom_pos = prom_pos;
             this._id_promocion = id_promocion;
             this._cuenta = cuenta;
+            this._id_producto = id_producto;
+            this._pagado = pagado;
+            this._id_promocion_real = id_promocion_real;
+            this._id_tipo_promocion = id_tipo_promocion;
         }
 
         
@@ -43,6 +50,10 @@ namespace Backoffice0._1.Models
         public float Costo { get => _costo; set => _costo = value; }
         public string Producto { get => _producto; set => _producto = value; }
         public bool Cuenta { get => _cuenta; set => _cuenta = value; }
+        public int Id_producto { get => _id_producto; set => _id_producto = value; }
+        public bool Pagado { get => _pagado; set => _pagado = value; }
+        public int Id_promocion_real { get => _id_promocion_real; set => _id_promocion_real = value; }
+        public int Id_tipo_promocion { get => _id_tipo_promocion; set => _id_tipo_promocion = value; }
 
     }
 }

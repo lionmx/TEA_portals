@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos_d>
+
+@foreach (var item in Model)
+{
+    <tr class="even pointer">
+        <td class=" ">@item.cantidad</td>
+        <td class=" ">@item.C_productos_cat.nombre</td>
+        <td class=" ">@item.costo </td>
+    </tr>
+}

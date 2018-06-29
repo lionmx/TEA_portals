@@ -50,12 +50,12 @@ namespace Backoffice0._1.Models
         public string codigo_empresa { get; set; }
         public Nullable<bool> id_estado_activo { get; set; }
     
+        public virtual C_empleados_niveles C_empleados_niveles { get; set; }
         public virtual C_empleados_tipo_sangre C_empleados_tipo_sangre { get; set; }
         public virtual C_empleados_visible C_empleados_visible { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_empleados_team_card> C_empleados_team_card { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos_empleados> C_pedidos_empleados { get; set; }
-        public virtual C_empleados_niveles C_empleados_niveles { get; set; }
     }
 }

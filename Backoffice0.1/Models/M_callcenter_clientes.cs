@@ -14,6 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class M_callcenter_clientes
     {
+        public List<M_callcenter_clientes> callcenterClientesList { get; set; }
         public long id { get; set; }
         public string telefono { get; set; }
         public string nombre { get; set; }
@@ -26,7 +27,5 @@ namespace Backoffice0._1.Models
         public string app_pwd { get; set; }
         public string app_gcm { get; set; }
         public string ultima_compra { get; set; }
-
-        public List<M_callcenter_clientes> callcenterClientesList { get; set; }
     }
 }

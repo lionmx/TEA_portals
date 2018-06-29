@@ -1,41 +1,87 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos>
 @using System.Web.Mvc.Html;
-<h4 class="modal-title" id="myModalLabel">Pedidos Recibidos</h4>
-<ul id="menu1" class="list-unstyled msg_list " role="menu">
-    @foreach (var item in Model.Where(x => x.id_tracking_status == ViewBag.status))
+
+
+@if (ViewBag.status == 1)
+{<h4 class="modal-title" id="m_tracking_tittle">Pedidos Recibidos</h4>}
+@if (ViewBag.status == 2)
+{<h4 class="modal-title" id="m_tracking_tittle">Pedidos en cocina</h4>}
+@if (ViewBag.status == 3)
+{<h4 class="modal-title" id="m_tracking_tittle">Pedidos por asignar</h4>}
+@if (ViewBag.status == 4)
+{<h4 class="modal-title" id="m_tracking_tittle">Pedidos en transito</h4>}
+@if (ViewBag.status == 5)
+{<h4 class="modal-title" id="m_tracking_tittle">Pedidos entregados en domicilio</h4>}
+
+
+@foreach (var item in Model.Where(x => x.id_tracking_status == ViewBag.status))
+{
+    if (ViewBag.status == 1 && item.id_pedido_tipo == 3)
     {
-        <li>
-            <div class="col-md-8 col-sm-8">
-                <span>#PEDIDO @item.id_pedido</span><br />
+
+    }
+    else
+    {
+        <div class="col-md-12 col-sm-12" style="margin-bottom:5px; margin-top:5px; background:#f3f3f3;">
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                @if (@item.id_marca.HasValue)
+                {
+                    <a> @item.C_marcas_g.nombre_marca</a>
+                    <img src="@item.C_marcas_g.logo" style="width:50px;" />
+                }
+            </div>
+            <div class="col-md-6 col-sm-6">
+
+                <span><b>#PEDIDO @item.id_pedido</b></span> <br />
                 @if (@item.id_cliente.HasValue)
                 {
-                    <span> CLIENTE: @item.C_clientes.nombre</span><br />
+                    <span> CLIENTE : @item.C_clientes.nombre</span><br />
                 }
                 else
                 {
-                    <span> CLIENTE:MOSTRADOR</span><br />
+                    <span> CLIENTE : MOSTRADOR</span><br />
                 }
-                <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm")</span>
+                <span>HORA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm:ss") </span>
+                <br />
             </div>
-            <div>
+            <div class="col-md-2 col-sm-2">
+                <a> Ver <i class="fa fa-search"></i></a><br />
+                @if (item.id_tipo_entrega == 1)
+                {
+                    <span>A domicilio</span>
+                }
+                else
+                {<span> En sucursal</span>}
+                <a onclick="ImprimirTicket(@item.id_pedido)"> Imp. ticket <i class="fa fa-print"></i></a><br />
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <label style="font-size:16px;"><b>@item.tiempo_pedido.ToString(@"hh\:mm\:ss")</b></label><br />
                 @if (ViewBag.status == 1)
                 {
-                    <a class="btn btn-success btn-xs" onclick="CambiarStatus(2,@item.id_pedido)"> Enviar a cocina</a><br />
+                    <a class="btn btn-success btn-sm" onclick="CambiarStatus(1,2,@item.id_pedido)"> Enviar a cocina</a><br />
+                }
+                @if (ViewBag.status == 2 && item.id_tipo_entrega == 1)
+                {
+                    <a class="btn btn-success btn-sm" onclick="CambiarStatus(2,3,@item.id_pedido)"> Terminado </a><br />
+                }
+                @if (ViewBag.status == 2 && item.id_tipo_entrega == 2)
+                {
+                    <a class="btn btn-success btn-sm" onclick="CambiarStatus(2,5,@item.id_pedido)"> Terminado </a><br />
                 }
                 @if (ViewBag.status == 3)
                 {
-                    <a class="btn btn-info btn-xs" data-toggle="modal" data-target=".asigna_repartidor"> Asignar repartidor</a><br />
+                    <a class="btn btn-info btn-sm" onclick="ConsultarPedido(@item.id_pedido)" data-toggle="modal" data-target=".asigna_repartidor"> Asignar<br /> repartidor</a><br />
                 }
                 @if (ViewBag.status == 4)
                 {
-                    <a class="btn btn-success btn-xs" onclick="CambiarStatus(5,@item.id_pedido)">> Entregado </a><br />
+                    <a class="btn btn-success btn-sm" onclick="CambiarStatus(4,5,@item.id_pedido)"> Entregado </a><br />
+                    <a class="btn btn-danger btn-sm" onclick="CambiarStatus(5,6,@item.id_pedido)"> Pre-cancelada </a><br />
                 }
-                <a> Ver detalle</a>
-                @if (@item.id_marca.HasValue)
-                {
-                    <a> @item.C_marcas.nombre_marca</a>
-                }
+
             </div>
-        </li>
+        </div>
+        <br /><br />
     }
-</ul>
+
+}
+

@@ -34,7 +34,7 @@ namespace Backoffice0._1.Controllers
         }
         public ActionResult Configuracion()
         {
-            #region Viewbags 
+           /* #region Viewbags 
 
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
@@ -69,7 +69,7 @@ namespace Backoffice0._1.Controllers
             ViewModelUsuario.modulos = modulos;
             ViewModelUsuario.usuarios = usuarios;
             ViewModelUsuario.permisos = permisos;
-
+            */
             return View(ViewModelUsuario);
 
         }
@@ -103,7 +103,7 @@ namespace Backoffice0._1.Controllers
             }
             foreach (var m in modulos)
             {
-                ViewModelUsuario.NOMBRE_MODULO = m.nombre;
+             //   ViewModelUsuario.NOMBRE_MODULO = m.nombre_modulo;
                 ViewBag.NombreModulo = ViewModelUsuario.NOMBRE_MODULO;
             }
             foreach (var n in rol)
@@ -160,7 +160,7 @@ namespace Backoffice0._1.Controllers
             }
             foreach (var m in modulos)
             {
-                ViewModelUsuario.NOMBRE_MODULO = m.nombre;
+               // ViewModelUsuario.NOMBRE_MODULO = m.nombre_modulo;
                 ViewBag.NombreModulo = ViewModelUsuario.NOMBRE_MODULO;
             }
             foreach (var n in rol)
