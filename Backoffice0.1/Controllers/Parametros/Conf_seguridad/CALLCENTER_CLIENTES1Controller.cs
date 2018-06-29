@@ -13,7 +13,7 @@ namespace Backoffice0._1.Controllers
     public class CALLCENTER_CLIENTES1Controller : Controller
     {
         //private QUESIPIZZAS_DEV1Entities2 db = new QUESIPIZZAS_DEV1Entities2();
-         DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+         DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
       
         // GET: CALLCENTER_CLIENTES1
         public ActionResult Index()

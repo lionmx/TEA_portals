@@ -19,5 +19,7 @@ namespace Backoffice0._1.Models
         public string codigo_sucursal { get; set; }
         public Nullable<decimal> saldo { get; set; }
         public Nullable<bool> activo { get; set; }
+    
+        public virtual C_productos_cat C_productos_cat { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "TrackingViewStatus";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>TrackingViewStatus</h2>
+@using (Html.BeginForm("iniciaHilo", "TrackingViewStatus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form action="" method="post">
+        <input type="submit" name="boton" value="RECIBIDO" />
+        <input type="submit" name="boton" value="COCINA" />
+        <input type="submit" name="boton" value="POR ASIGNAR" />
+        <input type="submit" name="boton" value="ENTREGANDO" />
+        <input type="submit" name="boton" value="ENTRAGADO" />
+        <input type="submit" name="boton" value="PRE-CANCELADA" />
+        <input type="submit" name="boton" value="CANCELADA" />
+        @if (ViewBag.status != null)
+        {
+            @ViewBag.status;
+        }
+    </form>
+}

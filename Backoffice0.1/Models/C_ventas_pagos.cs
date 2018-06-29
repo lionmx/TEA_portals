@@ -20,6 +20,7 @@ namespace Backoffice0._1.Models
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> id_pago_tipo { get; set; }
     
+        public virtual C_pago_tipo C_pago_tipo { get; set; }
         public virtual C_ventas_g C_ventas_g { get; set; }
     }
 }

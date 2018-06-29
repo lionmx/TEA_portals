@@ -18,5 +18,8 @@ namespace Backoffice0._1.Models
         public int id_pedido { get; set; }
         public int id_empleado { get; set; }
         public bool status { get; set; }
+    
+        public virtual C_empleados C_empleados { get; set; }
+        public virtual C_pedidos C_pedidos { get; set; }
     }
 }

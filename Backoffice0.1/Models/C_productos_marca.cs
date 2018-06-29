@@ -15,8 +15,11 @@ namespace Backoffice0._1.Models
     public partial class C_productos_marca
     {
         public int id_producto_marca { get; set; }
-        public string sku_marca { get; set; }
+        public string sku_producto { get; set; }
         public Nullable<int> id_marca { get; set; }
         public Nullable<bool> activo { get; set; }
+    
+        public virtual C_marcas C_marcas { get; set; }
+        public virtual C_productos_cat C_productos_cat { get; set; }
     }
 }

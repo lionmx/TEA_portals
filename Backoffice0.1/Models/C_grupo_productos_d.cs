@@ -34,6 +34,5 @@ namespace Backoffice0._1.Models
         public virtual ICollection<C_grupo_productos_prods> C_grupo_productos_prods1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_grupo_productos_prods> C_grupo_productos_prods2 { get; set; }
-        public virtual C_grupo_productos_g C_grupo_productos_g1 { get; set; }
     }
 }

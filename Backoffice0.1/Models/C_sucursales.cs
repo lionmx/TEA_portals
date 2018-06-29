@@ -17,8 +17,16 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_sucursales()
         {
+            this.C_cajas = new HashSet<C_cajas>();
+            this.C_empresas_sucursales = new HashSet<C_empresas_sucursales>();
+            this.C_equipo_sucursal = new HashSet<C_equipo_sucursal>();
+            this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
+            this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
+            this.C_parametros_sucursales = new HashSet<C_parametros_sucursales>();
             this.C_pedidos = new HashSet<C_pedidos>();
+            this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
             this.C_ventas_g = new HashSet<C_ventas_g>();
+            this.C_sucursales_config = new HashSet<C_sucursales_config>();
         }
     
         public int Id_sucursal { get; set; }
@@ -26,16 +34,35 @@ namespace Backoffice0._1.Models
         public string nombre { get; set; }
         public string latitud { get; set; }
         public string longitud { get; set; }
-        public bool activo { get; set; }
+        public bool status_servicio { get; set; }
+        public Nullable<int> id_sucursal_status_motivo { get; set; }
         public Nullable<int> id_direccion { get; set; }
         public Nullable<int> id_empresa { get; set; }
         public Nullable<int> id_zona_precio { get; set; }
         public string ip { get; set; }
+        public Nullable<bool> activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_cajas> C_cajas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empresas_sucursales> C_empresas_sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_equipo_sucursal> C_equipo_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_grupo_productos_codigos_movs> C_grupo_productos_codigos_movs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_parametros_sucursales> C_parametros_sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos> C_pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
+        public virtual C_sucursal_status_motivo C_sucursal_status_motivo { get; set; }
         public virtual C_zonas_precio C_zonas_precio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_ventas_g> C_ventas_g { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales_config> C_sucursales_config { get; set; }
     }
 }

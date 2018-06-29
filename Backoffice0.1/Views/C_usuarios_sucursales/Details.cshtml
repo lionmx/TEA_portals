@@ -1,0 +1,35 @@
+﻿@model Backoffice0._1.Models.C_usuarios_sucursales
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>C_usuarios_sucursales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_sucursal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_sucursal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_usuarios.CODIGO_USUARIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_usuarios.CODIGO_USUARIO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_usuarios_sucursales }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

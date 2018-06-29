@@ -14,7 +14,7 @@ namespace Backoffice0._1.Controllers
     public class USUARIOLOGINController : Controller
     {
 
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         //GET: USUARIOLOGIN
         public ActionResult UsuarioLogin()
@@ -82,6 +82,7 @@ namespace Backoffice0._1.Controllers
                     ViewBag.idServicio = perfil.ID_SERVICIO;
                 }
                 ViewBag.permisos = permisosLista;
+
                 CS_usuario_login obj = new CS_usuario_login();
                 obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
                 obj.PASS = uSUARIO_LOGIN.PASS;

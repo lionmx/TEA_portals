@@ -14,14 +14,22 @@ namespace Backoffice0._1.Models
     
     public partial class C_insumo_cat
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_insumo_cat()
+        {
+            this.C_insumo_mov_suc_d = new HashSet<C_insumo_mov_suc_d>();
+            this.C_insumo_sucursal = new HashSet<C_insumo_sucursal>();
+            this.C_recetas = new HashSet<C_recetas>();
+        }
+    
         public int C_id_insumo { get; set; }
-        public string C______sku_insumo { get; set; }
+        public string sku_insumo { get; set; }
         public string codigo_barra_std { get; set; }
         public string nombre_insumo { get; set; }
-        public Nullable<int> C______id_insumo_clasif { get; set; }
-        public Nullable<int> C______id_tipo_inventario { get; set; }
-        public Nullable<double> C______nivel_reorden_insumo { get; set; }
-        public Nullable<int> C______dias_caducidad { get; set; }
+        public Nullable<int> id_insumo_clasif { get; set; }
+        public Nullable<int> id_tipo_inventario { get; set; }
+        public Nullable<double> nivel_reorden_insumo { get; set; }
+        public Nullable<int> dias_caducidad { get; set; }
         public Nullable<int> C______Id_tipo_empaque { get; set; }
         public Nullable<int> C______Id_tipo_envase { get; set; }
         public string C______presentacion_cantidad { get; set; }
@@ -36,5 +44,12 @@ namespace Backoffice0._1.Models
         public Nullable<int> bo_provdirecto { get; set; }
         public Nullable<bool> visible { get; set; }
         public Nullable<bool> C______activo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_insumo_mov_suc_d> C_insumo_mov_suc_d { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_insumo_sucursal> C_insumo_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_recetas> C_recetas { get; set; }
     }
 }

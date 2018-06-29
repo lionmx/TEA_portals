@@ -18,8 +18,10 @@ namespace Backoffice0._1.Models
         public C_servicios()
         {
             this.CS_roles = new HashSet<CS_roles>();
+            this.C_empresas_servicios_contratados = new HashSet<C_empresas_servicios_contratados>();
             this.C_servicios_modulos = new HashSet<C_servicios_modulos>();
             this.C_servicios_sucursal = new HashSet<C_servicios_sucursal>();
+            this.C_servicios_roles = new HashSet<C_servicios_roles>();
         }
     
         public int id_servicio { get; set; }
@@ -32,8 +34,12 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_roles> CS_roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empresas_servicios_contratados> C_empresas_servicios_contratados { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_modulos> C_servicios_modulos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_servicios_sucursal> C_servicios_sucursal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_servicios_roles> C_servicios_roles { get; set; }
     }
 }

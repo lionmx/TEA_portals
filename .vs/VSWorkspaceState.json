@@ -1,6 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Backoffice0.1",
+    "\\Backoffice0.1\\Controllers\\Parametros",
+    "\\Backoffice0.1\\Controllers\\Parametros\\Conf_seguridad",
+    "\\Backoffice0.1\\Models",
+    "\\Backoffice0.1\\Views",
+    "\\Backoffice0.1\\Views\\Shared"
   ],
+  "SelectedNode": "\\Backoffice0.1\\Models\\sysdiagrams.cs",
   "PreviewInSolutionExplorer": false
 }

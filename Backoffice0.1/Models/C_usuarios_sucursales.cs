@@ -16,8 +16,12 @@ namespace Backoffice0._1.Models
     {
         public int id_usuarios_sucursales { get; set; }
         public Nullable<int> id_sucursal { get; set; }
-        public Nullable<int> id_usuario { get; set; }
+        public Nullable<int> id_usuario_corporativo { get; set; }
+        public string codigo_sucursal { get; set; }
     
+        public virtual C_usuarios_corporativo C_usuarios_corporativo { get; set; }
+        public virtual C_usuarios_corporativo C_usuarios_corporativo1 { get; set; }
+
         public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }

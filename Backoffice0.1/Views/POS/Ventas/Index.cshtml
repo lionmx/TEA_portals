@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
-@{ if (Session["EstadoAcutal"] != null )
+@{ if (Session["EstadoCaja"] != null)
     {
 
 
@@ -51,9 +51,9 @@
                         <div class="x_content" id="categorias">
                             @{Html.RenderAction("ConsultaCategorias", "POS");}
                         </div>
-                        <div class="x_content" id="paquetes">
+                        @*<div class="x_content" id="paquetes">
                             @{Html.RenderAction("BotonesEspeciales", "POS");}
-                        </div>
+                        </div>*@
                     </div>
                     <div id="slideshow" class="right">
                         @{Html.RenderAction("ConsultaBanners", "POS");}
@@ -62,11 +62,11 @@
                 aaasasas
                 <div class="" id="Carrito">
                     <div class="x_panel">
-                        <div class="nav_menu" style="background:white;color:black;">
+                        @*<div class="nav_menu" style="background:white;color:black;">
                             @{Html.RenderAction("TrackingPedido", "POS");}
                             <h2>Cuenta a pagar <small></small></h2>
                             <div class="clearfix"></div>
-                        </div>
+                        </div>*@
                         <div class="x_content" id="carritodiv">
                         </div>
                         <div>
@@ -165,165 +165,165 @@
                         $("#categorias").html(result);
                     }
 
-        var ConsultaBotonesEspeciales = function () {
-            $.ajax({
-                url: "../POS/ConsultaBotonesEspeciales",
-                success: function (result) {
-                    $("#paquetes").html(result);
-                }
-            });
-        }
-
-    var RegistrarPedido = function () {
-            c_pedidos = {};
-            c_ventas_g = {};
-            c_telefonos = {};
-            c_direcciones = {};
-            c_direcciones.calle = "";
-            c_eventos = {};
-            c_eventos.descripcion_evento = $("#esp_evento").val();
-            c_clientes = {};
-
-            if ($("#ent_dom").is(':checked')) {
-                c_pedidos.id_tipo_entrega = 1;
-            }
-            if ($("#ent_suc").is(':checked')) {
-                c_pedidos.id_tipo_entrega = 2;
-            }
-        
-            c_pedidos.monto = $("#consumo_total").text();
-            c_pedidos.pago_recibido = $("#pago_cliente").val();
-            c_pedidos.id_pedido_status = 1;
-        
-            c_telefonos.telefono = $("#telefono").val();
-        
-            c_ventas_g.subtotal = $("#consumo_total").text();
-            c_ventas_g.id_caja = null;
-            c_ventas_g.id_codigo = null;
-            c_ventas_g.propina = $("#propina").val();
-        
-            var c_ventas_pagos_tipo = [];
-            c_ventas_pagos_tipo[0] = [1];
-            c_ventas_pagos_tipo[1] = [2];
-            c_ventas_pagos_tipo[2] = [3];
-
-            var c_ventas_pagos_montos = [];
-            c_ventas_pagos_montos[0] = [$("#pago_efectivo").val()];
-            c_ventas_pagos_montos[1] = [$("#pago_tarjeta").val()];
-            c_ventas_pagos_montos[2] = [$("#pago_teamcard").val()];
-        
-            if ($("#tab_buscar").hasClass("active"))
-            {
-                c_pedidos.id_pedido_tipo = 1
-            }
-
-            if ($("#tab_new").hasClass("active")) {
-                
-                c_clientes.nombre = $("#new_nombre").val();
-                c_clientes.email = $("#new_email").val();
-                c_clientes.clave_cliente = $("#telefono").val();
-
-                c_pedidos.id_pedido_tipo = 2
-                c_direcciones.calle = $("#new_calle").val();
-                c_direcciones.numero_ext = $("#new_next").val();
-                c_direcciones.id_colonia = 1; //cambiar
-                c_direcciones.entre_calle1 = "calle1";//cambiar
-                c_direcciones.entre_calle2 = "calle2";
-                c_direcciones.referencia = $("#new_referencia").val();
-                c_direcciones.d_codigo = 1;//cambiar
-                c_direcciones.id_asenta_cpcons = 1;//cambiar
-                c_direcciones.id_ciudad = 1;//cambiar
-                c_direcciones.id_estado = 1;//cambiar
-            }
-            var RecogerPedido = function () {
-                $('#div1').style.display = "block";
-
-                c_pedidos.fecha_entrega = $("#esp_fecha").val();
-                c_pedidos.id_pedido_tipo = 3
-
-                c_direcciones.calle = $("#esp_calle").val();
-                c_direcciones.numero_ext = $("#esp_next").val();
-                c_direcciones.id_colonia = 1; //cambiar
-                c_direcciones.entre_calle1 = "calle1";//cambiar
-                c_direcciones.entre_calle2 = "calle2";
-                c_direcciones.referencia = $("#esp_referencia").val();
-                c_direcciones.d_codigo = 1;//cambiar
-                c_direcciones.id_asenta_cpcons = 1;//cambiar
-                c_direcciones.id_ciudad = 1;//cambiar
-                c_direcciones.id_estado = 1;//cambiar
-
-                c_eventos.descripcion_evento = $("#esp_evento").val();
-                c_eventos.fecha = $("#esp_fecha").val();
-                c_eventos.hora = $("#esp_hora").val();
-                c_eventos.contratante = $("#esp_contratante").val();
-                
-
-            }
-
-            
-            
-            $.ajax({
-                type: "POST",
-                url: "../PEDIDOS/Create2",
-                data: { 
-                    c_pedidos: c_pedidos,
-                    c_clientes: c_clientes,
-                    c_direcciones: c_direcciones,
-                    c_telefonos: c_telefonos,
-                    c_ventas_g: c_ventas_g,
-                    c_eventos: c_eventos,
-                    c_ventas_pagos_tipo: c_ventas_pagos_tipo,
-                    c_ventas_pagos_montos: c_ventas_pagos_montos,
-                    
-                },
-                success: function (result) {
-                    $("#paquetes").html(result);
-                }
-            });
-        }
-
-        var BuscarCliente = function () {
-            var telefono = $("#telefono").val();
-            $.ajax({
-                url: "../CLIENTES/BuscarClienteTelefono",
-                    data: { telefono:telefono },
-                    success: function (result) {
-                        $("#ClienteInfo").html(result);
+                var ConsultaBotonesEspeciales = function () {
+                        $.ajax({
+                            url: "../POS/ConsultaBotonesEspeciales",
+                            success: function (result) {
+                                $("#paquetes").html(result);
+                            }
+                        });
                     }
-             });
-        }
-    
-        var BuscarRepartidor = function () {
-            var gaffette = $("#gaffette").val();
-            $.ajax({
-                url: "../POS/BuscarRepartidor",
-                data: {
-                    gaffette: gaffette
-                },
-                success: function (result) {
-                    $("#repartidordatos").html(result);
-                }
-            });
-        }
 
-    var AsignarRepartidor = function () {
-        var id_empleado = $("#idempleado").text();
-        var id_pedido = 1;
-        $.ajax({
-            url: "../POS/AsignarRepartidor",
-            data: {
-                id_empleados: id_empleado,
-                id_pedido:id_pedido
-            },
-            success: function (result) {
-              
-            }
-        });
+            var RegistrarPedido = function () {
+                        c_pedidos = {};
+                        c_ventas_g = {};
+                        c_telefonos = {};
+                        c_direcciones = {};
+                        c_direcciones.calle = "";
+                        c_eventos = {};
+                        c_eventos.descripcion_evento = $("#esp_evento").val();
+                        c_clientes = {};
+
+                        if ($("#ent_dom").is(':checked')) {
+                            c_pedidos.id_tipo_entrega = 1;
+                        }
+                        if ($("#ent_suc").is(':checked')) {
+                            c_pedidos.id_tipo_entrega = 2;
+                        }
+
+                        c_pedidos.monto = $("#consumo_total").text();
+                        c_pedidos.pago_recibido = $("#pago_cliente").val();
+                        c_pedidos.id_pedido_status = 1;
+
+                        c_telefonos.telefono = $("#telefono").val();
+
+                        c_ventas_g.subtotal = $("#consumo_total").text();
+                        c_ventas_g.id_caja = null;
+                        c_ventas_g.id_codigo = null;
+                        c_ventas_g.propina = $("#propina").val();
+
+                        var c_ventas_pagos_tipo = [];
+                        c_ventas_pagos_tipo[0] = [1];
+                        c_ventas_pagos_tipo[1] = [2];
+                        c_ventas_pagos_tipo[2] = [3];
+
+                        var c_ventas_pagos_montos = [];
+                        c_ventas_pagos_montos[0] = [$("#pago_efectivo").val()];
+                        c_ventas_pagos_montos[1] = [$("#pago_tarjeta").val()];
+                        c_ventas_pagos_montos[2] = [$("#pago_teamcard").val()];
+
+                        if ($("#tab_buscar").hasClass("active")) {
+                            c_pedidos.id_pedido_tipo = 1
+                        }
+
+                        if ($("#tab_new").hasClass("active")) {
+
+                            c_clientes.nombre = $("#new_nombre").val();
+                            c_clientes.email = $("#new_email").val();
+                            c_clientes.clave_cliente = $("#telefono").val();
+
+                            c_pedidos.id_pedido_tipo = 2
+                            c_direcciones.calle = $("#new_calle").val();
+                            c_direcciones.numero_ext = $("#new_next").val();
+                            c_direcciones.id_colonia = 1; //cambiar
+                            c_direcciones.entre_calle1 = "calle1";//cambiar
+                            c_direcciones.entre_calle2 = "calle2";
+                            c_direcciones.referencia = $("#new_referencia").val();
+                            c_direcciones.d_codigo = 1;//cambiar
+                            c_direcciones.id_asenta_cpcons = 1;//cambiar
+                            c_direcciones.id_ciudad = 1;//cambiar
+                            c_direcciones.id_estado = 1;//cambiar
+                        }
+                        var RecogerPedido = function () {
+                            $('#div1').style.display = "block";
+
+                            c_pedidos.fecha_entrega = $("#esp_fecha").val();
+                            c_pedidos.id_pedido_tipo = 3
+
+                            c_direcciones.calle = $("#esp_calle").val();
+                            c_direcciones.numero_ext = $("#esp_next").val();
+                            c_direcciones.id_colonia = 1; //cambiar
+                            c_direcciones.entre_calle1 = "calle1";//cambiar
+                            c_direcciones.entre_calle2 = "calle2";
+                            c_direcciones.referencia = $("#esp_referencia").val();
+                            c_direcciones.d_codigo = 1;//cambiar
+                            c_direcciones.id_asenta_cpcons = 1;//cambiar
+                            c_direcciones.id_ciudad = 1;//cambiar
+                            c_direcciones.id_estado = 1;//cambiar
+
+                            c_eventos.descripcion_evento = $("#esp_evento").val();
+                            c_eventos.fecha = $("#esp_fecha").val();
+                            c_eventos.hora = $("#esp_hora").val();
+                            c_eventos.contratante = $("#esp_contratante").val();
+
+
+                        }
+
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: "../PEDIDOS/Create2",
+                            data: {
+                                c_pedidos: c_pedidos,
+                                c_clientes: c_clientes,
+                                c_direcciones: c_direcciones,
+                                c_telefonos: c_telefonos,
+                                c_ventas_g: c_ventas_g,
+                                c_eventos: c_eventos,
+                                c_ventas_pagos_tipo: c_ventas_pagos_tipo,
+                                c_ventas_pagos_montos: c_ventas_pagos_montos,
+
+                            },
+                            success: function (result) {
+                                $("#paquetes").html(result);
+                            }
+                        });
+                    }
+
+                var BuscarCliente = function () {
+                        var telefono = $("#telefono").val();
+                        $.ajax({
+                            url: "../CLIENTES/BuscarClienteTelefono",
+                            data: { telefono: telefono },
+                            success: function (result) {
+                                $("#ClienteInfo").html(result);
+                            }
+                        });
+                    }
+
+                var BuscarRepartidor = function () {
+                        var gaffette = $("#gaffette").val();
+                        $.ajax({
+                            url: "../POS/BuscarRepartidor",
+                            data: {
+                                gaffette: gaffette
+                            },
+                            success: function (result) {
+                                $("#repartidordatos").html(result);
+                            }
+                        });
+                    }
+
+            var AsignarRepartidor = function () {
+                        var id_empleado = $("#idempleado").text();
+                        var id_pedido = 1;
+                        $.ajax({
+                            url: "../POS/AsignarRepartidor",
+                            data: {
+                                id_empleados: id_empleado,
+                                id_pedido: id_pedido
+                            },
+                            success: function (result) {
+
+                            }
+                        });
+                    }
+
+
+
+
+        </script>
+
     }
-
-
-
-
-</script>
-
-
+}

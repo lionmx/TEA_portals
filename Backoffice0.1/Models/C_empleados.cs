@@ -14,27 +14,48 @@ namespace Backoffice0._1.Models
     
     public partial class C_empleados
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_empleados()
+        {
+            this.C_empleados_team_card = new HashSet<C_empleados_team_card>();
+            this.C_pedidos_empleados = new HashSet<C_pedidos_empleados>();
+        }
+    
         public int id_empleado { get; set; }
+        public string no_empleado { get; set; }
         public string nombres { get; set; }
         public string apellido_paterno { get; set; }
         public string apellido_materno { get; set; }
-        public string colonia { get; set; }
+        public Nullable<int> id_colonia { get; set; }
         public string calle { get; set; }
         public string no_interior { get; set; }
         public string no_exterior { get; set; }
-        public Nullable<int> ciudad { get; set; }
-        public Nullable<int> estado { get; set; }
-        public Nullable<int> municipio { get; set; }
+        public Nullable<int> id_ciudad { get; set; }
+        public Nullable<int> id_estado { get; set; }
+        public Nullable<int> id_municipio { get; set; }
         public Nullable<int> cp { get; set; }
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public string nss { get; set; }
         public Nullable<System.DateTime> fecha_ingreso { get; set; }
-        public Nullable<int> puesto { get; set; }
+        public Nullable<int> id_puesto { get; set; }
         public string curp { get; set; }
         public string telefono_celular { get; set; }
         public string telefono_casa { get; set; }
         public string telefono_contacto { get; set; }
-        public Nullable<int> tipo_sangre { get; set; }
-        public string gaffete { get; set; }
+        public Nullable<int> id_tipo_sangre { get; set; }
+        public string no_gaffete { get; set; }
+        public Nullable<int> id_nivel_empleado { get; set; }
+        public string tarjeta_empleado { get; set; }
+        public Nullable<int> id_estado_visible { get; set; }
+        public string codigo_empresa { get; set; }
+        public Nullable<bool> id_estado_activo { get; set; }
+    
+        public virtual C_empleados_tipo_sangre C_empleados_tipo_sangre { get; set; }
+        public virtual C_empleados_visible C_empleados_visible { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_empleados_team_card> C_empleados_team_card { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos_empleados> C_pedidos_empleados { get; set; }
+        public virtual C_empleados_niveles C_empleados_niveles { get; set; }
     }
 }

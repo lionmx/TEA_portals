@@ -13,7 +13,7 @@ namespace Backoffice0._1.Controllers
     public class ROLESController : Controller
     {
         //private QUESIPIZZAS_DEV1Entities2 db = new QUESIPIZZAS_DEV1Entities2();
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         // GET: ROLES
         public ActionResult Index()
         {

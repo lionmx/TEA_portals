@@ -12,17 +12,13 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_marca_config
+    public partial class C_bo_semanas_trans_reg
     {
-        public int id_marca_config { get; set; }
-        public Nullable<int> id_marca { get; set; }
-        public string logo { get; set; }
-        public string color_plantilla { get; set; }
-        public string correo { get; set; }
-        public string pagina_web { get; set; }
-        public string facebook { get; set; }
-        public string twitter { get; set; }
-    
-        public virtual C_marcas C_marcas { get; set; }
+        public int id_bo_semanas_c { get; set; }
+        public string codigo_empresa { get; set; }
+        public Nullable<int> id_semana_de_calculo { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public string codigo_usuario { get; set; }
+        public string notas { get; set; }
     }
 }

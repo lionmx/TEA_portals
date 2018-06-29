@@ -21,9 +21,12 @@ namespace Backoffice0._1.Models
         }
     
         public int id_bo_df { get; set; }
+        public Nullable<System.DateTime> fecha_registro { get; set; }
+        public Nullable<int> id_mes { get; set; }
+        public Nullable<int> id_dia { get; set; }
         public string nombre { get; set; }
-        public string fecha { get; set; }
-        public string porc_proteccion { get; set; }
+        public Nullable<decimal> porc_proteccion { get; set; }
+        public Nullable<bool> activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_bo_diafestivo_ap> C_bo_diafestivo_ap { get; set; }

@@ -17,20 +17,26 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_marcas()
         {
-            this.C_marca_config = new HashSet<C_marca_config>();
             this.C_marcas_sociedades = new HashSet<C_marcas_sociedades>();
             this.C_pedidos = new HashSet<C_pedidos>();
+            this.C_productos_marca = new HashSet<C_productos_marca>();
         }
     
         public int id_marca { get; set; }
         public string nombre_marca { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
+        public string logo { get; set; }
+        public string sitio_web { get; set; }
+        public string color { get; set; }
+        public string facebook { get; set; }
+        public string twitter { get; set; }
+        public Nullable<bool> status { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_marca_config> C_marca_config { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marcas_sociedades> C_marcas_sociedades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos> C_pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_productos_marca> C_productos_marca { get; set; }
     }
 }

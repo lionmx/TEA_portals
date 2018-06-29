@@ -22,6 +22,7 @@ namespace Backoffice0._1.Models
         public Nullable<bool> entrada_salida { get; set; }
         public string codigo_sucursal { get; set; }
     
+        public virtual C_insumo_cat C_insumo_cat { get; set; }
         public virtual C_insumo_mov_suc_g C_insumo_mov_suc_g { get; set; }
     }
 }

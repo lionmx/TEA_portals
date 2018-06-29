@@ -18,8 +18,13 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_usuario { get; set; }
         public string codigo_sucursal { get; set; }
         public Nullable<int> id_pedido { get; set; }
+        public Nullable<int> id_grupo_productos_codigo { get; set; }
         public string codigo_prupo { get; set; }
         public Nullable<System.DateTime> fecha_aplicacion { get; set; }
         public string notas { get; set; }
+    
+        public virtual C_grupo_productos_codigos C_grupo_productos_codigos { get; set; }
+        public virtual C_pedidos C_pedidos { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

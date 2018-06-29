@@ -18,6 +18,7 @@ namespace Backoffice0._1.App_Start
                "~/Content/production/css/select/select2.min.css",
                "~/Content/production/css/floatexamples.css",
                "~/Content/production/css/animate.min.css"
+               
            ));
             bundles.Add(new ScriptBundle("~/bundles/js").
                 Include(

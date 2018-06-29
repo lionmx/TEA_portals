@@ -17,7 +17,9 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_pedidos()
         {
+            this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
             this.C_pedidos_d = new HashSet<C_pedidos_d>();
+            this.C_pedidos_empleados = new HashSet<C_pedidos_empleados>();
         }
     
         public int id_pedido { get; set; }
@@ -38,11 +40,15 @@ namespace Backoffice0._1.Models
     
         public virtual C_clientes C_clientes { get; set; }
         public virtual C_eventos C_eventos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_grupo_productos_codigos_movs> C_grupo_productos_codigos_movs { get; set; }
         public virtual C_marcas C_marcas { get; set; }
         public virtual C_sucursales C_sucursales { get; set; }
         public virtual C_tipo_entrega C_tipo_entrega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos_d> C_pedidos_d { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos_empleados> C_pedidos_empleados { get; set; }
         public virtual C_pedidos_tipo C_pedidos_tipo { get; set; }
         public virtual C_tracking_status C_tracking_status { get; set; }
     }

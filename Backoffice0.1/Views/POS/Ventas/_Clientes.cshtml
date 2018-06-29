@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_clientes>
 @using System.Web.Mvc.Html;
 
-@foreach (var item in Model)
-{
+@if (Model != null)
+    {
+
+        foreach (var item in Model)
+        {
     <tr class="even pointer">
         <td class="a-center ">
             <input type="radio" class="flat" name="table_records">
@@ -10,4 +13,5 @@
         <td class=" "><label style="font-size:14px">@item.nombre</label><br> Calle <br> Colonia </td>
         <td class=" "><i class="fa fa-pencil">Editar</i></td>
     </tr>
-}
+        }
+    }

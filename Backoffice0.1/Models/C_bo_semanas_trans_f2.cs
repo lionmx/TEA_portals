@@ -12,10 +12,16 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_clientes_direccion_old
+    public partial class C_bo_semanas_trans_f2
     {
-        public int id_clientes_direccion { get; set; }
-        public string clave_cliente { get; set; }
-        public int id_direccion { get; set; }
+        public int id_bo_semanas_calculo_f2 { get; set; }
+        public Nullable<int> id_empresa { get; set; }
+        public Nullable<int> id_semana_de_calculo { get; set; }
+        public string codigo_sucursal { get; set; }
+        public string sku_insumo { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<decimal> venta_total_calculada { get; set; }
+        public Nullable<decimal> existencia { get; set; }
+        public Nullable<decimal> necesidad { get; set; }
     }
 }

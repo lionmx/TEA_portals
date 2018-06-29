@@ -26,6 +26,7 @@ namespace Backoffice0._1.Models
         public virtual CS_usuario_login CS_usuario_login3 { get; set; }
         public virtual CS_usuario_login CS_usuario_login12 { get; set; }
         public virtual CS_usuario_login CS_usuario_login4 { get; set; }
+
         public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }

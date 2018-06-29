@@ -14,7 +14,7 @@ namespace Backoffice0._1.Controllers
 {
     public class USUARIOSController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         //private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         // GET: USUARIOS
         public ActionResult Index()

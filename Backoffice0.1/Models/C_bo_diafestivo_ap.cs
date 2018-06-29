@@ -24,7 +24,7 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_sucursal { get; set; }
         public Nullable<int> id_bo_df { get; set; }
         public Nullable<int> id_bo_g { get; set; }
-        public string fecha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
     
         public virtual C_bo_diasfestivos C_bo_diasfestivos { get; set; }
         public virtual C_bo_g C_bo_g { get; set; }

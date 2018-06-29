@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_pedidos>
 @using System.Web.Mvc.Html;
+@if (Model != null)
+{
+
 
 <ul class="nav navbar-nav navbar-right">
     <li role="presentation" class="dropdown">
@@ -177,3 +180,4 @@
 
     }
 </script>
+}

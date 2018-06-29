@@ -26,5 +26,7 @@ namespace Backoffice0._1.Models
         public Nullable<System.DateTime> valida_hasta { get; set; }
         public string notas { get; set; }
         public Nullable<bool> activa { get; set; }
+    
+        public virtual C_empleados C_empleados { get; set; }
     }
 }

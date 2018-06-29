@@ -75,11 +75,11 @@
     <Key>
       <PropertyRef Name="id_bo_df_ap" />
     </Key>
-    <Property Name="id_bo_df_ap" Type="Int32" Nullable="false" />
+    <Property Name="id_bo_df_ap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_sucursal" Type="Int32" />
     <Property Name="id_bo_df" Type="Int32" />
     <Property Name="id_bo_g" Type="Int32" />
-    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
     <NavigationProperty Name="C_bo_diasfestivos" Relationship="Self.FK_C_bo_diafestivo_ap_C_bo_diasfestivos" FromRole="C_bo_diafestivo_ap" ToRole="C_bo_diasfestivos" />
     <NavigationProperty Name="C_bo_g" Relationship="Self.FK_C_bo_diafestivo_ap_C_bo_g" FromRole="C_bo_diafestivo_ap" ToRole="C_bo_g" />
     <NavigationProperty Name="C_bo_porc_df" Relationship="Self.FK_C_bo_porc_df_C_bo_diafestivo_ap" FromRole="C_bo_diafestivo_ap" ToRole="C_bo_porc_df" />
@@ -88,10 +88,13 @@
     <Key>
       <PropertyRef Name="id_bo_df" />
     </Key>
-    <Property Name="id_bo_df" Type="Int32" Nullable="false" />
-    <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="porc_proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_bo_df" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+    <Property Name="id_mes" Type="Int32" />
+    <Property Name="id_dia" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="porc_proteccion" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="activo" Type="Boolean" />
     <NavigationProperty Name="C_bo_diafestivo_ap" Relationship="Self.FK_C_bo_diafestivo_ap_C_bo_diasfestivos" FromRole="C_bo_diasfestivos" ToRole="C_bo_diafestivo_ap" />
   </EntityType>
   <EntityType Name="C_bo_g">
@@ -146,6 +149,124 @@
     <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_bo_diafestivo_ap" Relationship="Self.FK_C_bo_porc_df_C_bo_diafestivo_ap" FromRole="C_bo_porc_df" ToRole="C_bo_diafestivo_ap" />
   </EntityType>
+  <EntityType Name="C_bo_semanas_anios_historicos">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_anios_h" />
+    </Key>
+    <Property Name="id_bo_semanas_anios_h" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_cat">
+    <Key>
+      <PropertyRef Name="id_bo_semanas" />
+    </Key>
+    <Property Name="id_bo_semanas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Semana" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_dias">
+    <Key>
+      <PropertyRef Name="id_semanas_dia" />
+    </Key>
+    <Property Name="id_semanas_dia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_dia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_meses">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_meses" />
+    </Key>
+    <Property Name="id_bo_semanas_meses" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_mes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_no_dias">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_no_dias" />
+    </Key>
+    <Property Name="id_bo_semanas_no_dias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero_dia" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_c1">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_calculo_t1" />
+    </Key>
+    <Property Name="id_bo_semanas_calculo_t1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_producto_especialidad" Type="Int32" />
+    <Property Name="id_producto_clasificacion" Type="Int32" />
+    <Property Name="factor_calculado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="total_calculado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_c3">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_calculo_t3" />
+    </Key>
+    <Property Name="id_bo_semanas_calculo_t3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_semana_de_calculo" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="venta_total_calculada" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="existencia" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="necesidad" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_f2">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_calculo_f2" />
+    </Key>
+    <Property Name="id_bo_semanas_calculo_f2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_semana_de_calculo" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="venta_total_calculada" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="existencia" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="necesidad" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_par">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_trans_p" />
+    </Key>
+    <Property Name="id_bo_semanas_trans_p" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="codigo_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_bo_anos_param" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_bo_festivos_param" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="calculo_ultimo_mes" Type="Boolean" />
+    <Property Name="calculo_ultimos_7_dias" Type="Boolean" />
+    <Property Name="no_dias_entrega" Type="Int32" />
+    <Property Name="dias_entrega" Type="Int32" />
+    <Property Name="porc_proteccion_ch" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="porc_proteccion_me" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="porc_proteccion_gd" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="estatus" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_reg">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_c" />
+    </Key>
+    <Property Name="id_bo_semanas_c" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_semana_de_calculo" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="codigo_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="notas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_bo_semanas_trans_rp">
+    <Key>
+      <PropertyRef Name="id_bo_semanas_calculo_rp" />
+    </Key>
+    <Property Name="id_bo_semanas_calculo_rp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_producto_clasificacion" Type="Int32" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="valor_rango_proteccion_1" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="valor_rango_proteccion_2" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
   <EntityType Name="C_bo_suc_ir">
     <Key>
       <PropertyRef Name="id_bo_suc_ir" />
@@ -164,8 +285,9 @@
     </Key>
     <Property Name="caja" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="id_caja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_cajas_C_sucursales" FromRole="C_cajas" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_campaña_codigos">
     <Key>
@@ -253,13 +375,25 @@
     </Key>
     <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="clave_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ultimacompra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ultimacompra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Boolean" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="C_clientes_telefono" Relationship="Self.FK_Clientes_telefono_Clientes" FromRole="C_clientes" ToRole="C_clientes_telefono" />
-    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_pedidos_Clientes" FromRole="C_clientes" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_clientes_direccion" Relationship="Self.FK_C_clientes_direccion_C_clientes" FromRole="C_clientes" ToRole="C_clientes_direccion" />
+    <NavigationProperty Name="C_clientes_telefono" Relationship="Self.FK_C_clientes_telefono_C_clientes" FromRole="C_clientes" ToRole="C_clientes_telefono" />
+    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_C_clientes" FromRole="C_clientes" ToRole="C_pedidos" />
+  </EntityType>
+  <EntityType Name="C_clientes_direccion">
+    <Key>
+      <PropertyRef Name="id_cliente_direccion" />
+    </Key>
+    <Property Name="id_cliente_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="clave_cliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="id_direccion" Type="Int32" />
+    <NavigationProperty Name="C_clientes" Relationship="Self.FK_C_clientes_direccion_C_clientes" FromRole="C_clientes_direccion" ToRole="C_clientes" />
+    <NavigationProperty Name="C_direcciones" Relationship="Self.FK_C_clientes_direccion_C_direcciones" FromRole="C_clientes_direccion" ToRole="C_direcciones" />
   </EntityType>
   <EntityType Name="C_clientes_telefono">
     <Key>
@@ -268,8 +402,8 @@
     <Property Name="id_clientes_telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_cliente" Type="Int32" />
     <Property Name="id_telefono" Type="Int32" />
-    <NavigationProperty Name="C_clientes" Relationship="Self.FK_Clientes_telefono_Clientes" FromRole="C_clientes_telefono" ToRole="C_clientes" />
-    <NavigationProperty Name="C_telefonos" Relationship="Self.FK_Clientes_telefono_Telefonos" FromRole="C_clientes_telefono" ToRole="C_telefonos" />
+    <NavigationProperty Name="C_clientes" Relationship="Self.FK_C_clientes_telefono_C_clientes" FromRole="C_clientes_telefono" ToRole="C_clientes" />
+    <NavigationProperty Name="C_telefonos" Relationship="Self.FK_C_clientes_telefono_C_telefonos" FromRole="C_clientes_telefono" ToRole="C_telefonos" />
   </EntityType>
   <EntityType Name="C_codigos_postales">
     <Key>
@@ -297,6 +431,138 @@
     <Property Name="costo_envio" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="C_codigos_postales" Relationship="Self.FK_Colonias_CodigosPostales" FromRole="C_colonias" ToRole="C_codigos_postales" />
   </EntityType>
+  <EntityType Name="C_compras_destinos">
+    <Key>
+      <PropertyRef Name="id_compras_destinos" />
+    </Key>
+    <Property Name="id_compras_destinos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="calle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_ciudad" Type="Int32" />
+    <Property Name="id_estado" Type="Int32" />
+    <Property Name="cp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_compras_estatus">
+    <Key>
+      <PropertyRef Name="id_estatus_orden" />
+    </Key>
+    <Property Name="id_estatus_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_compras_firmantes">
+    <Key>
+      <PropertyRef Name="id_compras_firmantes" />
+    </Key>
+    <Property Name="id_compras_firmantes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" />
+  </EntityType>
+  <EntityType Name="C_compras_hoja">
+    <Key>
+      <PropertyRef Name="id_ubicacion_hoja" />
+    </Key>
+    <Property Name="id_ubicacion_hoja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_compras_leyendas_condiciones">
+    <Key>
+      <PropertyRef Name="id_leyendas_condiciones" />
+    </Key>
+    <Property Name="id_leyendas_condiciones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_tipo_leyenda" Type="Int32" />
+    <Property Name="id_ubicacion_hoja" Type="Int32" />
+    <Property Name="leyenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="activa" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="C_compras_mes_trans_c1">
+    <Key>
+      <PropertyRef Name="id_compras_mes_calculo_t1" />
+    </Key>
+    <Property Name="id_compras_mes_calculo_t1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_producto_especialidad" Type="Int32" />
+    <Property Name="id_producto_clasificacion" Type="Int32" />
+    <Property Name="factor_calculado" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="total_calculado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="C_compras_mes_trans_c3">
+    <Key>
+      <PropertyRef Name="id_compras_mes_calculo_t3" />
+    </Key>
+    <Property Name="id_compras_mes_calculo_t3" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_semana_de_calculo" Type="Int32" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="venta_total_calculada" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="existencia" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="necesidad" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="C_compras_mes_trans_f2">
+    <Key>
+      <PropertyRef Name="id_compras_mes_calculo_f2" />
+    </Key>
+    <Property Name="id_compras_mes_calculo_f2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_semana_de_calculo" Type="Int32" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="venta_total_calculada" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="existencia" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="necesidad" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="C_compras_mov_almacen">
+    <Key>
+      <PropertyRef Name="id_compras_mov_almacen" />
+    </Key>
+    <Property Name="id_compras_mov_almacen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_compra_orden" Type="Int32" />
+    <Property Name="id_bo_semanas_c" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad" Type="Double" />
+    <Property Name="entrada_salida" Type="Boolean" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="observaciones" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C_compras_orden">
+    <Key>
+      <PropertyRef Name="id_compra_orden" />
+    </Key>
+    <Property Name="id_compra_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_marca" Type="Int32" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="fecha_orden" Type="DateTime" Precision="3" />
+    <Property Name="fecha_limite_requerida" Type="DateTime" Precision="3" />
+    <Property Name="fecha_recepcion" Type="DateTime" Precision="3" />
+    <Property Name="id_proveedor" Type="Int32" />
+    <Property Name="id_destino" Type="Int32" />
+    <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe_letra" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_leyendas_condiciones" Type="Int32" />
+    <Property Name="id_firmantes" Type="Int32" />
+    <Property Name="estatus_orden" Type="Int32" />
+    <Property Name="generar_oc" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="C_compras_orden_articulos">
+    <Key>
+      <PropertyRef Name="id_compras_articulos" />
+    </Key>
+    <Property Name="id_compras_articulos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_compra_orden" Type="Int32" />
+    <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_unidad_medida" Type="Int32" />
+    <Property Name="precio_unitario" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe_subtotal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="importe_iva" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="imorte_total" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
   <EntityType Name="C_cp_mexico">
     <Key>
       <PropertyRef Name="id" />
@@ -317,6 +583,7 @@
     <Property Name="id_asenta_cpcons" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="d_zona" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="c_cve_ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="C_direcciones" Relationship="Self.FK_C_direcciones_C_cp_mexico" FromRole="C_cp_mexico" ToRole="C_direcciones" />
   </EntityType>
   <EntityType Name="C_delivery_sucursal_repartidor">
     <Key>
@@ -331,9 +598,7 @@
       <PropertyRef Name="id_direccion" />
     </Key>
     <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="calle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="numero_int" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="numero_ext" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="id_colonia" Type="Int32" />
     <Property Name="entre_calle1" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -343,6 +608,8 @@
     <Property Name="id_asenta_cpcons" Type="Int32" />
     <Property Name="id_ciudad" Type="Int32" />
     <Property Name="id_estado" Type="Int32" />
+    <NavigationProperty Name="C_clientes_direccion" Relationship="Self.FK_C_clientes_direccion_C_direcciones" FromRole="C_direcciones" ToRole="C_clientes_direccion" />
+    <NavigationProperty Name="C_cp_mexico" Relationship="Self.FK_C_direcciones_C_cp_mexico" FromRole="C_direcciones" ToRole="C_cp_mexico" />
   </EntityType>
   <EntityType Name="C_direcciones_3_">
     <Key>
@@ -367,28 +634,46 @@
     <Key>
       <PropertyRef Name="id_empleado" />
     </Key>
-    <Property Name="id_empleado" Type="Int32" Nullable="false" />
+    <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="no_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="apellido_paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="apellido_materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_colonia" Type="Int32" />
     <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="no_interior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="no_exterior" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ciudad" Type="Int32" />
-    <Property Name="estado" Type="Int32" />
-    <Property Name="municipio" Type="Int32" />
+    <Property Name="id_ciudad" Type="Int32" />
+    <Property Name="id_estado" Type="Int32" />
+    <Property Name="id_municipio" Type="Int32" />
     <Property Name="cp" Type="Int32" />
     <Property Name="fecha_nacimiento" Type="DateTime" Precision="3" />
     <Property Name="nss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha_ingreso" Type="DateTime" Precision="3" />
-    <Property Name="puesto" Type="Int32" />
+    <Property Name="id_puesto" Type="Int32" />
     <Property Name="curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="telefono_celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="telefono_casa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="telefono_contacto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="tipo_sangre" Type="Int32" />
-    <Property Name="gaffete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_tipo_sangre" Type="Int32" />
+    <Property Name="no_gaffete" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_nivel_empleado" Type="Int32" />
+    <Property Name="tarjeta_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_estado_visible" Type="Int32" />
+    <Property Name="codigo_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_estado_activo" Type="Boolean" />
+    <NavigationProperty Name="C_empleados_tipo_sangre" Relationship="Self.FK_C_empleados_C_empleados_tipo_sangre" FromRole="C_empleados" ToRole="C_empleados_tipo_sangre" />
+    <NavigationProperty Name="C_empleados_visible" Relationship="Self.FK_C_empleados_C_empleados_visible" FromRole="C_empleados" ToRole="C_empleados_visible" />
+    <NavigationProperty Name="C_empleados_team_card" Relationship="Self.FK_C_empleados_team_card_C_empleados" FromRole="C_empleados" ToRole="C_empleados_team_card" />
+    <NavigationProperty Name="C_pedidos_empleados" Relationship="Self.FK_C_pedidos_empleados_C_empleados" FromRole="C_empleados" ToRole="C_pedidos_empleados" />
+    <NavigationProperty Name="C_empleados_niveles" Relationship="DB_CORPORATIVA_DEVModel.FK_C_empleados_C_empleados_niveles" FromRole="C_empleados" ToRole="C_empleados_niveles" />
+  </EntityType>
+  <EntityType Name="C_empleados_estados">
+    <Key>
+      <PropertyRef Name="id_empleados_estado" />
+    </Key>
+    <Property Name="id_empleados_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="C_empleados_team_card">
     <Key>
@@ -406,10 +691,28 @@
     <Property Name="valida_hasta" Type="DateTime" Precision="3" />
     <Property Name="notas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="activa" Type="Boolean" />
+    <NavigationProperty Name="C_empleados" Relationship="Self.FK_C_empleados_team_card_C_empleados" FromRole="C_empleados_team_card" ToRole="C_empleados" />
+  </EntityType>
+  <EntityType Name="C_empleados_tipo_sangre">
+    <Key>
+      <PropertyRef Name="id_empleados_tipo_sangre" />
+    </Key>
+    <Property Name="id_empleados_tipo_sangre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_tipo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_empleados" Relationship="Self.FK_C_empleados_C_empleados_tipo_sangre" FromRole="C_empleados_tipo_sangre" ToRole="C_empleados" />
+  </EntityType>
+  <EntityType Name="C_empleados_visible">
+    <Key>
+      <PropertyRef Name="id_estado_visible" />
+    </Key>
+    <Property Name="id_estado_visible" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_empleados" Relationship="Self.FK_C_empleados_C_empleados_visible" FromRole="C_empleados_visible" ToRole="C_empleados" />
   </EntityType>
   <EntityType Name="C_empresas">
     <Key>
-      <PropertyRef Name="codigo_empresa" />
+      <PropertyRef Name="id_empresa" />
     </Key>
     <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="codigo_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -424,6 +727,11 @@
     <Property Name="representante" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="alias" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="C_empresas_tipo" Relationship="Self.FK_C_empresas_C_empresas_tipo" FromRole="C_empresas" ToRole="C_empresas_tipo" />
+    <NavigationProperty Name="C_empresas_servicios_contratados" Relationship="Self.FK_C_empresas_servicios_contratados_C_empresas" FromRole="C_empresas" ToRole="C_empresas_servicios_contratados" />
+    <NavigationProperty Name="C_empresas_sucursales" Relationship="Self.FK_C_empresas_sucursales_C_empresas" FromRole="C_empresas" ToRole="C_empresas_sucursales" />
+    <NavigationProperty Name="C_parametros_empresa" Relationship="Self.FK_C_parametros_empresa_C_empresas" FromRole="C_empresas" ToRole="C_parametros_empresa" />
+    <NavigationProperty Name="C_sociedades_empresas" Relationship="Self.FK_C_sociedades_empresas_C_empresas" FromRole="C_empresas" ToRole="C_sociedades_empresas" />
   </EntityType>
   <EntityType Name="C_empresas_sucursales">
     <Key>
@@ -431,16 +739,26 @@
     </Key>
     <Property Name="id_empresa_sucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_empresa" Type="Int32" />
-    <Property Name="codigo_empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_sucursal" Type="Int32" />
     <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_empresas_sucursales_C_empresas" FromRole="C_empresas_sucursales" ToRole="C_empresas" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_empresas_sucursales_C_sucursales" FromRole="C_empresas_sucursales" ToRole="C_sucursales" />
+  </EntityType>
+  <EntityType Name="C_empresas_tipo">
+    <Key>
+      <PropertyRef Name="id_tipo_empresa" />
+    </Key>
+    <Property Name="id_tipo_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_empresas_C_empresas_tipo" FromRole="C_empresas_tipo" ToRole="C_empresas" />
   </EntityType>
   <EntityType Name="C_equipo_sucursal">
     <Key>
       <PropertyRef Name="id_equipo_sucursal" />
     </Key>
-    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="nombre_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="id_tipo_equipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="modelo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -450,6 +768,7 @@
     <Property Name="ip_address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="activo" Type="Boolean" />
     <Property Name="id_equipo_sucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_equipo_sucursal_C_sucursales" FromRole="C_equipo_sucursal" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_estados">
     <Key>
@@ -466,10 +785,12 @@
       <PropertyRef Name="id_evento" />
     </Key>
     <Property Name="id_evento" Type="Int32" Nullable="false" />
-    <Property Name="descripcion_evento" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="fecha" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="hora" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="contratante" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="descripcion_evento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="hora" Type="Time" Precision="7" />
+    <Property Name="contratante" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="tel1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tel2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_pedidos_Eventos" FromRole="C_eventos" ToRole="C_pedidos" />
   </EntityType>
   <EntityType Name="C_facturas">
@@ -482,13 +803,22 @@
     <Property Name="id_CFDI_informacion" Type="Int32" Nullable="false" />
     <NavigationProperty Name="C_cfdi_informacion" Relationship="Self.FK_Facturas_CFDI_informacion" FromRole="C_facturas" ToRole="C_cfdi_informacion" />
   </EntityType>
+  <EntityType Name="C_grupo_aplica_operacion">
+    <Key>
+      <PropertyRef Name="id_grupo_aplica_operacion" />
+    </Key>
+    <Property Name="id_grupo_aplica_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_regla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activa" Type="Boolean" />
+    <NavigationProperty Name="C_grupo_productos_g" Relationship="Self.FK_C_grupo_productos_g_C_grupo_aplica_operacion" FromRole="C_grupo_aplica_operacion" ToRole="C_grupo_productos_g" />
+  </EntityType>
   <EntityType Name="C_grupo_productos_codigos">
     <Key>
       <PropertyRef Name="id_grupo_productos_codigo" />
     </Key>
     <Property Name="id_grupo_productos_codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_grupo_productos" Type="Int32" />
-    <Property Name="codigo_grupo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="no_codigos_autorizados" Type="Int32" />
     <Property Name="vigente_desde" Type="DateTime" Precision="3" />
     <Property Name="vigente_hasta" Type="DateTime" Precision="3" />
@@ -497,6 +827,8 @@
     <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="reglas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_grupo_productos_g" Relationship="Self.FK_C_grupo_productos_codigos_C_grupo_productos_g" FromRole="C_grupo_productos_codigos" ToRole="C_grupo_productos_g" />
+    <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_grupo_productos_codigos" FromRole="C_grupo_productos_codigos" ToRole="C_grupo_productos_codigos_movs" />
   </EntityType>
   <EntityType Name="C_grupo_productos_codigos_movs">
     <Key>
@@ -506,9 +838,13 @@
     <Property Name="id_usuario" Type="Int32" />
     <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="id_pedido" Type="Int32" />
+    <Property Name="id_grupo_productos_codigo" Type="Int32" />
     <Property Name="codigo_prupo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha_aplicacion" Type="DateTime" Precision="3" />
     <Property Name="notas" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_grupo_productos_codigos" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_grupo_productos_codigos" FromRole="C_grupo_productos_codigos_movs" ToRole="C_grupo_productos_codigos" />
+    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_pedidos" FromRole="C_grupo_productos_codigos_movs" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_sucursales" FromRole="C_grupo_productos_codigos_movs" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_grupo_productos_d">
     <Key>
@@ -522,7 +858,6 @@
     <NavigationProperty Name="C_grupo_productos_prods" Relationship="Self.FK_C_grupo_productos_prods_C_grupo_productos_d" FromRole="C_grupo_productos_d" ToRole="C_grupo_productos_prods" />
     <NavigationProperty Name="C_grupo_productos_prods1" Relationship="Self.FK_C_grupo_productos_prods_C_grupo_productos_d1" FromRole="C_grupo_productos_d" ToRole="C_grupo_productos_prods" />
     <NavigationProperty Name="C_grupo_productos_prods2" Relationship="Self.FK_C_grupo_productos_prods_C_grupo_productos_d2" FromRole="C_grupo_productos_d" ToRole="C_grupo_productos_prods" />
-    <NavigationProperty Name="C_grupo_productos_g1" Relationship="Self.FK_C_promocion_d_C_promociones_g" FromRole="C_grupo_productos_d" ToRole="C_grupo_productos_g" />
   </EntityType>
   <EntityType Name="C_grupo_productos_destino_social">
     <Key>
@@ -553,9 +888,11 @@
     <Property Name="mayor_precio" Type="Boolean" />
     <Property Name="descuento" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="precio_unico" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="requiere_codigo" Type="Boolean" />
     <NavigationProperty Name="C_campañas" Relationship="Self.FK_C_campañas_C_promociones_g" FromRole="C_grupo_productos_g" ToRole="C_campañas" />
+    <NavigationProperty Name="C_grupo_aplica_operacion" Relationship="Self.FK_C_grupo_productos_g_C_grupo_aplica_operacion" FromRole="C_grupo_productos_g" ToRole="C_grupo_aplica_operacion" />
+    <NavigationProperty Name="C_grupo_productos_codigos" Relationship="Self.FK_C_grupo_productos_codigos_C_grupo_productos_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_codigos" />
     <NavigationProperty Name="C_grupo_productos_d" Relationship="Self.FK_C_grupo_productos_d_C_grupo_productos_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_d" />
-    <NavigationProperty Name="C_grupo_productos_d1" Relationship="Self.FK_C_promocion_d_C_promociones_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_d" />
     <NavigationProperty Name="C_grupo_productos_subclases" Relationship="Self.FK_C_grupo_productos_g_C_grupo_productos_subclases" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_subclases" />
     <NavigationProperty Name="C_grupo_productos_tipos" Relationship="Self.FK_C_grupo_productos_g_C_grupo_productos_tipos" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_tipos" />
     <NavigationProperty Name="C_grupo_productos_sucursales" Relationship="Self.FK_C_promocion_sucursal_C_promociones_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_sucursales" />
@@ -606,30 +943,32 @@
       <PropertyRef Name="id_impuesto_producto" />
     </Key>
     <Property Name="id_impuesto_producto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="id_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_impuesto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_impuesto_producto_Productos_cat" FromRole="C_impuesto_producto" ToRole="C_productos_cat" />
+    <Property Name="sku_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_impuesto" Type="Int32" />
+    <NavigationProperty Name="C_impuestos" Relationship="Self.FK_C_impuesto_producto_C_impuestos" FromRole="C_impuesto_producto" ToRole="C_impuestos" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_impuesto_producto_C_productos_cat" FromRole="C_impuesto_producto" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_impuestos">
     <Key>
       <PropertyRef Name="id_impuesto" />
     </Key>
-    <Property Name="id_impuesto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id_impuesto" Type="Int32" Nullable="false" />
     <Property Name="impuesto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="valor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_impuesto_producto" Relationship="Self.FK_C_impuesto_producto_C_impuestos" FromRole="C_impuestos" ToRole="C_impuesto_producto" />
   </EntityType>
   <EntityType Name="C_insumo_cat">
     <Key>
-      <PropertyRef Name="C_id_insumo" />
+      <PropertyRef Name="sku_insumo" />
     </Key>
     <Property Name="C_id_insumo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="C______sku_insumo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="codigo_barra_std" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="nombre_insumo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="C______id_insumo_clasif" Type="Int32" />
-    <Property Name="C______id_tipo_inventario" Type="Int32" />
-    <Property Name="C______nivel_reorden_insumo" Type="Double" />
-    <Property Name="C______dias_caducidad" Type="Int32" />
+    <Property Name="id_insumo_clasif" Type="Int32" />
+    <Property Name="id_tipo_inventario" Type="Int32" />
+    <Property Name="nivel_reorden_insumo" Type="Double" />
+    <Property Name="dias_caducidad" Type="Int32" />
     <Property Name="C______Id_tipo_empaque" Type="Int32" />
     <Property Name="C______Id_tipo_envase" Type="Int32" />
     <Property Name="C______presentacion_cantidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -644,6 +983,9 @@
     <Property Name="bo_provdirecto" Type="Int32" />
     <Property Name="visible" Type="Boolean" />
     <Property Name="C______activo" Type="Boolean" />
+    <NavigationProperty Name="C_insumo_mov_suc_d" Relationship="Self.FK_C_insumo_mov_suc_d_C_insumo_cat" FromRole="C_insumo_cat" ToRole="C_insumo_mov_suc_d" />
+    <NavigationProperty Name="C_insumo_sucursal" Relationship="Self.FK_C_insumo_sucursal_C_insumo_cat" FromRole="C_insumo_cat" ToRole="C_insumo_sucursal" />
+    <NavigationProperty Name="C_recetas" Relationship="Self.FK_C_recetas_C_insumo_cat" FromRole="C_insumo_cat" ToRole="C_recetas" />
   </EntityType>
   <EntityType Name="C_insumo_clasificacion">
     <Key>
@@ -673,6 +1015,7 @@
     <Property Name="observaciones" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="entrada_salida" Type="Boolean" />
     <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="C_insumo_cat" Relationship="Self.FK_C_insumo_mov_suc_d_C_insumo_cat" FromRole="C_insumo_mov_suc_d" ToRole="C_insumo_cat" />
     <NavigationProperty Name="C_insumo_mov_suc_g" Relationship="Self.FK_C_insumo_mov_suc_d_C_insumo_mov_suc_g" FromRole="C_insumo_mov_suc_d" ToRole="C_insumo_mov_suc_g" />
   </EntityType>
   <EntityType Name="C_insumo_mov_suc_g">
@@ -702,15 +1045,17 @@
     <Key>
       <PropertyRef Name="id_insumo_sucursal" />
     </Key>
-    <Property Name="id_insumo_sucursal" Type="Int32" Nullable="false" />
-    <Property Name="id_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_sucursal" Type="Int32" />
-    <Property Name="cantidad" Type="Int32" />
-    <Property Name="C__proteccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="min" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="max" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="id_insumo_sucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sku_insumo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="porc_proteccion" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="min" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="max" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="fecha_ultimo_movimiento" Type="DateTime" Precision="3" />
     <Property Name="id_zona_almacenaje" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="C_zona_almacen_suc" Relationship="Self.FK_C_insumo_sucursal_C_Zona_almacen_suc" FromRole="C_insumo_sucursal" ToRole="C_zona_almacen_suc" />
+    <NavigationProperty Name="C_insumo_cat" Relationship="Self.FK_C_insumo_sucursal_C_insumo_cat" FromRole="C_insumo_sucursal" ToRole="C_insumo_cat" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_insumo_sucursal_C_sucursales" FromRole="C_insumo_sucursal" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_insumo_tipo_mov">
     <Key>
@@ -721,20 +1066,6 @@
     <Property Name="entrada_salida" Type="Boolean" />
     <NavigationProperty Name="C_insumo_mov_suc_g" Relationship="Self.FK_C_insumo_mov_suc_g_C_insumo_tipo_mov" FromRole="C_insumo_tipo_mov" ToRole="C_insumo_mov_suc_g" />
   </EntityType>
-  <EntityType Name="C_marca_config">
-    <Key>
-      <PropertyRef Name="id_marca_config" />
-    </Key>
-    <Property Name="id_marca_config" Type="Int32" Nullable="false" />
-    <Property Name="id_marca" Type="Int32" />
-    <Property Name="logo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="color_plantilla" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="correo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="pagina_web" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="facebook" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="twitter" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="C_marcas" Relationship="Self.FK_C_marca_config_C_marcas" FromRole="C_marca_config" ToRole="C_marcas" />
-  </EntityType>
   <EntityType Name="C_marcas">
     <Key>
       <PropertyRef Name="id_marca" />
@@ -742,9 +1073,15 @@
     <Property Name="id_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre_marca" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="fecha_registro" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="C_marca_config" Relationship="Self.FK_C_marca_config_C_marcas" FromRole="C_marcas" ToRole="C_marca_config" />
     <NavigationProperty Name="C_marcas_sociedades" Relationship="Self.FK_C_marcas_sociedades_C_marcas" FromRole="C_marcas" ToRole="C_marcas_sociedades" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_C_marcas" FromRole="C_marcas" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_productos_marca" Relationship="Self.FK_C_productos_marca_C_marcas" FromRole="C_marcas" ToRole="C_productos_marca" />
+    <Property Name="logo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="sitio_web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
   </EntityType>
   <EntityType Name="C_marcas_sociedades">
     <Key>
@@ -764,15 +1101,6 @@
     <Property Name="nombre_medio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_campaña_medios" Relationship="Self.FK_C_campaña_medios_C_medios" FromRole="C_medios" ToRole="C_campaña_medios" />
-  </EntityType>
-  <EntityType Name="C_modulos">
-    <Key>
-      <PropertyRef Name="IdModulo" />
-    </Key>
-    <Property Name="IdModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__CS_permis__ID_MO__6F6A7CB2" FromRole="C_modulos" ToRole="CS_permisos_asignados" />
-    <NavigationProperty Name="C_servicios_modulos" Relationship="Self.FK_C_servicios_modulos_C_modulos" FromRole="C_modulos" ToRole="C_servicios_modulos" />
   </EntityType>
   <EntityType Name="C_notificaciones_mensajes">
     <Key>
@@ -811,6 +1139,7 @@
     </Key>
     <Property Name="id_pago_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre_pago_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_ventas_pagos" Relationship="Self.FK_C_ventas_pagos_C_pago_tipo" FromRole="C_pago_tipo" ToRole="C_ventas_pagos" />
   </EntityType>
   <EntityType Name="C_paises">
     <Key>
@@ -839,6 +1168,7 @@
     <Property Name="valor_string" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha" Type="DateTime" Precision="3" />
     <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_parametros_empresa_C_empresas" FromRole="C_parametros_empresa" ToRole="C_empresas" />
   </EntityType>
   <EntityType Name="C_parametros_sucursales">
     <Key>
@@ -846,8 +1176,9 @@
     </Key>
     <Property Name="id_parametro_sucursal" Type="Int32" Nullable="false" />
     <Property Name="id_parametro" Type="Int32" />
-    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="C_parametros" Relationship="Self.FK_parametros_sucursales_parametros" FromRole="C_parametros_sucursales" ToRole="C_parametros" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_parametros_sucursales_C_sucursales" FromRole="C_parametros_sucursales" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_pedidos">
     <Key>
@@ -868,12 +1199,14 @@
     <Property Name="id_evento" Type="Int32" />
     <Property Name="id_tipo_entrega" Type="Int32" />
     <Property Name="id_bo_g" Type="Int32" />
-    <NavigationProperty Name="C_clientes" Relationship="Self.FK_pedidos_Clientes" FromRole="C_pedidos" ToRole="C_clientes" />
+    <NavigationProperty Name="C_clientes" Relationship="Self.FK_C_pedidos_C_clientes" FromRole="C_pedidos" ToRole="C_clientes" />
     <NavigationProperty Name="C_eventos" Relationship="Self.FK_pedidos_Eventos" FromRole="C_pedidos" ToRole="C_eventos" />
+    <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_pedidos" FromRole="C_pedidos" ToRole="C_grupo_productos_codigos_movs" />
     <NavigationProperty Name="C_marcas" Relationship="Self.FK_C_pedidos_C_marcas" FromRole="C_pedidos" ToRole="C_marcas" />
     <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_pedidos_C_sucursales" FromRole="C_pedidos" ToRole="C_sucursales" />
     <NavigationProperty Name="C_tipo_entrega" Relationship="Self.FK_C_pedidos_C_tipo_entrega" FromRole="C_pedidos" ToRole="C_tipo_entrega" />
     <NavigationProperty Name="C_pedidos_d" Relationship="Self.FK_C_pedidos_d_C_pedidos" FromRole="C_pedidos" ToRole="C_pedidos_d" />
+    <NavigationProperty Name="C_pedidos_empleados" Relationship="Self.FK_C_pedidos_empleados_C_pedidos" FromRole="C_pedidos" ToRole="C_pedidos_empleados" />
     <NavigationProperty Name="C_pedidos_tipo" Relationship="Self.FK_pedidos_pedidos_tipo" FromRole="C_pedidos" ToRole="C_pedidos_tipo" />
     <NavigationProperty Name="C_tracking_status" Relationship="Self.FK_pedidos_tracking_status" FromRole="C_pedidos" ToRole="C_tracking_status" />
   </EntityType>
@@ -884,9 +1217,11 @@
     <Property Name="id_pedido_d" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_pedido" Type="Int32" />
     <Property Name="sku_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="pedido_d_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="pedido_d_status" Type="Boolean" />
+    <Property Name="costo" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_d_C_pedidos" FromRole="C_pedidos_d" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_pedidos_d_C_productos_cat" FromRole="C_pedidos_d" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_pedidos_empleados">
     <Key>
@@ -896,6 +1231,8 @@
     <Property Name="id_pedido" Type="Int32" Nullable="false" />
     <Property Name="id_empleado" Type="Int32" Nullable="false" />
     <Property Name="status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="C_empleados" Relationship="Self.FK_C_pedidos_empleados_C_empleados" FromRole="C_pedidos_empleados" ToRole="C_empleados" />
+    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_empleados_C_pedidos" FromRole="C_pedidos_empleados" ToRole="C_pedidos" />
   </EntityType>
   <EntityType Name="C_pedidos_propinas">
     <Key>
@@ -987,24 +1324,32 @@
     <Property Name="id_producto_clasificacion" Type="Int32" Nullable="false" />
     <Property Name="id_tipo_producto" Type="Int32" />
     <Property Name="nombre_producto_clasificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_productos_cat_C_producto_clasificacion" FromRole="C_producto_clasificacion" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_producto_presentacion">
     <Key>
       <PropertyRef Name="id_producto_presentacion" />
     </Key>
     <Property Name="id_producto_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="sku_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="id_presentacion" Type="Int32" />
     <NavigationProperty Name="C_presentaciones" Relationship="Self.FK_producto_presentacion_presentaciones" FromRole="C_producto_presentacion" ToRole="C_presentaciones" />
-    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_producto_presentacion_Productos_cat" FromRole="C_producto_presentacion" ToRole="C_productos_cat" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_producto_presentacion_C_productos_cat" FromRole="C_producto_presentacion" ToRole="C_productos_cat" />
+  </EntityType>
+  <EntityType Name="C_producto_tipo">
+    <Key>
+      <PropertyRef Name="id_producto_tipo" />
+    </Key>
+    <Property Name="id_producto_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="alias_sku" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="C_productos_cat">
     <Key>
-      <PropertyRef Name="id_producto" />
+      <PropertyRef Name="sku" />
     </Key>
-    <Property Name="id_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_producto" Type="Int32" Nullable="false" />
+    <Property Name="sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="plu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="codigo_barra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -1023,8 +1368,24 @@
     <Property Name="insumos" Type="Boolean" />
     <Property Name="activo" Type="Boolean" />
     <Property Name="path_imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="C_impuesto_producto" Relationship="Self.FK_impuesto_producto_Productos_cat" FromRole="C_productos_cat" ToRole="C_impuesto_producto" />
-    <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_producto_presentacion_Productos_cat" FromRole="C_productos_cat" ToRole="C_producto_presentacion" />
+    <NavigationProperty Name="C_impuesto_producto" Relationship="Self.FK_C_impuesto_producto_C_productos_cat" FromRole="C_productos_cat" ToRole="C_impuesto_producto" />
+    <NavigationProperty Name="C_pedidos_d" Relationship="Self.FK_C_pedidos_d_C_productos_cat" FromRole="C_productos_cat" ToRole="C_pedidos_d" />
+    <NavigationProperty Name="C_producto_clasificacion" Relationship="Self.FK_C_productos_cat_C_producto_clasificacion" FromRole="C_productos_cat" ToRole="C_producto_clasificacion" />
+    <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_C_producto_presentacion_C_productos_cat" FromRole="C_productos_cat" ToRole="C_producto_presentacion" />
+    <NavigationProperty Name="C_productos_especialidades" Relationship="Self.FK_C_productos_cat_C_productos_especialidades" FromRole="C_productos_cat" ToRole="C_productos_especialidades" />
+    <NavigationProperty Name="C_productos_marca" Relationship="Self.FK_C_productos_marca_C_productos_cat" FromRole="C_productos_cat" ToRole="C_productos_marca" />
+    <NavigationProperty Name="C_productos_sucursal" Relationship="Self.FK_C_productos_sucursal_C_productos_cat" FromRole="C_productos_cat" ToRole="C_productos_sucursal" />
+    <NavigationProperty Name="C_recetas" Relationship="Self.FK_C_recetas_C_productos_cat" FromRole="C_productos_cat" ToRole="C_recetas" />
+    <NavigationProperty Name="C_ventas_d" Relationship="DB_CORPORATIVA_DEVModel.FK_C_ventas_d_C_productos_cat" FromRole="C_productos_cat" ToRole="C_ventas_d" />
+  </EntityType>
+  <EntityType Name="C_productos_especialidades">
+    <Key>
+      <PropertyRef Name="id_producto_especialidad" />
+    </Key>
+    <Property Name="id_producto_especialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_especialidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_productos_cat_C_productos_especialidades" FromRole="C_productos_especialidades" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_productos_precios">
     <Key>
@@ -1048,6 +1409,7 @@
     <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="saldo" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_productos_sucursal_C_productos_cat" FromRole="C_productos_sucursal" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_recetas">
     <Key>
@@ -1060,6 +1422,8 @@
     <Property Name="costo_total" Type="Double" />
     <Property Name="costo_porcion" Type="Double" />
     <Property Name="status" Type="Boolean" />
+    <NavigationProperty Name="C_insumo_cat" Relationship="Self.FK_C_recetas_C_insumo_cat" FromRole="C_recetas" ToRole="C_insumo_cat" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_recetas_C_productos_cat" FromRole="C_recetas" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_servicios">
     <Key>
@@ -1072,8 +1436,10 @@
     <Property Name="fecha_registro" Type="DateTime" Precision="7" />
     <Property Name="activo" Type="Boolean" />
     <NavigationProperty Name="CS_roles" Relationship="Self.FK__CS_roles__ID_SER__00FF1D08" FromRole="C_servicios" ToRole="CS_roles" />
+    <NavigationProperty Name="C_empresas_servicios_contratados" Relationship="Self.FK_C_empresas_servicios_contratados_C_servicios" FromRole="C_servicios" ToRole="C_empresas_servicios_contratados" />
     <NavigationProperty Name="C_servicios_modulos" Relationship="Self.FK_C_servicios_modulos_C_servicios" FromRole="C_servicios" ToRole="C_servicios_modulos" />
     <NavigationProperty Name="C_servicios_sucursal" Relationship="Self.FK_C_servicios_sucursal_C_servicios" FromRole="C_servicios" ToRole="C_servicios_sucursal" />
+    <NavigationProperty Name="C_servicios_roles" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_servicios" FromRole="C_servicios" ToRole="C_servicios_roles" />
   </EntityType>
   <EntityType Name="C_servicios_modulos">
     <Key>
@@ -1082,9 +1448,9 @@
     <Property Name="id_servicios_modulos" Type="Int32" Nullable="false" />
     <Property Name="id_servicio" Type="Int32" />
     <Property Name="id_modulo" Type="Int32" />
-    <NavigationProperty Name="C_modulos" Relationship="Self.FK_C_servicios_modulos_C_modulos" FromRole="C_servicios_modulos" ToRole="C_modulos" />
     <NavigationProperty Name="C_servicios" Relationship="Self.FK_C_servicios_modulos_C_servicios" FromRole="C_servicios_modulos" ToRole="C_servicios" />
     <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__CS_permis__ID_SE__7E22B05D" FromRole="C_servicios_modulos" ToRole="CS_permisos_asignados" />
+    <NavigationProperty Name="C_modulos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_modulos_C_modulos" FromRole="C_servicios_modulos" ToRole="C_modulos" />
   </EntityType>
   <EntityType Name="C_servicios_roles">
     <Key>
@@ -1093,6 +1459,8 @@
     <Property Name="id_servicio_roles" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_servicio" Type="Int32" />
     <Property Name="id_rol" Type="Int32" />
+    <NavigationProperty Name="C_servicios" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_servicios" FromRole="C_servicios_roles" ToRole="C_servicios" />
+    <NavigationProperty Name="C_usuarios_roles" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_usuarios_roles" FromRole="C_servicios_roles" ToRole="C_usuarios_roles" />
   </EntityType>
   <EntityType Name="C_servicios_sucursal">
     <Key>
@@ -1100,15 +1468,16 @@
     </Key>
     <Property Name="id_servicio_sucursal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="id_servicio" Type="Int32" />
-    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha_registro" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_servicios" Relationship="Self.FK_C_servicios_sucursal_C_servicios" FromRole="C_servicios_sucursal" ToRole="C_servicios" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_servicios_sucursal_C_sucursales" FromRole="C_servicios_sucursal" ToRole="C_sucursales" />
   </EntityType>
   <EntityType Name="C_sociedades">
     <Key>
       <PropertyRef Name="id_sociedad" />
     </Key>
-    <Property Name="id_sociedad" Type="Int32" Nullable="false" />
+    <Property Name="id_sociedad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre_sociedad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="razon_social" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="rfc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -1127,6 +1496,7 @@
     <Property Name="id_sociedad" Type="Int32" />
     <Property Name="id_empresa" Type="Int32" />
     <Property Name="fecha_registro" Type="Int32" />
+    <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_sociedades_empresas_C_empresas" FromRole="C_sociedades_empresas" ToRole="C_empresas" />
     <NavigationProperty Name="C_sociedades" Relationship="Self.FK_C_sociedades_empresas_C_sociedades" FromRole="C_sociedades_empresas" ToRole="C_sociedades" />
   </EntityType>
   <EntityType Name="C_suc_invreal">
@@ -1152,6 +1522,15 @@
     <Property Name="comentarios" Type="Int32" />
     <NavigationProperty Name="C_suc_invreal" Relationship="Self.FK_C_suc_invreal_d_C_suc_invreal" FromRole="C_suc_invreal_d" ToRole="C_suc_invreal" />
   </EntityType>
+  <EntityType Name="C_sucursal_status_motivo">
+    <Key>
+      <PropertyRef Name="id_sucursal_status_motivo" />
+    </Key>
+    <Property Name="id_sucursal_status_motivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="motivo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_sucursales_C_sucursal_status_motivo" FromRole="C_sucursal_status_motivo" ToRole="C_sucursales" />
+  </EntityType>
   <EntityType Name="C_sucursales">
     <Key>
       <PropertyRef Name="codigo_sucursal" />
@@ -1161,14 +1540,25 @@
     <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="latitud" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="longitud" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="status_servicio" Type="Boolean" Nullable="false" />
+    <Property Name="id_sucursal_status_motivo" Type="Int32" />
     <Property Name="id_direccion" Type="Int32" />
     <Property Name="id_empresa" Type="Int32" />
     <Property Name="id_zona_precio" Type="Int32" />
     <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_cajas" Relationship="Self.FK_C_cajas_C_sucursales" FromRole="C_sucursales" ToRole="C_cajas" />
+    <NavigationProperty Name="C_empresas_sucursales" Relationship="Self.FK_C_empresas_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_empresas_sucursales" />
+    <NavigationProperty Name="C_equipo_sucursal" Relationship="Self.FK_C_equipo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_equipo_sucursal" />
+    <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_sucursales" FromRole="C_sucursales" ToRole="C_grupo_productos_codigos_movs" />
+    <NavigationProperty Name="C_insumo_sucursal" Relationship="Self.FK_C_insumo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_insumo_sucursal" />
+    <NavigationProperty Name="C_parametros_sucursales" Relationship="Self.FK_C_parametros_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_parametros_sucursales" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_C_sucursales" FromRole="C_sucursales" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_servicios_sucursal" Relationship="Self.FK_C_servicios_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_servicios_sucursal" />
+    <NavigationProperty Name="C_sucursal_status_motivo" Relationship="Self.FK_C_sucursales_C_sucursal_status_motivo" FromRole="C_sucursales" ToRole="C_sucursal_status_motivo" />
     <NavigationProperty Name="C_zonas_precio" Relationship="Self.FK_C_Sucursales_C_zonas" FromRole="C_sucursales" ToRole="C_zonas_precio" />
     <NavigationProperty Name="C_ventas_g" Relationship="Self.FK_C_ventas_g_C_sucursales1" FromRole="C_sucursales" ToRole="C_ventas_g" />
+    <NavigationProperty Name="C_sucursales_config" Relationship="DB_CORPORATIVA_DEVModel.FK_C_sucursales_config_C_sucursales" FromRole="C_sucursales" ToRole="C_sucursales_config" />
   </EntityType>
   <EntityType Name="C_sucursales_direcciones">
     <Key>
@@ -1366,7 +1756,7 @@
     <Property Name="id_telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Boolean" />
-    <NavigationProperty Name="C_clientes_telefono" Relationship="Self.FK_Clientes_telefono_Telefonos" FromRole="C_telefonos" ToRole="C_clientes_telefono" />
+    <NavigationProperty Name="C_clientes_telefono" Relationship="Self.FK_C_clientes_telefono_C_telefonos" FromRole="C_telefonos" ToRole="C_clientes_telefono" />
   </EntityType>
   <EntityType Name="C_tipo_empaque">
     <Key>
@@ -1432,15 +1822,6 @@
     <Property Name="clave" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_presentaciones" Relationship="Self.FK_presentaciones_unidades_medida" FromRole="C_unidades_medida" ToRole="C_presentaciones" />
   </EntityType>
-  <EntityType Name="C_usuarios_sucursales">
-    <Key>
-      <PropertyRef Name="id_usuarios_sucursales" />
-    </Key>
-    <Property Name="id_usuarios_sucursales" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="id_sucursal" Type="Int32" />
-    <Property Name="id_usuario" Type="Int32" />
-    <NavigationProperty Name="CS_usuarios" Relationship="Self.FK__C_usuario__id_us__5748DA5E" FromRole="C_usuarios_sucursales" ToRole="CS_usuarios" />
-  </EntityType>
   <EntityType Name="C_ventas_d">
     <Key>
       <PropertyRef Name="id_venta_d" />
@@ -1453,6 +1834,7 @@
     <Property Name="id_promocion" Type="Int32" />
     <Property Name="precio" Type="Decimal" Precision="18" Scale="2" />
     <NavigationProperty Name="C_ventas_g" Relationship="Self.FK_C_ventas_d_C_ventas_g" FromRole="C_ventas_d" ToRole="C_ventas_g" />
+    <NavigationProperty Name="C_productos_cat" Relationship="DB_CORPORATIVA_DEVModel.FK_C_ventas_d_C_productos_cat" FromRole="C_ventas_d" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_ventas_g">
     <Key>
@@ -1501,6 +1883,7 @@
     <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="fecha" Type="DateTime" Precision="3" />
     <Property Name="id_pago_tipo" Type="Int32" />
+    <NavigationProperty Name="C_pago_tipo" Relationship="Self.FK_C_ventas_pagos_C_pago_tipo" FromRole="C_ventas_pagos" ToRole="C_pago_tipo" />
     <NavigationProperty Name="C_ventas_g" Relationship="Self.FK_C_ventas_pagos_C_ventas_g" FromRole="C_ventas_pagos" ToRole="C_ventas_g" />
   </EntityType>
   <EntityType Name="C_ventas_status">
@@ -1531,7 +1914,6 @@
     <Property Name="largo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="alto" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="C_insumo_sucursal" Relationship="Self.FK_C_insumo_sucursal_C_Zona_almacen_suc" FromRole="C_zona_almacen_suc" ToRole="C_insumo_sucursal" />
   </EntityType>
   <EntityType Name="C_zonas_almacenaje">
     <Key>
@@ -1596,7 +1978,6 @@
     <Property Name="ID_SERVICIOS_MODULOS" Type="Int32" />
     <Property Name="ACTIVO" Type="Boolean" />
     <Property Name="ID_MODULO" Type="Int32" />
-    <NavigationProperty Name="C_modulos" Relationship="Self.FK__CS_permis__ID_MO__6F6A7CB2" FromRole="CS_permisos_asignados" ToRole="C_modulos" />
     <NavigationProperty Name="C_servicios_modulos" Relationship="Self.FK__CS_permis__ID_SE__7E22B05D" FromRole="CS_permisos_asignados" ToRole="C_servicios_modulos" />
     <NavigationProperty Name="CS_permisos" Relationship="Self.FK__PERMISOS___ID_PE__1ED998B2" FromRole="CS_permisos_asignados" ToRole="CS_permisos" />
     <NavigationProperty Name="CS_roles" Relationship="Self.FK__PERMISOS___ID_RO__1DE57479" FromRole="CS_permisos_asignados" ToRole="CS_roles" />
@@ -1642,7 +2023,6 @@
     <Property Name="ID_SERVICIO" Type="Int32" />
     <Property Name="NIVEL_USUARIO" Type="Int32" />
     <Property Name="PASS_VAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="C_usuarios_sucursales" Relationship="Self.FK__C_usuario__id_us__5748DA5E" FromRole="CS_usuarios" ToRole="C_usuarios_sucursales" />
     <NavigationProperty Name="CS_permisos_asignados" Relationship="Self.FK__PERMISOS___ID_US__1CF15040" FromRole="CS_usuarios" ToRole="CS_permisos_asignados" />
     <NavigationProperty Name="CS_roles" Relationship="Self.FK__USUARIOS__ID_ROL__1A14E395" FromRole="CS_usuarios" ToRole="CS_roles" />
   </EntityType>
@@ -1771,15 +2151,25 @@
     <Property Name="id_catalogo_tamanos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="C_clientes_direccion_old">
+  <EntityType Name="C_clientes_old">
     <Key>
-      <PropertyRef Name="id_clientes_direccion" />
-      <PropertyRef Name="clave_cliente" />
-      <PropertyRef Name="id_direccion" />
+      <PropertyRef Name="id_cliente" />
     </Key>
-    <Property Name="id_clientes_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="clave_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="id_direccion" Type="Int32" Nullable="false" />
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ultimacompra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="C_compras_tipo_leyenda">
+    <Key>
+      <PropertyRef Name="id_tipo_leyenda" />
+      <PropertyRef Name="descripcion" />
+    </Key>
+    <Property Name="id_tipo_leyenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="C_empresas_servicios_contratados">
     <Key>
@@ -1791,23 +2181,8 @@
     <Property Name="fecha_contrato" Type="DateTime" Precision="3" />
     <Property Name="notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="activo" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="C_empresas_tipo">
-    <Key>
-      <PropertyRef Name="id_tipo_empresa" />
-    </Key>
-    <Property Name="id_tipo_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="activo" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="C_grupo_aplica_operacion">
-    <Key>
-      <PropertyRef Name="id_grupo_aplica_operacion" />
-    </Key>
-    <Property Name="id_grupo_aplica_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre_regla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="activa" Type="Boolean" />
+    <NavigationProperty Name="C_empresas" Relationship="Self.FK_C_empresas_servicios_contratados_C_empresas" FromRole="C_empresas_servicios_contratados" ToRole="C_empresas" />
+    <NavigationProperty Name="C_servicios" Relationship="Self.FK_C_empresas_servicios_contratados_C_servicios" FromRole="C_empresas_servicios_contratados" ToRole="C_servicios" />
   </EntityType>
   <EntityType Name="C_insumo_cat_old">
     <Key>
@@ -1859,30 +2234,16 @@
     <Property Name="id_tipo_inventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nombre_tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="C_producto_tipo">
-    <Key>
-      <PropertyRef Name="id_producto_tipo" />
-    </Key>
-    <Property Name="id_producto_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="alias_sku" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="C_productos_especialidades">
-    <Key>
-      <PropertyRef Name="id_producto_especialidad" />
-    </Key>
-    <Property Name="id_producto_especialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nombre_especialidad" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="activo" Type="Boolean" />
-  </EntityType>
   <EntityType Name="C_productos_marca">
     <Key>
       <PropertyRef Name="id_producto_marca" />
     </Key>
     <Property Name="id_producto_marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="sku_marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sku_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="id_marca" Type="Int32" />
     <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_marcas" Relationship="Self.FK_C_productos_marca_C_marcas" FromRole="C_productos_marca" ToRole="C_marcas" />
+    <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_productos_marca_C_productos_cat" FromRole="C_productos_marca" ToRole="C_productos_cat" />
   </EntityType>
   <EntityType Name="C_proveedores">
     <Key>
@@ -2265,6 +2626,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_cajas_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_cajas" Type="Self.C_cajas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_cajas">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_campaña_codigos_C_campañas">
     <End Role="C_campañas" Type="Self.C_campañas" Multiplicity="0..1" />
     <End Role="C_campaña_codigos" Type="Self.C_campaña_codigos" Multiplicity="*" />
@@ -2373,7 +2746,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Clientes_telefono_Clientes">
+  <Association Name="FK_C_clientes_direccion_C_clientes">
+    <End Role="C_clientes" Type="Self.C_clientes" Multiplicity="0..1" />
+    <End Role="C_clientes_direccion" Type="Self.C_clientes_direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_clientes">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="C_clientes_direccion">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_clientes_telefono_C_clientes">
     <End Role="C_clientes" Type="Self.C_clientes" Multiplicity="0..1" />
     <End Role="C_clientes_telefono" Type="Self.C_clientes_telefono" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2385,7 +2770,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_pedidos_Clientes">
+  <Association Name="FK_C_pedidos_C_clientes">
     <End Role="C_clientes" Type="Self.C_clientes" Multiplicity="0..1" />
     <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2397,7 +2782,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Clientes_telefono_Telefonos">
+  <Association Name="FK_C_clientes_direccion_C_direcciones">
+    <End Role="C_direcciones" Type="Self.C_direcciones" Multiplicity="0..1" />
+    <End Role="C_clientes_direccion" Type="Self.C_clientes_direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_direcciones">
+        <PropertyRef Name="id_direccion" />
+      </Principal>
+      <Dependent Role="C_clientes_direccion">
+        <PropertyRef Name="id_direccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_clientes_telefono_C_telefonos">
     <End Role="C_telefonos" Type="Self.C_telefonos" Multiplicity="0..1" />
     <End Role="C_clientes_telefono" Type="Self.C_clientes_telefono" Multiplicity="*" />
     <ReferentialConstraint>
@@ -2418,6 +2815,150 @@
       </Principal>
       <Dependent Role="C_colonias">
         <PropertyRef Name="id_codigo_postal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_direcciones_C_cp_mexico">
+    <End Role="C_cp_mexico" Type="Self.C_cp_mexico" Multiplicity="0..1" />
+    <End Role="C_direcciones" Type="Self.C_direcciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_cp_mexico">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="C_direcciones">
+        <PropertyRef Name="id_asenta_cpcons" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empleados_C_empleados_tipo_sangre">
+    <End Role="C_empleados_tipo_sangre" Type="Self.C_empleados_tipo_sangre" Multiplicity="0..1" />
+    <End Role="C_empleados" Type="Self.C_empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empleados_tipo_sangre">
+        <PropertyRef Name="id_empleados_tipo_sangre" />
+      </Principal>
+      <Dependent Role="C_empleados">
+        <PropertyRef Name="id_tipo_sangre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empleados_C_empleados_visible">
+    <End Role="C_empleados_visible" Type="Self.C_empleados_visible" Multiplicity="0..1" />
+    <End Role="C_empleados" Type="Self.C_empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empleados_visible">
+        <PropertyRef Name="id_estado_visible" />
+      </Principal>
+      <Dependent Role="C_empleados">
+        <PropertyRef Name="id_estado_visible" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empleados_team_card_C_empleados">
+    <End Role="C_empleados" Type="Self.C_empleados" Multiplicity="0..1" />
+    <End Role="C_empleados_team_card" Type="Self.C_empleados_team_card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empleados">
+        <PropertyRef Name="id_empleado" />
+      </Principal>
+      <Dependent Role="C_empleados_team_card">
+        <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_pedidos_empleados_C_empleados">
+    <End Role="C_empleados" Type="Self.C_empleados" Multiplicity="1" />
+    <End Role="C_pedidos_empleados" Type="Self.C_pedidos_empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empleados">
+        <PropertyRef Name="id_empleado" />
+      </Principal>
+      <Dependent Role="C_pedidos_empleados">
+        <PropertyRef Name="id_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empresas_C_empresas_tipo">
+    <End Role="C_empresas_tipo" Type="Self.C_empresas_tipo" Multiplicity="0..1" />
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empresas_tipo">
+        <PropertyRef Name="id_tipo_empresa" />
+      </Principal>
+      <Dependent Role="C_empresas">
+        <PropertyRef Name="id_tipo_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empresas_servicios_contratados_C_empresas">
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
+    <End Role="C_empresas_servicios_contratados" Type="Self.C_empresas_servicios_contratados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="C_empresas_servicios_contratados">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empresas_sucursales_C_empresas">
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
+    <End Role="C_empresas_sucursales" Type="Self.C_empresas_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="C_empresas_sucursales">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_parametros_empresa_C_empresas">
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
+    <End Role="C_parametros_empresa" Type="Self.C_parametros_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="C_parametros_empresa">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_sociedades_empresas_C_empresas">
+    <End Role="C_empresas" Type="Self.C_empresas" Multiplicity="0..1" />
+    <End Role="C_sociedades_empresas" Type="Self.C_sociedades_empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="C_sociedades_empresas">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empresas_sucursales_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_empresas_sucursales" Type="Self.C_empresas_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_empresas_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_equipo_sucursal_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_equipo_sucursal" Type="Self.C_equipo_sucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_equipo_sucursal">
+        <PropertyRef Name="codigo_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2442,6 +2983,66 @@
       </Principal>
       <Dependent Role="C_pedidos">
         <PropertyRef Name="id_evento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_g_C_grupo_aplica_operacion">
+    <End Role="C_grupo_aplica_operacion" Type="Self.C_grupo_aplica_operacion" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_aplica_operacion">
+        <PropertyRef Name="id_grupo_aplica_operacion" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_aplica_operacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_codigos_C_grupo_productos_g">
+    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_codigos" Type="Self.C_grupo_productos_codigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_g">
+        <PropertyRef Name="id_grupo_productos" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_codigos">
+        <PropertyRef Name="id_grupo_productos" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_codigos_movs_C_grupo_productos_codigos">
+    <End Role="C_grupo_productos_codigos" Type="Self.C_grupo_productos_codigos" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_codigos_movs" Type="Self.C_grupo_productos_codigos_movs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_grupo_productos_codigos">
+        <PropertyRef Name="id_grupo_productos_codigo" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_codigos_movs">
+        <PropertyRef Name="id_grupo_productos_codigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_codigos_movs_C_pedidos">
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_codigos_movs" Type="Self.C_grupo_productos_codigos_movs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_pedidos">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_codigos_movs">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_grupo_productos_codigos_movs_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_grupo_productos_codigos_movs" Type="Self.C_grupo_productos_codigos_movs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_grupo_productos_codigos_movs">
+        <PropertyRef Name="codigo_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2493,18 +3094,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_C_promocion_d_C_promociones_g">
-    <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="0..1" />
-    <End Role="C_grupo_productos_d" Type="Self.C_grupo_productos_d" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_grupo_productos_g">
-        <PropertyRef Name="id_grupo_productos" />
-      </Principal>
-      <Dependent Role="C_grupo_productos_d">
-        <PropertyRef Name="id_grupo_productos" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_C_grupo_productos_g_C_grupo_productos_subclases">
     <End Role="C_grupo_productos_subclases" Type="Self.C_grupo_productos_subclases" Multiplicity="0..1" />
     <End Role="C_grupo_productos_g" Type="Self.C_grupo_productos_g" Multiplicity="*" />
@@ -2541,15 +3130,63 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_impuesto_producto_Productos_cat">
+  <Association Name="FK_C_impuesto_producto_C_impuestos">
+    <End Role="C_impuestos" Type="Self.C_impuestos" Multiplicity="0..1" />
+    <End Role="C_impuesto_producto" Type="Self.C_impuesto_producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_impuestos">
+        <PropertyRef Name="id_impuesto" />
+      </Principal>
+      <Dependent Role="C_impuesto_producto">
+        <PropertyRef Name="id_impuesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_impuesto_producto_C_productos_cat">
     <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
     <End Role="C_impuesto_producto" Type="Self.C_impuesto_producto" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="C_productos_cat">
-        <PropertyRef Name="id_producto" />
+        <PropertyRef Name="sku" />
       </Principal>
       <Dependent Role="C_impuesto_producto">
-        <PropertyRef Name="id_producto" />
+        <PropertyRef Name="sku_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_insumo_mov_suc_d_C_insumo_cat">
+    <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="0..1" />
+    <End Role="C_insumo_mov_suc_d" Type="Self.C_insumo_mov_suc_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_insumo_cat">
+        <PropertyRef Name="sku_insumo" />
+      </Principal>
+      <Dependent Role="C_insumo_mov_suc_d">
+        <PropertyRef Name="sku_insumo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_insumo_sucursal_C_insumo_cat">
+    <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="0..1" />
+    <End Role="C_insumo_sucursal" Type="Self.C_insumo_sucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_insumo_cat">
+        <PropertyRef Name="sku_insumo" />
+      </Principal>
+      <Dependent Role="C_insumo_sucursal">
+        <PropertyRef Name="sku_insumo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_recetas_C_insumo_cat">
+    <End Role="C_insumo_cat" Type="Self.C_insumo_cat" Multiplicity="0..1" />
+    <End Role="C_recetas" Type="Self.C_recetas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_insumo_cat">
+        <PropertyRef Name="sku_insumo" />
+      </Principal>
+      <Dependent Role="C_recetas">
+        <PropertyRef Name="sku_insumo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2589,27 +3226,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_C_insumo_sucursal_C_Zona_almacen_suc">
-    <End Role="C_zona_almacen_suc" Type="Self.C_zona_almacen_suc" Multiplicity="1" />
+  <Association Name="FK_C_insumo_sucursal_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
     <End Role="C_insumo_sucursal" Type="Self.C_insumo_sucursal" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="C_zona_almacen_suc">
-        <PropertyRef Name="id_zona_almacen_suc" />
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
       </Principal>
       <Dependent Role="C_insumo_sucursal">
-        <PropertyRef Name="id_zona_almacenaje" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_C_marca_config_C_marcas">
-    <End Role="C_marcas" Type="Self.C_marcas" Multiplicity="0..1" />
-    <End Role="C_marca_config" Type="Self.C_marca_config" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_marcas">
-        <PropertyRef Name="id_marca" />
-      </Principal>
-      <Dependent Role="C_marca_config">
-        <PropertyRef Name="id_marca" />
+        <PropertyRef Name="codigo_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2637,6 +3262,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_productos_marca_C_marcas">
+    <End Role="C_marcas" Type="Self.C_marcas" Multiplicity="0..1" />
+    <End Role="C_productos_marca" Type="Self.C_productos_marca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_marcas">
+        <PropertyRef Name="id_marca" />
+      </Principal>
+      <Dependent Role="C_productos_marca">
+        <PropertyRef Name="id_marca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_marcas_sociedades_C_sociedades">
     <End Role="C_sociedades" Type="Self.C_sociedades" Multiplicity="0..1" />
     <End Role="C_marcas_sociedades" Type="Self.C_marcas_sociedades" Multiplicity="*" />
@@ -2649,27 +3286,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CS_permis__ID_MO__6F6A7CB2">
-    <End Role="C_modulos" Type="Self.C_modulos" Multiplicity="0..1" />
-    <End Role="CS_permisos_asignados" Type="Self.CS_permisos_asignados" Multiplicity="*" />
+  <Association Name="FK_C_ventas_pagos_C_pago_tipo">
+    <End Role="C_pago_tipo" Type="Self.C_pago_tipo" Multiplicity="0..1" />
+    <End Role="C_ventas_pagos" Type="Self.C_ventas_pagos" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="C_modulos">
-        <PropertyRef Name="IdModulo" />
+      <Principal Role="C_pago_tipo">
+        <PropertyRef Name="id_pago_tipo" />
       </Principal>
-      <Dependent Role="CS_permisos_asignados">
-        <PropertyRef Name="ID_MODULO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_C_servicios_modulos_C_modulos">
-    <End Role="C_modulos" Type="Self.C_modulos" Multiplicity="0..1" />
-    <End Role="C_servicios_modulos" Type="Self.C_servicios_modulos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="C_modulos">
-        <PropertyRef Name="IdModulo" />
-      </Principal>
-      <Dependent Role="C_servicios_modulos">
-        <PropertyRef Name="id_modulo" />
+      <Dependent Role="C_ventas_pagos">
+        <PropertyRef Name="id_pago_tipo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2682,6 +3307,18 @@
       </Principal>
       <Dependent Role="C_parametros_sucursales">
         <PropertyRef Name="id_parametro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_parametros_sucursales_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_parametros_sucursales" Type="Self.C_parametros_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_parametros_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2721,6 +3358,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_pedidos_empleados_C_pedidos">
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="1" />
+    <End Role="C_pedidos_empleados" Type="Self.C_pedidos_empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_pedidos">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="C_pedidos_empleados">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_pedidos_pedidos_tipo">
     <End Role="C_pedidos_tipo" Type="Self.C_pedidos_tipo" Multiplicity="0..1" />
     <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
@@ -2742,6 +3391,18 @@
       </Principal>
       <Dependent Role="C_pedidos">
         <PropertyRef Name="id_tracking_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_pedidos_d_C_productos_cat">
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
+    <End Role="C_pedidos_d" Type="Self.C_pedidos_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="sku" />
+      </Principal>
+      <Dependent Role="C_pedidos_d">
+        <PropertyRef Name="sku_producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2769,15 +3430,75 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_producto_presentacion_Productos_cat">
+  <Association Name="FK_C_productos_cat_C_producto_clasificacion">
+    <End Role="C_producto_clasificacion" Type="Self.C_producto_clasificacion" Multiplicity="0..1" />
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_producto_clasificacion">
+        <PropertyRef Name="id_producto_clasificacion" />
+      </Principal>
+      <Dependent Role="C_productos_cat">
+        <PropertyRef Name="id_producto_clasificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_producto_presentacion_C_productos_cat">
     <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
     <End Role="C_producto_presentacion" Type="Self.C_producto_presentacion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="C_productos_cat">
-        <PropertyRef Name="id_producto" />
+        <PropertyRef Name="sku" />
       </Principal>
       <Dependent Role="C_producto_presentacion">
-        <PropertyRef Name="id_producto" />
+        <PropertyRef Name="sku_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_productos_cat_C_productos_especialidades">
+    <End Role="C_productos_especialidades" Type="Self.C_productos_especialidades" Multiplicity="0..1" />
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_especialidades">
+        <PropertyRef Name="id_producto_especialidad" />
+      </Principal>
+      <Dependent Role="C_productos_cat">
+        <PropertyRef Name="id_especialidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_productos_marca_C_productos_cat">
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
+    <End Role="C_productos_marca" Type="Self.C_productos_marca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="sku" />
+      </Principal>
+      <Dependent Role="C_productos_marca">
+        <PropertyRef Name="sku_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_productos_sucursal_C_productos_cat">
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
+    <End Role="C_productos_sucursal" Type="Self.C_productos_sucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="sku" />
+      </Principal>
+      <Dependent Role="C_productos_sucursal">
+        <PropertyRef Name="sku_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_recetas_C_productos_cat">
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="0..1" />
+    <End Role="C_recetas" Type="Self.C_recetas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="sku" />
+      </Principal>
+      <Dependent Role="C_recetas">
+        <PropertyRef Name="sku" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2802,6 +3523,18 @@
       </Principal>
       <Dependent Role="CS_roles">
         <PropertyRef Name="ID_SERVICIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_empresas_servicios_contratados_C_servicios">
+    <End Role="C_servicios" Type="Self.C_servicios" Multiplicity="0..1" />
+    <End Role="C_empresas_servicios_contratados" Type="Self.C_empresas_servicios_contratados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="C_empresas_servicios_contratados">
+        <PropertyRef Name="id_servicio" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2841,6 +3574,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_servicios_sucursal_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_servicios_sucursal" Type="Self.C_servicios_sucursal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_servicios_sucursal">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_sociedades_empresas_C_sociedades">
     <End Role="C_sociedades" Type="Self.C_sociedades" Multiplicity="0..1" />
     <End Role="C_sociedades_empresas" Type="Self.C_sociedades_empresas" Multiplicity="*" />
@@ -2862,6 +3607,18 @@
       </Principal>
       <Dependent Role="C_suc_invreal_d">
         <PropertyRef Name="id_suc_invreal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_sucursales_C_sucursal_status_motivo">
+    <End Role="C_sucursal_status_motivo" Type="Self.C_sucursal_status_motivo" Multiplicity="0..1" />
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursal_status_motivo">
+        <PropertyRef Name="id_sucursal_status_motivo" />
+      </Principal>
+      <Dependent Role="C_sucursales">
+        <PropertyRef Name="id_sucursal_status_motivo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2910,18 +3667,6 @@
       </Principal>
       <Dependent Role="C_insumo_cat_old">
         <PropertyRef Name="id_unidad" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__C_usuario__id_us__5748DA5E">
-    <End Role="CS_usuarios" Type="Self.CS_usuarios" Multiplicity="0..1" />
-    <End Role="C_usuarios_sucursales" Type="Self.C_usuarios_sucursales" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CS_usuarios">
-        <PropertyRef Name="ID_USUARIO" />
-      </Principal>
-      <Dependent Role="C_usuarios_sucursales">
-        <PropertyRef Name="id_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3057,7 +3802,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DB_CORPORATIVA_DEVEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DB_CORPORATIVA_DEVEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C_almacen_insumos" EntityType="Self.C_almacen_insumos" />
     <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" />
     <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" />
@@ -3070,6 +3815,17 @@
     <EntitySet Name="C_bo_mov_tipo" EntityType="Self.C_bo_mov_tipo" />
     <EntitySet Name="C_bo_orden" EntityType="Self.C_bo_orden" />
     <EntitySet Name="C_bo_porc_df" EntityType="Self.C_bo_porc_df" />
+    <EntitySet Name="C_bo_semanas_anios_historicos" EntityType="Self.C_bo_semanas_anios_historicos" />
+    <EntitySet Name="C_bo_semanas_cat" EntityType="Self.C_bo_semanas_cat" />
+    <EntitySet Name="C_bo_semanas_dias" EntityType="Self.C_bo_semanas_dias" />
+    <EntitySet Name="C_bo_semanas_meses" EntityType="Self.C_bo_semanas_meses" />
+    <EntitySet Name="C_bo_semanas_no_dias" EntityType="Self.C_bo_semanas_no_dias" />
+    <EntitySet Name="C_bo_semanas_trans_c1" EntityType="Self.C_bo_semanas_trans_c1" />
+    <EntitySet Name="C_bo_semanas_trans_c3" EntityType="Self.C_bo_semanas_trans_c3" />
+    <EntitySet Name="C_bo_semanas_trans_f2" EntityType="Self.C_bo_semanas_trans_f2" />
+    <EntitySet Name="C_bo_semanas_trans_par" EntityType="Self.C_bo_semanas_trans_par" />
+    <EntitySet Name="C_bo_semanas_trans_reg" EntityType="Self.C_bo_semanas_trans_reg" />
+    <EntitySet Name="C_bo_semanas_trans_rp" EntityType="Self.C_bo_semanas_trans_rp" />
     <EntitySet Name="C_bo_suc_ir" EntityType="Self.C_bo_suc_ir" />
     <EntitySet Name="C_cajas" EntityType="Self.C_cajas" />
     <EntitySet Name="C_campaña_codigos" EntityType="Self.C_campaña_codigos" />
@@ -3079,21 +3835,38 @@
     <EntitySet Name="C_cfdi_informacion" EntityType="Self.C_cfdi_informacion" />
     <EntitySet Name="C_ciudades" EntityType="Self.C_ciudades" />
     <EntitySet Name="C_clientes" EntityType="Self.C_clientes" />
+    <EntitySet Name="C_clientes_direccion" EntityType="Self.C_clientes_direccion" />
     <EntitySet Name="C_clientes_telefono" EntityType="Self.C_clientes_telefono" />
     <EntitySet Name="C_codigos_postales" EntityType="Self.C_codigos_postales" />
     <EntitySet Name="C_colonias" EntityType="Self.C_colonias" />
+    <EntitySet Name="C_compras_destinos" EntityType="Self.C_compras_destinos" />
+    <EntitySet Name="C_compras_estatus" EntityType="Self.C_compras_estatus" />
+    <EntitySet Name="C_compras_firmantes" EntityType="Self.C_compras_firmantes" />
+    <EntitySet Name="C_compras_hoja" EntityType="Self.C_compras_hoja" />
+    <EntitySet Name="C_compras_leyendas_condiciones" EntityType="Self.C_compras_leyendas_condiciones" />
+    <EntitySet Name="C_compras_mes_trans_c1" EntityType="Self.C_compras_mes_trans_c1" />
+    <EntitySet Name="C_compras_mes_trans_c3" EntityType="Self.C_compras_mes_trans_c3" />
+    <EntitySet Name="C_compras_mes_trans_f2" EntityType="Self.C_compras_mes_trans_f2" />
+    <EntitySet Name="C_compras_mov_almacen" EntityType="Self.C_compras_mov_almacen" />
+    <EntitySet Name="C_compras_orden" EntityType="Self.C_compras_orden" />
+    <EntitySet Name="C_compras_orden_articulos" EntityType="Self.C_compras_orden_articulos" />
     <EntitySet Name="C_cp_mexico" EntityType="Self.C_cp_mexico" />
     <EntitySet Name="C_delivery_sucursal_repartidor" EntityType="Self.C_delivery_sucursal_repartidor" />
     <EntitySet Name="C_direcciones" EntityType="Self.C_direcciones" />
     <EntitySet Name="C_direcciones_3_" EntityType="Self.C_direcciones_3_" />
     <EntitySet Name="C_empleados" EntityType="Self.C_empleados" />
+    <EntitySet Name="C_empleados_estados" EntityType="Self.C_empleados_estados" />
     <EntitySet Name="C_empleados_team_card" EntityType="Self.C_empleados_team_card" />
+    <EntitySet Name="C_empleados_tipo_sangre" EntityType="Self.C_empleados_tipo_sangre" />
+    <EntitySet Name="C_empleados_visible" EntityType="Self.C_empleados_visible" />
     <EntitySet Name="C_empresas" EntityType="Self.C_empresas" />
     <EntitySet Name="C_empresas_sucursales" EntityType="Self.C_empresas_sucursales" />
+    <EntitySet Name="C_empresas_tipo" EntityType="Self.C_empresas_tipo" />
     <EntitySet Name="C_equipo_sucursal" EntityType="Self.C_equipo_sucursal" />
     <EntitySet Name="C_estados" EntityType="Self.C_estados" />
     <EntitySet Name="C_eventos" EntityType="Self.C_eventos" />
     <EntitySet Name="C_facturas" EntityType="Self.C_facturas" />
+    <EntitySet Name="C_grupo_aplica_operacion" EntityType="Self.C_grupo_aplica_operacion" />
     <EntitySet Name="C_grupo_productos_codigos" EntityType="Self.C_grupo_productos_codigos" />
     <EntitySet Name="C_grupo_productos_codigos_movs" EntityType="Self.C_grupo_productos_codigos_movs" />
     <EntitySet Name="C_grupo_productos_d" EntityType="Self.C_grupo_productos_d" />
@@ -3112,11 +3885,9 @@
     <EntitySet Name="C_insumo_mov_suc_g" EntityType="Self.C_insumo_mov_suc_g" />
     <EntitySet Name="C_insumo_sucursal" EntityType="Self.C_insumo_sucursal" />
     <EntitySet Name="C_insumo_tipo_mov" EntityType="Self.C_insumo_tipo_mov" />
-    <EntitySet Name="C_marca_config" EntityType="Self.C_marca_config" />
     <EntitySet Name="C_marcas" EntityType="Self.C_marcas" />
     <EntitySet Name="C_marcas_sociedades" EntityType="Self.C_marcas_sociedades" />
     <EntitySet Name="C_medios" EntityType="Self.C_medios" />
-    <EntitySet Name="C_modulos" EntityType="Self.C_modulos" />
     <EntitySet Name="C_notificaciones_mensajes" EntityType="Self.C_notificaciones_mensajes" />
     <EntitySet Name="C_notificaciones_subtipos" EntityType="Self.C_notificaciones_subtipos" />
     <EntitySet Name="C_notificaciones_tipo" EntityType="Self.C_notificaciones_tipo" />
@@ -3136,7 +3907,9 @@
     <EntitySet Name="C_presentaciones" EntityType="Self.C_presentaciones" />
     <EntitySet Name="C_producto_clasificacion" EntityType="Self.C_producto_clasificacion" />
     <EntitySet Name="C_producto_presentacion" EntityType="Self.C_producto_presentacion" />
+    <EntitySet Name="C_producto_tipo" EntityType="Self.C_producto_tipo" />
     <EntitySet Name="C_productos_cat" EntityType="Self.C_productos_cat" />
+    <EntitySet Name="C_productos_especialidades" EntityType="Self.C_productos_especialidades" />
     <EntitySet Name="C_productos_precios" EntityType="Self.C_productos_precios" />
     <EntitySet Name="C_productos_sucursal" EntityType="Self.C_productos_sucursal" />
     <EntitySet Name="C_recetas" EntityType="Self.C_recetas" />
@@ -3148,6 +3921,7 @@
     <EntitySet Name="C_sociedades_empresas" EntityType="Self.C_sociedades_empresas" />
     <EntitySet Name="C_suc_invreal" EntityType="Self.C_suc_invreal" />
     <EntitySet Name="C_suc_invreal_d" EntityType="Self.C_suc_invreal_d" />
+    <EntitySet Name="C_sucursal_status_motivo" EntityType="Self.C_sucursal_status_motivo" />
     <EntitySet Name="C_sucursales" EntityType="Self.C_sucursales" />
     <EntitySet Name="C_sucursales_direcciones" EntityType="Self.C_sucursales_direcciones" />
     <EntitySet Name="C_sval_actas_diferencia" EntityType="Self.C_sval_actas_diferencia" />
@@ -3172,7 +3946,6 @@
     <EntitySet Name="C_tracking_tiempos" EntityType="Self.C_tracking_tiempos" />
     <EntitySet Name="C_unidades" EntityType="Self.C_unidades" />
     <EntitySet Name="C_unidades_medida" EntityType="Self.C_unidades_medida" />
-    <EntitySet Name="C_usuarios_sucursales" EntityType="Self.C_usuarios_sucursales" />
     <EntitySet Name="C_ventas_d" EntityType="Self.C_ventas_d" />
     <EntitySet Name="C_ventas_g" EntityType="Self.C_ventas_g" />
     <EntitySet Name="C_ventas_i" EntityType="Self.C_ventas_i" />
@@ -3198,16 +3971,13 @@
     <EntitySet Name="C_catalogo_consecutivos" EntityType="Self.C_catalogo_consecutivos" />
     <EntitySet Name="C_catalogo_sn" EntityType="Self.C_catalogo_sn" />
     <EntitySet Name="C_catalogo_tamanos" EntityType="Self.C_catalogo_tamanos" />
-    <EntitySet Name="C_clientes_direccion_old" EntityType="Self.C_clientes_direccion_old" />
+    <EntitySet Name="C_clientes_old" EntityType="Self.C_clientes_old" />
+    <EntitySet Name="C_compras_tipo_leyenda" EntityType="Self.C_compras_tipo_leyenda" />
     <EntitySet Name="C_empresas_servicios_contratados" EntityType="Self.C_empresas_servicios_contratados" />
-    <EntitySet Name="C_empresas_tipo" EntityType="Self.C_empresas_tipo" />
-    <EntitySet Name="C_grupo_aplica_operacion" EntityType="Self.C_grupo_aplica_operacion" />
     <EntitySet Name="C_insumo_cat_old" EntityType="Self.C_insumo_cat_old" />
     <EntitySet Name="C_insumo_tipo_empaque" EntityType="Self.C_insumo_tipo_empaque" />
     <EntitySet Name="C_insumo_tipo_envase" EntityType="Self.C_insumo_tipo_envase" />
     <EntitySet Name="C_insumo_tipo_inventario" EntityType="Self.C_insumo_tipo_inventario" />
-    <EntitySet Name="C_producto_tipo" EntityType="Self.C_producto_tipo" />
-    <EntitySet Name="C_productos_especialidades" EntityType="Self.C_productos_especialidades" />
     <EntitySet Name="C_productos_marca" EntityType="Self.C_productos_marca" />
     <EntitySet Name="C_proveedores" EntityType="Self.C_proveedores" />
     <EntitySet Name="C_sval_actas" EntityType="Self.C_sval_actas" />
@@ -3269,6 +4039,10 @@
       <End Role="C_suc_invreal" EntitySet="C_suc_invreal" />
       <End Role="C_bo_suc_ir" EntitySet="C_bo_suc_ir" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_cajas_C_sucursales" Association="Self.FK_C_cajas_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_cajas" EntitySet="C_cajas" />
+    </AssociationSet>
     <AssociationSet Name="FK_C_campaña_codigos_C_campañas" Association="Self.FK_C_campaña_codigos_C_campañas">
       <End Role="C_campañas" EntitySet="C_campañas" />
       <End Role="C_campaña_codigos" EntitySet="C_campaña_codigos" />
@@ -3305,21 +4079,77 @@
       <End Role="C_ciudades" EntitySet="C_ciudades" />
       <End Role="C_codigos_postales" EntitySet="C_codigos_postales" />
     </AssociationSet>
-    <AssociationSet Name="FK_Clientes_telefono_Clientes" Association="Self.FK_Clientes_telefono_Clientes">
+    <AssociationSet Name="FK_C_clientes_direccion_C_clientes" Association="Self.FK_C_clientes_direccion_C_clientes">
+      <End Role="C_clientes" EntitySet="C_clientes" />
+      <End Role="C_clientes_direccion" EntitySet="C_clientes_direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_clientes_telefono_C_clientes" Association="Self.FK_C_clientes_telefono_C_clientes">
       <End Role="C_clientes" EntitySet="C_clientes" />
       <End Role="C_clientes_telefono" EntitySet="C_clientes_telefono" />
     </AssociationSet>
-    <AssociationSet Name="FK_pedidos_Clientes" Association="Self.FK_pedidos_Clientes">
+    <AssociationSet Name="FK_C_pedidos_C_clientes" Association="Self.FK_C_pedidos_C_clientes">
       <End Role="C_clientes" EntitySet="C_clientes" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
     </AssociationSet>
-    <AssociationSet Name="FK_Clientes_telefono_Telefonos" Association="Self.FK_Clientes_telefono_Telefonos">
+    <AssociationSet Name="FK_C_clientes_direccion_C_direcciones" Association="Self.FK_C_clientes_direccion_C_direcciones">
+      <End Role="C_direcciones" EntitySet="C_direcciones" />
+      <End Role="C_clientes_direccion" EntitySet="C_clientes_direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_clientes_telefono_C_telefonos" Association="Self.FK_C_clientes_telefono_C_telefonos">
       <End Role="C_telefonos" EntitySet="C_telefonos" />
       <End Role="C_clientes_telefono" EntitySet="C_clientes_telefono" />
     </AssociationSet>
     <AssociationSet Name="FK_Colonias_CodigosPostales" Association="Self.FK_Colonias_CodigosPostales">
       <End Role="C_codigos_postales" EntitySet="C_codigos_postales" />
       <End Role="C_colonias" EntitySet="C_colonias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_direcciones_C_cp_mexico" Association="Self.FK_C_direcciones_C_cp_mexico">
+      <End Role="C_cp_mexico" EntitySet="C_cp_mexico" />
+      <End Role="C_direcciones" EntitySet="C_direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empleados_C_empleados_tipo_sangre" Association="Self.FK_C_empleados_C_empleados_tipo_sangre">
+      <End Role="C_empleados_tipo_sangre" EntitySet="C_empleados_tipo_sangre" />
+      <End Role="C_empleados" EntitySet="C_empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empleados_C_empleados_visible" Association="Self.FK_C_empleados_C_empleados_visible">
+      <End Role="C_empleados_visible" EntitySet="C_empleados_visible" />
+      <End Role="C_empleados" EntitySet="C_empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empleados_team_card_C_empleados" Association="Self.FK_C_empleados_team_card_C_empleados">
+      <End Role="C_empleados" EntitySet="C_empleados" />
+      <End Role="C_empleados_team_card" EntitySet="C_empleados_team_card" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_pedidos_empleados_C_empleados" Association="Self.FK_C_pedidos_empleados_C_empleados">
+      <End Role="C_empleados" EntitySet="C_empleados" />
+      <End Role="C_pedidos_empleados" EntitySet="C_pedidos_empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empresas_C_empresas_tipo" Association="Self.FK_C_empresas_C_empresas_tipo">
+      <End Role="C_empresas_tipo" EntitySet="C_empresas_tipo" />
+      <End Role="C_empresas" EntitySet="C_empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empresas_servicios_contratados_C_empresas" Association="Self.FK_C_empresas_servicios_contratados_C_empresas">
+      <End Role="C_empresas" EntitySet="C_empresas" />
+      <End Role="C_empresas_servicios_contratados" EntitySet="C_empresas_servicios_contratados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empresas_sucursales_C_empresas" Association="Self.FK_C_empresas_sucursales_C_empresas">
+      <End Role="C_empresas" EntitySet="C_empresas" />
+      <End Role="C_empresas_sucursales" EntitySet="C_empresas_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_parametros_empresa_C_empresas" Association="Self.FK_C_parametros_empresa_C_empresas">
+      <End Role="C_empresas" EntitySet="C_empresas" />
+      <End Role="C_parametros_empresa" EntitySet="C_parametros_empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_sociedades_empresas_C_empresas" Association="Self.FK_C_sociedades_empresas_C_empresas">
+      <End Role="C_empresas" EntitySet="C_empresas" />
+      <End Role="C_sociedades_empresas" EntitySet="C_sociedades_empresas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empresas_sucursales_C_sucursales" Association="Self.FK_C_empresas_sucursales_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_empresas_sucursales" EntitySet="C_empresas_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_equipo_sucursal_C_sucursales" Association="Self.FK_C_equipo_sucursal_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_equipo_sucursal" EntitySet="C_equipo_sucursal" />
     </AssociationSet>
     <AssociationSet Name="FK_Estados_Paises" Association="Self.FK_Estados_Paises">
       <End Role="C_paises" EntitySet="C_paises" />
@@ -3328,6 +4158,26 @@
     <AssociationSet Name="FK_pedidos_Eventos" Association="Self.FK_pedidos_Eventos">
       <End Role="C_eventos" EntitySet="C_eventos" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_g_C_grupo_aplica_operacion" Association="Self.FK_C_grupo_productos_g_C_grupo_aplica_operacion">
+      <End Role="C_grupo_aplica_operacion" EntitySet="C_grupo_aplica_operacion" />
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_codigos_C_grupo_productos_g" Association="Self.FK_C_grupo_productos_codigos_C_grupo_productos_g">
+      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
+      <End Role="C_grupo_productos_codigos" EntitySet="C_grupo_productos_codigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_codigos_movs_C_grupo_productos_codigos" Association="Self.FK_C_grupo_productos_codigos_movs_C_grupo_productos_codigos">
+      <End Role="C_grupo_productos_codigos" EntitySet="C_grupo_productos_codigos" />
+      <End Role="C_grupo_productos_codigos_movs" EntitySet="C_grupo_productos_codigos_movs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_codigos_movs_C_pedidos" Association="Self.FK_C_grupo_productos_codigos_movs_C_pedidos">
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
+      <End Role="C_grupo_productos_codigos_movs" EntitySet="C_grupo_productos_codigos_movs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_grupo_productos_codigos_movs_C_sucursales" Association="Self.FK_C_grupo_productos_codigos_movs_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_grupo_productos_codigos_movs" EntitySet="C_grupo_productos_codigos_movs" />
     </AssociationSet>
     <AssociationSet Name="FK_C_grupo_productos_d_C_grupo_productos_g" Association="Self.FK_C_grupo_productos_d_C_grupo_productos_g">
       <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
@@ -3345,10 +4195,6 @@
       <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
       <End Role="C_grupo_productos_prods" EntitySet="C_grupo_productos_prods" />
     </AssociationSet>
-    <AssociationSet Name="FK_C_promocion_d_C_promociones_g" Association="Self.FK_C_promocion_d_C_promociones_g">
-      <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
-      <End Role="C_grupo_productos_d" EntitySet="C_grupo_productos_d" />
-    </AssociationSet>
     <AssociationSet Name="FK_C_grupo_productos_g_C_grupo_productos_subclases" Association="Self.FK_C_grupo_productos_g_C_grupo_productos_subclases">
       <End Role="C_grupo_productos_subclases" EntitySet="C_grupo_productos_subclases" />
       <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
@@ -3361,9 +4207,25 @@
       <End Role="C_grupo_productos_g" EntitySet="C_grupo_productos_g" />
       <End Role="C_grupo_productos_sucursales" EntitySet="C_grupo_productos_sucursales" />
     </AssociationSet>
-    <AssociationSet Name="FK_impuesto_producto_Productos_cat" Association="Self.FK_impuesto_producto_Productos_cat">
+    <AssociationSet Name="FK_C_impuesto_producto_C_impuestos" Association="Self.FK_C_impuesto_producto_C_impuestos">
+      <End Role="C_impuestos" EntitySet="C_impuestos" />
+      <End Role="C_impuesto_producto" EntitySet="C_impuesto_producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_impuesto_producto_C_productos_cat" Association="Self.FK_C_impuesto_producto_C_productos_cat">
       <End Role="C_productos_cat" EntitySet="C_productos_cat" />
       <End Role="C_impuesto_producto" EntitySet="C_impuesto_producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_insumo_mov_suc_d_C_insumo_cat" Association="Self.FK_C_insumo_mov_suc_d_C_insumo_cat">
+      <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+      <End Role="C_insumo_mov_suc_d" EntitySet="C_insumo_mov_suc_d" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_insumo_sucursal_C_insumo_cat" Association="Self.FK_C_insumo_sucursal_C_insumo_cat">
+      <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+      <End Role="C_insumo_sucursal" EntitySet="C_insumo_sucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_recetas_C_insumo_cat" Association="Self.FK_C_recetas_C_insumo_cat">
+      <End Role="C_insumo_cat" EntitySet="C_insumo_cat" />
+      <End Role="C_recetas" EntitySet="C_recetas" />
     </AssociationSet>
     <AssociationSet Name="FK_C_insumo_mov_suc_g_C_insumo_mov_status" Association="Self.FK_C_insumo_mov_suc_g_C_insumo_mov_status">
       <End Role="C_insumo_mov_status" EntitySet="C_insumo_mov_status" />
@@ -3377,13 +4239,9 @@
       <End Role="C_insumo_tipo_mov" EntitySet="C_insumo_tipo_mov" />
       <End Role="C_insumo_mov_suc_g" EntitySet="C_insumo_mov_suc_g" />
     </AssociationSet>
-    <AssociationSet Name="FK_C_insumo_sucursal_C_Zona_almacen_suc" Association="Self.FK_C_insumo_sucursal_C_Zona_almacen_suc">
-      <End Role="C_zona_almacen_suc" EntitySet="C_zona_almacen_suc" />
+    <AssociationSet Name="FK_C_insumo_sucursal_C_sucursales" Association="Self.FK_C_insumo_sucursal_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
       <End Role="C_insumo_sucursal" EntitySet="C_insumo_sucursal" />
-    </AssociationSet>
-    <AssociationSet Name="FK_C_marca_config_C_marcas" Association="Self.FK_C_marca_config_C_marcas">
-      <End Role="C_marcas" EntitySet="C_marcas" />
-      <End Role="C_marca_config" EntitySet="C_marca_config" />
     </AssociationSet>
     <AssociationSet Name="FK_C_marcas_sociedades_C_marcas" Association="Self.FK_C_marcas_sociedades_C_marcas">
       <End Role="C_marcas" EntitySet="C_marcas" />
@@ -3393,20 +4251,24 @@
       <End Role="C_marcas" EntitySet="C_marcas" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_productos_marca_C_marcas" Association="Self.FK_C_productos_marca_C_marcas">
+      <End Role="C_marcas" EntitySet="C_marcas" />
+      <End Role="C_productos_marca" EntitySet="C_productos_marca" />
+    </AssociationSet>
     <AssociationSet Name="FK_C_marcas_sociedades_C_sociedades" Association="Self.FK_C_marcas_sociedades_C_sociedades">
       <End Role="C_sociedades" EntitySet="C_sociedades" />
       <End Role="C_marcas_sociedades" EntitySet="C_marcas_sociedades" />
     </AssociationSet>
-    <AssociationSet Name="FK__CS_permis__ID_MO__6F6A7CB2" Association="Self.FK__CS_permis__ID_MO__6F6A7CB2">
-      <End Role="C_modulos" EntitySet="C_modulos" />
-      <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_C_servicios_modulos_C_modulos" Association="Self.FK_C_servicios_modulos_C_modulos">
-      <End Role="C_modulos" EntitySet="C_modulos" />
-      <End Role="C_servicios_modulos" EntitySet="C_servicios_modulos" />
+    <AssociationSet Name="FK_C_ventas_pagos_C_pago_tipo" Association="Self.FK_C_ventas_pagos_C_pago_tipo">
+      <End Role="C_pago_tipo" EntitySet="C_pago_tipo" />
+      <End Role="C_ventas_pagos" EntitySet="C_ventas_pagos" />
     </AssociationSet>
     <AssociationSet Name="FK_parametros_sucursales_parametros" Association="Self.FK_parametros_sucursales_parametros">
       <End Role="C_parametros" EntitySet="C_parametros" />
+      <End Role="C_parametros_sucursales" EntitySet="C_parametros_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_parametros_sucursales_C_sucursales" Association="Self.FK_C_parametros_sucursales_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
       <End Role="C_parametros_sucursales" EntitySet="C_parametros_sucursales" />
     </AssociationSet>
     <AssociationSet Name="FK_C_pedidos_C_sucursales" Association="Self.FK_C_pedidos_C_sucursales">
@@ -3421,6 +4283,10 @@
       <End Role="C_pedidos" EntitySet="C_pedidos" />
       <End Role="C_pedidos_d" EntitySet="C_pedidos_d" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_pedidos_empleados_C_pedidos" Association="Self.FK_C_pedidos_empleados_C_pedidos">
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
+      <End Role="C_pedidos_empleados" EntitySet="C_pedidos_empleados" />
+    </AssociationSet>
     <AssociationSet Name="FK_pedidos_pedidos_tipo" Association="Self.FK_pedidos_pedidos_tipo">
       <End Role="C_pedidos_tipo" EntitySet="C_pedidos_tipo" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
@@ -3428,6 +4294,10 @@
     <AssociationSet Name="FK_pedidos_tracking_status" Association="Self.FK_pedidos_tracking_status">
       <End Role="C_tracking_status" EntitySet="C_tracking_status" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_pedidos_d_C_productos_cat" Association="Self.FK_C_pedidos_d_C_productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_pedidos_d" EntitySet="C_pedidos_d" />
     </AssociationSet>
     <AssociationSet Name="FK_presentaciones_unidades_medida" Association="Self.FK_presentaciones_unidades_medida">
       <End Role="C_unidades_medida" EntitySet="C_unidades_medida" />
@@ -3437,9 +4307,29 @@
       <End Role="C_presentaciones" EntitySet="C_presentaciones" />
       <End Role="C_producto_presentacion" EntitySet="C_producto_presentacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_producto_presentacion_Productos_cat" Association="Self.FK_producto_presentacion_Productos_cat">
+    <AssociationSet Name="FK_C_productos_cat_C_producto_clasificacion" Association="Self.FK_C_productos_cat_C_producto_clasificacion">
+      <End Role="C_producto_clasificacion" EntitySet="C_producto_clasificacion" />
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_producto_presentacion_C_productos_cat" Association="Self.FK_C_producto_presentacion_C_productos_cat">
       <End Role="C_productos_cat" EntitySet="C_productos_cat" />
       <End Role="C_producto_presentacion" EntitySet="C_producto_presentacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_productos_cat_C_productos_especialidades" Association="Self.FK_C_productos_cat_C_productos_especialidades">
+      <End Role="C_productos_especialidades" EntitySet="C_productos_especialidades" />
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_productos_marca_C_productos_cat" Association="Self.FK_C_productos_marca_C_productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_productos_marca" EntitySet="C_productos_marca" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_productos_sucursal_C_productos_cat" Association="Self.FK_C_productos_sucursal_C_productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_productos_sucursal" EntitySet="C_productos_sucursal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_recetas_C_productos_cat" Association="Self.FK_C_recetas_C_productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_recetas" EntitySet="C_recetas" />
     </AssociationSet>
     <AssociationSet Name="FK_productos_precios_zonas" Association="Self.FK_productos_precios_zonas">
       <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
@@ -3448,6 +4338,10 @@
     <AssociationSet Name="FK__CS_roles__ID_SER__00FF1D08" Association="Self.FK__CS_roles__ID_SER__00FF1D08">
       <End Role="C_servicios" EntitySet="C_servicios" />
       <End Role="CS_roles" EntitySet="CS_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_empresas_servicios_contratados_C_servicios" Association="Self.FK_C_empresas_servicios_contratados_C_servicios">
+      <End Role="C_servicios" EntitySet="C_servicios" />
+      <End Role="C_empresas_servicios_contratados" EntitySet="C_empresas_servicios_contratados" />
     </AssociationSet>
     <AssociationSet Name="FK_C_servicios_modulos_C_servicios" Association="Self.FK_C_servicios_modulos_C_servicios">
       <End Role="C_servicios" EntitySet="C_servicios" />
@@ -3461,6 +4355,10 @@
       <End Role="C_servicios_modulos" EntitySet="C_servicios_modulos" />
       <End Role="CS_permisos_asignados" EntitySet="CS_permisos_asignados" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_servicios_sucursal_C_sucursales" Association="Self.FK_C_servicios_sucursal_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_servicios_sucursal" EntitySet="C_servicios_sucursal" />
+    </AssociationSet>
     <AssociationSet Name="FK_C_sociedades_empresas_C_sociedades" Association="Self.FK_C_sociedades_empresas_C_sociedades">
       <End Role="C_sociedades" EntitySet="C_sociedades" />
       <End Role="C_sociedades_empresas" EntitySet="C_sociedades_empresas" />
@@ -3468,6 +4366,10 @@
     <AssociationSet Name="FK_C_suc_invreal_d_C_suc_invreal" Association="Self.FK_C_suc_invreal_d_C_suc_invreal">
       <End Role="C_suc_invreal" EntitySet="C_suc_invreal" />
       <End Role="C_suc_invreal_d" EntitySet="C_suc_invreal_d" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_sucursales_C_sucursal_status_motivo" Association="Self.FK_C_sucursales_C_sucursal_status_motivo">
+      <End Role="C_sucursal_status_motivo" EntitySet="C_sucursal_status_motivo" />
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
     </AssociationSet>
     <AssociationSet Name="FK_C_Sucursales_C_zonas" Association="Self.FK_C_Sucursales_C_zonas">
       <End Role="C_zonas_precio" EntitySet="C_zonas_precio" />
@@ -3484,10 +4386,6 @@
     <AssociationSet Name="FK_C_Insumo_cat_C_unidades" Association="Self.FK_C_Insumo_cat_C_unidades">
       <End Role="C_unidades" EntitySet="C_unidades" />
       <End Role="C_insumo_cat_old" EntitySet="C_insumo_cat_old" />
-    </AssociationSet>
-    <AssociationSet Name="FK__C_usuario__id_us__5748DA5E" Association="Self.FK__C_usuario__id_us__5748DA5E">
-      <End Role="CS_usuarios" EntitySet="CS_usuarios" />
-      <End Role="C_usuarios_sucursales" EntitySet="C_usuarios_sucursales" />
     </AssociationSet>
     <AssociationSet Name="FK_C_ventas_d_C_ventas_g" Association="Self.FK_C_ventas_d_C_ventas_g">
       <End Role="C_ventas_g" EntitySet="C_ventas_g" />
@@ -3533,5 +4431,289 @@
       <End Role="CS_usuario_login" EntitySet="CS_usuario_login" />
       <End Role="CS_usuario_login1" EntitySet="CS_usuario_login" />
     </AssociationSet>
+    <EntitySet Name="C_sucursales_config" EntityType="DB_CORPORATIVA_DEVModel.C_sucursales_config" />
+    <AssociationSet Name="FK_C_sucursales_config_C_sucursales" Association="DB_CORPORATIVA_DEVModel.FK_C_sucursales_config_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_sucursales_config" EntitySet="C_sucursales_config" />
+    </AssociationSet>
+    <EntitySet Name="C_usuarios_corporativo" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" />
+    <EntitySet Name="C_usuarios_roles" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_roles" />
+    <EntitySet Name="C_usuarios_servicios" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_servicios" />
+    <EntitySet Name="C_usuarios_tipo" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_tipo" />
+    <AssociationSet Name="FK_C_ventas_d_C_productos_cat" Association="DB_CORPORATIVA_DEVModel.FK_C_ventas_d_C_productos_cat">
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+      <End Role="C_ventas_d" EntitySet="C_ventas_d" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_servicios_roles_C_servicios" Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_servicios">
+      <End Role="C_servicios" EntitySet="C_servicios" />
+      <End Role="C_servicios_roles" EntitySet="C_servicios_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_servicios_roles_C_usuarios_roles" Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_usuarios_roles">
+      <End Role="C_usuarios_roles" EntitySet="C_usuarios_roles" />
+      <End Role="C_servicios_roles" EntitySet="C_servicios_roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_usuarios_corporativo_C_usuarios_roles" Association="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_roles">
+      <End Role="C_usuarios_roles" EntitySet="C_usuarios_roles" />
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_usuarios_corporativo_C_usuarios_tipo" Association="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_tipo">
+      <End Role="C_usuarios_tipo" EntitySet="C_usuarios_tipo" />
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_usuarios_servicios_C_usuarios_corporativo" Association="DB_CORPORATIVA_DEVModel.FK_C_usuarios_servicios_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_usuarios_servicios" EntitySet="C_usuarios_servicios" />
+    </AssociationSet>
+    <EntitySet Name="C_empleados_niveles" EntityType="DB_CORPORATIVA_DEVModel.C_empleados_niveles" />
+    <AssociationSet Name="FK_C_empleados_C_empleados_niveles" Association="DB_CORPORATIVA_DEVModel.FK_C_empleados_C_empleados_niveles">
+      <End Role="C_empleados_niveles" EntitySet="C_empleados_niveles" />
+      <End Role="C_empleados" EntitySet="C_empleados" />
+    </AssociationSet>
+    <EntitySet Name="C_modulos" EntityType="DB_CORPORATIVA_DEVModel.C_modulos" />
+    <AssociationSet Name="FK_C_servicios_modulos_C_modulos" Association="DB_CORPORATIVA_DEVModel.FK_C_servicios_modulos_C_modulos">
+      <End Role="C_modulos" EntitySet="C_modulos" />
+      <End Role="C_servicios_modulos" EntitySet="C_servicios_modulos" />
+    </AssociationSet>
+    <EntitySet Name="C_usuarios_sucursales" EntityType="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales" />
+    <AssociationSet Name="FK_C_usuarios_sucursales_C_usuarios_corporativo" Association="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_usuarios_sucursales" EntitySet="C_usuarios_sucursales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_usuarios_sucursales_C_usuarios_corporativo1" Association="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo1">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_usuarios_sucursales" EntitySet="C_usuarios_sucursales" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="C_sucursales_config">
+    <Key>
+      <PropertyRef Name="id_sucursal_config" />
+    </Key>
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="proximidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="version_startup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_pv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_eventos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_web" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_app" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="version_mesas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="resolucion_pantalla" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="geo_localizacion_lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="geo_localizacion_ing" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_sucursal_config" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="C_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_sucursales_config_C_sucursales" FromRole="C_sucursales_config" ToRole="C_sucursales" />
+  </EntityType>
+  <Association Name="FK_C_sucursales_config_C_sucursales">
+    <End Type="DB_CORPORATIVA_DEVModel.C_sucursales" Role="C_sucursales" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_sucursales_config" Role="C_sucursales_config" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_sucursales_config">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_usuarios_corporativo">
+    <Key>
+      <PropertyRef Name="id_usuario_corporativo" />
+    </Key>
+    <Property Name="id_usuario_corporativo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_empleado" Type="Int32" />
+    <Property Name="id_usuario_tipo" Type="Int32" />
+    <Property Name="id_rol" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_alta" Type="DateTime" Precision="3" />
+    <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="C_usuarios_roles" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_roles" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_roles" />
+    <NavigationProperty Name="C_usuarios_tipo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_tipo" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_tipo" />
+    <NavigationProperty Name="C_usuarios_servicios" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_servicios_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_servicios" />
+    <NavigationProperty Name="C_usuarios_sucursales" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_sucursales" />
+    <NavigationProperty Name="C_usuarios_sucursales1" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo1" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_sucursales" />
+  </EntityType>
+  <EntityType Name="C_usuarios_roles">
+    <Key>
+      <PropertyRef Name="id_rol" />
+    </Key>
+    <Property Name="id_rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Boolean" />
+    <NavigationProperty Name="C_servicios_roles" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_roles_C_usuarios_roles" FromRole="C_usuarios_roles" ToRole="C_servicios_roles" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_roles" FromRole="C_usuarios_roles" ToRole="C_usuarios_corporativo" />
+  </EntityType>
+  <EntityType Name="C_usuarios_servicios">
+    <Key>
+      <PropertyRef Name="id_usuarios_servicios" />
+    </Key>
+    <Property Name="id_usuarios_servicios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_servicio" Type="Int32" />
+    <Property Name="id_usuario_corporativo" Type="Int32" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_servicios_C_usuarios_corporativo" FromRole="C_usuarios_servicios" ToRole="C_usuarios_corporativo" />
+  </EntityType>
+  <EntityType Name="C_usuarios_tipo">
+    <Key>
+      <PropertyRef Name="id_usuario_tipo" />
+    </Key>
+    <Property Name="id_usuario_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_corporativo_C_usuarios_tipo" FromRole="C_usuarios_tipo" ToRole="C_usuarios_corporativo" />
+  </EntityType>
+  <Association Name="FK_C_ventas_d_C_productos_cat">
+    <End Type="DB_CORPORATIVA_DEVModel.C_productos_cat" Role="C_productos_cat" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_ventas_d" Role="C_ventas_d" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_cat">
+        <PropertyRef Name="sku" />
+      </Principal>
+      <Dependent Role="C_ventas_d">
+        <PropertyRef Name="sku_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_servicios_roles_C_servicios">
+    <End Type="DB_CORPORATIVA_DEVModel.C_servicios" Role="C_servicios" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_servicios_roles" Role="C_servicios_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_servicios">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="C_servicios_roles">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_servicios_roles_C_usuarios_roles">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_roles" Role="C_usuarios_roles" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_servicios_roles" Role="C_servicios_roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="C_servicios_roles">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_usuarios_corporativo_C_usuarios_roles">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_roles" Role="C_usuarios_roles" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" Role="C_usuarios_corporativo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_roles">
+        <PropertyRef Name="id_rol" />
+      </Principal>
+      <Dependent Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_rol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_usuarios_corporativo_C_usuarios_tipo">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_tipo" Role="C_usuarios_tipo" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" Role="C_usuarios_corporativo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_tipo">
+        <PropertyRef Name="id_usuario_tipo" />
+      </Principal>
+      <Dependent Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_usuarios_servicios_C_usuarios_corporativo">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" Role="C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_servicios" Role="C_usuarios_servicios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_usuarios_servicios">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_empleados_niveles">
+    <Key>
+      <PropertyRef Name="id_nivel_empleado" />
+    </Key>
+    <Property Name="id_nivel_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo_nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion_nivel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="estatus" Type="Boolean" />
+    <NavigationProperty Name="C_empleados" Relationship="DB_CORPORATIVA_DEVModel.FK_C_empleados_C_empleados_niveles" FromRole="C_empleados_niveles" ToRole="C_empleados" />
+  </EntityType>
+  <Association Name="FK_C_empleados_C_empleados_niveles">
+    <End Type="DB_CORPORATIVA_DEVModel.C_empleados_niveles" Role="C_empleados_niveles" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_empleados" Role="C_empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_empleados_niveles">
+        <PropertyRef Name="id_nivel_empleado" />
+      </Principal>
+      <Dependent Role="C_empleados">
+        <PropertyRef Name="id_nivel_empleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_modulos">
+    <Key>
+      <PropertyRef Name="IdModulo" />
+    </Key>
+    <Property Name="IdModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="icono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="funcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="controlador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parametros" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_servicios_modulos" Relationship="DB_CORPORATIVA_DEVModel.FK_C_servicios_modulos_C_modulos" FromRole="C_modulos" ToRole="C_servicios_modulos" />
+  </EntityType>
+  <Association Name="FK_C_servicios_modulos_C_modulos">
+    <End Type="DB_CORPORATIVA_DEVModel.C_modulos" Role="C_modulos" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_servicios_modulos" Role="C_servicios_modulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_modulos">
+        <PropertyRef Name="IdModulo" />
+      </Principal>
+      <Dependent Role="C_servicios_modulos">
+        <PropertyRef Name="id_modulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="C_usuarios_sucursales">
+    <Key>
+      <PropertyRef Name="id_usuarios_sucursales" />
+    </Key>
+    <Property Name="id_usuarios_sucursales" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sucursal" Type="Int32" />
+    <Property Name="id_usuario_corporativo" Type="Int32" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo" FromRole="C_usuarios_sucursales" ToRole="C_usuarios_corporativo" />
+    <NavigationProperty Name="C_usuarios_corporativo1" Relationship="DB_CORPORATIVA_DEVModel.FK_C_usuarios_sucursales_C_usuarios_corporativo1" FromRole="C_usuarios_sucursales" ToRole="C_usuarios_corporativo" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_C_usuarios_sucursales_C_usuarios_corporativo">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" Role="C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales" Role="C_usuarios_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_usuarios_sucursales">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_usuarios_sucursales_C_usuarios_corporativo1">
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_corporativo" Role="C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Type="DB_CORPORATIVA_DEVModel.C_usuarios_sucursales" Role="C_usuarios_sucursales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_usuarios_sucursales">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

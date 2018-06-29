@@ -24,9 +24,9 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_servicio { get; set; }
         public Nullable<int> id_modulo { get; set; }
     
-        public virtual C_modulos C_modulos { get; set; }
         public virtual C_servicios C_servicios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CS_permisos_asignados> CS_permisos_asignados { get; set; }
+        public virtual C_modulos C_modulos { get; set; }
     }
 }

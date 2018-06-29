@@ -17,5 +17,8 @@ namespace Backoffice0._1.Models
         public int id_servicio_roles { get; set; }
         public Nullable<int> id_servicio { get; set; }
         public Nullable<int> id_rol { get; set; }
+    
+        public virtual C_servicios C_servicios { get; set; }
+        public virtual C_usuarios_roles C_usuarios_roles { get; set; }
     }
 }

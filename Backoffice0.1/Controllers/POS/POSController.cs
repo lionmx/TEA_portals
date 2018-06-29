@@ -14,7 +14,7 @@ namespace Backoffice0._1.Controllers
     public class POSController : Controller
     {
         // GET: POS
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         List<CarritoItem> compras;
         List<CarritoComboItem> carrito_combo;
@@ -446,7 +446,7 @@ namespace Backoffice0._1.Controllers
         public PartialViewResult BuscarRepartidor(string gaffette)
         {
             var repartidores = from e in db.C_empleados
-                               where e.gaffete == gaffette 
+                               where e.no_gaffete == gaffette 
                                select e;
 
             return PartialView("Ventas/_AsignarRepartidor", repartidores);

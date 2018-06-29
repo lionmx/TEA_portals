@@ -13,7 +13,7 @@ namespace Backoffice0._1.Controllers
     public class C_PRODUCTO_CLASIFICACIONController : Controller
     {
         
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: C_PRODUCTO_CLASIFICACION
         public ActionResult Index()
