@@ -48,10 +48,147 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                @if (Session["LoggedUser"] != null)
-                                {
-                                    Html.RenderAction("ConsultarModulos", "USUARIOLOGIN", new { id_rol = Session["LoggedIdRol"] });
-                                }
+                                <li>
+
+
+                                    <a><i class="fa fa-home"></i>Administración <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+
+                                        @if (Session["LoggedUser"] != null)
+                                        {
+
+
+                                            if (ViewBag.idServicio == 8)
+                                            {
+
+                                                <li>
+                                                    @Html.ActionLink("Seguridad", "Configuracion", "Configuracion")
+                                                </li>
+
+                                                <li>
+                                                    <a href="http://localhost:49810/elmah.axd">Log</a>
+                                                </li>
+                                                <li>
+                                                    <a href="index3.html">Firma digital</a>
+                                                </li>
+                                                <li>
+                                                    <a href="index3.html">Usuarios de sucursal</a>
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Apertura de caja", "Index", "C_cajas")
+                                                </li>
+                                            }
+
+                                            else
+                                            {
+
+                                            }
+
+                                        }
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-usd"></i>Punto de Venta <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Ventas", "Index", "POS")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Inventario", "Index", "POS_INVENTARIO")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Pedidos", "Index", "POS_PEDIDOS")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Prenomina", "Index", "POS_PRENOMINA")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Gestion de mesas", "Index", "COMANDA_MESAS")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Comanda cocina", "Index", "COMANDA_COCINA")
+                                        </li>
+                                        <li>
+                                            <a href="form_validation.html">Almacen</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-toggle="modal" data-target=".caja">Cajas</a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-desktop"></i> Call Center<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Meseros", "Index", "POS_MESEROS")
+                                        </li>
+
+                                        <li>
+                                            @Html.ActionLink("Clientes", "~/Views/Call_center_clientes/Index", "~/Parametros/Conf_seguridad/CALLCENTER_CLIENTES1")
+                                        </li>
+
+                                        <li>
+                                            @Html.ActionLink("Clientes", "Index", "CALLCENTER_CLIENTES1")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Ubicacion", "Index", "UBICACION")
+                                        </li>
+                                        
+                                       
+
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a><i class="fa fa-motorcycle"></i> Delivery <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Delivery", "Index", "DELIVERY")
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-pie-chart"></i> Compras <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Generar Backorder", "Index", "BACKORDER")
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-cubes"></i> Almacen <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Backorders", "Index", "ALMACEN_BACKORDER")
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Inventario", "Index", "ALMACEN_INVENTARIO")
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-bullhorn"></i> Mercadotecnia <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Campañas", "Index", "CAMPAÑAS")
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-cutlery"></i> Menu Clientes <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none;">
+                                        <li>
+                                            @Html.ActionLink("Menu clientes", "Index", "POS_BANNERS")
+                                        </li>
+
+                                    </ul>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
