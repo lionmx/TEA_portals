@@ -19,6 +19,7 @@ namespace Backoffice0._1.Models
         {
             this.C_direcciones_mx = new HashSet<C_direcciones_mx>();
             this.C_sucursales_colonias = new HashSet<C_sucursales_colonias>();
+            this.C_sucursales_direcciones = new HashSet<C_sucursales_direcciones>();
         }
     
         public int id { get; set; }
@@ -47,5 +48,7 @@ namespace Backoffice0._1.Models
         public virtual ICollection<C_direcciones_mx> C_direcciones_mx { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_sucursales_colonias> C_sucursales_colonias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_sucursales_direcciones> C_sucursales_direcciones { get; set; }
     }
 }

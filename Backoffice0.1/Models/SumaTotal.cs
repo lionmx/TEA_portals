@@ -10,5 +10,7 @@ namespace Backoffice0._1.Models
         public decimal total { get; set; }
 
         public string nombreTipoPago { get; set; }
+
+        public string minutero { get; set; }
     }
 }

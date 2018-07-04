@@ -15,6 +15,7 @@ namespace Backoffice0._1.Models
     public partial class CS_usuario_login
     {
         public virtual CS_usuarios CS_usuarios { get; set; }
+
         public int ID_LOGIN { get; set; }
         public Nullable<int> ID_USUARIO { get; set; }
         public string CODIGO_USUARIO { get; set; }

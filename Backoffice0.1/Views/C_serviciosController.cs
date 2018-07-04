@@ -12,7 +12,7 @@ namespace Backoffice0._1.Views
 {
     public class C_serviciosController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: C_servicios
         public ActionResult Index()

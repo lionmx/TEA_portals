@@ -4,284 +4,264 @@
 }
 @{ if (Session["EstadoCaja"] == null || (int)Session["LoggedIdRol"] == 28)
     {
-<div class="">
-    <div class="page-title">
-        <div class="title_right">
-        </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-3 col-sm-3" id="Clientes" style="display:none;">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Datos cliente </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="#">Settings 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-
-                    <div class="clearfix"></div>
+        <div class="">
+            <div class="page-title">
+                <div class="title_right">
                 </div>
-                <div class="x_content">
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                        <div class="input-group" id="div_telefono">
-                            <input type="text" class="form-control" style="font-size:18px" id="telefono" data-inputmask="'mask' : '(999) 999-9999'" placeholder="telefono...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                        <label id="error_telefono" style="color:red;display:none;">Telefono no registrado</label>
-                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" style="padding:0px;">
-                                <li role="presentation" id="tab_buscar" class="active">
-                                    <a href="#tab_content_search" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i></a>
-                                </li>
-                                <li role="presentation" class="" id="tab_new">
-                                    <a href="#tab_content_new" role="tab" id="nuevo" data-toggle="tab" aria-expanded="false">Nuevo</a>
-                                </li>
-                                <li role="presentation" class="" id="tab_esp">
-                                    <a href="#tab_content_pe" role="tab" id="especial" data-toggle="tab" aria-expanded="false">P.E</a>
-                                </li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content_search" aria-labelledby="home-tab">
-                                    <table class="table table-striped ">
-                                        <thead>
-                                            <tr class="headings">
-                                                <th class="column-title">Datos</th>
-                                                <th class="bulk-actions" colspan="7">
-                                                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="ClienteInfo"></tbody>
-                                    </table>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content_new" aria-labelledby="profile-tab">
-                                    <div class="form-group form-group has-feedback ">
-                                        <input type="text" class="form-control has-feedback-right" id="new_nombre" placeholder="Nombre">
-                                        <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="new_calle" placeholder="Calle">
-                                        <i class=" form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group  col-md-4 col-sm-4 col-xs-4">
-                                        <input type="text" class="form-control" id="new_next" placeholder="No.">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-                                            <select class="select2_single form-control" name="select_colonia" id="new_colonias" style="padding:0px;width:249px;" tabindex="-1">
-                                                @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!--
-                                <div class="form-group">
-                                    <div class="input-group" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
-                                        </span>
-                                    </div>
-                                </div>-->
-                                    <div class="form-group">
-                                        <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
-                                            <input type="text" class="form-control has-feedback-right" id="new_referencia" placeholder="Referencia">
-                                            <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col-md-1 col-sm-1 col-xs-1">
-                                            <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group has-feedback" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="new_email" placeholder="Email">
-                                        <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tab_content_pe" aria-labelledby="Especial">
-                                    <div class="form-group form-group has-feedback ">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_nombre" placeholder="Nombre">
-                                        <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_calle" placeholder="Calle">
-                                        <i class=" form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group  col-md-4 col-sm-4 col-xs-4">
-                                        <input type="text" class="form-control" id="esp_next" placeholder="No.">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-                                            <select class="select2_single form-control" name="select_colonia" id="esp_colonias" style="padding:0px;width:249px;" tabindex="-1">
-                                                @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!--
-                                <div class="form-group">
-                                    <div class="input-group" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
-                                        </span>
-                                    </div>
-                                </div>-->
-                                    <div class="form-group">
-                                        <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
-                                            <input type="text" class="form-control has-feedback-right" id="esp_referencia" placeholder="Referencia">
-                                            <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col-md-1 col-sm-1 col-xs-1">
-                                            <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-group has-feedback" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_email" placeholder="Email">
-                                        <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group form-group has-feedback" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_evento" placeholder="Nombre del evento">
-                                        <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group form-group col-md-4 col-sm-4 col-xs-4">
-                                        <input type="text" class="form-control " id="esp_fecha" placeholder="Fecha">
-                                    </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3" id="Clientes" style="display:none;">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Datos cliente </h2>
+                          
 
-                                    <div class="form-group form-group col-md-8 col-sm-8 col-xs-8">
-                                        <input type="time" class="form-control " id="esp_hora" placeholder="Hra">
-                                    </div>
-                                    <div class="form-group form-group" style="padding:0px;">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_contratante" placeholder="Contacto">
-                                    </div>
-                                    <div class="form-group form-group has-feedback">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_tel1" placeholder="Telefono 1">
-                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
-                                    </div>
-                                    <div class="form-group form-group has-feedback">
-                                        <input type="text" class="form-control has-feedback-right" id="esp_tel2" placeholder="Telefono 2">
-                                        <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="input-group" id="div_telefono">
+                                    <input type="text" class="form-control" style="font-size:18px" id="telefono" autofocus placeholder="Telefono...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                                <label id="error_telefono" style="color:red;display:none;">Telefono no registrado</label>
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" style="padding:0px;">
+                                        <li role="presentation" id="tab_buscar" class="active">
+                                            <a href="#tab_content_search" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i></a>
+                                        </li>
+                                        <li role="presentation" class="" id="tab_new">
+                                            <a href="#tab_content_new" role="tab" id="nuevo" data-toggle="tab" aria-expanded="false">Nuevo</a>
+                                        </li>
+                                        <li role="presentation" class="" id="tab_esp">
+                                            <a href="#tab_content_pe" role="tab" id="especial" data-toggle="tab" aria-expanded="false">P.E</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content_search" aria-labelledby="home-tab">
+                                            <table class="table table-striped ">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th class="column-title">Datos</th>
+                                                        <th class="bulk-actions" colspan="7">
+                                                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="ClienteInfo"></tbody>
+                                            </table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content_new" aria-labelledby="profile-tab">
+                                            <div class="form-group form-group has-feedback ">
+                                                <input type="text" class="form-control has-feedback-right" id="new_nombre" placeholder="Nombre">
+                                                <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="new_calle" placeholder="Calle">
+                                                <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control" id="new_next" placeholder="No.">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                    <select class="select2_single form-control" name="select_colonia" id="new_colonias" style="padding:0px;width:249px;" tabindex="-1">
+                                                        @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="form-group">
+                                                <div class="input-group" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_referencia" placeholder="Referencia">
+                                                    <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="new_email" placeholder="Email">
+                                                <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content_pe" aria-labelledby="Especial">
+                                            <div class="form-group form-group has-feedback ">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_nombre" placeholder="Nombre">
+                                                <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_calle" placeholder="Calle">
+                                                <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control" id="esp_next" placeholder="No.">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                    <select class="select2_single form-control" name="select_colonia" id="esp_colonias" style="padding:0px;width:249px;" tabindex="-1">
+                                                        @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="form-group">
+                                                <div class="input-group" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_referencia" placeholder="Referencia">
+                                                    <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_email" placeholder="Email">
+                                                <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_evento" placeholder="Nombre del evento">
+                                                <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control " id="esp_fecha" placeholder="Fecha">
+                                            </div>
+
+                                            <div class="form-group form-group col-md-8 col-sm-8 col-xs-8">
+                                                <input type="time" class="form-control " id="esp_hora" placeholder="Hra">
+                                            </div>
+                                            <div class="form-group form-group" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_contratante" placeholder="Contacto">
+                                            </div>
+                                            <div class="form-group form-group has-feedback">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_tel1" placeholder="Telefono 1">
+                                                <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_tel2" placeholder="Telefono 2">
+                                                <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label>Llevar a domicilio</label><br />
+                                        <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label>Recoger en sucursal</label>
+                                        <div class="form-group" id="div_suc" style="display:none;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                <select class="select2_single form-control" name="select_sucursal" id="sucursales" style="padding:0px;width:249px;" tabindex="-1">
+                                                    @{Html.RenderAction("ConsultaSucursales", "POS");}
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label>Llevar a domicilio</label><br />
-                                <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label>Recoger en sucursal</label>
-                                <div class="form-group" id="div_suc" style="display:none;">
-                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
-                                        <select class="select2_single form-control" id="sucursales" style="padding:0px;width:249px;" tabindex="-1">
-                                            @{Html.RenderAction("ConsultaSucursales", "POS");}
-                                        </select>
-                                    </div>
-                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-md-12" id="desvios">
+                            @{Html.RenderAction("ConsultaDesvioSucursales", "POS");}
+                        </div>
+                    </div>
+                </div>
+                @{ if (Session["EstadoActual"] != null)
+                    {
+                        <script>
+                            function a() {
+                                alert("Caja Abierta!");
+                            }
+                        </script>
+                    }
+                }
+
+                <div class="col-md-6 col-sm-6" id="Caja">
+
+                    <div class="x_panel">
+
+                        <div class="x_content col-md-12 col-sm-12" style="height:300px;overflow:scroll;">
+                            <div class="row" id="productos">
+                                @{Html.RenderAction("FiltraProductos", "POS", new { id_cla = 1 });}
+                            </div>
+
+                        </div>
+                        <div id="slideshow" class="col-md-4 col-sm-4">
+                            @{Html.RenderAction("ConsultaBanners", "POS");}
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <div id="categorias" class="col-md-12 col-sm-12" style="padding-top:10px;float:right;min-height:150px;">
+                                @{Html.RenderAction("ConsultaCategorias", "POS");}
+                            </div>
+                            <div id="paquetes" class="col-md-12 col-sm-12">
+                                @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        @{ if (Session["EstadoActual"] != null)
-            {
-                <script>
-                    function a() {
-                        alert("Caja Abierta!");
-                    }
-                </script>
-            }
-        }
-
-        <div class="col-md-6 col-sm-6" id="Caja">
-            <div class="x_panel">
-                <div class="x_title">
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content" style="margin-bottom:-30px;height:300px;overflow:scroll;">
-                    <div class="row" id="productos">
-                        @{Html.RenderAction("FiltraProductos", "POS", new { id_cla = 1 });}
                     </div>
+                    <br />
 
                 </div>
+
+                <div class="col-md-4 col-sm-4" id="Carrito">
+                    <div class="x_panel">
+                        <div id="InformacionEnvio"></div>
+                        <div class="nav_menu" style="background:white;color:black;">
+                            <div id="tracking"></div>
+                            <h2>Cuenta a pagar <small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" id="carritodiv">
+                            @{Html.RenderAction("VisualizaCarrito1", "POS");}
+                        </div>
+                        <div>
+                            <table class="table table-striped ">
+                                <tbody>
+                                    <tr class="costo_servicio">
+                                        <td class=" ">Servicio a domicilio</td>
+                                        <td class=" ">$<label id="costo_entrega">@ViewBag.costo_entrega</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" "><h2>Total</h2></td>
+                                        <td class=" "><h2>$ <label class="total"></label> </h2></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                            <label>Registrar codigo</label>
+                            <input type="text" id="cupon" /><a class="btn btn-success" onclick="ValidarCupon()">Validar</a><br />
+                            <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="x_panel ">
-
-                <div class="x_content" id="categorias">
-                    @{Html.RenderAction("ConsultaCategorias", "POS");}
-                </div>
-                <div class="x_content" id="paquetes">
-                    @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
-                </div>
+            <div class="col-md-12 col-xs-12">
+                <button class="btn btn-success btn-lg flotante right" id="btn_pc" style="margin-bottom:70px;" data-toggle="modal" data-target=".pedidos_cancelados">P.C</button>
+                <button class="btn btn-success btn-lg flotante left" id="btn_nuevope" style="margin-bottom:70px;" onclick="MostrarPE()">Nuevo P.E</button>
+                <button class="btn btn-success btn-lg flotante right" id="btn_consultarpedidos" style="margin-bottom:70px;" data-toggle="modal" data-target=".consulta_pedidos" onclick="ConsultarPedidos()"><i class="fa fa-search fa-2x"></i></button>
             </div>
-
-
-        </div>
-
-        <div class="col-md-4 col-sm-4" id="Carrito">
-            <div class="x_panel">
-                <div class="nav_menu" style="background:white;color:black;">
-                    <div id="tracking"></div>
-                    <h2>Cuenta a pagar <small></small></h2>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content" id="carritodiv">
-                    @{Html.RenderAction("VisualizaCarrito1", "POS");}
-                </div>
-                <div>
-                    <table class="table table-striped ">
-                        <tbody>
-                            <tr class="costo_servicio">
-                                <td class=" ">Servicio a domicilio</td>
-                                <td class=" ">$<label id="costo_entrega">@ViewBag.costo_entrega</label></td>
-                            </tr>
-                            <tr>
-                                <td class=" "><h2>Total</h2></td>
-                                <td class=" "><h2>$ <label class="total"></label> </h2></td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-
-                    <label>Registrar codigo</label>
-                    <input type="text" id="cupon" /><a class="btn btn-success" onclick="ValidarCupon()">Validar</a><br />
-                    <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-3" id="desvios">
-                @{Html.RenderAction("ConsultaDesvioSucursales", "POS");}
-            </div>
-            <div id="slideshow" class="right col-md-4">
-                @{Html.RenderAction("ConsultaBanners", "POS");}
+            <br />
+            <div class="col-md-12 col-xs-12">
+                <button class="btn btn-success btn-lg flotante right" id="btn_pe" data-toggle="modal" data-target=".pedidos_especiales">P.E</button>
+                <button class="btn btn-success btn-lg flotante right" id="btn_apertura_caja" style="margin-bottom:70px;display:none" data-toggle="modal" data-target=".apertura_caja"></button>
             </div>
         </div>
-      
-        <div class="row">
-            <div class="col-md-8 col-sm-8 col-xs-8">
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 col-xs-12">
-        <button class="btn btn-success btn-lg flotante right" id="btn_pc" style="margin-bottom:70px;" data-toggle="modal" data-target=".pedidos_cancelados">P.C</button>
-        <button class="btn btn-success btn-lg flotante left" id="btn_nuevope" style="margin-bottom:70px;" onclick="MostrarPE()" >Nuevo P.E</button>
-    </div>
-    <br />
-    <div class="col-md-12 col-xs-12">
-        <button class="btn btn-success btn-lg flotante right" id="btn_pe" data-toggle="modal" data-target=".pedidos_especiales">P.E</button>
-    </div>
-</div>
         <div class="modal fade configura_combo" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -319,7 +299,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close"  id="close_repartidor" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" id="close_repartidor" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel2">Asigna repartidor</h4>
@@ -353,44 +333,241 @@
                 </div>
             </div>
         </div>
-      
+
         <!--Modal Asigna repartidor-->
+
+        <!-- Modal Consulta pedidos-->
+        <div class="modal fade consulta_pedidos" id="m_consulta_pedidos" role="dialog" aria-hidden="true" style="z-index:1055;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_repartidor" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Pedidos</h4>
+                    </div>
+                    <div class="modal-body" id="visualiza_pedidos">
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Consulta pedidos-->
+
+        <!-- Modal pago -->
+        <div class="modal fade pago" tabindex="-1" role="dialog" aria-hidden="true" id="modal_pago">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_pago" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Pagar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="x_panel">
+                            <div class=" col-xs-4 col-md-4">
+                                <div class="x_title">
+                                    <h2> Pedido #12312<small>Resumen</small> </h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <tr>
+                                    <td class=" "><strong></strong></td>
+                                </tr>
+                                <div id="visualizacarrito">
+                                </div>
+                                <table class="table table-striped ">
+                                    <tbody>
+                                        <tr class="costo_servicio">
+                                            <td class=" ">Servicio a domicilio</td>
+                                            <td class=" ">$ @ViewBag.costo_entrega</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <label style="font-size:18px;padding-left:40px;">Total = </label>
+                                    <label style="font-size:18px;padding-left:40px;" class="total" id="total_cuenta"></label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title col-md-12 col-sm-12">
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <table class="table-bordered table" style="border-color:white;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tipo de pago</th>
+                                                    <th>Importe</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Efectivo</th>
+                                                    <th><input type="text" class="pago_cliente" id="pago_efectivo" onkeyup="calculo();" value="" autofocus /></th>
+                                                    <th> <input type="button" class="btn btn-success btn-xs" value="Otro metodo" onclick="OtroPago()" /></th>
+                                                </tr>
+
+                                                <tr class="otro_pago" style="display:none">
+                                                    <th><button class="btn btn-primary" data-toggle="modal" data-target=".pago_t" style="padding:2px;">Tarjeta Credito/Debito</button></th>
+                                                    <th><input type="text" style="border:0px; background:white;" class="pago_cliente" id="pago_tarjeta" value="" disabled /></th>
+                                                    <th style="display:none;"><input type="text" class="control-label" style="border:0px; background:white; " id="pago_tarjeta_num" value="" disabled /></th>
+                                                </tr>
+                                                <tr class="otro_pago" style="display:none">
+                                                    <th><button class="btn btn-success" data-toggle="modal" data-target=".pago_tc" style="padding:2px;">Team Card</button></th>
+                                                    <th><input type="text" style="border:0px; background:white;" id="pago_teamcard" class="pago_cliente" disabled /></th>
+                                                    <th style="display:none;"><input type="text" class=" control-label" style="border:0px; background:white;" id="pago_teamcard_num" value="" disabled /></th>
+                                                </tr>
+                                                <tr class="otro_pago" style="display:none">
+                                                    <th><button class="btn btn-info" data-toggle="modal" data-target=".pago_ta" style="padding:2px;">Tarjeta Amigo</button></th>
+                                                    <th><input type="text" id="pago_amigo" style="border:0px; background:white;" class="pago_cliente" value="" disabled /></th>
+                                                    <th style="display:none;"><input type="text" class="" id="pago_amigo_num" style="border:0px; background:white;" value="" disabled /></th>
+
+                                            </tbody>
+                                        </table>
+                                        <div class="col-md-6 col-sm-6 col-lg-6">
+
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-lg-4">
+                                            <table>
+                                                <tr>
+                                                    <td><label style="font-size:14px;float:right;padding-bottom:2px;">Consumo = </label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label style="font-size:14px;float:right;padding-bottom:2px;">Propina = </label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label style="font-size:14px;float:right;padding-bottom:2px;">Total = </label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label style="font-size:14px;float:right;padding-bottom:2px;">Cambio = </label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label style="font-size:14px;float:right;">Saldo Pendiente = </label></td>
+
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-lg-2">
+                                            <table>
+                                                <tr>
+                                                    <td>$<label style="font-size:16px;float:right;" id="a_pagar"></label> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$<input type="text" class="col-md-10" style="float:right;" onkeyup="calculo()" id="propina" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$<label style="font-size:16px;float:right;" id="total_pagar"></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$<label style="font-size:16px;float:right;" id="cambio">  </label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label></label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>$<label style="font-size:16px;float:right;" id="saldo"> </label></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="RegistrarPedido()">Registrar pago</button>
+                            <button type="button" class="btn btn-success left" onclick="DividirCuenta()">Dividir cuenta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal pago -->
+
+        <!-- Modal Apertura Caja-->
+        using (Html.BeginForm("cajaMovimientos", "CAJA", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            var fecha2 = DateTime.Now.ToLongDateString();
+            <div class="modal fade apertura_caja" id="m_apertura_caja" role="dialog" aria-hidden="true" style="z-index:1055;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" style="display:none" id="close_apertura" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+
+                            <h4 class="modal-title" id="myModalLabel2">Apertura de caja</h4>
+                            <label style="">@(fecha2)</label><br />
+                        </div>
+                        <div class="modal-body" id="apertura_caja">
+                            <label>Usuario: </label><label id="nombre_usuario">@Session["LoggedUser"]</label><br />
+                            <center>
+                                <label class="control-label">Ingrese monto de apertura </label><br />
+                                <input type="text" id="monto_apertura" class="form-control" placeholder="$ 00.00" />
+                            </center>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-success" onclick="AperturaCaja()" value="Aceptar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <!--Modal Apertura Caja-->
         <script>
 //Funcion principal
-            
+
             $(window).on("load", function () {
 
+                $("#carritodiv").html("");
                 if (@ViewBag.IdRol == 6) {
-                   
+                    document.getElementById("btn_consultarpedidos").style.display = "None";
                     document.getElementById("Caja").className = "col-md-8 col-sm-8";
                     document.getElementById("Carrito").className = "col-md-4 col-sm-4";
                     document.getElementById("btn_nuevope").style.display = "Block";
                     document.getElementById("desvios").style.display = "None";
+                    $(".img_slider").attr("style", "width:400px;");
+                    document.getElementById("slideshow").style = "width:400px;";
+
                     $(".costo_servicio").css("display", "none");
                     $("#ent_suc").prop("checked", true);
                 }
                 if (@ViewBag.IdRol == 28) {
-                    $("#telefono").focus();
+                    document.getElementById("btn_consultarpedidos").style.display = "Block";
                     document.getElementById("Clientes").style.display = "Block";
                     document.getElementById("desvios").style.display = "Block";
                     document.getElementById("btn_nuevope").style.display = "None";
                     document.getElementById("Caja").className = "col-md-6 col-sm-6";
                     document.getElementById("Carrito").className = "col-md-3 col-sm-3";
+                    document.getElementById("slideshow").style = "width:300px;";
+                    $(".img_slider").attr("style", "width:300px;");
                     $("#tracking").css("display", "none");
                     $("#btn_pe").css("display", "none");
                     $("#btn_pc").css("display", "none");
                     $("#ent_dom").prop("checked", true);
-                    ConsultaCostoEnvio(0);
+                    $("#telefono").focus();
+                    ConsultaCostoEnvio($("select[name=select_colonia]").val(), "");
                 }
-            
                 sumar();
                 if (@ViewBag.IdRol == 6) {
                     setInterval(ConsultaTracking, 1000);
                     setInterval(ConsultaCancelados, 1000);
                     setInterval(ConsultaEspeciales, 1000);
+                    ValidarApertura();
+
                 }
-             
             });
+           
                 $(".select2_single").select2({
                     placeholder: "Seleccionar",
                     allowClear: true
@@ -401,9 +578,13 @@
                 }, function (start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                 });
-            $("select[name=select_colonia]").change(function () {
-                ConsultaCostoEnvio($("select[name=select_colonia]").val());
-            });
+
+                $("select[name=select_colonia]").change(function () {
+                ConsultaCostoEnvio($("select[name=select_colonia]").val(),"");
+                });
+                $("select[name=select_sucursal]").change(function () {
+                    ConsultaCostoEnvio(0,$("select[name=select_sucursal]").val());
+                });
                 $("#slideshow > div:gt(0)").hide();
                 setInterval(function () {
                     $('#slideshow > div:first')
@@ -412,12 +593,39 @@
                         .fadeIn(1000)
                         .end()
                         .appendTo('#slideshow');
-            }, 3000);
-            function ConsultaCostoEnvio(id_colonia) {
-                var id_colonia = id_colonia;
-                if (id_colonia == 0) {
-                     id_colonia = $('select[name=select_colonia]').val();
+            }, 6000);
+            function ConsultaCostoEnvio(id_colonia,codigo_sucursal) {
+                if ($("#ent_suc").is(':checked')) {
+                    id_colonia = 0;
+                    codigo_sucursal = $("select[name=select_sucursal]").val();
                 }
+                else {
+                    if ($("#tab_buscar").hasClass("active") && id_colonia=='') {
+                        var totalInp = $('[name="clientes"]');
+                        totalInp.each(function () {
+                            if ($(this).is(':checked')) {
+                                $(this).click();
+                            }
+                        });
+                    }
+
+                }
+                    $.ajax({
+                        url: "../PEDIDOS/AsignarSucursal",
+                        data: {
+                            id_colonia: id_colonia,
+                            codigo_sucursal: codigo_sucursal
+                        },
+                        success: function (result) {
+                            if (result == "") {
+                                swal("", "Colonia fuera de rango", "warning");
+                            }
+                            else {
+                                $("#InformacionEnvio").html(result);
+                            }
+                        }
+                    });
+
                 $.ajax({
                     url: "../PEDIDOS/ConsultarCostoEnvio",
                     data: {
@@ -432,19 +640,25 @@
                         calculo();
                     }
                 });
-                $.ajax({
-                    url: "../PEDIDOS/AsignarSucursal",
-                    data: {
-                        id_colonia: id_colonia
-                    },
-                    success: function (result) {
-                        if (result=="") {
-                            swal("", "Colonia fuera de rango", "warning");
+                }
+                function ValidarApertura() {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "../CAJA/ValidaAperturaCaja",
+                        data: {},
+                        success: function (result) {
+                            if (result == "True") {
+
+                            }
+                            else {
+                                var objO = document.getElementById("btn_apertura_caja");
+                                objO.click();
+                            }
+
                         }
-                       
-                    }
-                });
-            }
+                    });
+                }
 
 //Dividir cuentas
             function DividirCuenta() {
@@ -460,7 +674,8 @@
  //Tracking de pedidos
 
            function ConsultaTracking() {
-                $.ajax({
+               $.ajax({
+                    type: "GET",
                     url: "../POS/ConsultaTrackingPedidos",
                     data: {},
                     success: function (result) {
@@ -537,13 +752,19 @@
                         if (result!="False") {
                             $("#ClienteInfo").html(result);
                             $("#error_telefono").css("display", "none");
+                            var objO = document.getElementById("home-tab");
+                            objO.click();
                         }
                         else
                         {
                             $("#ClienteInfo").html("");
                             $("#error_telefono").css("display", "block");
                             $("#esp_tel1").val(telefono);
+                            var objO = document.getElementById("home-tab");
+                            objO.click();
                         }
+
+
                     }
                 });
             }
@@ -687,11 +908,10 @@
                 });
             }
 
-
-
  // Consultas de productos, categorias , combos...
 
-            var ConsultaCategorias = function () {
+                var ConsultaCategorias = function () {
+                    $("#productos").html("");
                 $.ajax({
                     url: "../POS/ConsultaCategorias",
                     success: function (result) {
@@ -699,7 +919,8 @@
                     }
                 });
             }
-            var ConsultaSubcategorias = function (id_tipo_producto) {
+                var ConsultaSubcategorias = function (id_tipo_producto) {
+                    $("#productos").html("");
                 $.ajax({
                     url: "../POS/ConsultaSubCategorias",
                     data: { id_tipo_producto: id_tipo_producto },
@@ -708,7 +929,8 @@
                     }
                 });
             }
-            var FiltraProductos = function (id_clasificacion) {
+           var FiltraProductos = function (id_clasificacion) {
+                    $("#productos").html("");
                 $.ajax({
                     url: "../POS/FiltraProductos",
                     data: { id_cla: id_clasificacion },
@@ -717,8 +939,9 @@
                     }
                 });
             }
-            
-            var ConsultaBotonesEspeciales = function () {
+
+                var ConsultaBotonesEspeciales = function () {
+                    $("#productos").html("");
                 $.ajax({
                     url: "../POS/ConsultaBotonesEspeciales",
                     success: function (result) {
@@ -727,7 +950,8 @@
                 });
             }
 
-            var ConsultaSubClases = function (id_grupo_producto_tipo) {
+                var ConsultaSubClases = function (id_grupo_producto_tipo) {
+                    $("#productos").html("");
                 $.ajax({
                     url: "../POS/ConsultaSubClases",
                     data: { id_grupo_producto_tipo: id_grupo_producto_tipo },
@@ -798,10 +1022,23 @@
                 if ($("#ent_suc").is(':checked')) {
                     document.getElementById("div_suc").style.display = "inline";
                     $(".costo_servicio").css("display", "none");
+                    ConsultaCostoEnvio(0, $("select[name=select_sucursal]").val());
                 }
                 else {
                     document.getElementById("div_suc").style.display = "none";
                     $(".costo_servicio").css("display", "table-row");
+                    if ($("#tab_buscar").hasClass("active")) {
+                        var totalInp = $('[name="clientes"]');
+                        totalInp.each(function () {
+                            if ($(this).is(':checked')) {
+                                $(this).click();
+                            }
+                        });
+                    }
+                    else {
+                        ConsultaCostoEnvio($("select[name=select_colonia]").val(), "");
+                    }
+
                 }
                 sumar()
             }
@@ -846,6 +1083,7 @@
 
                     if ($("#ent_dom").is(':checked')) {
                         c_pedidos.id_tipo_entrega = 1;
+                        c_pedidos.codigo_sucursal = $("#codigo_sucursal").text();
                     }
                     if ($("#ent_suc").is(':checked')) {
                         c_pedidos.id_tipo_entrega = 2;
@@ -917,7 +1155,6 @@
 
                     if ($("#tab_buscar").hasClass("active")) {
                         c_pedidos.id_pedido_tipo = 1
-
                         var totalInp = $('[name="clientes"]');
                         totalInp.each(function () {
                             if ($(this).is(':checked')) {
@@ -960,7 +1197,6 @@
                         c_direcciones.id_ciudad = 1;//cambiar
                         c_direcciones.id_estado = 1;//cambiar
 
-
                         c_eventos.descripcion_evento = $("#esp_evento").val();
                         c_eventos.fecha = $("#esp_fecha").val();
                         c_eventos.hora = $("#esp_hora").val();
@@ -991,7 +1227,40 @@
                         success: function (result) {
                             if (result != "False") {
                                 if (saldo_pendiente == 0) {
-                                    location.reload();
+                                    var obj = $("#close_pago");
+                                    obj.click();
+                                    $("#carritodiv").html("");
+                                    $("#ClienteInfo").html("");
+                                    $("#telefono").val("");
+                                    $("#telefono").focus();
+                                    $("#new_nombre").val("");
+                                    $("#new_calle").val("");
+                                    $("#new_next").val("");
+                                    $("#new_referencia").val("");
+                                    $("#new_email").val("");
+
+                                    $("#esp_nombre").val("");
+                                    $("#esp_calle").val("");
+                                    $("#esp_next").val("");
+                                    $("#esp_referencia").val("");
+                                    $("#esp_email").val("");
+                                    $("#esp_evento").val("");
+                                    $("#esp_fecha").val("");
+                                    $("#esp_hora").val("");
+                                    $("#esp_contratante").val("");
+                                    $("#esp_tel1").val("");
+                                    $("#esp_tel2").val("");
+
+                                    $("#pago_tarjeta").val("");
+                                    $("#pago_tarjeta_num").val("");
+
+                                    $("#pago_teamcard").val("");
+                                    $("#pago_teamcard_num").val("");
+
+                                    $("#pago_amigo").val("");
+                                    $("#pago_amigo_num").val("");
+
+                                    $("#pago_efectivo").val("");
                                 }
                                 Visualizacarrito();
                                 $(".pago_cliente").val("");
@@ -1004,9 +1273,9 @@
                     calculo();
                 }
                 else {
-                   
+
                 }
-               
+
             }
 
             var ConsultarPedido = function (id_pedido) {
@@ -1032,6 +1301,18 @@
                         $("#gaffette").focus();
                     }
                 });
+            }
+
+            var ConsultarPedidos = function () {
+                $.ajax({
+                    url: "../PEDIDOS/ConsultaPedidos",
+                    data: {
+                    },
+                    success: function (result) {
+                        $("#visualiza_pedidos").html(result);
+                    }
+                });
+
             }
 
 // Gestion de repartidores
@@ -1088,6 +1369,7 @@
             var ValidarCupon = function () {
                 var cupon = $("#cupon").val();
                 $.ajax({
+
                     url: "../POS/ValidarCupon",
                     data: {
                         cupon:cupon
@@ -1141,14 +1423,14 @@
             }
             function OtroPago() {
                 $(".otro_pago").toggle();
-     
+
             }
-            
-            function Validar() { 
+
+            function Validar() {
                 var cambio = parseFloat($('#cambio').text());
                 if (cambio < 0) {
                     swal("", "La cantidad recibida no es suficiente", "error");
-                    return false; 
+                    return false;
                 }
                 var new_nombre = $("#new_nombre").val();
                 var new_calle = $("#new_calle").val();
@@ -1170,9 +1452,9 @@
                 var id_direccion=0;
                 var id_cliente=0;
                 var valido = true;
-              
+
                     if (@ViewBag.IdRol == 6) {
-                       
+
                     }
                     if (@ViewBag.IdRol == 28) {
                         if ($("#tab_buscar").hasClass("active")) {
@@ -1185,6 +1467,10 @@
                             });
                             if (id_direccion == 0 && $("#ent_dom").is(':checked') ) {
                                 swal("", "Seleccione la direccion del cliente  o registrelo nuevamente", "error");
+                                return false;
+                            }
+                            if (id_cliente == 0) {
+                                swal("", "Seleccione al cliente  o registrelo nuevamente", "error");
                                 return false;
                             }
                         }
@@ -1221,7 +1507,49 @@
                     }
                 }
                 return true;
-            }
+                }
+
+                function ComprobarCaja() {
+                    $.ajax({
+                        url: "../CAJA/ValidaAperturaCaja",
+                        data: {
+                        },
+                        success: function (result) {
+                            if (result == "True") {
+
+                            }
+                            else {
+                                var objO = document.getElementById("close_apertura");
+                                objO.click();
+                            }
+                        }
+                    });
+                }
+
+            function AperturaCaja() {
+                    var monto_apertura = $("#monto_apertura").val();
+                if (monto_apertura == "") {
+
+                        swal("", "Ingrese monto de apertura", "warning");
+                    }
+                    else {
+                        $.ajax({
+                            url: "../CAJA/MovimientoCaja",
+                            data: {
+                                monto_apertura: monto_apertura,
+                                id_tipo_movimiento: 1
+                            },
+                            success: function (result) {
+                                if (result == "True") {
+                                    var objO = document.getElementById("close_apertura");
+                                    objO.click();
+                                }
+                                else {
+                                }
+                            }
+                        });
+                    }
+                }
 
             function MostrarPE() {
                 var clientes_activo = $("#Clientes").is(":visible");
@@ -1242,15 +1570,14 @@
                     objO.click();
                     $("#tab_esp").addClass("active");
                 }
-             
             }
-          
         </script>
+
     }
     else
     {
-        <script>
-            alert('Caja cerrada!');
-        </script>
+        < script >
+        alert('Caja cerrada!');
+        </ script >
     }
 }

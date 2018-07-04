@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_tipos>
+
+<center>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+    <button type="button" style="background:#d58512;" onclick="ConsultaSubClases(@Html.DisplayFor(modelItem => item.id_grupo_producto_tipo))" class="btn btn-warning btn-lg" >@Html.DisplayFor(modelItem => item.nombre_tipo)</button>
+        }
+    }
+
+</center>

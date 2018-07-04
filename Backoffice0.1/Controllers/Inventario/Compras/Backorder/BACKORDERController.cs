@@ -13,7 +13,7 @@ namespace Backoffice0._1.Controllers
     public class BACKORDERController : Controller
     {
         // GET: BACKORDER
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
        
         public ActionResult Index()
         {

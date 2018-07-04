@@ -11,7 +11,7 @@ namespace Backoffice0._1.Controllers
 {
     public class ConfiguracionController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: Configuracion
         modelConfigBase ViewModelUsuario = new modelConfigBase();
@@ -315,7 +315,6 @@ namespace Backoffice0._1.Controllers
                 string idPermiso = string.Empty;
                 string permiso = arr[i].Substring(0, arr[i].Length - 1);
                 string moduloId = arr[i].Substring(arr[i].Length - 1);
-                string query = "INSERT INTO CS_permisos_asignados VALUES (";
                 int idUsuario = Convert.ToInt32(Session["LoggedId"]);
                 var idServicioResult = db.Database.SqlQuery<CS_usuarios>("SELECT * FROM CS_USUARIOS WHERE ID_USUARIO=" + idUsuario + "");
                 foreach (var n in idServicioResult)

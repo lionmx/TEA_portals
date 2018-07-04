@@ -23,7 +23,11 @@ namespace Backoffice0._1.Models
         public int id_producto_clasificacion { get; set; }
         public Nullable<int> id_tipo_producto { get; set; }
         public string nombre_producto_clasificacion { get; set; }
+        public string imagen_pequena { get; set; }
+        public string imagen_mediana { get; set; }
+        public string imagen_grande { get; set; }
     
+        public virtual C_producto_tipo C_producto_tipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_productos_cat> C_productos_cat { get; set; }
     }

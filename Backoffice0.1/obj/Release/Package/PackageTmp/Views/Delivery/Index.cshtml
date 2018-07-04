@@ -1,8 +1,26 @@
-﻿
+﻿@model Backoffice0._1.Models.DeliveryModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
+<html>
+<head>
+    <meta http-equiv="refresh" content="10">
+    <script type="text/javascript">
+        function encenderSucursal() {
+            //alert('aasjkdkdj');
+            var suc = "SUC038";
+            $.ajax({
+                url: '/DELIVERY/estatusCajaModalView',
+                type: "POST",
+                data: '{ sucursal: "SUC038"}',
+                contentType: 'application/json',
+                dataType: 'json'
+
+            });
+        }
+    </script>
+</head>
 
 <div class="">
     <div class="page-title">
@@ -13,570 +31,1963 @@
         </div>
     </div>
     <div class="clearfix"></div>
-    <div class="row">
-        <div class="col-md-3 col-sm-3">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Por asignar<small</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="#">Settings 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
+
+
+
+
+    @*<div class="row">
+            <div class="col-md-3 col-sm-3">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Por asignar<small</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="x_panel" style="background:#9e1212; color:white;">
+                            <div class="x_title">
+                                <h2>#12423 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>COLON | 00:30 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#9e1212; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#c18817; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" style="background:#c18817; color:white;">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" style="background:#075807; color:white;">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" style="background:#075807; color:white;">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="x_panel" style="background:#9e1212; color:white;">
-                        <div class="x_title">
-                            <h2>#12423 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>COLON | 00:30 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>En transito <small</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="x_panel" style="background:#9e1212; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="x_panel" style="background:#9e1212; color:white;">
+                            <div class="x_title">
+                                <h2>#12423 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>COLON | 00:30 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
+                        <div class="x_panel" style="background:#c18817; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
-                    </div>
-                    <div class="x_panel" style="background:#c18817; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
+                        <div class="x_panel" style="background:#c18817; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
-                        <div class="x_content" style="background:#c18817; color:white;">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content" style="background:#075807; color:white;">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content" style="background:#075807; color:white;">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>En cocina <small</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#">Settings 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Settings 2</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="x_panel" style="background:#9e1212; color:white;">
+                            <div class="x_title">
+                                <h2>#12423 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>COLON | 00:30 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#c18817; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" style="background:#c18817; color:white;">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#c18817; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".modal"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="background:#075807; color:white;">
+                            <div class="x_title">
+                                <h2>#00500 <small</small></h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#">Asignar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br>
+                                <h2>LERDO | 00:28 <small</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <tr class="even pointer">
+                                    <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
+                                    <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    @{List<Backoffice0._1.Models.DeliveryModel> pedidosCocina = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> pedidosRecibidos = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> pedidosPorAsignar = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> pedidosEntregando = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> pedidosEntregados = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> totalRepaSuc = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.C_cajas> sucEstado = new List<Backoffice0._1.Models.C_cajas>();
+        sucEstado = ViewBag.sucEstado;
+        pedidosCocina = ViewBag.pedidosSucCocina;
+        pedidosRecibidos = ViewBag.pedidosSucRecibido;
+        pedidosPorAsignar = ViewBag.pedidosSucPorAsignar;
+        pedidosEntregando = ViewBag.pedidosSucEntregando;
+        pedidosEntregados = ViewBag.pedidosSucEntregados;
+        totalRepaSuc = ViewBag.totalRepaSuc;
+        if (sucEstado != null)
+        {
+            if (sucEstado[0].status.Equals("A"))
+            {
+                <style>
+                    :root {
+                        --main-bg-color2: #13afe4;
+                    }
+
+                    #div38 {
+                        background-color: var(--main-bg-color2);
+                    }
+                </style>
+            }
+            else if (sucEstado[0].status.Equals("I"))
+            {
+                <style>
+                    :root {
+                        --main-bg-color3: gray;
+                    }
+
+                    #div38 {
+                        background-color: var(--main-bg-color3);
+                    }
+                </style>
+            }
+        }
+        if (pedidosCocina[5].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color4: green;
+                }
+
+                #div1 {
+                    background-color: var(--main-bg-color4);
+                }
+            </style>
+        }
+        if (pedidosCocina[6].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color5: green;
+                }
+
+                #div2 {
+                    background-color: var(--main-bg-color5);
+                }
+            </style>
+        }
+        if (pedidosCocina[7].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color6: green;
+                }
+
+                #div3 {
+                    background-color: var(--main-bg-color6);
+                }
+            </style>
+        }
+
+        if (pedidosCocina[8].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color7: green;
+                }
+
+                #div4 {
+                    background-color: var(--main - bg - color7);
+                }
+            </style>
+        }
+        if (pedidosCocina[9].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color8: green;
+                }
+
+                #div5 {
+                    background-color: var(--main-bg-color8);
+                }
+            </style>
+        }
+        if (pedidosCocina[10].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color9: green;
+                }
+
+                #div6 {
+                    background-color: var(--main-bg-color9);
+                }
+            </style>
+        }
+        if (pedidosCocina[11].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color10: green;
+                }
+
+                #div7 {
+                    background-color: var(--main-bg-color10);
+                }
+            </style>
+        }
+        if (pedidosCocina[12].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color11: green;
+                }
+
+                #div8 {
+                    background-color: var(--main-bg-color11);
+                }
+            </style>
+        }
+        if (pedidosCocina[13].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color12: green;
+                }
+
+                #div9 {
+                    background-color: var(--main-bg-color12);
+                }
+            </style>
+        }
+        if (pedidosCocina[14].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color13: green;
+                }
+
+                #div10 {
+                    background-color: var(--main-bg-color13);
+                }
+            </style>
+        }
+        if (pedidosCocina[15].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-colo14r: green;
+                }
+
+                #div11 {
+                    background-color: var(--main-bg-color14);
+                }
+            </style>
+        }
+        if (pedidosCocina[16].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color15: green;
+                }
+
+                #div12 {
+                    background-color: var(--main-bg-color15);
+                }
+            </style>
+        }
+        if (pedidosCocina[17].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color16: green;
+                }
+
+                #div13 {
+                    background-color: var(--main-bg-color16);
+                }
+            </style>
+        }
+        if (pedidosCocina[18].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color17: green;
+                }
+
+                #div14 {
+                    background-color: var(--main-bg-color17);
+                }
+            </style>
+        }
+        if (pedidosCocina[19].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color18: green;
+                }
+
+                #div15 {
+                    background-color: var(--main-bg-color18);
+                }
+            </style>
+        }
+        if (pedidosCocina[20].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color19: green;
+                }
+
+                #div16 {
+                    background-color: var(--main-bg-color19);
+                }
+            </style>
+        }
+        if (pedidosCocina[21].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color20: green;
+                }
+
+                #div17 {
+                    background-color: var(--main-bg-color20);
+                }
+            </style>
+        }
+        if (pedidosCocina[22].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color21: green;
+                }
+
+                #div18 {
+                    background-color: var(--main-bg-color21);
+                }
+            </style>
+        }
+        if (pedidosCocina[23].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color22: green;
+                }
+
+                #div19 {
+                    background-color: var(--main-bg-color22);
+                }
+            </style>
+        }
+        if (pedidosCocina[24].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color23: green;
+                }
+
+                #div20 {
+                    background-color: var(--main-bg-color23);
+                }
+            </style>
+        }
+        if (pedidosCocina[25].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color24: green;
+                }
+
+                #div21 {
+                    background-color: var(--main-bg-color24);
+                }
+            </style>
+        }
+        if (pedidosCocina[26].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color24: green;
+                }
+
+                #div22 {
+                    background-color: var(--main-bg-color25);
+                }
+            </style>
+        }
+        if (pedidosCocina[27].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color26: green;
+                }
+
+                #div23 {
+                    background-color: var(--main-bg-color26);
+                }
+            </style>
+        }
+        if (pedidosCocina[28].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color27: green;
+                }
+
+                #div24 {
+                    background-color: var(--main-bg-color27);
+                }
+            </style>
+        }
+        if (pedidosCocina[29].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color28: green;
+                }
+
+                #div25 {
+                    background-color: var(--main-bg-color28);
+                }
+            </style>
+        }
+        if (pedidosCocina[30].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color29: green;
+                }
+
+                #div26 {
+                    background-color: var(--main-bg-color29);
+                }
+            </style>
+        }
+        if (pedidosCocina[31].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color30: green;
+                }
+
+                #div27 {
+                    background-color: var(--main-bg-color30);
+                }
+            </style>
+        }
+        if (pedidosCocina[32].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color31: green;
+                }
+
+                #div28 {
+                    background-color: var(--main-bg-color31);
+                }
+            </style>
+        }
+        if (pedidosCocina[33].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color32: green;
+                }
+
+                #div29 {
+                    background-color: var(--main-bg-color32);
+                }
+            </style>
+        }
+        if (pedidosCocina[34].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color33: green;
+                }
+
+                #div30 {
+                    background-color: var(--main-bg-color33);
+                }
+            </style>
+        }
+        if (pedidosCocina[35].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color34: green;
+                }
+
+                #div31 {
+                    background-color: var(--main-bg-color34);
+                }
+            </style>
+        }
+        if (pedidosCocina[36].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color35: green;
+                }
+
+                #div32 {
+                    background-color: var(--main-bg-color35);
+                }
+            </style>
+        }
+        if (pedidosCocina[37].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color36: green;
+                }
+
+                #div33 {
+                    background-color: var(--main-bg-color36);
+                }
+            </style>
+        }
+        if (pedidosCocina[38].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color37: green;
+                }
+
+                #div34 {
+                    background-color: var(--main-bg-color37);
+                }
+            </style>
+        }
+        if (pedidosCocina[39].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color38: green;
+                }
+
+                #div35 {
+                    background-color: var(--main-bg-color38);
+                }
+            </style>
+        }
+        if (pedidosCocina[40].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color39: green;
+                }
+
+                #div36 {
+                    background-color: var(--main-bg-color39);
+                }
+            </style>
+        }
+        if (pedidosCocina[41].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color40: green;
+                }
+
+                #div37 {
+                    background-color: var(--main-bg-color40);
+                }
+            </style>
+        }
+        if (pedidosCocina[42].totalCocina > 0)
+        {
+            <style>
+                :root {
+                    --main-bg-color41: green;
+                }
+
+                #div38 {
+                    background-color: var(--main-bg-color41);
+                }
+            </style>
+        }
+       
+        List<Backoffice0._1.Models.C_empleados> repartidoresLista = new List<Backoffice0._1.Models.C_empleados>();
+        if (ViewBag.repartidorEnSucursal != null)
+        {
+            repartidoresLista = ViewBag.repartidorEnSucursal;
+
+        }
+
+    }
+    <div id="div1" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Abastos<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[5].totalRepaSuc) </h2>
+
+            <div class="clearfix">
             </div>
         </div>
-        <div class="col-md-3 col-sm-3">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>En transito <small</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="#">Settings 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="x_panel" style="background:#9e1212; color:white;">
-                        <div class="x_title">
-                            <h2>#12423 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>COLON | 00:30 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#c18817; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#c18817; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-3">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>En cocina <small</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="#">Settings 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="x_panel" style="background:#9e1212; color:white;">
-                        <div class="x_title">
-                            <h2>#12423 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>COLON | 00:30 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#c18817; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content" style="background:#c18817; color:white;">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#c18817; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".modal"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                    <div class="x_panel" style="background:#075807; color:white;">
-                        <div class="x_title">
-                            <h2>#00500 <small</small></h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li>
-                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="#">Asignar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <br>
-                            <h2>LERDO | 00:28 <small</small></h2>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <tr class="even pointer">
-                                <td class=" ">Nallely Fernandez<br>Calle.Nogales #96 <br> Col.Rosales II</td>
-                                <td class=" "><a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a></td>
-                                </td>
-                            </tr>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[5].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAbastos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[5].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAbastos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[5].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[5].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregando[5].totalEntregados)" />
         </div>
     </div>
 
-</div>
+
+
+    <div id="div2" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Alameda</h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[6].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[6].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[6].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[6].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[6].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[6].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div3" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Centenario</h2>
+
+            <br>
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[7].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[7].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoCentenario" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[7].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaCentenario" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[7].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[7].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[7].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div4" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Constitucion</h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[8].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[8].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoConstitucion" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[8].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaConstitucion" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[8].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[8].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[8].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div5" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Filadelfia</h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_pedido_cocina" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[9].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[9].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoFiladelfia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[9].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaFiladelfia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[9].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[9].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[9].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div6" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Fuentes</h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[10].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[10].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoFuentes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[10].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaFuentes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[10].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[10].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[10].totalEntregados)" />
+        </div>
+    </div>
+    <div id="div7" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Gomez<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[11].totalRepaSuc) </h2>
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[11].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[11].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[11].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[11].totalEntregando)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[11].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div8" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Hamburgo<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[12].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[12].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoHamburgo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[12].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaHamburgo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[12].totalPorAsignar)" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[12].totalPorAsignar)" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[12].totalEntregados)" />
+
+        </div>
+    </div>
+    <div id="div9" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Hipermart<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[13].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[13].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoHipermart" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[13].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaHipermart" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[13].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[13].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[13].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div10" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Independencia<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[14].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[14].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoIndependencia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[14].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaIndependencia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[14].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarIndependencia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[14].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoIndependencia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[14].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosIndependencia" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div11" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Juarez<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[15].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[15].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoJuarez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[15].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaJuarez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[15].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarJuarez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[15].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoJuarez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[15].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosJuarez" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div12" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Jumbo<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[16].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[16].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoJumbo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[16].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaJumbo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[16].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarJumbo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[16].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoJumbo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[16].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosJumbo" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div13" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Lerdo<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[17].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[17].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoLerdo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[17].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaLerdo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[17].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarLerdo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[17].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoLerdo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[17].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosLerdo" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div14" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Madero<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[18].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[18].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMadero" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[18].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMadero" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[18].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMadero" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[18].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMadero" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[18].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMadero" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div15" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Matamoros<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[19].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[19].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMatamoros" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[19].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMatamoros" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[19].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMatamoros" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[19].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMatamoros" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[19].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMatamoros" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div16" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Triana<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[20].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[20].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoTriana" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[20].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaTriana" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[20].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarTriana" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[20].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoTriana" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[20].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosTriana" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div17" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Verde<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[21].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[21].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoVerde" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[21].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaVerde" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[21].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarVerde" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[21].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoVerde" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[21].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosVerde" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div18" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Miguel Aleman<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[22].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[22].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMiguelAleman" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[22].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMiguelAleman" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[22].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMiguelAleman" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[22].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMiguelAleman" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[22].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMiguelAleman" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div19" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Rebollo<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[23].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[23].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoRebollo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[23].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaRebollo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[23].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarRebollo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[23].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoRebollo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[23].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosRebollo" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div20" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Sol de ote<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[24].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[24].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoSolOte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[24].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaSolOte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[24].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarSolOte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[24].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoSolOte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[24].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSolOte" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div21" class="x_panel" style="  width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Call Center<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[25].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[25].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoCallcenter" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[25].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaCallcenter" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[25].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarCallcenter" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[25].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoCallcenter" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[25].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosCallcenter" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div22" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Mieleras<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[26].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[26].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMieleras" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[26].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMieleras" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[26].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMieleras" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[26].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMieleras" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[26].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMieleras" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div23" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Senderos QP<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[27].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[27].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoSenderos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[27].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaSenderos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[27].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarSenderos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[27].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoSenderos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[27].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSenderos" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div24" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Santa Fe<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[28].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[28].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoSantaFe" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[28].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaSantaFe" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[28].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarSantaFe" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[28].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoSantaFe" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[28].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSantaFe" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div25" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>San Antonio<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[29].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[29].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoSanAntonio" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[29].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaSanAntonio" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[29].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarSanAntonio" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[29].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoSanAntonio" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[29].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSanAntonio" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div26" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Chapala<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[30].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[30].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoChapala" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[30].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaChapala" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[30].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarChapala" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[30].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoChapala" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[30].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosChapala" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div27" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Feria Gomez<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[31].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[31].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoFeriaGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[31].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaFeriaGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[31].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarFeriaGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[31].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoFeriaGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[31].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosFeriaGomez" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div28" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Plaza de Armas<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[32].totalRepaSuc) </h2>h2> 3 / 3 </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[32].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoPlazaArmas" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[32].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaPlazaArmas" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[32].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarPlazaArmas" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[32].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoPlazaArmas" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[32].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosPlazaArmas" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div29" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Division del Norte<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[33].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[33].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoDivisionNorte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[33].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaDivisionNorte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[33].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarDivisionNorte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[33].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoDivisionNorte" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[33].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosDivisionNorte" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div30" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Saltillo 400 <small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[34].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[34].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoSaltillo400" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[34].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaSaltillo400" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[34].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarSaltillo400" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[34].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoSaltillo400" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[34].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSaltillo400" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div31" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Muzquiz<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[35].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[35].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMuzquiz" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[35].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMuzquiz" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[35].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMuzquiz" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[35].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMuzquiz" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[35].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMuzquiz" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div32" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Arrallanes<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[36].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[36].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoArrallanes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[36].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaArrallanes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[36].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarArrallanes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[36].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoArrallanes" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[36].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosArrallanes" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div33" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Morelos<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[37].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[37].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMorelos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[37].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMorelos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[37].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMorelos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[37].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMorelos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[37].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMorelos" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div34" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Cepeda<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[38].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[38].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoCepeda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[38].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaCepeda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[38].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarCepeda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[38].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoCepeda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[38].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosCepeda" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div35" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Monaco<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[39].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[39].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMonaco" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[39].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMonaco" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[39].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMonaco" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[39].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMonaco" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[39].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMonacob  " data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div36" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Colon<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[40].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[40].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoColon" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[40].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaColon" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[40].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarColon" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[40].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoColon" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[40].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosColon" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div37" class="x_panel" style=" width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Dorado<small></small></h2>
+
+            <br>
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[41].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[41].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoDorado" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[41].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaDorado" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[41].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarDorado" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[41].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoDorado" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[41].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosDorado" data-dismiss="modal" />
+        </div>
+    </div>
+    <div id="div38" class="x_panel" style="width:200px; height:300px;">
+        <div class="x_title">
+            <h2>Alamos<small></small></h2>
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursal()" />
+            <br>
+            <a href="#" id="SUC038" data-toggle="modal" data-target=".delivery_repartidoresAlamos" data-dismiss="modal">
+                <image src="/Content/production/images/33308.png">
+                </image><br />
+            </a>
+
+            <h2> 3 / @(totalRepaSuc[42].totalRepaSuc) </h2>
+
+            <div class="clearfix">
+            </div>
+        </div>
+        <div class="x_content">
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[42].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[42].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[42].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[42].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[42].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
+        </div>
+    </div>
+</html>

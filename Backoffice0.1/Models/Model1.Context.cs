@@ -13,10 +13,10 @@ namespace Backoffice0._1.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_CORPORATIVA_DEVEntities1 : DbContext
+    public partial class DB_CORPORATIVA_DEVEntities : DbContext
     {
-        public DB_CORPORATIVA_DEVEntities1()
-            : base("name=DB_CORPORATIVA_DEVEntities1")
+        public DB_CORPORATIVA_DEVEntities()
+            : base("name=DB_CORPORATIVA_DEVEntities")
         {
         }
     
@@ -50,20 +50,17 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_bo_semanas_trans_rp> C_bo_semanas_trans_rp { get; set; }
         public virtual DbSet<C_bo_suc_ir> C_bo_suc_ir { get; set; }
         public virtual DbSet<C_cajas> C_cajas { get; set; }
+        public virtual DbSet<C_cajas_cambio_turno> C_cajas_cambio_turno { get; set; }
         public virtual DbSet<C_cajas_g> C_cajas_g { get; set; }
+        public virtual DbSet<C_cajas_movimientos> C_cajas_movimientos { get; set; }
+        public virtual DbSet<C_cajas_retiro_valores> C_cajas_retiro_valores { get; set; }
         public virtual DbSet<C_cajas_sucursales> C_cajas_sucursales { get; set; }
         public virtual DbSet<C_cajas_tipo_mov> C_cajas_tipo_mov { get; set; }
-        public virtual DbSet<C_campaña_codigos> C_campaña_codigos { get; set; }
-        public virtual DbSet<C_campaña_empresas> C_campaña_empresas { get; set; }
-        public virtual DbSet<C_campaña_medios> C_campaña_medios { get; set; }
-        public virtual DbSet<C_campañas> C_campañas { get; set; }
         public virtual DbSet<C_cfdi_informacion> C_cfdi_informacion { get; set; }
         public virtual DbSet<C_ciudades> C_ciudades { get; set; }
         public virtual DbSet<C_clientes> C_clientes { get; set; }
         public virtual DbSet<C_clientes_direccion> C_clientes_direccion { get; set; }
         public virtual DbSet<C_clientes_telefono> C_clientes_telefono { get; set; }
-        public virtual DbSet<C_codigos_postales> C_codigos_postales { get; set; }
-        public virtual DbSet<C_colonias> C_colonias { get; set; }
         public virtual DbSet<C_colonias_mx> C_colonias_mx { get; set; }
         public virtual DbSet<C_compras_destinos> C_compras_destinos { get; set; }
         public virtual DbSet<C_compras_estatus> C_compras_estatus { get; set; }
@@ -77,7 +74,6 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_compras_orden> C_compras_orden { get; set; }
         public virtual DbSet<C_compras_orden_articulos> C_compras_orden_articulos { get; set; }
         public virtual DbSet<C_cp_mexico> C_cp_mexico { get; set; }
-        public virtual DbSet<C_delivery_sucursal_repartidor> C_delivery_sucursal_repartidor { get; set; }
         public virtual DbSet<C_direcciones> C_direcciones { get; set; }
         public virtual DbSet<C_direcciones_3_> C_direcciones_3_ { get; set; }
         public virtual DbSet<C_direcciones_mx> C_direcciones_mx { get; set; }
@@ -144,6 +140,7 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_producto_presentacion> C_producto_presentacion { get; set; }
         public virtual DbSet<C_producto_tipo> C_producto_tipo { get; set; }
         public virtual DbSet<C_productos_cat> C_productos_cat { get; set; }
+        public virtual DbSet<C_productos_clase> C_productos_clase { get; set; }
         public virtual DbSet<C_productos_especialidades> C_productos_especialidades { get; set; }
         public virtual DbSet<C_productos_precios> C_productos_precios { get; set; }
         public virtual DbSet<C_productos_sucursal> C_productos_sucursal { get; set; }
@@ -214,10 +211,8 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_catalogo_consecutivos> C_catalogo_consecutivos { get; set; }
         public virtual DbSet<C_catalogo_sn> C_catalogo_sn { get; set; }
         public virtual DbSet<C_catalogo_tamanos> C_catalogo_tamanos { get; set; }
-        public virtual DbSet<C_clientes_old> C_clientes_old { get; set; }
         public virtual DbSet<C_compras_tipo_leyenda> C_compras_tipo_leyenda { get; set; }
         public virtual DbSet<C_empresas_servicios_contratados> C_empresas_servicios_contratados { get; set; }
-        public virtual DbSet<C_insumo_cat_old> C_insumo_cat_old { get; set; }
         public virtual DbSet<C_insumo_tipo_empaque> C_insumo_tipo_empaque { get; set; }
         public virtual DbSet<C_insumo_tipo_envase> C_insumo_tipo_envase { get; set; }
         public virtual DbSet<C_insumo_tipo_inventario> C_insumo_tipo_inventario { get; set; }

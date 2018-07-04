@@ -1,0 +1,65 @@
+﻿@using  Backoffice0._1.Models
+@model Backoffice0._1.Models.CS_permisos_asignados
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PERMISOS_ASIGNADOS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_modulos.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_modulos.NOMBRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_permisos.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_permisos.DESCRIPCION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_roles.ID_PERFIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_roles.ID_PERFIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CS_usuarios.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CS_usuarios.NOMBRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

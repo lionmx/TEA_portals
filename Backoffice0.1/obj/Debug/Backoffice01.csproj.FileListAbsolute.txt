@@ -409,12 +409,6 @@ C:\Localsvn\trunk\Backoffice0.1\Backoffice0.1\bin\WebGrease.dll
 C:\Localsvn\trunk\Backoffice0.1\Backoffice0.1\bin\Antlr3.Runtime.pdb
 C:\Localsvn\trunk\Backoffice0.1\Backoffice0.1\bin\Newtonsoft.Json.xml
 C:\Localsvn\trunk\Backoffice0.1\Backoffice0.1\bin\System.Web.Optimization.xml
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.Compression.dll
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\VBCSCompiler.exe
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CoreCompileInputs.cache
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll.config
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll
@@ -426,9 +420,13 @@ C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\csi.ex
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\csi.exe.config
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\csi.rsp
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -438,6 +436,7 @@ C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.Diagnostics.Process.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.Compression.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.FileSystem.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -460,6 +459,7 @@ C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\vbc.exe
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\vbc.exe.config
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\vbc.rsp
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\VBCSCompiler.exe
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\Antlr3.Runtime.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\Elmah.dll
@@ -498,7 +498,6 @@ C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CopyComplete
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.pdb
-C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csprojResolveAssemblyReference.cache
 G:\backoffice hiram\Backoffice0.1\obj\Debug\Backoffice01.csprojAssemblyReference.cache
 G:\backoffice hiram\Backoffice0.1\obj\Debug\Backoffice01.csproj.CoreCompileInputs.cache
 G:\backoffice hiram\Backoffice0.1\obj\Debug\Backoffice0.1.dll
@@ -775,6 +774,12 @@ C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Micro
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\System.IO.Compression.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\roslyn\VBCSCompiler.exe
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.MediaPlayer.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPDXMLib.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLauncher.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLib.dll
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.ResolveComReference.cache
+C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csprojResolveAssemblyReference.cache
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll.config
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.pdb
@@ -854,7 +859,6 @@ C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.We
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Webpages.Deployment.resources.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Helpers.resources.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csprojAssemblyReference.cache
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.MediaPlayer.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPDXMLib.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLauncher.dll
@@ -864,3 +868,4 @@ C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backof
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CopyComplete
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.pdb
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csprojAssemblyReference.cache

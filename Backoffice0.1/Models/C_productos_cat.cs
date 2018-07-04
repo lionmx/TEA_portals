@@ -46,6 +46,7 @@ namespace Backoffice0._1.Models
         public Nullable<bool> insumos { get; set; }
         public Nullable<bool> activo { get; set; }
         public string path_imagen { get; set; }
+        public Nullable<int> id_clase { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }

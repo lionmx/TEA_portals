@@ -18,5 +18,8 @@ namespace Backoffice0._1.Models
         public string codigo_sucursal { get; set; }
         public Nullable<int> id_caja { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
+    
+        public virtual C_cajas_g C_cajas_g { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

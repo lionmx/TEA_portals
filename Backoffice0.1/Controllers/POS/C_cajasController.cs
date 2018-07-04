@@ -12,12 +12,11 @@ namespace Backoffice0._1.Controllers
 {
     public class C_cajasController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: C_cajas
         public ActionResult Index()
         {
-            /*
             //obtiene los permisos de cada servicio/modulo para el usuario loggeado           
             List<int> permisosLista = new List<int>();
             int loggedId = Convert.ToInt32(Session["LoggedId"]);
@@ -39,10 +38,10 @@ namespace Backoffice0._1.Controllers
             {
                 ViewBag.idServicio = perfil.ID_SERVICIO;
             }
-            ViewBag.permisos = permisosLista;*/
+            ViewBag.permisos = permisosLista;
             var c_cajas = db.C_cajas.ToList();
 
-    
+
 
             return View(c_cajas);
         }
@@ -84,7 +83,7 @@ namespace Backoffice0._1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.codigo_sucursal);
+          //  ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 
@@ -100,7 +99,7 @@ namespace Backoffice0._1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.codigo_sucursal);
+           // ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 
@@ -117,7 +116,7 @@ namespace Backoffice0._1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.codigo_sucursal);
+          //  ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 

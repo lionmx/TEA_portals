@@ -47,7 +47,7 @@ namespace ImprimirControl
             pr.PrinterSettings.PrinterName = impresora;
             pr.DocumentName = "Impresion de Factura";
             pr.PrintPage += new PrintPageEventHandler(pr_PrintPage);
-            pr.Print();
+           // pr.Print();
         }
 
         private void pr_PrintPage(Object sender, PrintPageEventArgs e)

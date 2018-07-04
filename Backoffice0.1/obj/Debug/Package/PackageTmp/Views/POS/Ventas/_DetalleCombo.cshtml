@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_g>
+@using System.Web.Mvc.Html;
+@foreach (var item in Model)
+{
+    <h3>Combo seleccionado:<label id="nombre_combo"> @item.nombre</label></h3>
+    <p>Detalle del combo</p><br />
+    <p> @item.descripcion</p>
+    <br />
+
+    if (item.id_grupo_aplica_operacion == 1)
+    {
+        if (Session["CarritoCombo"] != null)
+        {
+            var carritocombo = Session["CarritoCombo"] as List<Backoffice0._1.Models.CarritoComboItem>;
+            <p><h3>
+                Precio:
+                   <label id="costo_combo">@carritocombo.Max(x => x.Costo)</label> 
+            </h3></p>
+        }
+    }
+    if (item.id_grupo_aplica_operacion == 2)
+    {
+        var total = 0.0;
+        if (Session["CarritoCombo"] != null)
+        {
+            foreach (var item2 in Session["CarritoCombo"] as List<Backoffice0._1.Models.CarritoComboItem>)
+            {
+                total += item2.Costo;
+            }
+            <p><h3>Precio: <label id="costo_combo">@total</label></h3></p><br />
+        }
+
+    }
+    if (item.id_grupo_aplica_operacion == 3)
+    {
+        <p><h3>Precio:<label id="costo_combo">@item.precio_unico</label></h3></p><br />
+    }
+    <p>Productos seleccionados:</p><br />
+
+
+}

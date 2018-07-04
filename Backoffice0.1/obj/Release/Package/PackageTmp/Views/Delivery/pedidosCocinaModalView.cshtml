@@ -1,0 +1,16 @@
+﻿
+@{ if (ViewBag.detallePedidos != null)
+    {
+        <table>
+            @foreach (var n in ViewBag.detallePedidos)
+            {
+                <tr>
+                    <td>@n</td>
+                </tr>
+            }
+
+        </table>
+
+    }
+
+}

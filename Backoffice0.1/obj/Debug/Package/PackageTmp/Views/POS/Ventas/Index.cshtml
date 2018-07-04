@@ -1,0 +1,1369 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+@{ if (Session["EstadoCaja"] == null || (int)Session["LoggedIdRol"] == 28)
+    {
+        <div class="">
+            <div class="page-title">
+                <div class="title_right">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3" id="Clientes" style="display:none;">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Datos cliente </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#">Settings 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                                <div class="input-group" id="div_telefono">
+                                    <input type="text" class="form-control" style="font-size:18px" id="telefono" autofocus placeholder="Telefono...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                                <label id="error_telefono" style="color:red;display:none;">Telefono no registrado</label>
+                                <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist" style="padding:0px;">
+                                        <li role="presentation" id="tab_buscar" class="active">
+                                            <a href="#tab_content_search" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i></a>
+                                        </li>
+                                        <li role="presentation" class="" id="tab_new">
+                                            <a href="#tab_content_new" role="tab" id="nuevo" data-toggle="tab" aria-expanded="false">Nuevo</a>
+                                        </li>
+                                        <li role="presentation" class="" id="tab_esp">
+                                            <a href="#tab_content_pe" role="tab" id="especial" data-toggle="tab" aria-expanded="false">P.E</a>
+                                        </li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content_search" aria-labelledby="home-tab">
+                                            <table class="table table-striped ">
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th class="column-title">Datos</th>
+                                                        <th class="bulk-actions" colspan="7">
+                                                            <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="ClienteInfo"></tbody>
+                                            </table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content_new" aria-labelledby="profile-tab">
+                                            <div class="form-group form-group has-feedback ">
+                                                <input type="text" class="form-control has-feedback-right" id="new_nombre" placeholder="Nombre">
+                                                <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="new_calle" placeholder="Calle">
+                                                <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control" id="new_next" placeholder="No.">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                    <select class="select2_single form-control" name="select_colonia" id="new_colonias" style="padding:0px;width:249px;" tabindex="-1">
+                                                        @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="form-group">
+                                                <div class="input-group" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="new_referencia" placeholder="Referencia">
+                                                    <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="new_email" placeholder="Email">
+                                                <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="tab_content_pe" aria-labelledby="Especial">
+                                            <div class="form-group form-group has-feedback ">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_nombre" placeholder="Nombre">
+                                                <i class="fa fa-user form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback col-md-8 col-sm-8 col-xs-6" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_calle" placeholder="Calle">
+                                                <i class=" form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group  col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control" id="esp_next" placeholder="No.">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                    <select class="select2_single form-control" name="select_colonia" id="esp_colonias" style="padding:0px;width:249px;" tabindex="-1">
+                                                        @{Html.RenderAction("ConsultaColonias", "POS", new { CP = "" });}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--
+                                            <div class="form-group">
+                                                <div class="input-group" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_cp" placeholder="CP">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="BuscarCliente()"><i class="fa fa-search"></i></button>
+                                                    </span>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <div class="form-group form-group has-feedback col-md-10 col-sm-10 col-xs-10" style="padding:0px;">
+                                                    <input type="text" class="form-control has-feedback-right" id="esp_referencia" placeholder="Referencia">
+                                                    <i class="fa fa-home  form-control-feedback right " aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <a data-toggle="modal" data-target=".mapa"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_email" placeholder="Email">
+                                                <i class="fa fa-envelope form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_evento" placeholder="Nombre del evento">
+                                                <i class="fa fa-birthday-cake form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group col-md-4 col-sm-4 col-xs-4">
+                                                <input type="text" class="form-control " id="esp_fecha" placeholder="Fecha">
+                                            </div>
+
+                                            <div class="form-group form-group col-md-8 col-sm-8 col-xs-8">
+                                                <input type="time" class="form-control " id="esp_hora" placeholder="Hra">
+                                            </div>
+                                            <div class="form-group form-group" style="padding:0px;">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_contratante" placeholder="Contacto">
+                                            </div>
+                                            <div class="form-group form-group has-feedback">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_tel1" placeholder="Telefono 1">
+                                                <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group form-group has-feedback">
+                                                <input type="text" class="form-control has-feedback-right" id="esp_tel2" placeholder="Telefono 2">
+                                                <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label>Llevar a domicilio</label><br />
+                                        <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label>Recoger en sucursal</label>
+                                        <div class="form-group" id="div_suc" style="display:none;">
+                                            <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                <select class="select2_single form-control" id="sucursales" style="padding:0px;width:249px;" tabindex="-1">
+                                                    @{Html.RenderAction("ConsultaSucursales", "POS");}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @{ if (Session["EstadoActual"] != null)
+                    {
+                        <script>
+                            function a() {
+                                alert("Caja Abierta!");
+                            }
+                        </script>
+                    }
+                }
+
+                <div class="col-md-6 col-sm-6" id="Caja">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" style="margin-bottom:-30px;height:300px;overflow:scroll;">
+                            <div class="row" id="productos">
+                                @{Html.RenderAction("FiltraProductos", "POS", new { id_cla = 1 });}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="x_panel ">
+
+                        <div class="x_content" id="categorias">
+                            @{Html.RenderAction("ConsultaCategorias", "POS");}
+                        </div>
+                        <div class="x_content" id="paquetes">
+                            @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-4 col-sm-4" id="Carrito">
+                    <div class="x_panel">
+                        <div id="InformacionEnvio"></div>
+                        <div class="nav_menu" style="background:white;color:black;">
+                            <div id="tracking"></div>
+                            <h2>Cuenta a pagar <small></small></h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" id="carritodiv">
+                            @{Html.RenderAction("VisualizaCarrito1", "POS");}
+                        </div>
+                        <div>
+                            <table class="table table-striped ">
+                                <tbody>
+                                    <tr class="costo_servicio">
+                                        <td class=" ">Servicio a domicilio</td>
+                                        <td class=" ">$<label id="costo_entrega">@ViewBag.costo_entrega</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=" "><h2>Total</h2></td>
+                                        <td class=" "><h2>$ <label class="total"></label> </h2></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                            <label>Registrar codigo</label>
+                            <input type="text" id="cupon" /><a class="btn btn-success" onclick="ValidarCupon()">Validar</a><br />
+                            <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-3" id="desvios">
+                        @{Html.RenderAction("ConsultaDesvioSucursales", "POS");}
+                    </div>
+                    <div id="slideshow" class="right col-md-4">
+                        @{Html.RenderAction("ConsultaBanners", "POS");}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <button class="btn btn-success btn-lg flotante right" id="btn_pc" style="margin-bottom:70px;" data-toggle="modal" data-target=".pedidos_cancelados">P.C</button>
+                <button class="btn btn-success btn-lg flotante left" id="btn_nuevope" style="margin-bottom:70px;" onclick="MostrarPE()">Nuevo P.E</button>
+                <button class="btn btn-success btn-lg flotante right" id="btn_consultarpedidos" style="margin-bottom:70px;" data-toggle="modal" data-target=".consulta_pedidos" onclick="ConsultarPedidos()"><i class="fa fa-search fa-2x"></i></button>
+            </div>
+            <br />
+            <div class="col-md-12 col-xs-12">
+                <button class="btn btn-success btn-lg flotante right" id="btn_pe" data-toggle="modal" data-target=".pedidos_especiales">P.E</button>
+                <button class="btn btn-success btn-lg flotante right" id="btn_apertura_caja" style="margin-bottom:70px;display:none" data-toggle="modal" data-target=".apertura_caja" ></button>
+            </div>
+        </div>
+        <div class="modal fade configura_combo" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_combo" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Configura tu combo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="x_panel">
+                            <div class="col-md-6 col-xs-6 col-lg-6" id="combo_productos" style="max-height:300px;overflow:scroll;">
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-lg-6">
+                                <div id="combo_detalle">
+                                </div>
+                                <div id="combo_carrito">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                        </div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <button type="button" onclick="AgregarCombo();" class="btn btn-primary right">Agregar combo</button>
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+        </div>
+        <!-- /Modal Configura_combo -->
+        <!-- Modal Asigna repartidor-->
+        <div class="modal fade asigna_repartidor" id="m_asigna_repartidor" role="dialog" aria-hidden="true" style="z-index:1055;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_repartidor" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Asigna repartidor</h4>
+                    </div>
+                    <div class="">
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <div class="detalle_pedido">
+                            </div>
+                            <table class="table table-striped ">
+                                <tbody class="detalle_pedido_productos"></tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6 col-xs-6 col-lg-6">
+                            <center>
+                                <label>Pedido: #</label><label id="idpedido"></label>
+                                <br />
+                                <br />
+                                <input class="form-control" placeholder="Escane el gaffet del repartidor" id="gaffette" autofocus />
+                                <br />
+                                <br />
+                                <i class="fa fa-barcode fa-4x" aria-hidden="true"></i>
+                                <div id="repartidordatos">
+                                </div>
+                                <h4>Repartidor</h4>
+                                <br>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Asigna repartidor-->
+
+        <!-- Modal Consulta pedidos-->
+        <div class="modal fade consulta_pedidos" id="m_consulta_pedidos" role="dialog" aria-hidden="true" style="z-index:1055;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_repartidor" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Pedidos</h4>
+                    </div>
+                    <div class="modal-body" id="visualiza_pedidos">
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Consulta pedidos-->
+
+        <!-- Modal Apertura Caja-->
+        using (Html.BeginForm("cajaMovimientos", "CAJA", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            var fecha2 = DateTime.Now.ToLongDateString();
+            <div class="modal fade apertura_caja" id="m_apertura_caja" role="dialog" aria-hidden="true" style="z-index:1055;">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" style="display:none" id="close_apertura" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                             
+                            <h4 class="modal-title" id="myModalLabel2">Apertura de caja</h4>
+                            <label style="">@(fecha2)</label><br />
+                        </div>
+                        <div class="modal-body" id="apertura_caja">
+                            <label>Usuario: </label><label id="nombre_usuario">@Session["LoggedUser"]</label><br />
+                            <center>
+                                    <label class="control-label">Ingrese monto de apertura </label><br />
+                                    <input type="text" id="monto_apertura" class="form-control" placeholder="$ 00.00" />
+                            </center>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-success" onclick="AperturaCaja()" value="Aceptar" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+            <!--Modal Apertura Caja-->
+            <script>
+//Funcion principal
+
+            $(window).on("load", function () {
+
+                if (@ViewBag.IdRol == 6) {
+                    document.getElementById("btn_consultarpedidos").style.display = "None";
+                    document.getElementById("Caja").className = "col-md-8 col-sm-8";
+                    document.getElementById("Carrito").className = "col-md-4 col-sm-4";
+                    document.getElementById("btn_nuevope").style.display = "Block";
+                    document.getElementById("desvios").style.display = "None";
+                    $(".costo_servicio").css("display", "none");
+                    $("#ent_suc").prop("checked", true);
+                }
+                if (@ViewBag.IdRol == 28) {
+                    document.getElementById("btn_consultarpedidos").style.display = "Block";
+                    document.getElementById("Clientes").style.display = "Block";
+                    document.getElementById("desvios").style.display = "Block";
+                    document.getElementById("btn_nuevope").style.display = "None";
+                    document.getElementById("Caja").className = "col-md-6 col-sm-6";
+                    document.getElementById("Carrito").className = "col-md-3 col-sm-3";
+                    $("#tracking").css("display", "none");
+                    $("#btn_pe").css("display", "none");
+                    $("#btn_pc").css("display", "none");
+                    $("#ent_dom").prop("checked", true);
+                    $("#telefono").focus();
+                    ConsultaCostoEnvio(0);
+                }
+                sumar();
+                if (@ViewBag.IdRol == 6) {
+                    setInterval(ConsultaTracking(), 1000);
+                    setInterval(ConsultaCancelados(), 1000);
+                    setInterval(ConsultaEspeciales(), 1000);
+                    var objO = document.getElementById("btn_apertura_caja");
+                    objO.click();
+                }
+            });
+                $(".select2_single").select2({
+                    placeholder: "Seleccionar",
+                    allowClear: true
+                });
+                $('#esp_fecha').daterangepicker({
+                    singleDatePicker: true,
+                    calender_style: "picker_1"
+                }, function (start, end, label) {
+                    console.log(start.toISOString(), end.toISOString(), label);
+                });
+         
+            $("select[name=select_colonia]").change(function () {
+                ConsultaCostoEnvio($("select[name=select_colonia]").val());
+            });
+                $("#slideshow > div:gt(0)").hide();
+                setInterval(function () {
+                    $('#slideshow > div:first')
+                        .fadeOut(1000)
+                        .next()
+                        .fadeIn(1000)
+                        .end()
+                        .appendTo('#slideshow');
+            }, 3000);
+            function ConsultaCostoEnvio(id_colonia) {
+                var id_colonia = id_colonia;
+                if ($("#ent_suc").is(':checked')) {
+
+                }
+                if (id_colonia == 0) {
+                    id_colonia = $('select[name=select_colonia]').val();
+                }
+                else {
+                    $.ajax({
+                        url: "../PEDIDOS/AsignarSucursal",
+                        data: {
+                            id_colonia: id_colonia
+                        },
+                        success: function (result) {
+                            if (result == "") {
+                                swal("", "Colonia fuera de rango", "warning");
+                            }
+                            else {
+                                $("#InformacionEnvio").html(result);
+                            }
+                        }
+                    });
+                }
+                $.ajax({
+                    url: "../PEDIDOS/ConsultarCostoEnvio",
+                    data: {
+                        id_colonia: id_colonia
+                    },
+                    success: function (result) {
+                        if (isNaN(result)) {
+                            result = 0;
+                        }
+                        $("#costo_entrega").text(result);
+                        sumar();
+                        calculo();
+                    }
+                });
+            }
+
+//Dividir cuentas
+            function DividirCuenta() {
+                var arrayOfElements = document.getElementsByClassName('dc_check');
+                var lengthOfArray = arrayOfElements.length;
+                for (var i = 0; i < lengthOfArray; i++) {
+                    if (arrayOfElements[i].id != 0)
+                    {
+                        arrayOfElements[i].style.display = 'inline';
+                    }
+                }
+            }
+ //Tracking de pedidos
+
+           function ConsultaTracking() {
+               $.ajax({
+                    type: "GET",
+                    url: "../POS/ConsultaTrackingPedidos",
+                    data: {},
+                    success: function (result) {
+                        $("#tracking").html(result);
+                        if ($("#m_tracking_tittle").text() == "Pedidos Recibidos") {
+                            ConsultaTracking1(1);
+                        }
+                        if ($("#m_tracking_tittle").text() == "Pedidos en cocina") {
+                            ConsultaTracking1(2);
+                        }
+                        if ($("#m_tracking_tittle").text() == "Pedidos por asignar") {
+                            ConsultaTracking1(3);
+                        }
+                        if ($("#m_tracking_tittle").text() == "Pedidos en transito") {
+                            ConsultaTracking1(4);
+                        }
+                        if ($("#m_tracking_tittle").text() == "Pedidos entregados en domicilio") {
+                            ConsultaTracking1(5);
+                        }
+                    }
+                });
+            }
+            function ConsultaCancelados() {
+                $.ajax({
+                    url: "../POS/ConsultaCancelados",
+                    data: {},
+                    success: function (result) {
+                        $("#pedidos_cancelados").html(result);
+                    }
+                });
+            }
+            function ConsultaEspeciales() {
+                $.ajax({
+                    url: "../POS/ConsultaEspeciales",
+                    data: {},
+                    success: function (result) {
+                        $("#pedidos_especiales").html(result);
+                    }
+                });
+            }
+            function ConsultaTracking1(status) {
+
+                $.ajax({
+                    url: "../POS/ConsultaTrackingPedidos1",
+                    data: {status:status},
+                    success: function (result) {
+                        $("#tracking1").html(result);
+                    }
+                });
+            }
+
+// Refresh de colonias
+            function ConsultaColonias(status) {
+                var cp = $("#CP_new").val();
+                $.ajax({
+                    url: "../POS/ConsultaColonias",
+                    data: { CP:cp },
+                    success: function (result) {
+                        $("#div_cp_new").html();
+                    }
+                });
+            }
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+// Buscar clientes informacion en base a numero telefonico
+            var BuscarCliente = function () {
+                var telefono = $("#telefono").val();
+                $.ajax({
+                    url: "../CLIENTES/BuscarClienteTelefono",
+                    data: { telefono: telefono },
+                    success: function (result) {
+
+                        if (result!="False") {
+                            $("#ClienteInfo").html(result);
+                            $("#error_telefono").css("display", "none");
+                            var objO = document.getElementById("home-tab");
+                            objO.click();
+                        }
+                        else
+                        {
+                            $("#ClienteInfo").html("");
+                            $("#error_telefono").css("display", "block");
+                            $("#esp_tel1").val(telefono);
+                            var objO = document.getElementById("home-tab");
+                            objO.click();
+                        }
+
+
+                    }
+                });
+            }
+
+
+// funciones al presionar teclas
+
+            function stopRKey(evt) {
+                var evt = (evt) ? evt : ((event) ? event : null);
+                var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+                if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+            }
+            document.onkeypress = stopRKey;
+
+            $("#gaffette").keypress(function (e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) {
+                    BuscarRepartidor();
+                }
+            });
+
+            $("#telefono").keypress(function (e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (code == 13) {
+                    BuscarCliente();
+                }
+            });
+
+ //Calculos para el registro de venta
+
+            //Obtiene el total del carrito
+
+            function sumar() {
+                var costo_entrega =parseFloat( $("#costo_entrega").text());
+                var totalInp = $('[name="precio"]');
+                var total = 0;
+                totalInp.each(function () {
+                    var sum = parseFloat($(this).val());
+                    if (isNaN(sum)) { sum = 0;}
+                    total += sum;
+                });
+                if ($("#ent_dom").is(':checked') ) {
+                    total += costo_entrega;
+                }
+
+                $('.total').text(total.toFixed(2));
+                $('#a_pagar').text(total.toFixed(2));
+                $('#consumo_total').text(total.toFixed(2));
+                $('#cambio').text(-total.toFixed(2));
+                $('#total_pagar').text(total.toFixed(2));
+
+            }
+
+            // Realiza todos los calculos para concretar la venta
+            function calculo() {
+            var apagar = 0;
+            var saldo = 0;
+            var costo_entrega = parseFloat( $("#costo_entrega").text());
+            var totalInp = $('[name="apagar"]');
+                totalInp.each(function () {
+                    if ($(this).is(':checked')) {
+                        apagar += parseFloat($(this).val());
+                    }
+                    else {
+                        saldo += parseFloat($(this).val());
+                    }
+                });
+            if ($("#ent_dom").is(':checked')) {
+                    apagar += costo_entrega;
+            }
+            $('#a_pagar').text(apagar.toFixed(2));
+            $('#saldo').text(saldo.toFixed(2));
+
+            var consumo = parseFloat($('#a_pagar').text());
+            var propina = parseFloat($('#propina').val());
+                if (isNaN(propina)) { propina = 0; }
+                if (consumo == null) { consumo = 0; }
+
+                var total = consumo + propina;
+                $('#total_pagar').text(total.toFixed(2));
+
+            var pagado = 0;
+            var totalInp2 = $('[class="pago_cliente"]');
+                totalInp2.each(function ()
+                    {
+                    var pag_tipo = parseFloat($(this).val());
+                    if (!isNaN(pag_tipo)) {
+                        pagado += parseFloat($(this).val());
+                    }
+                });
+
+            var cambio = parseFloat(pagado - total);
+            $('#cambio').text(cambio.toFixed(2))
+                if (total > pagado) {
+                    $('#cambio').css({ 'color': 'red' });
+                }
+                else { $('#cambio').css({ 'color': 'black' });}
+            }
+
+
+// Gestion del carrito
+            //Agregar al carrito
+            var Addcarrito = function (nombre, costo, sku, promocion, prom_pos, id_promocion,id_producto) {
+                $.ajax({
+                    url: "../POS/AgregaCarrito",
+                    data: { nombre: nombre, costo: costo, sku: sku, promocion: promocion, prom_pos: prom_pos, id_promocion: id_promocion, id_producto:id_producto },
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+                    }
+                });
+            }
+            // Quitar del carrito
+            var Removecarrito = function (sku, index) {
+                $.ajax({
+                    url: "../POS/RemueveCarrito",
+                    data: { sku: sku, index_carrito: index },
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+                    }
+                });
+                $.ajax({
+                    url: "../POS/VisualizaCarrito1",
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+                    }
+                });
+            }
+
+            // Visualizar el carrito en modal para pagar
+            var Visualizacarrito = function () {
+                $.ajax({
+                    url: "../POS/VisualizaCarrito",
+                    success: function (result) {
+                        $("#visualizacarrito").html(result);
+                        calculo();
+                        $("#pago_efectivo").focus();
+                    }
+                });
+            }
+
+
+
+ // Consultas de productos, categorias , combos...
+
+            var ConsultaCategorias = function () {
+                $.ajax({
+                    url: "../POS/ConsultaCategorias",
+                    success: function (result) {
+                        $("#categorias").html(result);
+                    }
+                });
+            }
+            var ConsultaSubcategorias = function (id_tipo_producto) {
+                $.ajax({
+                    url: "../POS/ConsultaSubCategorias",
+                    data: { id_tipo_producto: id_tipo_producto },
+                    success: function (result) {
+                        $("#categorias").html(result);
+                    }
+                });
+            }
+            var FiltraProductos = function (id_clasificacion) {
+                $.ajax({
+                    url: "../POS/FiltraProductos",
+                    data: { id_cla: id_clasificacion },
+                    success: function (result) {
+                        $("#productos").html(result);
+                    }
+                });
+            }
+
+            var ConsultaBotonesEspeciales = function () {
+                $.ajax({
+                    url: "../POS/ConsultaBotonesEspeciales",
+                    success: function (result) {
+                        $("#paquetes").html(result);
+                    }
+                });
+            }
+
+            var ConsultaSubClases = function (id_grupo_producto_tipo) {
+                $.ajax({
+                    url: "../POS/ConsultaSubClases",
+                    data: { id_grupo_producto_tipo: id_grupo_producto_tipo },
+                    success: function (result) {
+                        $("#paquetes").html(result);
+                    }
+                });
+            }
+
+//Gestion de combos
+            // Consulta cantidad de detalles e informacion
+            var ConsultaDetallesCombo = function (id_combo) {
+                $.ajax({
+                    url: "../POS/ConsultaDetallesCombo",
+                    data: { id_combo: id_combo },
+                    success: function (result) {
+                        $("#combo_carrito").html("");
+                        ConsultaCombosProductos("", "", 0, id_combo, 0);
+                    }
+                });
+                $.ajax({
+                    url: "../POS/ConsultaInformacionCombo",
+                    data: { id_combo: id_combo },
+                    success: function (result) {
+                        $("#combo_detalle").html(result);
+                    }
+                });
+            }
+            //Consulta combos
+            var ConsultaCombos = function (id_subclase) {
+                $.ajax({
+                    url: "../POS/ConsultaCombos",
+                    data: { id_subclase: id_subclase },
+                    success: function (result) {
+                        $("#productos").html(result);
+                    }
+                });
+            }
+             //Consulta los productos del combo
+            var ConsultaCombosProductos = function (sku, producto, costo, id_combo, id_producto) {
+
+
+                $.ajax({
+                    url: "../POS/ConsultaCombosProductos",
+                    data: { sku: sku, producto: producto, costo: costo, id_producto: id_producto, id_combo:id_combo},
+                    success: function (result) {
+                        $("#combo_productos").html(result);
+                        $.ajax({
+                            url: "../POS/AgregaCarritoCombo",
+                            success: function (result) {
+                                $("#combo_carrito").html(result);
+                            }
+                        });
+                    }
+                });
+                $.ajax({
+                    url: "../POS/ConsultaInformacionCombo",
+                    data: { id_combo: id_combo },
+                    success: function (result) {
+                        $("#combo_detalle").html(result);
+                    }
+                });
+            }
+
+
+ // Cambiar tipo de entrega
+            var CambiarEntrega = function () {
+                if ($("#ent_suc").is(':checked')) {
+                    document.getElementById("div_suc").style.display = "inline";
+                    $(".costo_servicio").css("display", "none");
+                }
+                else {
+                    document.getElementById("div_suc").style.display = "none";
+                    $(".costo_servicio").css("display", "table-row");
+                }
+                sumar()
+            }
+
+//Registro pago con tarjeta
+            var Agregarpago_t = function () {
+                var tarjeta = $("#pago_t_tarjeta").val();
+                var cantidad = $("#pago_t_cantidad").val();
+                $("#pago_tarjeta").val(cantidad);
+                $("#pago_tarjeta_num").val(tarjeta);
+                calculo()
+            }
+
+//Registro pago con team card
+            var Agregarpago_team = function () {
+                var tarjeta = $("#pago_team_tarjeta").val();
+                var cantidad = $("#pago_team_cantidad").val();
+                $("#pago_teamcard").val(cantidad);
+                $("#pago_teamcard_num").val(tarjeta);
+                calculo();
+            }
+
+//Registro pago con Tarjeta Amigo
+            var Agregarpago_amigo = function () {
+                var tarjeta = $("#pago_amigo_tarjeta").val();
+                var cantidad = $("#pago_amigo_cantidad").val();
+                $("#pago_amigo").val(cantidad);
+                $("#pago_amigo_num").val(tarjeta);
+                calculo()
+            }
+
+//Registro del pedido
+
+            var RegistrarPedido = function () {
+                if (Validar()) {
+                    c_pedidos = {};
+                    c_ventas_g = {};
+                    c_telefonos = {};
+                    c_direcciones = {};
+                    c_eventos = {};
+                    c_clientes = {};
+
+                    if ($("#ent_dom").is(':checked')) {
+                        c_pedidos.id_tipo_entrega = 1;
+                        c_pedidos.codigo_sucursal = $("#codigo_sucursal").val();
+                    }
+                    if ($("#ent_suc").is(':checked')) {
+                        c_pedidos.id_tipo_entrega = 2;
+                        c_pedidos.codigo_sucursal = $("#sucursales").val();
+                    }
+
+                    c_pedidos.monto = parseFloat($("#total_cuenta").text()).toFixed(2);
+                    var pagado = 0;
+                    var totalInp2 = $('[class="pago_cliente"]');
+                    totalInp2.each(function () {
+                        var pag_tipo = parseFloat($(this).val());
+                        if (!isNaN(pag_tipo)) {
+                            pagado += parseFloat($(this).val());
+                        }
+                    });
+
+                    var totalInp2 = $('[class="dc_check"]');
+                    totalInp2.each(function () {
+                        if ($(this).is(':checked')) {
+                            $.ajax({
+                                url: "../POS/ProductoCuenta",
+                                data: {
+                                    index: $(this).attr("id"),
+                                    status: true
+                                },
+                                success: function (result) {
+                                }
+                            });
+                        }
+                        else {
+                            $.ajax({
+                                url: "../POS/ProductoCuenta",
+                                data: {
+                                    index: $(this).attr("id"),
+                                    status: false
+                                },
+                                success: function (result) {
+                                }
+                            });
+                        }
+                    });
+
+                    c_pedidos.pago_recibido = pagado;
+                    c_pedidos.id_pedido_status = 1;
+
+                    c_telefonos.telefono = $("#telefono").val();
+
+                    c_ventas_g.subtotal = $("#a_pagar").text();
+                    c_ventas_g.propina = $("#propina").val();
+                    c_ventas_g.total = $("#total_pagar").text();
+
+                    var c_ventas_pagos_tipo = [];
+                    c_ventas_pagos_tipo[0] = [1];
+                    c_ventas_pagos_tipo[1] = [2];
+                    c_ventas_pagos_tipo[2] = [3];
+                    c_ventas_pagos_tipo[3] = [5];
+
+                    var c_ventas_pagos_montos = [];
+                    c_ventas_pagos_montos[0] = [$("#pago_efectivo").val()];
+                    c_ventas_pagos_montos[1] = [$("#pago_tarjeta").val()];
+                    c_ventas_pagos_montos[2] = [$("#pago_teamcard").val()];
+                    c_ventas_pagos_montos[3] = [$("#pago_amigo").val()];
+
+                    var c_ventas_pagos_tarjetas = [];
+                    c_ventas_pagos_tarjetas[0] = "";
+                    c_ventas_pagos_tarjetas[1] = [$("#pago_tarjeta_num").val()];
+                    c_ventas_pagos_tarjetas[2] = [$("#pago_teamcard_num").val()];
+                    c_ventas_pagos_tarjetas[3] = [$("#pago_amigo_num").val()];
+
+                    if ($("#tab_buscar").hasClass("active")) {
+                        c_pedidos.id_pedido_tipo = 1
+
+                        var totalInp = $('[name="clientes"]');
+                        totalInp.each(function () {
+                            if ($(this).is(':checked')) {
+                                c_pedidos.id_direccion = $(this).val();
+                                c_pedidos.id_cliente = $(this).attr("id");
+                            }
+                        });
+                    }
+
+                    if ($("#tab_new").hasClass("active")) {
+                        c_clientes.nombre = $("#new_nombre").val();
+                        c_clientes.email = $("#new_email").val();
+                        c_clientes.clave_cliente = $("#telefono").val();
+
+                        c_pedidos.id_pedido_tipo = 2
+                        c_direcciones.calle = $("#new_calle").val();
+                        c_direcciones.numero_ext = $("#new_next").val();
+                        c_direcciones.id_colonia = $('#new_colonias').val();
+                        c_direcciones.entre_calle1 = "calle1";//cambiar
+                        c_direcciones.entre_calle2 = "calle2";
+                        c_direcciones.referencia = $("#new_referencia").val();
+                        c_direcciones.id_colonia_mx = $('#new_colonias').val();
+                    }
+
+                    if ($("#tab_esp").hasClass("active")) {
+                        c_clientes.nombre = $("#esp_nombre").val();
+                        c_clientes.email = $("#esp_email").val();
+                        c_clientes.clave_cliente = $("#esp_tel1").val();
+                        c_pedidos.fecha_entrega = $("#esp_fecha").val();
+                        c_pedidos.id_pedido_tipo = 3
+
+                        c_direcciones.calle = $("#esp_calle").val();
+                        c_direcciones.numero_ext = $("#esp_next").val();
+                        c_direcciones.id_colonia = $('#esp_colonias').val();
+                        c_direcciones.entre_calle1 = "calle1";//cambiar
+                        c_direcciones.entre_calle2 = "calle2";
+                        c_direcciones.referencia = $("#esp_referencia").val();
+                        c_direcciones.d_codigo = 1;//cambiar
+                        c_direcciones.id_asenta_cpcons = $('#esp_colonias').val();
+                        c_direcciones.id_ciudad = 1;//cambiar
+                        c_direcciones.id_estado = 1;//cambiar
+
+
+                        c_eventos.descripcion_evento = $("#esp_evento").val();
+                        c_eventos.fecha = $("#esp_fecha").val();
+                        c_eventos.hora = $("#esp_hora").val();
+                        c_eventos.contratante = $("#esp_contratante").val();
+                        c_eventos.tel1 = $("#esp_tel1").val();
+                        c_eventos.tel2 = $("#esp_tel2").val();
+                    }
+                    var saldo_pendiente = parseFloat($("#saldo").text());
+                    if (isNaN(saldo_pendiente)) {
+                        saldo_pendiente = 0.0;
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../PEDIDOS/Create2",
+                        data: {
+                            c_pedidos: c_pedidos,
+                            c_clientes: c_clientes,
+                            c_direcciones: c_direcciones,
+                            c_telefonos: c_telefonos,
+                            c_ventas_g: c_ventas_g,
+                            c_eventos: c_eventos,
+                            c_ventas_pagos_tipo: c_ventas_pagos_tipo,
+                            c_ventas_pagos_montos: c_ventas_pagos_montos,
+                            c_ventas_pagos_montos: c_ventas_pagos_tarjetas,
+                            saldo: saldo_pendiente,
+                        },
+                        success: function (result) {
+                            if (result != "False") {
+                                if (saldo_pendiente == 0) {
+                                    location.reload();
+                                }
+                                Visualizacarrito();
+                                $(".pago_cliente").val("");
+                            }
+                            else {
+                                alert("False");
+                            }
+                        }
+                    });
+                    calculo();
+                }
+                else {
+
+                }
+
+            }
+
+            var ConsultarPedido = function (id_pedido) {
+                $(".detalle_pedido_productos").html("");
+                $(".detalle_pedido").html("");
+                $("#idpedido").html(id_pedido);
+                $.ajax({
+                    url: "../POS/ConsultaPedido",
+                    data: {
+                        id_pedido:id_pedido
+                    },
+                    success: function (result) {
+                        $(".detalle_pedido").html(result);
+                    }
+                });
+                $.ajax({
+                    url: "../POS/ConsultaPedidoProductos",
+                    data: {
+                        id_pedido: id_pedido
+                    },
+                    success: function (result) {
+                        $(".detalle_pedido_productos").html(result);
+                        $("#gaffette").focus();
+                    }
+                });
+            }
+
+            var ConsultarPedidos = function () {
+
+                $.ajax({
+                    url: "../PEDIDOS/ConsultaPedidos",
+                    data: {
+
+                    },
+                    success: function (result) {
+                        $("#visualiza_pedidos").html(result);
+                    }
+                });
+
+            }
+
+// Gestion de repartidores
+
+            var BuscarRepartidor = function () {
+
+                var gaffette = $("#gaffette").val();
+                $.ajax({
+                    url: "../POS/BuscarRepartidor",
+                    data: {
+                        gaffette: gaffette
+                    },
+                    success: function (result) {
+                        $("#repartidordatos").html(result);
+                    }
+                });
+            }
+
+            var CambiarStatus = function (status_actual, status, id_pedido) {
+                $.ajax({
+                    url: "../PEDIDOS/CambiarStatus",
+                    data: {
+                        status: status,
+                        id_pedido: id_pedido
+                    },
+                    success: function (result) {
+
+                    }
+                });
+                ConsultaTracking1(status_actual);
+
+            }
+            var AsignarRepartidor = function () {
+                var id_empleado = $("#idempleado").text();
+                var id_pedido = $("#idpedido").text();
+                $.ajax({
+                    url: "../POS/AsignarRepartidor",
+                    data: {
+                        id_empleados: id_empleado,
+                        id_pedido:id_pedido
+                    },
+                    success: function (result) {
+                        CambiarStatus(3, 4, id_pedido)
+                        $("#repartidordatos").html(result);
+                        swal("", "Repartidor asignado", "success");
+                        var objO = document.getElementById("close_repartidor");
+                        objO.click();
+                    }
+                });
+            }
+
+
+//Validar cupones
+            var ValidarCupon = function () {
+                var cupon = $("#cupon").val();
+                $.ajax({
+                    url: "../POS/ValidarCupon",
+                    data: {
+                        cupon:cupon
+                    },
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+                    }
+                });
+                $.ajax({
+                    url: "../POS/ValidarCupon",
+                    data: {
+                        cupon: cupon
+                    },
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+
+                    }
+                });
+
+            }
+
+       // agregar combo
+            function AgregarCombo() {
+                var nombre_combo = $("#nombre_combo").text();
+                var costo_combo = $("#costo_combo").text();
+                $.ajax({
+                    url: "../POS/AgregaCombo",
+                    data: {
+                        costo_combo: costo_combo, nombre_combo: nombre_combo
+                    },
+                    success: function (result) {
+                        $("#carritodiv").html(result);
+                        sumar();
+                        var objO = document.getElementById("close_combo");
+                        objO.click();
+                    }
+                });
+            }
+            var ImprimirTicket = function (id_pedido,id_venta) {
+                $.ajax({
+                    url: "../IMPRIMIR/Imprimir",
+                    data: {
+                        id_pedido: id_pedido,id_venta:0
+                    },
+                    success: function (result) {
+
+                    }
+                });
+            }
+            function OtroPago() {
+                $(".otro_pago").toggle();
+
+            }
+
+            function Validar() {
+                var cambio = parseFloat($('#cambio').text());
+                if (cambio < 0) {
+                    swal("", "La cantidad recibida no es suficiente", "error");
+                    return false;
+                }
+                var new_nombre = $("#new_nombre").val();
+                var new_calle = $("#new_calle").val();
+                var new_next = $("#new_next").val();
+                var new_referencia = $("#new_referencia").val();
+                var new_email = $("#new_email").val();
+
+                var esp_nombre = $("#esp_nombre").val();
+                var esp_calle = $("#esp_calle").val();
+                var esp_next = $("#esp_next").val();
+                var esp_referencia = $("#esp_referencia").val();
+                var esp_email = $("#esp_email").val();
+                var esp_evento = $("#esp_evento").val();
+                var esp_fecha = $("#esp_fecha").val();
+                var esp_hora = $("#esp_hora").val();
+                var esp_contratante = $("#esp_contratante").val();
+                var esp_tel1 = $("#esp_tel1").val();
+                var esp_tel2 = $("#esp_tel2").val();
+                var id_direccion=0;
+                var id_cliente=0;
+                var valido = true;
+
+                    if (@ViewBag.IdRol == 6) {
+
+                    }
+                    if (@ViewBag.IdRol == 28) {
+                        if ($("#tab_buscar").hasClass("active")) {
+                            var totalInp = $('[name="clientes"]');
+                            totalInp.each(function () {
+                                if ($(this).is(':checked')) {
+                                    id_direccion = $(this).val();
+                                    id_cliente = $(this).attr("id");
+                                }
+                            });
+                            if (id_direccion == 0 && $("#ent_dom").is(':checked') ) {
+                                swal("", "Seleccione la direccion del cliente  o registrelo nuevamente", "error");
+                                return false;
+                            }
+                        }
+                        if ($("#tab_new").hasClass("active")) {
+                            if (new_calle == "" || new_next == "" || new_nombre == "") {
+                                valido = false;
+                                if (valido == false) {
+                                    if (new_calle == "") { $("#new_calle").css("border-color", "red") }
+                                    if (new_next == "") { $("#new_next").css("border-color", "red") }
+                                    if (new_nombre == "") { $("#new_nombre").css("border-color", "red") }
+                                    swal("", "Complete toda la informacion del cliente", "error");
+                                    return false;
+                                }
+                            }
+                        }
+                }
+                if ($("#tab_esp").hasClass("active")) {
+                    if (esp_calle == "" || esp_next == "" || esp_nombre == "" || esp_referencia == "" || esp_email == "" || esp_evento == "") {
+                        valido = false;
+                        if (valido == false) {
+                            if (esp_calle == "") { $("#esp_calle").css("border-color", "red") }
+                            if (esp_next == "") { $("#esp_next").css("border-color", "red") }
+                            if (esp_nombre == "") { $("#esp_nombre").css("border-color", "red") }
+                            if (esp_referencia == "") { $("#esp_referencia").css("border-color", "red") }
+                            if (esp_evento == "") { $("#esp_evento").css("border-color", "red") }
+                            if (esp_fecha == "") { $("#esp_fecha").css("border-color", "red") }
+                            if (esp_hora == "") { $("#esp_hora").css("border-color", "red") }
+                            if (esp_contratante == "") { $("#esp_contratante").css("border-color", "red") }
+                            if (esp_tel1 == "") { $("#esp_tel1").css("border-color", "red") }
+                            if (esp_tel2 == "") { $("#esp_tel2").css("border-color", "red") }
+                            swal("", "Complete toda la informacion del pedido especial", "error");
+                            return false;
+                        }
+                    }
+                }
+                return true;
+                }
+
+                function ComprobarCaja() {
+
+                }
+
+            function AperturaCaja() {
+                    var monto_apertura = $("#monto_apertura").val();
+                    if (monto_apertura == "") {
+                        swal("", "Ingrese monto de apertura", "warning");
+                    }
+                    else {
+                        $.ajax({
+                            url: "../CAJA/MovimientoCaja",
+                            data: {
+                                monto_apertura: monto_apertura,
+                                id_tipo_movimiento: 1
+                            },
+                            success: function (result) {
+                                if (result == "True") {
+                                    var objO = document.getElementById("close_apertura");
+                                    objO.click();
+                                }
+                                else {
+                                }
+                            }
+                        });
+                    }
+                }
+
+            function MostrarPE() {
+                var clientes_activo = $("#Clientes").is(":visible");
+                if (clientes_activo ) {
+                    location.reload();
+                }
+                else {
+                    document.getElementById("Clientes").style.display = "Block";
+                    document.getElementById("tab_buscar").style.display = "None";
+                    document.getElementById("tab_new").style.display = "None";
+                    document.getElementById("div_telefono").style.display = "None";
+                    document.getElementById("Caja").className = "col-md-6 col-sm-6";
+                    document.getElementById("Carrito").className = "col-md-3 col-sm-3";
+                    document.getElementById("Clientes").style.display = "Block";
+                    $("#ent_dom").prop("checked", true);
+                    $("#tab_buscar").removeClass("active");
+                    var objO = document.getElementById("especial");
+                    objO.click();
+                    $("#tab_esp").addClass("active");
+                }
+            }
+            </script>
+
+        }
+            else
+            {
+                < script >
+                    alert('Caja cerrada!');
+                </ script >
+            }
+                    }

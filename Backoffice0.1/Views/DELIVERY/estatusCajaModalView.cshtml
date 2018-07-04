@@ -1,0 +1,34 @@
+﻿
+@model Backoffice0._1.Models.C_cajas
+
+<div class="modal fade delivery_sucursal_encenderAlamos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Estado sucursal:</h4>
+            </div>
+            <div class="modal-body" style="height:100px">
+
+                @{ if (Model.status == "A")
+                    {
+                        <h2 class="alert-success">Sucursal Abierta</h2>
+                    }
+                    else if (Model.status == "I")
+                    {
+                        <h2 class="alert-danger">Sucursal Cerrada</h2>
+                    }
+                }
+
+
+            </div>
+        </div><br>
+    </div>
+</div>
+<html>
+<body data-toggle="modal" data-target=".delivery_sucursal_encenderAlamos" data-dismiss="modal">
+
+</body>
+</html>

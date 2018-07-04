@@ -15,7 +15,7 @@ namespace Backoffice0._1.Controllers
     public class USUARIOLOGINController : Controller
     {
 
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         List<PermisosUsuario> permisos; 
         List<SubmodulosUsuario> submodulos;
         List<ModulosUsuario> modulos;
@@ -38,7 +38,7 @@ namespace Backoffice0._1.Controllers
             var encodingPasswordString = string.Empty;
             var items = db.C_usuarios_corporativo.Where(u => u.usuario.Equals(uSUARIO_LOGIN.CS_usuarios.NOMBRE));
 
-            if (items != null)
+            if (items.Count()>0)
             {
                 if (uSUARIO_LOGIN.PASS != null)
                 {
@@ -51,6 +51,7 @@ namespace Backoffice0._1.Controllers
                     {
                         if (uSUARIO_LOGIN.CS_usuarios.NOMBRE.Equals(n.usuario) && n.password.Equals(encodingPasswordString))
                         {
+                            
                             Session["LoggedUser"] = n.usuario;
                             Session["LoggedId"] = n.id_usuario_corporativo;
                             Session["LoggedIdRol"] = n.id_rol;
@@ -93,9 +94,15 @@ namespace Backoffice0._1.Controllers
                         {
                             ViewBag.Message = "Usuario o contraseña incorrectos";
                             return View("UsuarioLogin");
+
                         }
                     }
                 }
+            }
+            else
+            {
+                ViewBag.Message = "Usuario o contraseña incorrectos";
+                return View("UsuarioLogin");
             }
             if (ModelState.IsValid)
             {
@@ -138,9 +145,17 @@ namespace Backoffice0._1.Controllers
                 obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
                 db.CS_usuario_login.Add(obj);
                 db.SaveChanges();
-              
+
+                if ((int)Session["LoggedIdRol"] == 6 || (int)Session["LoggedIdRol"] == 28)
+                {
+                    return RedirectToAction("Index", "POS");
+                }
+                else
+                {
                     return View("/Views/Home/Index.cshtml");
-                
+
+                }
+
             }
 
             ViewBag.Message = "Usuario o contraseña incorrectos";

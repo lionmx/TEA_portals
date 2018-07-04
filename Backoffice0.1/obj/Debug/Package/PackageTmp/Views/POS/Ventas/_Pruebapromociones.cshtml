@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_prods>
+@foreach (var item in Model)
+{
+    <a onclick="Addcarrito()">
+        <div class="col-md-55">
+            <div class="thumbnail">
+               
+                <div>
+                    <label><strong>@Html.DisplayFor(modelItem => item.sku_producto)</strong></label>
+                    <!-- <label><strong>@Html.DisplayFor(modelItem => item.descripcion)</strong></label> -->
+                </div>
+            </div>
+        </div>
+    </a>
+}

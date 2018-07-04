@@ -1,0 +1,363 @@
+﻿@model Backoffice0._1.Models.SumaTotal
+@{
+    ViewBag.Title = "Cocina";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2><b>Pedidos en cocina:</b></h2>
+
+
+
+<html>
+
+
+<head>
+
+    <meta http-equiv="refresh" content="30">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet prefetch">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/svgs/fi-list.svg" rel="stylesheet prefetch">
+    <script src="https://fb.me/react-0.14.3.js"></script>
+    <!-- The ReactDOM Library -->
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://fb.me/react-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+    @{string x = string.Empty, y = string.Empty; var split = string.Empty;}
+    <script type="text/javascript">
+        var timer = 1200;
+        var min = 0;
+        var sec = 0;
+
+        function startTimer() {
+
+            if (timer < 1200) {
+                timer = document.getElementById("Hidden1").value;
+
+                min = parseInt(timer / 60);
+                sec = parseInt(timer % 60);
+
+                if (timer < 0) {
+                    alert("Tiempo agotado");
+                }
+
+                document.getElementById("mytime").focus();
+                document.getElementById("mytime2").focus();
+                document.getElementById("mytime3").focus();
+                x = min.toString() + ":" + sec.toString();
+                document.getElementById("mytime").value = x;
+                document.getElementById("mytime2").value = x;
+                document.getElementById("mytime3").value = x;
+                document.getElementById("mytime").blur();
+                document.getElementById("mytime2").blur();
+                document.getElementById("mytime3").blur();
+                document.getElementById("mytime").onblur = function () { myFunction() };
+                document.getElementById("mytime2").onblur = function () { myFunction() };
+                document.getElementById("mytime3").onblur = function () { myFunction() };
+                timer--;
+                document.getElementById("Hidden1").value = timer;
+                setTimeout(function () {
+
+                    startTimer();
+                }, 1000);
+            }
+            else {
+                if (sessionStorage.getItem("someVarKey") > 0) {
+                    timer = sessionStorage.getItem("someVarKey");
+
+                }
+
+                if (timer == null) {
+                    timer = 1200;
+                }
+                if (timer == 00) {
+                    timer = 1200;
+                }
+                min = parseInt(timer / 60);
+                sec = parseInt(timer % 60);
+
+                if (timer < 0) {
+                    alert("Tiempo agotado");
+                }
+
+                document.getElementById("mytime").focus();
+                document.getElementById("mytime2").focus();
+                document.getElementById("mytime3").focus();
+                x = min.toString() + ":" + sec.toString();
+                document.getElementById("mytime").value = x;
+                document.getElementById("mytime2").value = x;
+                document.getElementById("mytime3").value = x;
+                document.getElementById("mytime").blur();
+                document.getElementById("mytime2").blur();
+                document.getElementById("mytime3").blur();
+                document.getElementById("mytime").onblur = function () { myFunction() };
+                document.getElementById("mytime2").onblur = function () { myFunction() };
+                document.getElementById("mytime3").onblur = function () { myFunction() };
+                timer--;
+                document.getElementById("Hidden1").value = timer;
+
+                setTimeout(function () {
+
+                    startTimer();
+                }, 1000);
+
+            }
+
+
+        }
+
+        function myFunction() {
+
+
+
+            sessionStorage.setItem("someVarKey", timer);
+
+
+
+        }
+
+
+
+    </script>
+
+    <style>
+
+        #carousel {
+            position: relative;
+            height: 400px;
+            width: 810px;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: grey;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: white;
+            line-height: 30px;
+            margin-top: 85px;
+            z-index: 1000;
+        }
+
+        .arrow-left {
+            right: 1000px;
+        }
+
+        .arrow-right {
+            left: 980px;
+        }
+
+        .item {
+            text-align: left;
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            white-space: pre-line;
+            margin-bottom: 10px;
+            transition: height 1s, width 1s, left 1s, margin-top 1s, line-height 1s, background-color 1s;
+        }
+
+        .level-2 {
+            height: 300px;
+            width: 250px;
+            line-height: 1.6;
+            background-color: slategray;
+            left: 650px;
+            /*margin-top: 25px;*/
+        }
+
+        .level-1 {
+            height: 400px;
+            width: 340px;
+            line-height: 1.6;
+            background-color: white;
+            color: black;
+            left: 600px;
+            /*margin-top: 10px;*/
+        }
+
+        .level0 {
+            height: 400px;
+            width: 340px;
+            line-height: 1.6;
+            background-color: white;
+            color: black;
+            left: 630px;
+        }
+
+        .level1 {
+            height: 400px;
+            width: 340px;
+            line-height: 1.6;
+            background-color: slategray;
+            /*margin-top: 25px;*/
+            left: 260px;
+        }
+
+        .level2 {
+            height: 400px;
+            width: 340px;
+            line-height: 1.6;
+            background-color: slategray;
+            /*margin-top: 25px;*/
+            left: -150px;
+        }
+
+        .left-enter {
+            opacity: 5;
+            left: -60px;
+            height: 120px;
+            width: 90px;
+            line-height: 120px;
+            margin-top: 40px;
+        }
+
+            .left-enter.left-enter-active {
+                opacity: 1;
+                left: 50px;
+                height: 150px;
+                width: 110px;
+                line-height: 150px;
+                margin-top: 25px;
+                transition: left 1s, opacity 1s, height 1s, width 1s, margin-top 1s, line-height 1s;
+            }
+
+        .left-leave {
+            opacity: 1;
+            left: 650px;
+            height: 150px;
+            width: 110px;
+            line-height: 150px;
+            margin-top: 25px;
+        }
+
+            .left-leave.left-leave-active {
+                left: 780px;
+                opacity: 0;
+                height: 120px;
+                line-height: 120px;
+                margin-top: 40px;
+                width: 90px;
+                transition: left 1s, opacity 1s, height 1s, width 1s, margin-top 1s, line-height 1s;
+            }
+
+        .right-enter {
+            opacity: 0;
+            left: 760px;
+            height: 120px;
+            width: 90px;
+            line-height: 120px;
+            margin-top: 40px;
+        }
+
+            .right-enter.right-enter-active {
+                left: 650px;
+                opacity: 1;
+                height: 150px;
+                margin-top: 25px;
+                line-height: 150px;
+                width: 110px;
+                transition: left 1s, opacity 1s, height 1s, width 1s, margin-top 1s, line-height 1s;
+            }
+
+        .right-leave {
+            left: 50px;
+            height: 150px;
+            opacity: 5;
+            margin-top: 25px;
+            line-height: 150px;
+            width: 110px;
+        }
+
+            .right-leave.right-leave-active {
+                left: -60px;
+                opacity: 0;
+                height: 120px;
+                width: 90px;
+                line-height: 120px;
+                margin-top: 40px;
+                transition: left 1s, opacity 1s, height 1s, width 1s, margin-top 1s, line-height 1s;
+            }
+
+        .noselect {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body onload="startTimer();">
+    <div>
+        <input id="Hidden1" type="hidden" />
+
+        <table>
+
+            <tr>
+                <th width="50%" align="right"><center><h1><input type="text" style="width:100px" class="alert-success" id="mytime" /></h1></center> </th>
+                <th width="50%"><h1><input type="text" style="width:100px" class="alert-success" id="mytime2" /></h1></th>
+                <th width="50%"><h1><input type="text" style="width:100px" class="alert-success" id="mytime3" /></h1></th>
+
+            </tr>
+        </table>
+
+
+
+
+    </div>
+    <script type="text/javascript">
+    var pedidosValue = @ViewBag.pedidos;
+    </script>
+    @using (Html.BeginForm("pedidoCompletado", "COCINA"))
+    {
+        <input type="hidden" id="pedidos" Value="@ViewBag.pedidos" />
+
+        <div id="app">
+
+            <div class="noselect" id="carousel" data-reactroot="">
+
+
+                <div class="arrow arrow-right"><i class="fi-arrow-right"></i></div>
+
+            </div>
+
+        </div>
+
+        <table>
+            <tr>
+                <th width="50%"><center><input type="submit" value="Completado" id="completado" class="alert-success" name="completado" /></center></th>
+                <th width="50%"><input type="submit" value="Completado" id="completado" class="alert-success" name="completado" /></th>
+                <th width="50%"><input type="submit" value="Completado" id="completado" class="alert-success" name="completado" /></th>
+            </tr>
+        </table>
+
+        <input type="hidden" class="terms" name="privacy_textarea" readonly="readonly" id="privacy_textarea" />
+
+        <input type="hidden" class="terms" name="privacy_textarea2" readonly="readonly" id="privacy_textarea2" />
+        <input type="hidden" class="terms" name="privacy_textarea2" readonly="readonly" id="privacy_textarea2" />
+        <input type="hidden" class="terms" name="privacy_textarea3" readonly="readonly" id="privacy_textarea3" />
+        @*<input type="submit" class="btn-dark" size="200" value="Completado" />*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-with-addons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+        <script src="~/Content/production/js/index.js"></script>
+    }
+
+</body>
+
+</html>
+
+
+
+

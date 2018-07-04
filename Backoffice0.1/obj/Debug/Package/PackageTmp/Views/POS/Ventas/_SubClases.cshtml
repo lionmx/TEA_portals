@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_subclases>
+<button type="button" onclick="ConsultaBotonesEspeciales()" class="btn btn-success"><</button>
+<center>
+    @foreach (var item in Model)
+    {
+        <button type="button" onclick="ConsultaCombos(@Html.DisplayFor(modelItem => item.id_grupo_producto_subclase))" class="btn btn-warning btn-lg" >@Html.DisplayFor(modelItem => item.nombre_subclase)</button>
+    }
+
+
+</center>

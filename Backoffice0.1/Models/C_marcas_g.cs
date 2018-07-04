@@ -34,6 +34,9 @@ namespace Backoffice0._1.Models
         public string twitter { get; set; }
         public Nullable<bool> status { get; set; }
         public string telefono { get; set; }
+        public string logo_header { get; set; }
+        public string logo_body { get; set; }
+        public string logo_footer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marcas_direcciones> C_marcas_direcciones { get; set; }

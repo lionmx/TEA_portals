@@ -17,6 +17,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_sucursales()
         {
+            this.C_cajas_sucursales = new HashSet<C_cajas_sucursales>();
             this.C_empresas_sucursales = new HashSet<C_empresas_sucursales>();
             this.C_equipo_sucursal = new HashSet<C_equipo_sucursal>();
             this.C_grupo_productos_codigos_movs = new HashSet<C_grupo_productos_codigos_movs>();
@@ -46,6 +47,8 @@ namespace Backoffice0._1.Models
         public Nullable<bool> activo { get; set; }
         public string sucursal_desvio { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_cajas_sucursales> C_cajas_sucursales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_empresas_sucursales> C_empresas_sucursales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
