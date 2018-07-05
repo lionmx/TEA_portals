@@ -24,6 +24,6 @@ namespace Backoffice0._1.Models
     
         public virtual C_productos_cat C_productos_cat { get; set; }
         public virtual C_ventas_g C_ventas_g { get; set; }
-        public virtual C_productos_cat C_productos_cat { get; set; }
+       
     }
 }

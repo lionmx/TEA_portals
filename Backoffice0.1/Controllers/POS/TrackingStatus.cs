@@ -12,10 +12,10 @@ using Backoffice0._1.Models;
 namespace Backoffice0._1.Controllers.POS
 {
 
-    public static class TrackingStatus 
+    public static class TrackingStatus
     {
         private static DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
-       
+
 
         public static List<DeliveryModel> estadoCocina()
         {
@@ -23,14 +23,14 @@ namespace Backoffice0._1.Controllers.POS
             var suc = db.C_sucursales.SqlQuery("SELECT * FROM C_SUCURSALES").ToList();
             foreach (var id in suc)
             {
-                var query = db.Database.SqlQuery<DeliveryModel>("SELECT COUNT(ID_PEDIDO) AS totalCocina FROM C_PEDIDOS WHERE ID_TRACKING_STATUS = 2 AND CODIGO_SUCURSAL='"+id.codigo_sucursal+"'");
-                
+                var query = db.Database.SqlQuery<DeliveryModel>("SELECT COUNT(ID_PEDIDO) AS totalCocina FROM C_PEDIDOS WHERE ID_TRACKING_STATUS = 2 AND CODIGO_SUCURSAL='" + id.codigo_sucursal + "'");
+
                 if (query != null)
                 {
                     listaPedidosSuc.Add(query.FirstOrDefault());
                 }
             }
-           
+
             return listaPedidosSuc;
         }
         public static List<DeliveryModel> estadoRecibido()
@@ -96,6 +96,32 @@ namespace Backoffice0._1.Controllers.POS
             }
             return listaRepaSuc;
         }
+
+        public static List<DeliveryModel> totalRepaEntregando()
+        {
+            List<DeliveryModel> listaRepaEntregando = new List<DeliveryModel>();
+            var suc = db.C_sucursales.SqlQuery("SELECT * FROM C_SUCURSALES").ToList();
+            foreach (var n in suc)
+            {
+                var obj = db.Database.SqlQuery<DeliveryModel>(" select count(u.id_pedido) as totalRepaEntregando from C_pedidos u join c_pedidos_empleados p on u.id_pedido = p.id_pedido where p.entrada_salida = 1 and  u.codigo_sucursal = '" + n.codigo_sucursal + "'");
+                if (obj != null)
+                {
+                    if (obj.FirstOrDefault() == null)
+                    {
+                        obj.FirstOrDefault().totalRepaEntregando = 0;
+                        listaRepaEntregando.Add(obj.FirstOrDefault());
+                    }
+                    else
+                    {
+                        listaRepaEntregando.Add(obj.FirstOrDefault());
+                    }
+             
+                }
+
+            }
+            return listaRepaEntregando;
+            
+        }
         public static List<DeliveryModel> estadoEntregados()
         {
             List<DeliveryModel> listaPedidosSuc = new List<DeliveryModel>();
@@ -112,5 +138,34 @@ namespace Backoffice0._1.Controllers.POS
 
             return listaPedidosSuc;
         }
+
+        //public static List<DeliveryModel> repartidoresEnSucursal(C_usuarios_sucursales m)
+        //{
+        //    List<DeliveryModel> listaRepasSuc = new List<DeliveryModel>();
+        //    var obj = from c in db.C_usuarios_corporativo
+        //              join u in db.C_usuarios_sucursales on c.id_usuario_corporativo equals u.id_usuario_corporativo
+        //              where c.id_rol == 4 && u.codigo_sucursal == m.codigo_sucursal
+        //              select c;
+
+        //    List<string> reparNombre = new List<string>();
+        //    if (obj != null)
+        //    {
+
+        //        foreach (var n in obj)
+        //        {
+
+        //            var nombreRepartidor = from r in db.C_empleados
+        //                                   where r.id_empleado == n.id_empleado
+        //                                   select r.nombres + " " + r.apellido_paterno + " " + r.apellido_materno;
+
+        //            listaRepasSuc.Add(nombreRepartidor.FirstOrDefault());
+        //        }
+        //        //ViewBag.repartidorEnSucursal = reparNombre;
+        //        return listaRepasSuc;
+
+        //    }
+
+
+    
     }
 }

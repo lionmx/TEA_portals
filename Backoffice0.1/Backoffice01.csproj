@@ -425,6 +425,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Libreria\Factura.dll" />
+    <Content Include="Libreria\Factura.txt" />
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
@@ -448,6 +450,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="UserControls\barraAcciones.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -455,8 +458,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\C_PRODUCTO_CLASIFICACIONController.cs" />
-    <Compile Include="Controllers\C_usuarios_sucursalesController.cs" />
+    <Compile Include="Controllers\Clientes\CLIENTESController.cs" />
     <Compile Include="Controllers\Delivery\DELIVERYController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\CALLCENTER_CLIENTES1Controller.cs" />
     <Compile Include="Controllers\Inventario\Almacen\ALMACEN_INVENTARIOController.cs" />
@@ -490,8 +492,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libreria\Factura.cs" />
     <Compile Include="Models\CarritoComboItem.cs" />
-    <Compile Include="Models\CarritoItem.cs" />
     <Compile Include="Helper\ElmahErrorAttribute.cs" />
     <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Models\CS_callcenter_cliente.cs">
@@ -1158,10 +1160,7 @@
     </Compile>
     <Compile Include="Models\SubmodulosUsuario.cs" />
     <Compile Include="Models\PermisosUsuario.cs" />
-    <Compile Include="Models\CarritoComboItem.cs" />
     <Compile Include="Models\CarritoItem.cs" />
-    <Compile Include="Helper\ElmahErrorAttribute.cs" />
-    <Compile Include="Helper\PasswordHelper.cs" />
     <Compile Include="Models\Imprimir.cs" />
     <Compile Include="Models\modelConfigBase.cs" />
     <Compile Include="Models\modulosPermisos.cs" />
@@ -1178,6 +1177,13 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\barraAcciones.ascx.cs">
+      <DependentUpon>barraAcciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\barraAcciones.ascx.designer.cs">
+      <DependentUpon>barraAcciones.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\C_serviciosController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1260,7 +1266,6 @@
     <Content Include="Content\production\js\maps\us-unemployment.json" />
     <Content Include="Content\README.md" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\MainLayout.cshtml" />
     <Content Include="Views\Configuracion\Configuracion.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Modulos\Create.cshtml" />
@@ -1360,6 +1365,43 @@
     <Content Include="Views\POS\Ventas\_PedidosEspeciales.cshtml" />
     <Content Include="Views\UsuarioLogin\_VisualizaModulos.cshtml" />
     <Content Include="Views\POS\Ventas\_DesviosSucursales.cshtml" />
+    <Content Include="Views\Shared\MainLayout.cshtml" />
+    <Content Include="Views\Delivery\estatusCajaModalView.cshtml" />
+    <Content Include="Views\Delivery\pedidosCocinaModalView.cshtml" />
+    <Content Include="Views\Delivery\pedidosEntregadosModalView.cshtml" />
+    <Content Include="Views\Delivery\pedidosEntregandoModalView.cshtml" />
+    <Content Include="Views\Delivery\pedidosPorAsignarModalView.cshtml" />
+    <Content Include="Views\Delivery\PedidosRecibidosModalView.cshtml" />
+    <Content Include="Views\Delivery\repartidorModalView.cshtml" />
+    <Content Include="Views\Delivery\moverRepartidorModalView.cshtml" />
+    <Content Include="Views\POS\Cocina.cshtml" />
+    <Content Include="Views\C_usuarios_sucursales\Create.cshtml" />
+    <Content Include="Views\C_usuarios_sucursales\Delete.cshtml" />
+    <Content Include="Views\C_usuarios_sucursales\Details.cshtml" />
+    <Content Include="Views\C_usuarios_sucursales\Edit.cshtml" />
+    <Content Include="Views\C_usuarios_sucursales\Index.cshtml" />
+    <Content Include="Views\Call_center_clientes\Create.cshtml" />
+    <Content Include="Views\Call_center_clientes\Delete.cshtml" />
+    <Content Include="Views\Call_center_clientes\Details.cshtml" />
+    <Content Include="Views\Call_center_clientes\Edit.cshtml" />
+    <Content Include="Views\Call_center_clientes\Index.cshtml" />
+    <Content Include="Views\CALLCENTER_CLIENTES\Create.cshtml" />
+    <Content Include="Views\CALLCENTER_CLIENTES\Delete.cshtml" />
+    <Content Include="Views\CALLCENTER_CLIENTES\Details.cshtml" />
+    <Content Include="Views\CALLCENTER_CLIENTES\Edit.cshtml" />
+    <Content Include="Views\CALLCENTER_CLIENTES\Index.cshtml" />
+    <Content Include="Views\CLIENTES\Create.cshtml" />
+    <Content Include="Views\CLIENTES\Delete.cshtml" />
+    <Content Include="Views\CLIENTES\Details.cshtml" />
+    <Content Include="Views\CLIENTES\Edit.cshtml" />
+    <Content Include="Views\CLIENTES\Index.cshtml" />
+    <Content Include="Views\POS\AgregaCarrito.cshtml" />
+    <Content Include="Views\POS\Categorias.cshtml" />
+    <Content Include="Views\PEDIDOS_D\Create.cshtml" />
+    <Content Include="Views\PEDIDOS_D\Delete.cshtml" />
+    <Content Include="Views\PEDIDOS_D\Details.cshtml" />
+    <Content Include="Views\PEDIDOS_D\Edit.cshtml" />
+    <Content Include="Views\PEDIDOS_D\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1370,7 +1412,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Catalogos\" />
-    <Folder Include="Controllers\Clientes\" />
     <Folder Include="Controllers\Contabilidad\" />
     <Folder Include="Controllers\Facturacion\" />
     <Folder Include="Controllers\Inventario\Insumos\" />
@@ -1388,7 +1429,9 @@
     <Folder Include="Controllers\Servicios\MICROSIP\" />
     <Folder Include="Controllers\Servicios\RELOJ_CHECADOR\" />
     <Folder Include="Views\CAJA\" />
+    <Folder Include="Views\COCINA\" />
     <Folder Include="Views\Imprimir\" />
+    <Folder Include="Views\TrackingViewStatus\" />
     <Folder Include="Views\TRACKING\" />
   </ItemGroup>
   <ItemGroup>

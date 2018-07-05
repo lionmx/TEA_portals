@@ -15,7 +15,7 @@ namespace Backoffice0._1.Controllers
     public class USUARIOLOGINController : Controller
     {
 
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         List<PermisosUsuario> permisos; 
         List<SubmodulosUsuario> submodulos;
         List<ModulosUsuario> modulos;
@@ -38,7 +38,7 @@ namespace Backoffice0._1.Controllers
             var encodingPasswordString = string.Empty;
             var items = db.C_usuarios_corporativo.Where(u => u.usuario.Equals(uSUARIO_LOGIN.CS_usuarios.NOMBRE));
 
-            if (items != null)
+            if (items.Count() > 0)
             {
                 if (uSUARIO_LOGIN.PASS != null)
                 {
@@ -96,6 +96,11 @@ namespace Backoffice0._1.Controllers
                         }
                     }
                 }
+            }else
+            {
+                ViewBag.Message = "Usuario o contraseña incorrectos";
+                return View("UsuarioLogin");
+                
             }
             if (ModelState.IsValid)
             {
@@ -109,9 +114,9 @@ namespace Backoffice0._1.Controllers
                 if (permisosServicioModulo.Count()>0)
                 {
                     permisos = new List<PermisosUsuario>();
-                    submodulos = new List<SubmodulosUsuario>();
+                    submodulos = new List<SubmodulosUsuario>(); 
                     modulos = new List<ModulosUsuario>();
-                    foreach (var n in permisosServicioModulo)
+                    foreach (var n in permisosServicioModulo) 
                     {
                         permisosLista.Add((int)n.id_modulos_sub);
                         permisosLista.Add((int)n.C_modulos_sub.id_modulo);
@@ -126,20 +131,21 @@ namespace Backoffice0._1.Controllers
                     {
                             modulos.Add(new ModulosUsuario((int)item.id_modulo, item.nombre, item.icono));
                     }
-                }
-                
-                Session["modulos"] = modulos;
-                Session["submodulos"] = submodulos;
-               
-                ViewBag.permisos = permisosLista;
-                CS_usuario_login obj = new CS_usuario_login();
-                obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
-                obj.PASS = uSUARIO_LOGIN.PASS;
-                obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
-                db.CS_usuario_login.Add(obj);
-                db.SaveChanges();
-              
+
+                    Session["modulos"] = modulos;
+                    Session["submodulos"] = submodulos;
+
+                    ViewBag.permisos = permisosLista;
+                    CS_usuario_login obj = new CS_usuario_login();
+                    obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
+                    obj.PASS = uSUARIO_LOGIN.PASS;
+                    obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
+                    db.CS_usuario_login.Add(obj);
+                    db.SaveChanges();
+
                     return View("/Views/Home/Index.cshtml");
+                }
+     
                 
             }
 

@@ -5,7 +5,7 @@
 }
 <html>
 <head>
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="50">
     <script type="text/javascript">
         function encenderSucursal() {
             //alert('aasjkdkdj');
@@ -607,7 +607,9 @@
         List<Backoffice0._1.Models.DeliveryModel> pedidosEntregando = new List<Backoffice0._1.Models.DeliveryModel>();
         List<Backoffice0._1.Models.DeliveryModel> pedidosEntregados = new List<Backoffice0._1.Models.DeliveryModel>();
         List<Backoffice0._1.Models.DeliveryModel> totalRepaSuc = new List<Backoffice0._1.Models.DeliveryModel>();
+        List<Backoffice0._1.Models.DeliveryModel> totalRepaEntregando = new List<Backoffice0._1.Models.DeliveryModel>();
         List<Backoffice0._1.Models.C_cajas> sucEstado = new List<Backoffice0._1.Models.C_cajas>();
+        List<Backoffice0._1.Models.DeliveryModel> totalRepaSuc2 = Backoffice0._1.Controllers.POS.TrackingStatus.totalRepaSuc();
         sucEstado = ViewBag.sucEstado;
         pedidosCocina = ViewBag.pedidosSucCocina;
         pedidosRecibidos = ViewBag.pedidosSucRecibido;
@@ -615,17 +617,18 @@
         pedidosEntregando = ViewBag.pedidosSucEntregando;
         pedidosEntregados = ViewBag.pedidosSucEntregados;
         totalRepaSuc = ViewBag.totalRepaSuc;
+        totalRepaEntregando = ViewBag.totalRepaEntregando;
         if (sucEstado != null)
         {
             if (sucEstado[0].status.Equals("A"))
             {
                 <style>
                     :root {
-                        --main-bg-color2: #13afe4;
+                        --main-bg-colorEstado: #13afe4;
                     }
 
-                    #div38 {
-                        background-color: var(--main-bg-color2);
+                    #div34 {
+                        background-color: var(--main-bg-colorEstado);
                     }
                 </style>
             }
@@ -633,11 +636,11 @@
             {
                 <style>
                     :root {
-                        --main-bg-color3: gray;
+                        --main-bg-colorestado2: gray;
                     }
 
-                    #div38 {
-                        background-color: var(--main-bg-color3);
+                    #div34 {
+                        background-color: var(--main-bg-colorEstado2);
                     }
                 </style>
             }
@@ -1099,7 +1102,7 @@
                 }
             </style>
         }
-       
+
         List<Backoffice0._1.Models.C_empleados> repartidoresLista = new List<Backoffice0._1.Models.C_empleados>();
         if (ViewBag.repartidorEnSucursal != null)
         {
@@ -1111,14 +1114,14 @@
     <div id="div1" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Abastos<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalAbastos()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresAbastos" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[5].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[5].totalRepaSuc) / @(totalRepaEntregando[5].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1126,9 +1129,9 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[5].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAbastos" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[5].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAbastos" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[5].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[5].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregando[5].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[5].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAbastos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[5].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAbastos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[5].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAbastos" data-dismiss="modal" />
         </div>
     </div>
 
@@ -1137,14 +1140,14 @@
     <div id="div2" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Alameda</h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalAlameda()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresAlameda" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[6].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[6].totalRepaSuc) / @(totalRepaEntregando[6].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1152,23 +1155,23 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[6].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlameda" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[6].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlameda" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[6].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[6].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[6].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[6].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[6].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[6].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlameda" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div3" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Centenario</h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalCentenario()" />
             <br>
-            <a href="#" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresCentenario" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[7].totalRepaSuc) </h2>
+            <h2>  @(totalRepaSuc[7].totalRepaSuc) / @(totalRepaEntregando[7].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1176,23 +1179,23 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[7].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoCentenario" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[7].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaCentenario" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[7].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[7].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[7].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[7].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarCentenario" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[7].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoCentenario" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[7].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosCentenario" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div4" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Constitucion</h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalConstitucion()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresConstitucion" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[8].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[8].totalRepaSuc) / @(totalRepaEntregando[8].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1200,23 +1203,23 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[8].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoConstitucion" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[8].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaConstitucion" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[8].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[8].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[8].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[8].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarConstitucion" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[8].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoConstitucion" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[8].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosConstitucion" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div5" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Filadelfia</h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalFiladelfia()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_pedido_cocina" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresFiladelfia" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[9].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[9].totalRepaSuc) / @(totalRepaEntregando[9].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1224,23 +1227,23 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[9].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoFiladelfia" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[9].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaFiladelfia" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[9].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[9].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[9].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[9].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarFiladelfia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[9].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoFiladelfia" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[9].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosFiladelfia" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div6" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Fuentes</h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalFuentes()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresFuentes" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[10].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[10].totalRepaSuc) / @(totalRepaEntregando[10].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1248,45 +1251,45 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[10].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoFuentes" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[10].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaFuentes" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[10].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[10].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[10].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[10].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[10].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlameda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[10].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlameda" data-dismiss="modal" />
         </div>
     </div>
     <div id="div7" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Gomez<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalGomez()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresGomez" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[11].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[11].totalRepaSuc) / @(totalRepaEntregando[11].totalRepaEntregando) </h2>
             <div class="clearfix">
             </div>
         </div>
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[11].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoGomez" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[11].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaGomez" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[11].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[11].totalEntregando)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[11].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[11].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[11].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoGomez" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[11].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosGomez" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div8" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Hamburgo<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalHamburgo()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresHamburgo" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[12].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[12].totalRepaSuc) / @(totalRepaEntregando[12].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1294,23 +1297,23 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[12].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoHamburgo" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[12].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaHamburgo" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[12].totalPorAsignar)" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[12].totalPorAsignar)" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[12].totalEntregados)" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[12].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarHamburgo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[12].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_entregandoHamburgo" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[12].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosHamburgo" data-dismiss="modal" />
 
         </div>
     </div>
     <div id="div9" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Hipermart<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalHipermart()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresHipermart" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[13].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[13].totalRepaSuc) / @(totalRepaEntregando[13].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1318,22 +1321,22 @@
         <div class="x_content">
             <input type="button" style="color: black" value="M@(pedidosRecibidos[13].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoHipermart" data-dismiss="modal" />
             <input type="button" style="color: black" value="C@(pedidosCocina[13].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaHipermart" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[13].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[13].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[13].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[13].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarHipermart" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[13].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoHipermart" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[13].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosHipermart" data-dismiss="modal" />
         </div>
     </div>
     <div id="div10" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Independencia<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalIndependencia()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresIndependencia" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[14].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[14].totalRepaSuc) / @(totalRepaEntregando[14].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1349,14 +1352,14 @@
     <div id="div11" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Juarez<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalJuarez()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresJuarez" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[15].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[15].totalRepaSuc) / @(totalRepaEntregando[15].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1372,14 +1375,14 @@
     <div id="div12" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Jumbo<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalJumbo()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresJumbo" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[16].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[16].totalRepaSuc) / @(totalRepaEntregando[16].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1395,14 +1398,14 @@
     <div id="div13" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Lerdo<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalLerdo()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresLerdo" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[17].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[17].totalRepaSuc) / @(totalRepaEntregando[17].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1418,14 +1421,14 @@
     <div id="div14" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Madero<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMadero()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresMadero" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[18].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[19].totalRepaSuc) / @(totalRepaEntregando[18].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1441,14 +1444,14 @@
     <div id="div15" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Matamoros<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMatamoros()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresMatamoros" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[19].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[19].totalRepaSuc) / @(totalRepaEntregando[19].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1464,14 +1467,14 @@
     <div id="div16" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Triana<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalTriana()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresTriana" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[20].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[20].totalRepaSuc) / @(totalRepaEntregando[20].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1487,14 +1490,14 @@
     <div id="div17" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Verde<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalVerde()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresVerde" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[21].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[21].totalRepaSuc) / @(totalRepaEntregando[21].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1510,14 +1513,14 @@
     <div id="div18" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Miguel Aleman<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMiguelAleman()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresMiguelAleman" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[22].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[22].totalRepaSuc) / @(totalRepaEntregando[22].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1533,14 +1536,14 @@
     <div id="div19" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
             <h2>Rebollo<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalRebollo()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresRebollo" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[23].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[23].totalRepaSuc) / @(totalRepaEntregando[23].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1555,15 +1558,15 @@
     </div>
     <div id="div20" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
-            <h2>Sol de ote<small></small></h2>
-
+            <h2>Sol de Oriente<small></small></h2>
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalSolOte()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresSolOte" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[24].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[24].totalRepaSuc) / @(totalRepaEntregando[24].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1578,15 +1581,15 @@
     </div>
     <div id="div21" class="x_panel" style="  width:200px; height:300px;">
         <div class="x_title">
-            <h2>Call Center<small></small></h2>
-
+            <h2>Callcenter<small></small></h2>
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalCallcenter()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresCallcenter" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[25].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[25].totalRepaSuc) / @(totalRepaEntregando[25].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1602,14 +1605,14 @@
     <div id="div22" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Mieleras<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMieleras()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresMieleras" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[26].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[26].totalRepaSuc) / @(totalRepaEntregando[26].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1624,15 +1627,15 @@
     </div>
     <div id="div23" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
-            <h2>Senderos QP<small></small></h2>
-
+            <h2>Senderos<small></small></h2>
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalSenderos()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresSenderos" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[27].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[27].totalRepaSuc) / @(totalRepaEntregando[27].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1648,14 +1651,14 @@
     <div id="div24" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Santa Fe<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalSantaFe()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresSantaFe" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[28].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[28].totalRepaSuc) / @(totalRepaEntregando[28].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1671,14 +1674,14 @@
     <div id="div25" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>San Antonio<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalSanAntonio()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresSanAntonio" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[29].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[29].totalRepaSuc) / @(totalRepaEntregando[29].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1694,14 +1697,14 @@
     <div id="div26" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Chapala<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalChapala()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresChapala" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[30].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[30].totalRepaSuc) / @(totalRepaEntregando[30].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1717,14 +1720,14 @@
     <div id="div27" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Feria Gomez<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalFeriaGomez()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" data-toggle="modal" data-target=".delivery_repartidoresFeriaGomez" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[31].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[31].totalRepaSuc) / @(totalRepaEntregando[31].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1740,14 +1743,14 @@
     <div id="div28" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Plaza de Armas<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalPlazaArmas()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresPlazaArmas" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[32].totalRepaSuc) </h2>h2> 3 / 3 </h2>
+            <h2> @(totalRepaSuc[32].totalRepaSuc) / @(totalRepaEntregando[32].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1763,14 +1766,14 @@
     <div id="div29" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Division del Norte<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalDivisionNorte()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresDivisionNorte" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[33].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[33].totalRepaSuc) / @(totalRepaEntregando[33].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1786,14 +1789,14 @@
     <div id="div30" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Saltillo 400 <small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalSaltillo400()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresSaltillo400" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[34].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[34].totalRepaSuc) / @(totalRepaEntregando[34].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1806,17 +1809,18 @@
             <input type="button" style="color: black" value="R@(pedidosEntregados[34].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosSaltillo400" data-dismiss="modal" />
         </div>
     </div>
+
     <div id="div31" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Muzquiz<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMuzquiz()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresMuzquiz" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[35].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[35].totalRepaSuc) / @(totalRepaEntregando[35].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1831,15 +1835,15 @@
     </div>
     <div id="div32" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
-            <h2>Arrallanes<small></small></h2>
-
+            <h2>Arrayanes<small></small></h2>
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalArrallanes()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresArrallanes" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[36].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[36].totalRepaSuc) / @(totalRepaEntregando[36].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
@@ -1855,14 +1859,14 @@
     <div id="div33" class="x_panel" style=" width:200px; height:300px;">
         <div class="x_title">
             <h2>Morelos<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMorelos()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresMorelos" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
             </a>
 
-            <h2> 3 / @(totalRepaSuc[37].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[37].totalRepaSuc) / @(totalRepaEntregando[37].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1878,106 +1882,111 @@
     <div id="div34" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Cepeda<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalCepeda()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresCepeda" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
+
             </a>
 
-            <h2> 3 / @(totalRepaSuc[38].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[38].totalRepaSuc) / @(totalRepaEntregando[38].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
         </div>
         <div class="x_content">
-            <input type="button" style="color: black" value="M@(pedidosRecibidos[38].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoCepeda" data-dismiss="modal" />
-            <input type="button" style="color: black" value="C@(pedidosCocina[38].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaCepeda" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[38].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarCepeda" data-dismiss="modal" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[38].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoCepeda" data-dismiss="modal" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[38].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosCepeda" data-dismiss="modal" />
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[38].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[38].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[38].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[38].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[38].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
         </div>
     </div>
-    <div id="div35" class="x_panel" style=" width:200px; height:300px;">
+    <div id="div35" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Monaco<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalMonaco()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresMonaco" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
+
             </a>
 
-            <h2> 3 / @(totalRepaSuc[39].totalRepaSuc) </h2>
+            <h2>@(totalRepaSuc[39].totalRepaSuc) / @(totalRepaEntregando[39].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
         </div>
         <div class="x_content">
-            <input type="button" style="color: black" value="M@(pedidosRecibidos[39].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMonaco" data-dismiss="modal" />
-            <input type="button" style="color: black" value="C@(pedidosCocina[39].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMonaco" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[39].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMonaco" data-dismiss="modal" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[39].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMonaco" data-dismiss="modal" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[39].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMonacob  " data-dismiss="modal" />
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[39].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[39].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[39].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[39].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[39].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
         </div>
     </div>
     <div id="div36" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Colon<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalColon()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresColon" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
+
             </a>
 
-            <h2> 3 / @(totalRepaSuc[40].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[40].totalRepaSuc) / @(totalRepaEntregando[40].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
         </div>
         <div class="x_content">
-            <input type="button" style="color: black" value="M@(pedidosRecibidos[40].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoColon" data-dismiss="modal" />
-            <input type="button" style="color: black" value="C@(pedidosCocina[40].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaColon" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[40].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarColon" data-dismiss="modal" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[40].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoColon" data-dismiss="modal" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[40].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosColon" data-dismiss="modal" />
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[40].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[40].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[40].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[40].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[40].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
         </div>
     </div>
-    <div id="div37" class="x_panel" style=" width:200px; height:300px;">
+    <div id="div37" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Dorado<small></small></h2>
-
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalDorado()" />
             <br>
-            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresDorado" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
+
             </a>
 
-            <h2> 3 / @(totalRepaSuc[41].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[41].totalRepaSuc) / @(totalRepaEntregando[41].totalRepaEntregando) </h2>
 
             <div class="clearfix">
             </div>
         </div>
         <div class="x_content">
-            <input type="button" style="color: black" value="M@(pedidosRecibidos[41].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoDorado" data-dismiss="modal" />
-            <input type="button" style="color: black" value="C@(pedidosCocina[41].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaDorado" data-dismiss="modal" />
-            <input type="button" style="color: black" value="P@(pedidosPorAsignar[41].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarDorado" data-dismiss="modal" />
-            <input type="button" style="color: black" value="E@(pedidosEntregando[41].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoDorado" data-dismiss="modal" />
-            <input type="button" style="color: black" value="R@(pedidosEntregados[41].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosDorado" data-dismiss="modal" />
+            <input type="button" style="color: black" value="M@(pedidosRecibidos[41].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="C@(pedidosCocina[41].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="P@(pedidosPorAsignar[41].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="E@(pedidosEntregando[41].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+            <input type="button" style="color: black" value="R@(pedidosEntregados[41].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
         </div>
     </div>
     <div id="div38" class="x_panel" style="width:200px; height:300px;">
         <div class="x_title">
             <h2>Alamos<small></small></h2>
-            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursal()" />
+            <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursalAlamos()" />
             <br>
-            <a href="#" id="SUC038" data-toggle="modal" data-target=".delivery_repartidoresAlamos" data-dismiss="modal">
+            <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresAlamos" data-dismiss="modal">
                 <image src="/Content/production/images/33308.png">
                 </image><br />
+
             </a>
 
-            <h2> 3 / @(totalRepaSuc[42].totalRepaSuc) </h2>
+            <h2> @(totalRepaSuc[42].totalRepaSuc) / @(totalRepaEntregando[42].totalRepaEntregando)  </h2>
 
             <div class="clearfix">
             </div>
@@ -1990,4 +1999,96 @@
             <input type="button" style="color: black" value="R@(pedidosEntregados[42].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
         </div>
     </div>
+    @*<div id="div35" class="x_panel" style=" width:200px; height:300px;">
+            <div class="x_title">
+                <h2>Monaco<small></small></h2>
+
+                <br>
+                <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresMonaco" data-dismiss="modal">
+                    <image src="/Content/production/images/33308.png">
+                    </image><br />
+                </a>
+
+                <h2> 3 / @(totalRepaSuc[39].totalRepaSuc) </h2>
+
+                <div class="clearfix">
+                </div>
+            </div>
+            <div class="x_content">
+                <input type="button" style="color: black" value="M@(pedidosRecibidos[39].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoMonaco" data-dismiss="modal" />
+                <input type="button" style="color: black" value="C@(pedidosCocina[39].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaMonaco" data-dismiss="modal" />
+                <input type="button" style="color: black" value="P@(pedidosPorAsignar[39].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarMonaco" data-dismiss="modal" />
+                <input type="button" style="color: black" value="E@(pedidosEntregando[39].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoMonaco" data-dismiss="modal" />
+                <input type="button" style="color: black" value="R@(pedidosEntregados[39].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosMonacob  " data-dismiss="modal" />
+            </div>
+        </div>
+        <div id="div36" class="x_panel" style="width:200px; height:300px;">
+            <div class="x_title">
+                <h2>Colon<small></small></h2>
+
+                <br>
+                <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidoresColon" data-dismiss="modal">
+                    <image src="/Content/production/images/33308.png">
+                    </image><br />
+                </a>
+
+                <h2> 3 / @(totalRepaSuc[40].totalRepaSuc) </h2>
+
+                <div class="clearfix">
+                </div>
+            </div>
+            <div class="x_content">
+                <input type="button" style="color: black" value="M@(pedidosRecibidos[40].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoColon" data-dismiss="modal" />
+                <input type="button" style="color: black" value="C@(pedidosCocina[40].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaColon" data-dismiss="modal" />
+                <input type="button" style="color: black" value="P@(pedidosPorAsignar[40].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarColon" data-dismiss="modal" />
+                <input type="button" style="color: black" value="E@(pedidosEntregando[40].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoColon" data-dismiss="modal" />
+                <input type="button" style="color: black" value="R@(pedidosEntregados[40].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosColon" data-dismiss="modal" />
+            </div>
+        </div>
+        <div id="div37" class="x_panel" style=" width:200px; height:300px;">
+            <div class="x_title">
+                <h2>Dorado<small></small></h2>
+
+                <br>
+                <a href="#" id="SUC001" data-toggle="modal" data-target=".delivery_repartidores" data-dismiss="modal">
+                    <image src="/Content/production/images/33308.png">
+                    </image><br />
+                </a>
+
+                <h2> 3 / @(totalRepaSuc[41].totalRepaSuc) </h2>
+
+                <div class="clearfix">
+                </div>
+            </div>
+            <div class="x_content">
+                <input type="button" style="color: black" value="M@(pedidosRecibidos[41].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoDorado" data-dismiss="modal" />
+                <input type="button" style="color: black" value="C@(pedidosCocina[41].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaDorado" data-dismiss="modal" />
+                <input type="button" style="color: black" value="P@(pedidosPorAsignar[41].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarDorado" data-dismiss="modal" />
+                <input type="button" style="color: black" value="E@(pedidosEntregando[41].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoDorado" data-dismiss="modal" />
+                <input type="button" style="color: black" value="R@(pedidosEntregados[41].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosDorado" data-dismiss="modal" />
+            </div>
+        </div>
+        <div id="div38" class="x_panel" style="width:200px; height:300px;">
+            <div class="x_title">
+                <h2>Alamos<small></small></h2>
+                <input class="right" style="color:black" type="button" value="ON/OFF" onclick="encenderSucursal()" />
+                <br>
+                <a href="#" id="SUC038" data-toggle="modal" data-target=".delivery_repartidoresAlamos" data-dismiss="modal">
+                    <image src="/Content/production/images/33308.png">
+                    </image><br />
+                </a>
+
+                <h2> 3 / @(totalRepaSuc[42].totalRepaSuc) </h2>
+
+                <div class="clearfix">
+                </div>
+            </div>
+            <div class="x_content">
+                <input type="button" style="color: black" value="M@(pedidosRecibidos[42].totalRecibido)" data-toggle="modal" data-target=".delivery_pedido_recibidoAlamos" data-dismiss="modal" />
+                <input type="button" style="color: black" value="C@(pedidosCocina[42].totalCocina)" data-toggle="modal" data-target=".delivery_pedido_cocinaAlamos" data-dismiss="modal" />
+                <input type="button" style="color: black" value="P@(pedidosPorAsignar[42].totalPorAsignar)" data-toggle="modal" data-target=".delivery_pedido_porasignarAlamos" data-dismiss="modal" />
+                <input type="button" style="color: black" value="E@(pedidosEntregando[42].totalEntregando)" data-toggle="modal" data-target=".delivery_pedido_entregandoAlamos" data-dismiss="modal" />
+                <input type="button" style="color: black" value="R@(pedidosEntregados[42].totalEntregados)" data-toggle="modal" data-target=".delivery_pedido_entregadosAlamos" data-dismiss="modal" />
+            </div>
+        </div>*@
 </html>
