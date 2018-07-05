@@ -1,0 +1,15 @@
+﻿@{ if (ViewBag.detallePedidosPorAsignar != null)
+    {
+        <table>
+            @foreach (var n in ViewBag.detallePedidosPorAsignar)
+            {
+                <tr>
+                    <td>@n</td>
+                </tr>
+            }
+
+        </table>
+
+    }
+
+}

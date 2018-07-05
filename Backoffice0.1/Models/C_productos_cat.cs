@@ -46,6 +46,7 @@ namespace Backoffice0._1.Models
         public Nullable<bool> insumos { get; set; }
         public Nullable<bool> activo { get; set; }
         public string path_imagen { get; set; }
+        public Nullable<int> id_clase { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_impuesto_producto> C_impuesto_producto { get; set; }
@@ -54,6 +55,7 @@ namespace Backoffice0._1.Models
         public virtual C_producto_clasificacion C_producto_clasificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_producto_presentacion> C_producto_presentacion { get; set; }
+        public virtual C_productos_clase C_productos_clase { get; set; }
         public virtual C_productos_especialidades C_productos_especialidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_productos_marca> C_productos_marca { get; set; }

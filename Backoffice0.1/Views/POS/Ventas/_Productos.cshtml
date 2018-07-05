@@ -9,10 +9,14 @@
         <div class="col-md-55">
             <div class="thumbnail">
                 <div class="image view view-first">
-                    <img style="width: 100%; display: block;" src="/Content/production/images/4.jpg"  alt="image" />
+                    <!--if(@item.c_productos_cat.id_clase.HasValue)
+                        {
+                        <img style="width: 100%;height:90%; display: block;" src="@item.c_productos_cat.C_productos_clase alt="image" />
+                        }-->
+                    <img style="width: 100%;height:90%; display: block;" src="@item.c_productos_cat.C_producto_clasificacion.imagen_pequena" alt="image" />
                 </div>
                 <div>
-                    <label><strong>@Html.DisplayFor(modelItem => item.c_productos_cat.nombre)</strong></label>
+                    <center><label style="color:black"><b>@Html.DisplayFor(modelItem => item.c_productos_cat.nombre)</b></label></center>
                     <!-- <label><strong>@Html.DisplayFor(modelItem => item.c_productos_precios.precio_publico)</strong></label> -->
                 </div>
             </div>

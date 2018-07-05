@@ -12,7 +12,7 @@ namespace Backoffice0._1.Controllers.POS
 {
     public class PEDIDOS_DController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: PEDIDOS_D
         public ActionResult Index()

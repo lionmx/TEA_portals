@@ -5,7 +5,8 @@
     {
         foreach (var item in Model)
         {
-    <button type="button" onclick="ConsultaSubClases(@Html.DisplayFor(modelItem => item.id_grupo_producto_tipo))" class="btn btn-warning btn-lg" >@Html.DisplayFor(modelItem => item.nombre_tipo)</button>
+            <img src="@Html.DisplayFor(modelItem=> item.icono_web)" style="width:75px;" onclick="ConsultaSubClases(@Html.DisplayFor(modelItem => item.id_grupo_producto_tipo))" class="img_icon" />
+           
         }
     }
 

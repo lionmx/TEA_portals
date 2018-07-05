@@ -83,7 +83,7 @@ namespace Backoffice0._1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
+          //  ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 
@@ -99,7 +99,7 @@ namespace Backoffice0._1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
+           // ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 
@@ -116,7 +116,7 @@ namespace Backoffice0._1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
+          //  ViewBag.id_sucursal = new SelectList(db.C_sucursales, "Id_sucursal", "codigo_sucursal", c_cajas.C_sucursales.Id_sucursal);
             return View(c_cajas);
         }
 

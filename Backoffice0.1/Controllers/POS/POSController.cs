@@ -16,7 +16,7 @@ namespace Backoffice0._1.Controllers
     public class POSController : Controller
     {
         // GET: POS
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         // variables de la session 
         
         string codigo_sucursal;
@@ -25,6 +25,7 @@ namespace Backoffice0._1.Controllers
 
         List<CarritoItem> compras;
         List<CarritoComboItem> carrito_combo;
+        List<CarritoComboItem> detalle_combo;
         List<int> productos_promocion = new List<int>();
         List<float> productos_promocion_costos = new List<float>();
         List<int> detalles_combo;
@@ -43,7 +44,7 @@ namespace Backoffice0._1.Controllers
 
         public ActionResult Index()
         {
-           
+            Session["carrito"] = compras;
             ViewBag.compras = 0;
             var sucursales = db.C_sucursales.Where(m => m.activo == true).Select(m => m.nombre).Distinct().ToList();
             ViewBag.Sucursales = new SelectList(sucursales, "", "");
@@ -76,21 +77,18 @@ namespace Backoffice0._1.Controllers
             compras = (List<CarritoItem>)Session["Carrito"];
             var item = compras.FirstOrDefault(x => x.Sku == sku && x.Index == index_carrito);
             promocion_remover = compras.Find(x => x.Id_promocion == item.Id_promocion);
-           
-            if (item.Id_tipo_promocion == 2)
+            var id_promo = promocion_remover.Id_promocion;
+            if (id_promo == 0)
+            {
+                compras.Remove(item);
+            }
+            else
             {
                 for (int i = 0; i <= compras.Count(); i++)
                 {
-                    eliminar = compras.Find(x => x.Id_promocion == item.Id_promocion);
+                    eliminar = compras.Find(x => x.Id_promocion == id_promo);
                     compras.Remove(eliminar);
                 }
-                 eliminar = compras.Find(x => x.Id_promocion == item.Id_promocion+2);
-                compras.Remove(eliminar);
-            }
-            compras.Remove(item);
-            var id_promo = promocion_remover.Id_promocion;
-            if (id_promo != 0)
-            {
                 promocion_rem(id_promo);// revalidar_promocion
             }
            
@@ -180,7 +178,7 @@ namespace Backoffice0._1.Controllers
             var productos = from p in db.C_productos_cat
                                 join ps in db.C_productos_sucursal on p.sku equals ps.sku_producto
                                 join pp in db.C_productos_precios on p.sku equals pp.sku_producto
-                                where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal == codigo_sucursal && pp.id_zona == 1)
+                                where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal == codigo_sucursal && pp.id_zona == 1 && ps.activo==true)
                                 select new Productos { c_productos_cat = p, c_productos_sucursal = ps, c_productos_precios = pp };
             return PartialView("Ventas/_Productos", productos);
         }
@@ -251,7 +249,7 @@ namespace Backoffice0._1.Controllers
                                                 tipo_promocion = (int)item2.C_grupo_productos_d.C_grupo_productos_g.id_grupo_producto_tipo;
                                                 desc_promo = (float)item2.C_grupo_productos_d.C_grupo_productos_g.descuento;
                                                 cant_promociones++;
-                                                ultima_promo = compras.Max(x => x.Id_promocion);
+                                                Session["ultima_promo"] = compras.Max(x => x.Id_promocion);
                                                 nombre_promocion = item2.C_grupo_productos_d.C_grupo_productos_g.nombre;
                                                 id_grupo_aplicacion = (int)item2.C_grupo_productos_d.C_grupo_productos_g.id_grupo_aplica_operacion;
 
@@ -260,7 +258,7 @@ namespace Backoffice0._1.Controllers
                                                     compras.Find(x => x.Index == item7).Promocion = true;
                                                     compras.Find(x => x.Index == item7).Id_promocion_real= id_promocion_real;
                                                     compras.Find(x => x.Index == item7).Id_tipo_promocion= tipo_promocion;
-                                                    compras.Find(x => x.Index == item7).Id_promocion = ultima_promo + 1;
+                                                    compras.Find(x => x.Index == item7).Id_promocion = (int)Session["ultima_promo"] + 1;
                                                     total_promo = total_promo + compras.Find(x => x.Index == item7).Costo;
                                                     productos_promocion_costos.Add(compras.Find(x => x.Index == item7).Costo);
                                                     compras.Find(x => x.Index == item7).Costo = 0;
@@ -300,7 +298,7 @@ namespace Backoffice0._1.Controllers
             }
             if (cant_promociones > 0)
             {
-                compras.Add(new CarritoItem(nombre_promocion, total_promo, "", true, 0, false, ultima_promo + 2, true, 0,false,id_promocion_real,tipo_promocion));
+                compras.Add(new CarritoItem(nombre_promocion, total_promo, "", true, 0, false, (int)Session["ultima_promo"] + 2, true, 0,false,id_promocion_real,tipo_promocion));
             }
             compras.Sort((x, y) => x.Id_promocion.CompareTo(y.Id_promocion));
             Session["Carrito"] = compras;
@@ -312,7 +310,7 @@ namespace Backoffice0._1.Controllers
             codigo_sucursal = (string)Session["codigo_sucursal"];
             var combos = from gpp in db.C_grupo_productos_g
                          join gps in db.C_grupo_productos_sucursales on gpp.id_grupo_productos equals gps.id_grupo_productos
-                         where gpp.id_grupo_producto_tipo == 2 && gpp.id_grupo_producto_subclase == id_subclase && gpp.status == true
+                         where gpp.id_grupo_producto_subclase == id_subclase && gpp.status == true
                          && gpp.fecha_inicio <= DateTime.Now
                          && gpp.fecha_final >= DateTime.Now
                          && gps.codigo_sucursal == codigo_sucursal
@@ -322,24 +320,39 @@ namespace Backoffice0._1.Controllers
 
         public PartialViewResult AgregaCombo(float costo_combo, string nombre_combo)
         {
+            compras = (List<CarritoItem>)Session["Carrito"];
             if (Session["Carrito"] == null)
             {
                 compras = new List<CarritoItem>();
                 index_carrito = 1;
+                ultima_promo = 1;
             }
             else
             {
                 compras = (List<CarritoItem>)Session["Carrito"];
                 index_carrito = compras.Max(x => x.Index) + 1;
+                ultima_promo = compras.Max(x => x.Id_promocion);
             }
-            List<CarritoComboItem> detalle_combo = (List <CarritoComboItem>) Session["CarritoCombo"];
+
+            if (Session["CarritoCombo"] == null)
+            {
+                detalle_combo = new List<CarritoComboItem>() ;
+            }
+            else
+            {
+                detalle_combo = (List<CarritoComboItem>)Session["CarritoCombo"];
+               
+            }
+           
             var id_combo = 0;
+            
             foreach (var item in detalle_combo)
             {
                 id_combo = item.Id_promocion;
-                compras.Add(new CarritoItem(item.Producto, 0, item.Sku,true, index_carrito, false, item.Id_promocion, true,item.Id_producto, false, item.Id_promocion,2));
+                compras.Add(new CarritoItem(item.Producto, 0, item.Sku,true, index_carrito, false, ultima_promo + 1, true,item.Id_producto, false, item.Id_promocion,2));
+                index_carrito++;
             }
-            ultima_promo = compras.Max(x => x.Id_promocion);
+            
             compras.Add(new CarritoItem(nombre_combo, costo_combo, "", true, 0, false, ultima_promo + 2, true, 0, false,id_combo,2));
             Session["Carrito"] = compras;
             return PartialView("Ventas/_AgregaCarrito");
@@ -464,9 +477,9 @@ namespace Backoffice0._1.Controllers
                 int pedidos_cant = (int)Session["PedidosCount"];
                 if (pedidos_cant < pedidos.Count())
                 {
-                    WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+                    /*WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
                     wplayer.URL = @"C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\Content\production\sounds\1.mp3";
-                    wplayer.controls.play();
+                    wplayer.controls.play();*/
                 }
             }
             Session["PedidosCount"] = pedidos.Count();
@@ -570,7 +583,7 @@ namespace Backoffice0._1.Controllers
         public PartialViewResult ConsultaDesvioSucursales()
         {
             PEDIDOSController pc = new PEDIDOSController();
-           int id_marca = pc.ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+            int id_marca = (int)Session["id_marca"];
             var sucursales = from s in db.C_sucursales
                              join sm in db.C_sucursales_marcas on s.codigo_sucursal equals sm.codigo_sucursal
                              where  sm.id_marca == id_marca

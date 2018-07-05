@@ -7,11 +7,11 @@ body.nav-sm .container.body .left_col {
 }
 body.nav-sm .container.body .right_col {
   padding: 10px 20px;
-  margin-left: 70px;
+  /*margin-left: 70px;*/ eliminado para poder ocultar menu completamente
   z-index: 2;
 }
 body.nav-sm .navbar.nav_title {
-  width: 70px;
+  /*width: 70px;*/
 }
 body.nav-sm .navbar.nav_title a span {
   display: none;
@@ -28,7 +28,7 @@ body.nav-sm .navbar.nav_title a i {
 body.nav-sm .main_container .top_nav {
   padding: 0 !important;
   display: block;
-  margin-left: 70px;
+  margin-left: 0px;
   z-index: 2;
 }
 body.nav-sm .nav.side-menu li a {
@@ -5398,15 +5398,15 @@ ul.notifications {
 /* Slider promociones POS*/
 #slideshow {
   position: relative;
-  width: 500px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   padding: 0px;
 /*  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);*/
 }
 
 .img_slider{
-  width: 500px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
 }
 
 #slideshow > div {

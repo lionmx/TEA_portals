@@ -14,8 +14,19 @@ namespace Backoffice0._1.Models
     
     public partial class C_producto_tipo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_producto_tipo()
+        {
+            this.C_producto_clasificacion = new HashSet<C_producto_clasificacion>();
+        }
+    
         public int id_producto_tipo { get; set; }
         public string nombre { get; set; }
         public string alias_sku { get; set; }
+        public string icono_web { get; set; }
+        public string icono_mobil { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_producto_clasificacion> C_producto_clasificacion { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+﻿@{ if (ViewBag.repartidorEnSucursal != null)
+    {
+        <table>
+            @foreach (var n in ViewBag.repartidorEnSucursal)
+            {
+                <tr>
+                    <td>@n</td>
+                </tr>
+            }
+
+        </table>
+
+    }
+
+}

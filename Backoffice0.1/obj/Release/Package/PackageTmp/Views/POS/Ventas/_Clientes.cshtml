@@ -7,26 +7,35 @@
     {
     <tr class="even pointer">
     <td class="a-center ">
-        <input type="radio" class="flat" checked name="clientes" id="@item.id_cliente" value="@item.id_direccion">
+        <input type="radio" class="flat"  name="clientes" id="@item.id_cliente" onclick="ConsultaCostoEnvio(@item.C_direcciones_mx.id_colonia,'')"  value="@item.id_direccion">
     </td>
     <td>
         @{if (item.C_clientes.nombre != "")
             {
-                <label >@item.C_clientes.nombre</label>
+                <label style="color:black;">@item.C_clientes.nombre</label><br />
             }
-            if (item.C_direcciones.calle != "")
+            if (item.C_direcciones_mx.calle != "")
             {
-                <label style="font-size:12px" >@item.C_direcciones.calle</label>
+                <label style="font-size:12px;color:black;">@item.C_direcciones_mx.calle</label>
+                <label style="font-size:12px;color:black;">@item.C_direcciones_mx.numero_ext</label>
+
             }
 
-            if (@item.C_direcciones.id_asenta_cpcons.GetValueOrDefault(0) != 0)
+            if (item.C_direcciones_mx.C_colonias_mx.d_asenta != "")
             {
-                if (item.C_direcciones.C_cp_mexico.d_asenta != "")
-                {
-                    <label >@item.C_direcciones.C_cp_mexico.d_asenta</label>
+                <label style="color:black;">Colonia: @item.C_direcciones_mx.C_colonias_mx.d_asenta</label>
+                <label style="font-size:12px;color:black;">@item.C_direcciones_mx.C_colonias_mx.d_ciudad</label>
+                <label style="font-size:12px;color:black;">,@item.C_direcciones_mx.C_colonias_mx.d_estado</label>
 
-                }
             }
+
+            else
+            {
+
+            }
+            <label style="font-size:12px;color:black;">@item.C_direcciones_mx.referencia</label>
+
+
         }
     </td>
 

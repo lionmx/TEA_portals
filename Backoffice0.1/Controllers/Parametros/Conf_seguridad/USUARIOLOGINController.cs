@@ -38,7 +38,7 @@ namespace Backoffice0._1.Controllers
             var encodingPasswordString = string.Empty;
             var items = db.C_usuarios_corporativo.Where(u => u.usuario.Equals(uSUARIO_LOGIN.CS_usuarios.NOMBRE));
 
-            if (items.Count() > 0)
+            if (items.Count()>0)
             {
                 if (uSUARIO_LOGIN.PASS != null)
                 {
@@ -51,6 +51,7 @@ namespace Backoffice0._1.Controllers
                     {
                         if (uSUARIO_LOGIN.CS_usuarios.NOMBRE.Equals(n.usuario) && n.password.Equals(encodingPasswordString))
                         {
+                            
                             Session["LoggedUser"] = n.usuario;
                             Session["LoggedId"] = n.id_usuario_corporativo;
                             Session["LoggedIdRol"] = n.id_rol;
@@ -93,14 +94,15 @@ namespace Backoffice0._1.Controllers
                         {
                             ViewBag.Message = "Usuario o contraseña incorrectos";
                             return View("UsuarioLogin");
+
                         }
                     }
                 }
-            }else
+            }
+            else
             {
                 ViewBag.Message = "Usuario o contraseña incorrectos";
                 return View("UsuarioLogin");
-                
             }
             if (ModelState.IsValid)
             {
@@ -114,9 +116,9 @@ namespace Backoffice0._1.Controllers
                 if (permisosServicioModulo.Count()>0)
                 {
                     permisos = new List<PermisosUsuario>();
-                    submodulos = new List<SubmodulosUsuario>(); 
+                    submodulos = new List<SubmodulosUsuario>();
                     modulos = new List<ModulosUsuario>();
-                    foreach (var n in permisosServicioModulo) 
+                    foreach (var n in permisosServicioModulo)
                     {
                         permisosLista.Add((int)n.id_modulos_sub);
                         permisosLista.Add((int)n.C_modulos_sub.id_modulo);
@@ -131,22 +133,29 @@ namespace Backoffice0._1.Controllers
                     {
                             modulos.Add(new ModulosUsuario((int)item.id_modulo, item.nombre, item.icono));
                     }
-
-                    Session["modulos"] = modulos;
-                    Session["submodulos"] = submodulos;
-
-                    ViewBag.permisos = permisosLista;
-                    CS_usuario_login obj = new CS_usuario_login();
-                    obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
-                    obj.PASS = uSUARIO_LOGIN.PASS;
-                    obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
-                    db.CS_usuario_login.Add(obj);
-                    db.SaveChanges();
-
-                    return View("/Views/Home/Index.cshtml");
                 }
-     
                 
+                Session["modulos"] = modulos;
+                Session["submodulos"] = submodulos;
+               
+                ViewBag.permisos = permisosLista;
+                CS_usuario_login obj = new CS_usuario_login();
+                obj.ID_USUARIO = uSUARIO_LOGIN.ID_USUARIO;
+                obj.PASS = uSUARIO_LOGIN.PASS;
+                obj.FECHA_LOGIN = uSUARIO_LOGIN.FECHA_LOGIN;
+                db.CS_usuario_login.Add(obj);
+                db.SaveChanges();
+
+                if ((int)Session["LoggedIdRol"] == 6 || (int)Session["LoggedIdRol"] == 28)
+                {
+                    return RedirectToAction("Index", "POS");
+                }
+                else
+                {
+                    return View("/Views/Home/Index.cshtml");
+
+                }
+
             }
 
             ViewBag.Message = "Usuario o contraseña incorrectos";

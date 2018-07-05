@@ -2,13 +2,15 @@
 @using System.Web.Mvc.Html;
 
 <button type="button" onclick="ConsultaCategorias()" class="btn btn-success"><</button>
+<center>
 
-@if (Model != null)
-{
-
-
-    foreach (var item in Model)
+    @if (Model != null)
     {
-    <button type="button" onclick="FiltraProductos(@Html.DisplayFor(modelItem => item.id_producto_clasificacion))" class="btn btn-default">@Html.DisplayFor(modelItem => item.nombre_producto_clasificacion)</button>
+
+
+        foreach (var item in Model)
+        {
+            <img src="@Html.DisplayFor(modelItem=> item.imagen_pequena)" style="width:75px;" onclick="FiltraProductos(@Html.DisplayFor(modelItem => item.id_producto_clasificacion))" class="img_icon" />
+        }
     }
-}
+            </center>

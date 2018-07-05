@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_sucursales>
+@{ foreach (var item in Model)
+    {
+        if (item.status_servicio == false)
+        {
+            <option style="width:500px;color:red;"  value="@item.codigo_sucursal">@item.nombre (Fuera de servicio)</option>
+        }
+        if (item.status_servicio == true)
+        {
+            <option style="width:500px;font-weight:400;" value="@item.codigo_sucursal">@item.nombre </option>
+        }
+    }
+}
+
+

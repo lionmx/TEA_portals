@@ -23,7 +23,7 @@ namespace Backoffice0._1.Models
         public int id_presentacion { get; set; }
         public string nivel { get; set; }
         public string presentacion { get; set; }
-        public string cantidad { get; set; }
+        public Nullable<decimal> cantidad { get; set; }
         public Nullable<int> id_unidad { get; set; }
     
         public virtual C_unidades_medida C_unidades_medida { get; set; }

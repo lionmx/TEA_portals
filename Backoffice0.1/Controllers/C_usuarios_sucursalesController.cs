@@ -17,8 +17,8 @@ namespace Backoffice0._1.Controllers
         // GET: C_usuarios_sucursales
         public ActionResult Index()
         {
-            var c_usuarios_sucursales = db.C_usuarios_sucursales.Include(c => c.CS_usuarios);
-            return View(c_usuarios_sucursales.ToList());
+           // var c_usuarios_sucursales = db.C_usuarios_sucursales.Include(c => c.CS_usuarios);
+           return View();
         }
 
         // GET: C_usuarios_sucursales/Details/5

@@ -13,7 +13,7 @@ namespace Backoffice0._1.Controllers.POS
    
     public class PEDIDOSController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // variables de la session 
         string codigo_sucursal;
@@ -52,32 +52,25 @@ namespace Backoffice0._1.Controllers.POS
         public ActionResult Create2(C_pedidos c_pedidos, C_clientes c_clientes, C_direcciones_mx c_direcciones, C_telefonos c_telefonos, C_ventas_g c_ventas_g, C_eventos c_eventos, int[] c_ventas_pagos_tipo, Decimal[] c_ventas_pagos_montos, string[] c_ventas_pagos_tarjetas, float saldo)
         {
             codigo_sucursal= (string)Session["codigo_sucursal"];
-
-            id_marca = ConsultarMarcaPrincipal(codigo_sucursal);
-
+            id_marca = (int)Session["id_marca"];
             tipo_usuario = (int)Session["LoggedIdRol"];
             List<CarritoItem> compras = Session["Carrito"] as List<CarritoItem>;
             DateTime now = DateTime.Now;
+
             c_pedidos.id_usuario_corporativo = (int)Session["LoggedId"];
             c_pedidos.fecha_entrega = now;
             c_pedidos.fecha_pedido = now;
             c_pedidos.id_marca = id_marca; 
             c_pedidos.id_tracking_status = 1;
+
             if (Session["id_pedido"] == null)
             {id_pedido=0;}
             else
             { id_pedido = (int)Session["id_pedido"];}
+
             if (c_pedidos.id_tipo_entrega == 1)
             {
-                if (c_pedidos.id_pedido_tipo == 1)
-                {
-                    C_direcciones_mx direccion = db.C_direcciones_mx.FirstOrDefault(m => m.id_direccion == c_pedidos.id_direccion);
-                    c_pedidos.codigo_sucursal=AsignarSucursal( (int)direccion.id_colonia);
-                }
-                else
-                {
-                    c_pedidos.codigo_sucursal=AsignarSucursal((int)c_direcciones.id_colonia);
-                }
+                c_pedidos.codigo_sucursal=c_pedidos.codigo_sucursal;
             }
             if(tipo_usuario==6 && c_pedidos.id_pedido_tipo==1)
             {
@@ -164,6 +157,7 @@ namespace Backoffice0._1.Controllers.POS
                 Session["id_pedido"] = c_pedidos.id_pedido;
                 id_pedido =(int) Session["id_pedido"];
             }
+
              c_ventas_g.id_pedido = id_pedido;
              c_ventas_g.codigo_sucursal = codigo_sucursal;//cambiar
              c_ventas_g.id_caja = id_caja;//cambiar
@@ -217,8 +211,8 @@ namespace Backoffice0._1.Controllers.POS
             Session["Carrito"] = compras;
             if (c_pedidos.id_pedido_tipo == 1)
             {
-                IMPRIMIRController ctl = new IMPRIMIRController();
-                 ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
+               // IMPRIMIRController ctl = new IMPRIMIRController();
+               //  ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
             }
 
             if (saldo == 0)
@@ -288,19 +282,34 @@ namespace Backoffice0._1.Controllers.POS
             db.SaveChanges();
             return true;
         }
-        public string AsignarSucursal(int id_colonia)
+        public PartialViewResult AsignarSucursal(int id_colonia, string codigo_sucursal)
         {
-            codigo_sucursal = "";
-            id_marca = ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+            var sucursal_desvio = "";
+            var nombre_sucursal = "";
+         
+            id_marca = (int)Session["id_marca"];
             IQueryable<C_sucursales_colonias> sucursal;
-            sucursal = from sc in db.C_sucursales_colonias
-                       join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
-                       where sm.id_marca == id_marca && sc.id_colonia == id_colonia
-                       select sc;
+            if(id_colonia!=0)
+            {
+                sucursal = from sc in db.C_sucursales_colonias
+                           join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
+                           where sm.id_marca == id_marca && sc.id_colonia == id_colonia
+                           select sc;
+            }
+            else
+            {
+                sucursal = from sc in db.C_sucursales_colonias
+                           join sm in db.C_sucursales_marcas on sc.codigo_sucursal equals sm.codigo_sucursal
+                           where sm.id_marca == id_marca && sc.codigo_sucursal == codigo_sucursal
+                           select sc;
+            }
+        
             foreach (var item in sucursal)
             {
+                nombre_sucursal = item.C_sucursales.nombre;
                 if (item.C_sucursales.status_servicio==false)
                 {
+                    sucursal_desvio = db.C_sucursales.Where(x => x.codigo_sucursal == item.C_sucursales.sucursal_desvio).Select(x => x.nombre).FirstOrDefault();
                     codigo_sucursal = item.C_sucursales.sucursal_desvio;
                 }
                 else
@@ -308,12 +317,26 @@ namespace Backoffice0._1.Controllers.POS
                     codigo_sucursal = item.codigo_sucursal;
                 }
             }
-            return codigo_sucursal;
+            var pedidos = from p in db.C_pedidos
+                          where p.codigo_sucursal == codigo_sucursal && (p.id_tracking_status == 2 || p.id_tracking_status == 1)
+                          select p;
+
+            var pedidos2 = from p in db.C_pedidos
+                          where p.C_sucursales.nombre == sucursal_desvio && (p.id_tracking_status == 2 || p.id_tracking_status == 1)
+                          select p;
+            List<string> informacionEnvio = new List<string>();
+            informacionEnvio.Add(codigo_sucursal);
+            informacionEnvio.Add(nombre_sucursal);
+            informacionEnvio.Add(sucursal_desvio);
+            informacionEnvio.Add(pedidos.Count().ToString());
+            informacionEnvio.Add(pedidos2.Count().ToString());
+            return PartialView("../POS/Ventas/_InformacionEnvio",informacionEnvio);
 
         }
+     
         public double ConsultarCostoEnvio(int id_colonia)
         {
-            id_marca = ConsultarMarcaPrincipal((string)Session["codigo_sucursal"]);
+            id_marca = (int)Session["id_marca"];
             double costo= 0.0;
             IQueryable<C_sucursales_colonias> sucursal;
             sucursal = from sc in db.C_sucursales_colonias
@@ -409,6 +432,27 @@ namespace Backoffice0._1.Controllers.POS
             {
                 RegistroMovimiento(id_pedido);
             }
+            if(status == 5)
+            {
+                var repartidor_pedido = from rp in db.C_pedidos_empleados
+                                        where rp.id_pedido == c_pedidos.id_pedido
+                                        select rp;
+                if (repartidor_pedido.Count() > 0)
+                {
+                    foreach (var item in repartidor_pedido)
+                    {
+                        C_pedidos_empleados c_pedidos_empleados = new C_pedidos_empleados();
+                        c_pedidos_empleados.id_empleado = item.id_empleado;
+                        c_pedidos_empleados.id_pedido = id_pedido;
+                        c_pedidos_empleados.status = true;
+                        c_pedidos_empleados.entrada_salida = true;
+                        c_pedidos_empleados.fecha = DateTime.Now;
+                        db.C_pedidos_empleados.Add(c_pedidos_empleados);
+                       
+                    }
+                }
+               
+            }
             db.SaveChanges();
            
         }
@@ -429,8 +473,14 @@ namespace Backoffice0._1.Controllers.POS
             }
             return id_marca;
         }
+
+        public PartialViewResult ConsultaPedidos(string busqueda)
+        {
+            var fecha = DateTime.Today;
+            int id_marca = (int)Session["id_marca"];
+            var pedidos = db.C_pedidos.Where(x => x.id_marca == id_marca && x.fecha_pedido>fecha &&(x.C_clientes.nombre.Contains(busqueda) )).ToList();
+            return PartialView("../PEDIDOS/_VisualizaPedidos",pedidos);
+        }
      
-
-
     }
 }

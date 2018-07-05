@@ -1,0 +1,46 @@
+﻿<table class="table table-striped ">
+    <thead>
+        <tr class="headings">
+            <th class="column-title">#</th>
+            <th class="column-title">Producto </th>
+            <th class="column-title">Total</th>
+            <th class="bulk-actions" colspan="7">
+                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Session["Carrito"] != null)
+        {
+
+            foreach (var item in Session["Carrito"] as List<Backoffice0._1.Models.CarritoItem>)
+            {
+
+        <tr class="even pointer">
+            <!-- <td class=" "><select><option>1</option><option>2</option></select></td>-->
+            @if (@item.Sku != "")
+            {
+                <td class=" ">1</td>}
+            @if (@item.Sku == "")
+            {
+                <td class=" "></td>}
+                <td class=" ">@item.Producto </td>
+            @if (item.Costo == 0)
+            {
+                <td class=" "><input name="precio" value="0.00" class="control-label" style="width:0px;border-width:0px;" /></td>
+            }
+            @if (item.Costo != 0)
+            {
+                <td class=" "><input name="precio" value="@item.Costo" class="control-label" style="width:50px;border-width:0px;" /></td>
+            }
+            @if (@item.Sku != "")
+            {
+                <td>  <a href="#" onclick="Removecarrito('@item.Sku',@item.Index)" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a></td>
+            }
+
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+

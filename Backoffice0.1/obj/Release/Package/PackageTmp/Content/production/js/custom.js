@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,15 +6,20 @@
 
 /** ******  left menu  *********************** **/
 $(function () {
-  
+
     $('#sidebar-menu li ul').slideUp();
     $('#sidebar-menu li').removeClass('active');
-   
+    $('.left_col').hide(); // agregado para ocultar menu completamente
+    $('.sidebar-footer').hide();
+    $('.menu-section').hide();
+    $('.sidebar-menu').hide();
     $('#sidebar-menu li').on('click touchstart', function() {
         var link = $('a', this).attr('href');
+
         if ($('body').hasClass('nav-md')) {
-            $('body').removeClass('nav-md').addClass('nav-sm');
-            $('.left_col').removeClass('scroll-view').removeAttr('style');
+            //$('body').removeClass('nav-md').addClass('nav-sm');
+         $('.left_col').removeClass('scroll-view').removeAttr('style');
+
             $('.sidebar-footer').hide();
 
             if ($('#sidebar-menu li').hasClass('active')) {
@@ -28,7 +33,7 @@ $(function () {
                 $('#sidebar-menu li.active-sm').addClass('active').removeClass('active-sm');
             }
         }
-        if(link) { 
+        if(link) {
             window.location.href = link;
         } else {
             if ($(this).is('.active')) {
@@ -37,7 +42,7 @@ $(function () {
             } else {
                 $('#sidebar-menu li').removeClass('active');
                 $('#sidebar-menu li ul').slideUp();
-                
+
                 $(this).addClass('active');
                 $('ul', this).slideDown();
             }
@@ -47,13 +52,18 @@ $(function () {
     $('#menu_toggle').click(function () {
         if ($('body').hasClass('nav-md')) {
             $('body').removeClass('nav-md').addClass('nav-sm');
-            $('.left_col').removeClass('scroll-view').removeAttr('style');
+            //$('.left_col').removeClass('scroll-view').removeAttr('style');
+            $('.left_col').hide(); // agregado para ocultar menu completamente
             $('.sidebar-footer').hide();
+            $('.menu-section').hide();
+            $('.sidebar-menu').hide();
 
             if ($('#sidebar-menu li').hasClass('active')) {
                 $('#sidebar-menu li.active').addClass('active-sm').removeClass('active');
             }
         } else {
+          $('.menu-section').show();
+          $('.left_col').show();
             $('body').removeClass('nav-sm').addClass('nav-md');
             $('.sidebar-footer').show();
 

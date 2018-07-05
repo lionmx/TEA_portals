@@ -14,18 +14,10 @@ namespace Backoffice0._1.Models
     
     public partial class C_ciudades
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_ciudades()
-        {
-            this.C_codigos_postales = new HashSet<C_codigos_postales>();
-        }
-    
         public int id_ciudad { get; set; }
         public string ciudad { get; set; }
         public Nullable<int> id_estado { get; set; }
     
         public virtual C_estados C_estados { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_codigos_postales> C_codigos_postales { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_producto_tipo>
 @using System.Web.Mvc.Html;
 
-
+<center>
 @if (Model != null)
 {
 
@@ -9,7 +9,10 @@
 
     {
 
-<button type="button" onclick="ConsultaSubcategorias(@Html.DisplayFor(modelItem => item.id_producto_tipo))" class="btn btn-default">@Html.DisplayFor(modelItem => item.nombre)</button>
+        <img src="@Html.DisplayFor(modelItem => item.icono_web)" class="img_icon" style="width:75px;" onclick="ConsultaSubcategorias(@Html.DisplayFor(modelItem => item.id_producto_tipo))" />
+
+
 
     }
 }
+</center>

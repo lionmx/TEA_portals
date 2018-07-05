@@ -14,11 +14,9 @@ namespace Backoffice0._1.Models
     
     public partial class C_cajas
     {
+        public int id_caja { get; set; }
         public string caja { get; set; }
         public string status { get; set; }
         public string codigo_sucursal { get; set; }
-        public int id_caja { get; set; }
-    
-        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

@@ -81,5 +81,38 @@ namespace Backoffice0._1.Controllers
           ViewBag.Ventas =objVentas.ToList();
           
         }
+        public bool MovimientoCaja(decimal monto_apertura, int id_tipo_movimiento)
+        {
+            var codigo_sucursal = (string)Session["codigo_sucursal"];
+            C_cajas_movimientos c_cajas_movimientos = new C_cajas_movimientos();
+            c_cajas_movimientos.id_caja = 1;//(int)Session["LoggedIdCaja"];
+            c_cajas_movimientos.id_cajas_tipo_mov = id_tipo_movimiento;
+            c_cajas_movimientos.id_usuario = (int)Session["LoggedId"];
+            c_cajas_movimientos.entrada_salida = true;
+            c_cajas_movimientos.fecha_mov = DateTime.Now;
+            c_cajas_movimientos.monto = monto_apertura;
+            c_cajas_movimientos.status = true;
+            c_cajas_movimientos.codigo_sucursal = codigo_sucursal;
+
+            db.C_cajas_movimientos.Add(c_cajas_movimientos);
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool ValidaAperturaCaja()
+        {
+            var fecha = DateTime.Today;
+            var codigo_sucursal = (string)Session["codigo_sucursal"];
+            var apertura_caja = db.C_cajas_movimientos.Where(x=>x.id_cajas_tipo_mov==1 && x.codigo_sucursal == codigo_sucursal && x.fecha_mov>fecha);
+            if (apertura_caja.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

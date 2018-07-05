@@ -14,16 +14,7 @@ namespace Backoffice0._1.Models
     
     public partial class C_tipos_codigo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public C_tipos_codigo()
-        {
-            this.C_campañas = new HashSet<C_campañas>();
-        }
-    
         public int id_tipo_codigo { get; set; }
         public string nombre_codigo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_campañas> C_campañas { get; set; }
     }
 }

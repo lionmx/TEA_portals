@@ -25,6 +25,7 @@ namespace Backoffice0._1.App_Start
                 "~/Content/production/js/jquery.min.js",
                 "~/Content/production/js/select/select2.full.js",
                 "~/Content/production/js/bootstrap.min.js",
+                "~/Content/production/js/datatables/jquery.dataTables.min.js",
                 "~/Content/production/js/custom.js",
                 "~/Content/production/js/custom2.js",
                 "~/Content/production/js/input_mask/jquery.inputmask.js",
@@ -52,8 +53,6 @@ namespace Backoffice0._1.App_Start
                 "~/Content/production/js/flot/jquery.flot.stack.js",
                 "~/Content/production/js/flot/curvedLines.js",
                 "~/Content/production/js/flot/jquery.flot.resize.js",
-             
-                "~/Content/production/js/datatables/jquery.dataTables.min.js",
                 "~/Content/production/js/datatables/dataTables.bootstrap.js",
                 "~/Content/production/js/datatables/dataTables.buttons.min.js",
                 "~/Content/production/js/datatables/buttons.bootstrap.min.js",

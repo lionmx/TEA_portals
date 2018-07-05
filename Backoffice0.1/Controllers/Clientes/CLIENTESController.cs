@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,7 +14,7 @@ namespace Backoffice0._1.Controllers.Clientes
 {
     public class CLIENTESController : Controller
     {
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
 
         // GET: CLIENTES
         public ActionResult Index()

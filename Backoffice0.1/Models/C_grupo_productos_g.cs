@@ -17,7 +17,6 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public C_grupo_productos_g()
         {
-            this.C_campañas = new HashSet<C_campañas>();
             this.C_grupo_productos_codigos = new HashSet<C_grupo_productos_codigos>();
             this.C_grupo_productos_d = new HashSet<C_grupo_productos_d>();
             this.C_grupo_productos_sucursales = new HashSet<C_grupo_productos_sucursales>();
@@ -40,9 +39,8 @@ namespace Backoffice0._1.Models
         public Nullable<decimal> descuento { get; set; }
         public Nullable<decimal> precio_unico { get; set; }
         public Nullable<bool> requiere_codigo { get; set; }
+        public Nullable<bool> costo_envio { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<C_campañas> C_campañas { get; set; }
         public virtual C_grupo_aplica_operacion C_grupo_aplica_operacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_grupo_productos_codigos> C_grupo_productos_codigos { get; set; }

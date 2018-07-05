@@ -14,7 +14,7 @@ namespace Backoffice0._1.Controllers.POS
     public class IMPRIMIRController : Controller
     {
         // GET: Imprimir
-        private DB_CORPORATIVA_DEVEntities1 db = new DB_CORPORATIVA_DEVEntities1();
+        private DB_CORPORATIVA_DEVEntities db = new DB_CORPORATIVA_DEVEntities();
         public ActionResult Index()
         {
             return View();
@@ -124,7 +124,7 @@ namespace Backoffice0._1.Controllers.POS
             impresion.AddDatos("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _", "5", (espacio + 12).ToString());
             impresion.AddDatos("Servicio a domicilio: 7-13-31-31" , "10", (espacio + 15).ToString());
 
-            impresion.PrintFactura("EPSON TM-T20II Receipt");
+            impresion.PrintFactura(@"\\DESKTOP-GMQF7EI\EPSON TM-T20II Receipt");
         }
     }
 }

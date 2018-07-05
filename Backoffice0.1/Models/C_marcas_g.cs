@@ -25,6 +25,7 @@ namespace Backoffice0._1.Models
     
         public int id_marca { get; set; }
         public string nombre_marca { get; set; }
+        public string nombre_matriz { get; set; }
         public Nullable<System.DateTime> fecha_registro { get; set; }
         public string logo { get; set; }
         public string sitio_web { get; set; }
@@ -33,6 +34,9 @@ namespace Backoffice0._1.Models
         public string twitter { get; set; }
         public Nullable<bool> status { get; set; }
         public string telefono { get; set; }
+        public string logo_header { get; set; }
+        public string logo_body { get; set; }
+        public string logo_footer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_marcas_direcciones> C_marcas_direcciones { get; set; }
