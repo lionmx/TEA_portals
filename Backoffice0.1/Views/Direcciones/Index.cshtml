@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Backoffice0._1.Models.C_direcciones_mx>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numero_ext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entre_calle1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entre_calle2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.d_codigo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_asenta_cpcons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_ciudad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_colonia_mx)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_colonias_mx.d_codigo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero_ext)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entre_calle1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entre_calle2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.d_codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_asenta_cpcons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_ciudad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_colonia_mx)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_colonias_mx.d_codigo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_direccion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_direccion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_direccion })
+        </td>
+    </tr>
+}
+
+</table>

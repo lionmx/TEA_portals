@@ -461,6 +461,7 @@
     <Compile Include="Controllers\C_PRODUCTO_CLASIFICACIONController.cs" />
     <Compile Include="Controllers\C_usuarios_sucursalesController.cs" />
     <Compile Include="Controllers\Delivery\DELIVERYController.cs" />
+    <Compile Include="Controllers\Direcciones\DIRECCIONESController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\CALLCENTER_CLIENTES1Controller.cs" />
     <Compile Include="Controllers\Inventario\Almacen\ALMACEN_INVENTARIOController.cs" />
     <Compile Include="Controllers\Inventario\Compras\Backorder\BACKORDERController.cs" />
@@ -1358,6 +1359,11 @@
     <Content Include="Views\Delivery\pedidosPorAsignarModalView.cshtml" />
     <Content Include="Views\Delivery\PedidosRecibidosModalView.cshtml" />
     <Content Include="Views\Delivery\repartidorModalView.cshtml" />
+    <Content Include="Views\Direcciones\Create.cshtml" />
+    <Content Include="Views\Direcciones\Delete.cshtml" />
+    <Content Include="Views\Direcciones\Details.cshtml" />
+    <Content Include="Views\Direcciones\Edit.cshtml" />
+    <Content Include="Views\Direcciones\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
