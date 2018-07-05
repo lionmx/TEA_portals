@@ -1358,6 +1358,7 @@
     <Content Include="Views\Delivery\pedidosPorAsignarModalView.cshtml" />
     <Content Include="Views\Delivery\PedidosRecibidosModalView.cshtml" />
     <Content Include="Views\Delivery\repartidorModalView.cshtml" />
+    <Content Include="Views\POS\Cocina.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1384,6 +1385,7 @@
     <Folder Include="Controllers\Servicios\CFDI\" />
     <Folder Include="Controllers\Servicios\MICROSIP\" />
     <Folder Include="Controllers\Servicios\RELOJ_CHECADOR\" />
+    <Folder Include="Views\COCINA\" />
     <Folder Include="Views\Imprimir\" />
     <Folder Include="Views\TRACKING\" />
   </ItemGroup>
