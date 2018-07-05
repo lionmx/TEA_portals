@@ -18,5 +18,7 @@ namespace Backoffice0._1.Models
         public int totalEntregados { get; set; }
 
         public int totalRepaSuc { get; set; }
+
+        public int totalRepaEntregando { get; set; }
     }
 }

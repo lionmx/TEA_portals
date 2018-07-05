@@ -18,19 +18,21 @@ namespace Backoffice0._1.Controllers.Delivery
         public ActionResult Index()
         {
 
-            List<DeliveryModel> listaPedidosSucCocina = TrackingStatus.estadoCocina();
-            List<DeliveryModel> listaPedidosSucRecibido = TrackingStatus.estadoRecibido();
-            List<DeliveryModel> listaPedidosSucPorAsignar = TrackingStatus.estadoPorAsignar();
-            List<DeliveryModel> listaPedidosSucEntregados = TrackingStatus.estadoEntregados();
-            List<DeliveryModel> listaPedidosSucEntregando = TrackingStatus.estadoEntregando();
-            List<DeliveryModel> listaRepaSuc = TrackingStatus.totalRepaSuc();
+            //List<DeliveryModel> listaPedidosSucCocina = TrackingStatus.estadoCocina();
+            //List<DeliveryModel> listaPedidosSucRecibido = TrackingStatus.estadoRecibido();
+            //List<DeliveryModel> listaPedidosSucPorAsignar = TrackingStatus.estadoPorAsignar();
+            //List<DeliveryModel> listaPedidosSucEntregados = TrackingStatus.estadoEntregados();
+            //List<DeliveryModel> listaPedidosSucEntregando = TrackingStatus.estadoEntregando();
+            //List<DeliveryModel> listaRepaSuc = TrackingStatus.totalRepaSuc();
+            
 
-            ViewBag.pedidosSucCocina = listaPedidosSucCocina;
-            ViewBag.pedidosSucRecibido = listaPedidosSucRecibido;
-            ViewBag.pedidosSucPorAsignar = listaPedidosSucPorAsignar;
-            ViewBag.pedidosSucEntregando = listaPedidosSucEntregando;
-            ViewBag.pedidosSucEntregados = listaPedidosSucEntregados;
-            ViewBag.totalRepaSuc = listaRepaSuc;
+            ViewBag.pedidosSucCocina = TrackingStatus.estadoCocina();
+            ViewBag.pedidosSucRecibido = TrackingStatus.estadoRecibido();
+            ViewBag.pedidosSucPorAsignar = TrackingStatus.estadoPorAsignar();
+            ViewBag.pedidosSucEntregando = TrackingStatus.estadoEntregando();
+            ViewBag.pedidosSucEntregados = TrackingStatus.estadoEntregados();
+            ViewBag.totalRepaSuc = TrackingStatus.totalRepaSuc();
+            ViewBag.totalRepaEntregando = TrackingStatus.totalRepaEntregando();
             C_cajas t = new C_cajas();
             t.codigo_sucursal = "SUC038";
             estatusCajaInicial(t);
@@ -67,6 +69,34 @@ namespace Backoffice0._1.Controllers.Delivery
             return View("/Views/Delivery/Index.cshtml");
         }
 
+        [HttpPost]
+        public void confirmarCambio(string sucursal, string nombre)
+        {
+            string[] arr = nombre.Split();
+            //var obj = from s in db.C_usuarios_corporativo join 
+            //          em in db.C_empleados on  s.id_empleado equals em.id_empleado
+            //          where em.nombres.Equals(arr[0].ToString()) && em.apellido_paterno.Equals(arr[1].ToString()) && em.apellido_materno.Equals(arr[2].ToString())
+            //          select s;
+
+            var obj_ = db.Database.SqlQuery<C_usuarios_corporativo>("select * from c_usuarios_corporativo s join c_empleados e on s.id_empleado = e.id_empleado where e.nombres='" + arr[0] + "' and e.apellido_paterno='" + arr[1] + "' and e.apellido_materno='" + arr[2]+"'");
+
+
+            //var usuc = from s in db.C_usuarios_sucursales
+            //           where s.id_usuario_corporativo.Equals(obj.FirstOrDefault().id_usuario_corporativo)
+            //           select s;
+
+            var usuc_ = db.C_usuarios_sucursales.SqlQuery("select * from c_usuarios_sucursales where id_usuario_corporativo ='" + obj_.FirstOrDefault().id_usuario_corporativo+ "'");
+
+         
+        foreach (var n in usuc_)
+            {
+                n.prestamo = true;
+                n.codigo_sucursal_prestamo = sucursal;
+                db.C_usuarios_sucursales.Add(n);
+              
+            }
+            db.SaveChanges();
+        }
         private void estatusCaja(C_cajas cc)
         {
             using (var context = new DB_CORPORATIVA_DEVEntities())
@@ -98,9 +128,16 @@ namespace Backoffice0._1.Controllers.Delivery
                     List<DeliveryModel> listaPedidosSucCocina = TrackingStatus.estadoCocina();
                     List<DeliveryModel> listaPedidosSucRecibido = TrackingStatus.estadoRecibido();
                     List<DeliveryModel> listaPedidosSucPorAsignar = TrackingStatus.estadoPorAsignar();
+                    List<DeliveryModel> listaRepaSuc = TrackingStatus.totalRepaSuc();
+                    List<DeliveryModel> listaPedidosSucEntregados = TrackingStatus.estadoEntregados();
+                    List<DeliveryModel> listaPedidosSucEntregando = TrackingStatus.estadoEntregando();
                     ViewBag.pedidosSucCocina = listaPedidosSucCocina;
                     ViewBag.pedidosSucRecibido = listaPedidosSucRecibido;
                     ViewBag.pedidosSucPorAsignar = listaPedidosSucPorAsignar;
+                    ViewBag.pedidosSucEntregados = listaPedidosSucEntregados;
+                    ViewBag.pedidosSucEntregando = listaPedidosSucEntregando;
+                    ViewBag.totalRepaSuc = listaRepaSuc;
+                    ViewBag.totalRepaEntregando = TrackingStatus.totalRepaEntregando();
                     context.Entry(objcaja).Reload();
                 }
             }
@@ -112,7 +149,19 @@ namespace Backoffice0._1.Controllers.Delivery
             repartidoresEnSucursal(m);
             return View();
         }
+        public ActionResult moverRepartidorModalView(C_usuarios_sucursales m)
+        { 
+            repartidoresEnSucursal(m);
+            var suc = db.C_sucursales.ToList();
+            List<string> sucList = new List<string>();
+            foreach (var n in suc)
+            {
+                sucList.Add(n.nombre);
+            }
 
+            ViewBag.sucursales = sucList;
+            return View();
+        }
         public ActionResult pedidosCocinaModalView(C_pedidos m)
         {
             pedidosEnCocinaEnSucursal(m);
@@ -145,6 +194,10 @@ namespace Backoffice0._1.Controllers.Delivery
             return View();
         }
 
+        public ActionResult moverRepartidor()
+        {
+            return View("Views/Delivery/moverRepartidorModalView.cshtml");
+        }
         private void pedidosPorAsignarEnSucursal(C_pedidos m)
         {
             List<string> detallePedidos = new List<string>();
@@ -190,7 +243,7 @@ namespace Backoffice0._1.Controllers.Delivery
                     reparNombre.Add(nombreRepartidor.FirstOrDefault());
                 }
                 ViewBag.repartidorEnSucursal = reparNombre;
-
+                Session["repartidorEnSucursal"] = ViewBag.repartidorEnSucursal;
 
             }
 

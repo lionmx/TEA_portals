@@ -1,0 +1,50 @@
+﻿<script type="text/javascript">
+
+    function confirmarCambio() {
+       
+        var q = document.getElementById('sucid').value;
+        var j = document.getElementById('repid').value;
+
+        $.ajax({
+            url: '@Url.Action("confirmarCambio", "DELIVERY")',
+            dataType: "json",
+
+            type: "POST",
+           
+            //data: { usuario: usuarioNombre, caja: caja, monto: monto, fecha: fecha, observaciones: observaciones, estado: estado },
+          
+            data: {sucursal: q, nombre: j}
+            
+                 
+                });
+            }
+    
+
+    
+</script>
+@{ if (ViewBag.repartidorEnSucursal != null)
+    {
+<table>
+    @foreach (var n in ViewBag.repartidorEnSucursal)
+    {
+        <tr>
+            <td><h2>Repartidor: </h2></td>
+            <td>@Html.DropDownList("repid", new SelectList(ViewBag.repartidorEnSucursal, "NOMBRE"))</td>
+        </tr>
+        <tr>
+            <td><h2>Sucursal:</h2></td>
+            <td>@Html.DropDownList("sucid", new SelectList(ViewBag.sucursales, "nombre"))</td>
+        </tr>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="button" class="btn-success" value="Confirmar Cambio" onclick="confirmarCambio()" /></td>
+        </tr>
+    }
+
+</table>
+
+    }
+
+}
