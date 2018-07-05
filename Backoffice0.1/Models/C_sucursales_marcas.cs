@@ -12,14 +12,13 @@ namespace Backoffice0._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class C_clientes_direccion
+    public partial class C_sucursales_marcas
     {
-        public int id_cliente_direccion { get; set; }
-        public Nullable<int> id_cliente { get; set; }
-        public string clave_cliente { get; set; }
-        public Nullable<int> id_direccion { get; set; }
+        public int id_sucursal_marcas { get; set; }
+        public string codigo_sucursal { get; set; }
+        public Nullable<int> id_marca { get; set; }
     
-        public virtual C_clientes C_clientes { get; set; }
-        public virtual C_direcciones_mx C_direcciones_mx { get; set; }
+        public virtual C_marcas_g C_marcas_g { get; set; }
+        public virtual C_sucursales C_sucursales { get; set; }
     }
 }

@@ -1009,6 +1009,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empresas_servicios_
     <Property Name="descuento" Type="numeric" Precision="18" Scale="2" />
     <Property Name="precio_unico" Type="numeric" Precision="18" Scale="2" />
     <Property Name="requiere_codigo" Type="bit" />
+    <Property Name="costo_envio" Type="bit" />
   </EntityType>
   <EntityType Name="C_grupo_productos_prods">
     <Key>
@@ -1026,6 +1027,8 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empresas_servicios_
     <Property Name="id_grupo_producto_subclase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_grupo_producto_tipo" Type="int" />
     <Property Name="nombre_subclase" Type="varchar" MaxLength="150" />
+    <Property Name="icono_web" Type="varchar" MaxLength="250" />
+    <Property Name="icono_app" Type="varchar" MaxLength="250" />
     <Property Name="activo" Type="int" />
   </EntityType>
   <EntityType Name="C_grupo_productos_sucursales">
@@ -1395,6 +1398,8 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
     <Property Name="id_tipo_entrega" Type="int" />
     <Property Name="id_bo_g" Type="int" />
     <Property Name="id_usuario_corporativo" Type="int" />
+    <Property Name="hora" Type="time" Precision="7" />
+    <Property Name="observaciones" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="C_pedidos_d">
     <Key>
@@ -1492,10 +1497,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
     <Key>
       <PropertyRef Name="id_presentacion" />
     </Key>
-    <Property Name="id_presentacion" Type="int" Nullable="false" />
-    <Property Name="nivel" Type="nchar" MaxLength="10" />
-    <Property Name="presentacion" Type="nchar" MaxLength="10" />
-    <Property Name="cantidad" Type="nchar" MaxLength="10" />
+    <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nivel" Type="varchar" MaxLength="50" />
+    <Property Name="presentacion" Type="varchar" MaxLength="150" />
+    <Property Name="cantidad" Type="numeric" Precision="18" Scale="2" />
     <Property Name="id_unidad" Type="int" />
   </EntityType>
   <EntityType Name="C_producto_clasificacion">
@@ -1531,7 +1536,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
     <Key>
       <PropertyRef Name="sku" />
     </Key>
-    <Property Name="id_producto" Type="int" Nullable="false" />
+    <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="sku" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="plu" Type="varchar" MaxLength="50" />
     <Property Name="codigo_barra" Type="varchar" MaxLength="50" />
@@ -1551,6 +1556,15 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
     <Property Name="insumos" Type="bit" />
     <Property Name="activo" Type="bit" />
     <Property Name="path_imagen" Type="varchar" MaxLength="250" />
+    <Property Name="id_clase" Type="int" />
+  </EntityType>
+  <EntityType Name="C_productos_clase">
+    <Key>
+      <PropertyRef Name="id_clase" />
+    </Key>
+    <Property Name="id_clase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_clase" Type="varchar" MaxLength="50" />
+    <Property Name="estatus" Type="bit" />
   </EntityType>
   <EntityType Name="C_productos_especialidades">
     <Key>
@@ -3567,6 +3581,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_productos_cat_C_productos_clase">
+    <End Role="C_productos_clase" Type="Self.C_productos_clase" Multiplicity="0..1" />
+    <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_productos_clase">
+        <PropertyRef Name="id_clase" />
+      </Principal>
+      <Dependent Role="C_productos_cat">
+        <PropertyRef Name="id_clase" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_productos_cat_C_productos_especialidades">
     <End Role="C_productos_especialidades" Type="Self.C_productos_especialidades" Multiplicity="0..1" />
     <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
@@ -4295,6 +4321,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
     <EntitySet Name="C_producto_presentacion" EntityType="Self.C_producto_presentacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_producto_tipo" EntityType="Self.C_producto_tipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_cat" EntityType="Self.C_productos_cat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_productos_clase" EntityType="Self.C_productos_clase" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_especialidades" EntityType="Self.C_productos_especialidades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_precios" EntityType="Self.C_productos_precios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_productos_sucursal" EntityType="Self.C_productos_sucursal" Schema="dbo" store:Type="Tables" />
@@ -4950,6 +4977,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
     </AssociationSet>
     <AssociationSet Name="FK_C_productos_cat_C_producto_clasificacion" Association="Self.FK_C_productos_cat_C_producto_clasificacion">
       <End Role="C_producto_clasificacion" EntitySet="C_producto_clasificacion" />
+      <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_productos_cat_C_productos_clase" Association="Self.FK_C_productos_cat_C_productos_clase">
+      <End Role="C_productos_clase" EntitySet="C_productos_clase" />
       <End Role="C_productos_cat" EntitySet="C_productos_cat" />
     </AssociationSet>
     <AssociationSet Name="FK_C_productos_cat_C_productos_especialidades" Association="Self.FK_C_productos_cat_C_productos_especialidades">

@@ -14,8 +14,17 @@ namespace Backoffice0._1.Models
     
     public partial class C_productos_clase
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public C_productos_clase()
+        {
+            this.C_productos_cat = new HashSet<C_productos_cat>();
+        }
+    
         public int id_clase { get; set; }
         public string nombre_clase { get; set; }
         public Nullable<bool> estatus { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_productos_cat> C_productos_cat { get; set; }
     }
 }

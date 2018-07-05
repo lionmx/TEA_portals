@@ -929,6 +929,7 @@
           <ScalarProperty Name="descuento" ColumnName="descuento" />
           <ScalarProperty Name="precio_unico" ColumnName="precio_unico" />
           <ScalarProperty Name="requiere_codigo" ColumnName="requiere_codigo" />
+          <ScalarProperty Name="costo_envio" ColumnName="costo_envio" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -948,6 +949,8 @@
           <ScalarProperty Name="id_grupo_producto_subclase" ColumnName="id_grupo_producto_subclase" />
           <ScalarProperty Name="id_grupo_producto_tipo" ColumnName="id_grupo_producto_tipo" />
           <ScalarProperty Name="nombre_subclase" ColumnName="nombre_subclase" />
+          <ScalarProperty Name="icono_web" ColumnName="icono_web" />
+          <ScalarProperty Name="icono_app" ColumnName="icono_app" />
           <ScalarProperty Name="activo" ColumnName="activo" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1320,6 +1323,8 @@
           <ScalarProperty Name="id_tipo_entrega" ColumnName="id_tipo_entrega" />
           <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
           <ScalarProperty Name="id_usuario_corporativo" ColumnName="id_usuario_corporativo" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1488,6 +1493,16 @@
           <ScalarProperty Name="insumos" ColumnName="insumos" />
           <ScalarProperty Name="activo" ColumnName="activo" />
           <ScalarProperty Name="path_imagen" ColumnName="path_imagen" />
+          <ScalarProperty Name="id_clase" ColumnName="id_clase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C_productos_clase">
+      <EntityTypeMapping TypeName="DB_CORPORATIVA_DEVModel.C_productos_clase">
+        <MappingFragment StoreEntitySet="C_productos_clase">
+          <ScalarProperty Name="id_clase" ColumnName="id_clase" />
+          <ScalarProperty Name="nombre_clase" ColumnName="nombre_clase" />
+          <ScalarProperty Name="estatus" ColumnName="estatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -44,6 +44,7 @@ namespace Backoffice0._1.Controllers
 
         public ActionResult Index()
         {
+            Session["carrito"] = compras;
             ViewBag.compras = 0;
             var sucursales = db.C_sucursales.Where(m => m.activo == true).Select(m => m.nombre).Distinct().ToList();
             ViewBag.Sucursales = new SelectList(sucursales, "", "");
@@ -76,8 +77,6 @@ namespace Backoffice0._1.Controllers
             compras = (List<CarritoItem>)Session["Carrito"];
             var item = compras.FirstOrDefault(x => x.Sku == sku && x.Index == index_carrito);
             promocion_remover = compras.Find(x => x.Id_promocion == item.Id_promocion);
-         
-           
             var id_promo = promocion_remover.Id_promocion;
             if (id_promo == 0)
             {
@@ -85,14 +84,11 @@ namespace Backoffice0._1.Controllers
             }
             else
             {
-
                 for (int i = 0; i <= compras.Count(); i++)
                 {
                     eliminar = compras.Find(x => x.Id_promocion == id_promo);
                     compras.Remove(eliminar);
                 }
-             
-
                 promocion_rem(id_promo);// revalidar_promocion
             }
            
@@ -182,7 +178,7 @@ namespace Backoffice0._1.Controllers
             var productos = from p in db.C_productos_cat
                                 join ps in db.C_productos_sucursal on p.sku equals ps.sku_producto
                                 join pp in db.C_productos_precios on p.sku equals pp.sku_producto
-                                where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal == codigo_sucursal && pp.id_zona == 1)
+                                where (p.id_producto_clasificacion == id_cla && ps.codigo_sucursal == codigo_sucursal && pp.id_zona == 1 && ps.activo==true)
                                 select new Productos { c_productos_cat = p, c_productos_sucursal = ps, c_productos_precios = pp };
             return PartialView("Ventas/_Productos", productos);
         }

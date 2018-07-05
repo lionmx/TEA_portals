@@ -6,7 +6,7 @@
                     <div class="col-md-4">
                          <div class="thumbnail">
                                <div class="image view view-first" onclick="ConsultaCombosProductos('@item.c_productos_cat.sku','@item.c_productos_cat.nombre',@item.c_productos_precios.precio_publico,@item.c_grupo_productos_prods.C_grupo_productos_d.C_grupo_productos_g.id_grupo_productos,@item.c_productos_cat.id_producto)">
-                                  <img style="width: 100%; display: block;" src="https://images-na.ssl-images-amazon.com/images/I/41ug8NKKizL.jpg" alt="image" />
+                                  <img style="width: 100%; display: block;" src="@item.c_productos_cat.C_producto_clasificacion.imagen_pequena" alt="image" />
                                </div>
                                <div>
                                   <label><strong>@Html.DisplayFor(modelItem => item.c_productos_cat.nombre)</strong></label> <br />

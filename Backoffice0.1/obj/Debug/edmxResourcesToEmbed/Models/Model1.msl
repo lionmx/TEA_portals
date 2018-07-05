@@ -1323,6 +1323,8 @@
           <ScalarProperty Name="id_tipo_entrega" ColumnName="id_tipo_entrega" />
           <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
           <ScalarProperty Name="id_usuario_corporativo" ColumnName="id_usuario_corporativo" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

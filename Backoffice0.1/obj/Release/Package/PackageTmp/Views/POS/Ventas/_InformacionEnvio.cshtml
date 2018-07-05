@@ -1,10 +1,10 @@
 ﻿
 @model List<string>
-<label>Sucursal:</label>
+<label style="color:black;font-size:14px;">Sucursal:</label>
 
-<label id="codigo_sucursal" style="display:none">@Model[0]</label>
-<label>@Model[1]</label> <input type="button" class="btn-dark" value="@Model[3]" />
+<label style="color:black;font-size:14px;display:none" id="codigo_sucursal" >@Model[0]</label>
+<label style="color:black;font-size:14px;">@Model[1]</label> <input type="button" class="btn-dark" value="@Model[3]" />
 @if (Model[2] != "")
 {
-    <label>desvio a @Model[2]</label><input type="button" class="btn-dark" value="@Model[4]" />
+    <label style="color:black;font-size:14px;">desvio a @Model[2]</label><input type="button" class="btn-dark" value="@Model[4]" />
 }

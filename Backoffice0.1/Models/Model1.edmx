@@ -1403,6 +1403,8 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
           <Property Name="id_tipo_entrega" Type="int" />
           <Property Name="id_bo_g" Type="int" />
           <Property Name="id_usuario_corporativo" Type="int" />
+          <Property Name="hora" Type="time" Precision="7" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="C_pedidos_d">
           <Key>
@@ -1500,10 +1502,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_insumo_tipo_inventa
           <Key>
             <PropertyRef Name="id_presentacion" />
           </Key>
-          <Property Name="id_presentacion" Type="int" Nullable="false" />
-          <Property Name="nivel" Type="nchar" MaxLength="10" />
-          <Property Name="presentacion" Type="nchar" MaxLength="10" />
-          <Property Name="cantidad" Type="nchar" MaxLength="10" />
+          <Property Name="id_presentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nivel" Type="varchar" MaxLength="50" />
+          <Property Name="presentacion" Type="varchar" MaxLength="150" />
+          <Property Name="cantidad" Type="numeric" Precision="18" Scale="2" />
           <Property Name="id_unidad" Type="int" />
         </EntityType>
         <EntityType Name="C_producto_clasificacion">
@@ -3584,6 +3586,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_productos_cat_C_productos_clase">
+          <End Role="C_productos_clase" Type="Self.C_productos_clase" Multiplicity="0..1" />
+          <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_productos_clase">
+              <PropertyRef Name="id_clase" />
+            </Principal>
+            <Dependent Role="C_productos_cat">
+              <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_productos_cat_C_productos_especialidades">
           <End Role="C_productos_especialidades" Type="Self.C_productos_especialidades" Multiplicity="0..1" />
           <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
@@ -4968,6 +4982,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           </AssociationSet>
           <AssociationSet Name="FK_C_productos_cat_C_producto_clasificacion" Association="Self.FK_C_productos_cat_C_producto_clasificacion">
             <End Role="C_producto_clasificacion" EntitySet="C_producto_clasificacion" />
+            <End Role="C_productos_cat" EntitySet="C_productos_cat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_productos_cat_C_productos_clase" Association="Self.FK_C_productos_cat_C_productos_clase">
+            <End Role="C_productos_clase" EntitySet="C_productos_clase" />
             <End Role="C_productos_cat" EntitySet="C_productos_cat" />
           </AssociationSet>
           <AssociationSet Name="FK_C_productos_cat_C_productos_especialidades" Association="Self.FK_C_productos_cat_C_productos_especialidades">
@@ -6518,6 +6536,8 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Property Name="id_tipo_entrega" Type="Int32" />
           <Property Name="id_bo_g" Type="Int32" />
           <Property Name="id_usuario_corporativo" Type="Int32" />
+          <Property Name="hora" Type="Time" Precision="7" />
+          <Property Name="observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="C_clientes" Relationship="Self.FK_C_pedidos_C_clientes" FromRole="C_pedidos" ToRole="C_clientes" />
           <NavigationProperty Name="C_eventos" Relationship="Self.FK_pedidos_Eventos" FromRole="C_pedidos" ToRole="C_eventos" />
           <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_pedidos" FromRole="C_pedidos" ToRole="C_grupo_productos_codigos_movs" />
@@ -6631,10 +6651,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Key>
             <PropertyRef Name="id_presentacion" />
           </Key>
-          <Property Name="id_presentacion" Type="Int32" Nullable="false" />
-          <Property Name="nivel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="presentacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_presentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="presentacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="id_unidad" Type="Int32" />
           <NavigationProperty Name="C_unidades_medida" Relationship="Self.FK_presentaciones_unidades_medida" FromRole="C_presentaciones" ToRole="C_unidades_medida" />
           <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_producto_presentacion_presentaciones" FromRole="C_presentaciones" ToRole="C_producto_presentacion" />
@@ -6702,6 +6722,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <NavigationProperty Name="C_pedidos_d" Relationship="Self.FK_C_pedidos_d_C_productos_cat" FromRole="C_productos_cat" ToRole="C_pedidos_d" />
           <NavigationProperty Name="C_producto_clasificacion" Relationship="Self.FK_C_productos_cat_C_producto_clasificacion" FromRole="C_productos_cat" ToRole="C_producto_clasificacion" />
           <NavigationProperty Name="C_producto_presentacion" Relationship="Self.FK_C_producto_presentacion_C_productos_cat" FromRole="C_productos_cat" ToRole="C_producto_presentacion" />
+          <NavigationProperty Name="C_productos_clase" Relationship="Self.FK_C_productos_cat_C_productos_clase" FromRole="C_productos_cat" ToRole="C_productos_clase" />
           <NavigationProperty Name="C_productos_especialidades" Relationship="Self.FK_C_productos_cat_C_productos_especialidades" FromRole="C_productos_cat" ToRole="C_productos_especialidades" />
           <NavigationProperty Name="C_productos_marca" Relationship="Self.FK_C_productos_marca_C_productos_cat" FromRole="C_productos_cat" ToRole="C_productos_marca" />
           <NavigationProperty Name="C_productos_sucursal" Relationship="Self.FK_C_productos_sucursal_C_productos_cat" FromRole="C_productos_cat" ToRole="C_productos_sucursal" />
@@ -6715,6 +6736,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <Property Name="id_clase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_clase" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estatus" Type="Boolean" />
+          <NavigationProperty Name="C_productos_cat" Relationship="Self.FK_C_productos_cat_C_productos_clase" FromRole="C_productos_clase" ToRole="C_productos_cat" />
         </EntityType>
         <EntityType Name="C_productos_especialidades">
           <Key>
@@ -8921,6 +8943,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_C_productos_cat_C_productos_clase">
+          <End Role="C_productos_clase" Type="Self.C_productos_clase" Multiplicity="0..1" />
+          <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="C_productos_clase">
+              <PropertyRef Name="id_clase" />
+            </Principal>
+            <Dependent Role="C_productos_cat">
+              <PropertyRef Name="id_clase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_C_productos_cat_C_productos_especialidades">
           <End Role="C_productos_especialidades" Type="Self.C_productos_especialidades" Multiplicity="0..1" />
           <End Role="C_productos_cat" Type="Self.C_productos_cat" Multiplicity="*" />
@@ -9905,6 +9939,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
           <AssociationSet Name="FK_C_producto_presentacion_C_productos_cat" Association="Self.FK_C_producto_presentacion_C_productos_cat">
             <End Role="C_productos_cat" EntitySet="C_productos_cat" />
             <End Role="C_producto_presentacion" EntitySet="C_producto_presentacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_C_productos_cat_C_productos_clase" Association="Self.FK_C_productos_cat_C_productos_clase">
+            <End Role="C_productos_clase" EntitySet="C_productos_clase" />
+            <End Role="C_productos_cat" EntitySet="C_productos_cat" />
           </AssociationSet>
           <AssociationSet Name="FK_C_productos_cat_C_productos_especialidades" Association="Self.FK_C_productos_cat_C_productos_especialidades">
             <End Role="C_productos_especialidades" EntitySet="C_productos_especialidades" />
@@ -11379,6 +11417,8 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
                 <ScalarProperty Name="id_tipo_entrega" ColumnName="id_tipo_entrega" />
                 <ScalarProperty Name="id_bo_g" ColumnName="id_bo_g" />
                 <ScalarProperty Name="id_usuario_corporativo" ColumnName="id_usuario_corporativo" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

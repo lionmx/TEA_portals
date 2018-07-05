@@ -474,11 +474,11 @@ namespace Backoffice0._1.Controllers.POS
             return id_marca;
         }
 
-        public PartialViewResult ConsultaPedidos()
+        public PartialViewResult ConsultaPedidos(string busqueda)
         {
             var fecha = DateTime.Today;
             int id_marca = (int)Session["id_marca"];
-            var pedidos = db.C_pedidos.Where(x => x.id_marca == id_marca && x.fecha_pedido>fecha).ToList();
+            var pedidos = db.C_pedidos.Where(x => x.id_marca == id_marca && x.fecha_pedido>fecha &&(x.C_clientes.nombre.Contains(busqueda) )).ToList();
             return PartialView("../PEDIDOS/_VisualizaPedidos",pedidos);
         }
      

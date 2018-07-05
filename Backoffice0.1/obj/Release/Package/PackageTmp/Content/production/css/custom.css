@@ -5398,15 +5398,15 @@ ul.notifications {
 /* Slider promociones POS*/
 #slideshow {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   padding: 0px;
 /*  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);*/
 }
 
 .img_slider{
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 }
 
 #slideshow > div {

@@ -55,6 +55,7 @@ namespace Backoffice0._1.Models
         public virtual C_producto_clasificacion C_producto_clasificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_producto_presentacion> C_producto_presentacion { get; set; }
+        public virtual C_productos_clase C_productos_clase { get; set; }
         public virtual C_productos_especialidades C_productos_especialidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_productos_marca> C_productos_marca { get; set; }

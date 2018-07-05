@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_sucursales>
-<h4>Desvios</h4>
+<h4 style="color:black;">Desvios</h4>
 @{ foreach (var item in Model.Where(x => x.status_servicio==false))
     {
         <div>
 
-            <label>@item.nombre - > @Model.Where(x => x.codigo_sucursal == item.sucursal_desvio).Select(x => x.nombre).FirstOrDefault()</label>
+            <label style="color:black;font-size:14px;">@item.nombre - > @Model.Where(x => x.codigo_sucursal == item.sucursal_desvio).Select(x => x.nombre).FirstOrDefault()</label>
            
         </div>
     }

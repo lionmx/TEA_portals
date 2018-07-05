@@ -38,6 +38,8 @@ namespace Backoffice0._1.Models
         public Nullable<int> id_tipo_entrega { get; set; }
         public Nullable<int> id_bo_g { get; set; }
         public Nullable<int> id_usuario_corporativo { get; set; }
+        public Nullable<System.TimeSpan> hora { get; set; }
+        public string observaciones { get; set; }
     
         public virtual C_clientes C_clientes { get; set; }
         public virtual C_eventos C_eventos { get; set; }

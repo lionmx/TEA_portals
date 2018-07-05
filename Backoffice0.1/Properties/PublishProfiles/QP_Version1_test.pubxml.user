@@ -19,10 +19,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/25/2018 10:09:09</publishTime>
     </File>
     <File Include="bin/Backoffice0.1.dll">
-      <publishTime>07/04/2018 10:37:24</publishTime>
+      <publishTime>07/05/2018 09:24:50</publishTime>
     </File>
     <File Include="bin/Backoffice0.1.pdb">
-      <publishTime>07/04/2018 10:37:24</publishTime>
+      <publishTime>07/05/2018 09:24:50</publishTime>
     </File>
     <File Include="bin/Elmah.dll">
       <publishTime>05/25/2018 10:09:13</publishTime>
@@ -457,7 +457,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/23/2018 17:12:43</publishTime>
     </File>
     <File Include="Content/production/css/custom.css">
-      <publishTime>07/04/2018 10:12:40</publishTime>
+      <publishTime>07/04/2018 14:33:31</publishTime>
     </File>
     <File Include="Content/production/css/datatables/css/demo_page.css">
       <publishTime>05/23/2018 17:12:43</publishTime>
@@ -1342,7 +1342,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/23/2018 17:12:44</publishTime>
     </File>
     <File Include="Models/Model1.edmx.diagram">
-      <publishTime>07/03/2018 17:36:34</publishTime>
+      <publishTime>07/05/2018 09:13:28</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
       <publishTime>05/23/2018 17:12:44</publishTime>
@@ -1477,7 +1477,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/23/2018 17:12:44</publishTime>
     </File>
     <File Include="Views/MODALS.cshtml">
-      <publishTime>07/03/2018 09:36:33</publishTime>
+      <publishTime>07/04/2018 16:45:45</publishTime>
     </File>
     <File Include="Views/Modulos/Create.cshtml">
       <publishTime>05/23/2018 17:12:44</publishTime>
@@ -1495,7 +1495,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/23/2018 17:12:44</publishTime>
     </File>
     <File Include="Views/PEDIDOS/_VisualizaPedidos.cshtml">
-      <publishTime>07/02/2018 08:34:27</publishTime>
+      <publishTime>07/04/2018 17:07:08</publishTime>
     </File>
     <File Include="Views/Perfiles/Create.cshtml">
       <publishTime>05/23/2018 17:12:44</publishTime>
@@ -1573,7 +1573,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/29/2018 12:27:36</publishTime>
     </File>
     <File Include="Views/POS/Ventas/Index.cshtml">
-      <publishTime>07/04/2018 10:29:02</publishTime>
+      <publishTime>07/05/2018 09:24:07</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_AgregaCarrito.cshtml">
       <publishTime>06/29/2018 12:27:35</publishTime>
@@ -1588,13 +1588,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>07/03/2018 13:24:12</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_BotonesEspeciales.cshtml">
-      <publishTime>07/04/2018 10:33:23</publishTime>
+      <publishTime>07/04/2018 14:18:32</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Categorias.cshtml">
-      <publishTime>07/04/2018 10:27:43</publishTime>
+      <publishTime>07/04/2018 14:02:27</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Clientes.cshtml">
-      <publishTime>07/03/2018 16:18:44</publishTime>
+      <publishTime>07/05/2018 08:30:33</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Colonias.cshtml">
       <publishTime>07/03/2018 14:16:27</publishTime>
@@ -1603,10 +1603,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/29/2018 12:27:35</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_ConfiguraCombo.cshtml">
-      <publishTime>06/29/2018 12:27:35</publishTime>
+      <publishTime>07/04/2018 16:06:31</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_DesviosSucursales.cshtml">
-      <publishTime>06/30/2018 11:29:43</publishTime>
+      <publishTime>07/05/2018 08:49:27</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_DetalleCombo.cshtml">
       <publishTime>06/29/2018 12:27:35</publishTime>
@@ -1618,7 +1618,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/29/2018 12:27:35</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_InformacionEnvio.cshtml">
-      <publishTime>06/30/2018 12:59:01</publishTime>
+      <publishTime>07/05/2018 08:58:24</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_PedidosCancelados.cshtml">
       <publishTime>07/03/2018 09:09:11</publishTime>
@@ -1627,16 +1627,16 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/29/2018 12:27:35</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Productos.cshtml">
-      <publishTime>07/04/2018 09:13:11</publishTime>
+      <publishTime>07/05/2018 09:21:10</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Pruebapromociones.cshtml">
       <publishTime>06/29/2018 12:27:35</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Subcategorias.cshtml">
-      <publishTime>07/04/2018 10:26:08</publishTime>
+      <publishTime>07/04/2018 14:02:20</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_SubClases.cshtml">
-      <publishTime>06/29/2018 12:27:35</publishTime>
+      <publishTime>07/04/2018 15:41:32</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_Sucursales.cshtml">
       <publishTime>07/03/2018 14:16:33</publishTime>
@@ -1645,7 +1645,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>06/29/2018 12:54:13</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_TrackingPedido1.cshtml">
-      <publishTime>07/03/2018 11:07:57</publishTime>
+      <publishTime>07/04/2018 18:03:42</publishTime>
     </File>
     <File Include="Views/POS/Ventas/_VisualizaCarrito.cshtml">
       <publishTime>06/29/2018 12:27:35</publishTime>
@@ -1669,7 +1669,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Views/Shared/MainLayout.cshtml">
-      <publishTime>07/01/2018 21:49:40</publishTime>
+      <publishTime>07/04/2018 16:45:18</publishTime>
     </File>
     <File Include="Views/Suc_mov_insumos/Index.cshtml">
       <publishTime>05/23/2018 17:12:44</publishTime>
@@ -1705,7 +1705,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>05/23/2018 17:12:44</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/03/2018 18:04:15</publishTime>
+      <publishTime>07/05/2018 09:24:50</publishTime>
     </File>
   </ItemGroup>
 </Project>

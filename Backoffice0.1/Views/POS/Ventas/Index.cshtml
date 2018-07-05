@@ -160,14 +160,19 @@
                                                 <i class="fa fa-phone form-control-feedback right " aria-hidden="true"></i>
                                             </div>
                                         </div>
-                                        <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label>Llevar a domicilio</label><br />
-                                        <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label>Recoger en sucursal</label>
+                                        <input class="flat iCheck-helper" name="iCheck" id="ent_dom" onclick="CambiarEntrega()" type="radio" /><label onclick="CambiarEntrega()" style="color:black;font-size:14px;">Llevar a domicilio</label><br />
+                                        <input class="iCheck-helper" name="iCheck" id="ent_suc" onclick="CambiarEntrega()" type="radio" /><label onclick="CambiarEntrega()" style="color:black;font-size:14px;">Recoger en sucursal</label>
                                         <div class="form-group" id="div_suc" style="display:none;">
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
                                                 <select class="select2_single form-control" name="select_sucursal" id="sucursales" style="padding:0px;width:249px;" tabindex="-1">
                                                     @{Html.RenderAction("ConsultaSucursales", "POS");}
                                                 </select>
+                                                Hora: <input type="time" class="form-control col-md-4 col-sm-4 col-xs-4" id="hora_entrega" placeholder="Hra">
                                             </div>
+                                            <div class="col-md-12">
+                                             
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -413,7 +418,6 @@
                                                     <th><input type="text" class="pago_cliente" id="pago_efectivo" onkeyup="calculo();" value="" autofocus /></th>
                                                     <th> <input type="button" class="btn btn-success btn-xs" value="Otro metodo" onclick="OtroPago()" /></th>
                                                 </tr>
-
                                                 <tr class="otro_pago" style="display:none">
                                                     <th><button class="btn btn-primary" data-toggle="modal" data-target=".pago_t" style="padding:2px;">Tarjeta Credito/Debito</button></th>
                                                     <th><input type="text" style="border:0px; background:white;" class="pago_cliente" id="pago_tarjeta" value="" disabled /></th>
@@ -453,7 +457,6 @@
                                                 </tr>
                                                 <tr>
                                                     <td><label style="font-size:14px;float:right;">Saldo Pendiente = </label></td>
-
                                                 </tr>
                                             </table>
                                         </div>
@@ -1261,6 +1264,7 @@
                                     $("#pago_amigo_num").val("");
 
                                     $("#pago_efectivo").val("");
+                                    sumar();
                                 }
                                 Visualizacarrito();
                                 $(".pago_cliente").val("");
@@ -1304,9 +1308,11 @@
             }
 
             var ConsultarPedidos = function () {
+                var busqueda = $("#consulta_pedido").val();
                 $.ajax({
                     url: "../PEDIDOS/ConsultaPedidos",
                     data: {
+                        busqueda: busqueda
                     },
                     success: function (result) {
                         $("#visualiza_pedidos").html(result);
@@ -1360,6 +1366,7 @@
                         swal("", "Repartidor asignado", "success");
                         var objO = document.getElementById("close_repartidor");
                         objO.click();
+                        $("#gaffette").val("");
                     }
                 });
             }
