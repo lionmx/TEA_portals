@@ -2,18 +2,30 @@
 @using System.Web.Mvc.Html;
 @foreach (var item in Model)
 {
-    <h3>Datos del pedido</h3>
-    <span> @item.id_pedido</span><span> @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm:ss")</span>
-    <br />
-    if (item.C_clientes.nombre != "")
+    <span> PEDIDO: #@item.id_pedido</span><span> FECHA: @Convert.ToDateTime(item.fecha_pedido).ToString("hh:mm:ss")</span><br />
+    if (item.id_cliente.HasValue)
     {
-        <span>Cliente: @item.C_clientes.nombre </span>
+        if (item.C_clientes.nombre != "")
+        {
+            <span>Cliente: @item.C_clientes.nombre </span>
+        }
     }
-    if (item.id_tipo_entrega == 1)
+    else
     {
-        <span>Cliente: Mostrador </span>
-    }
-    <br />
-    <span>Direccion: <br /> Lerdo, Dgo </span><br />
+            <span>Cliente: Mostrador </span>
+        }
+        if (item.id_direccion.HasValue)
+        {
+            <label>Direccion:</label> <br />
+            <label>Calle:  @item.C_direcciones_mx.calle</label><label> No. @item.C_direcciones_mx.numero_ext</label>
+            <br />
+            if (item.C_direcciones_mx.id_colonia.HasValue)
+            {
+                <label>Colonia: @item.C_direcciones_mx.C_colonias_mx.d_asenta</label><br />
+                <label>CP: @item.C_direcciones_mx.C_colonias_mx.d_codigo</label><br />
+                <label>@item.C_direcciones_mx.C_colonias_mx.d_ciudad , @item.C_direcciones_mx.C_colonias_mx.d_estado</label><br />
+            }
+
+        }
 }
 

@@ -18,6 +18,7 @@ namespace Backoffice0._1.Models
         public C_direcciones_mx()
         {
             this.C_clientes_direccion = new HashSet<C_clientes_direccion>();
+            this.C_pedidos = new HashSet<C_pedidos>();
         }
     
         public int id_direccion { get; set; }
@@ -36,5 +37,7 @@ namespace Backoffice0._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_clientes_direccion> C_clientes_direccion { get; set; }
         public virtual C_colonias_mx C_colonias_mx { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_pedidos> C_pedidos { get; set; }
     }
 }

@@ -467,12 +467,11 @@
     <Compile Include="Controllers\Inventario\Compras\Backorder\BACKORDERController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\ROLESController.cs" />
     <Compile Include="Controllers\POS\CAJAController.cs" />
-    <Compile Include="Controllers\POS\CALL_CENTER\CALL_CENTERController.cs" />
     <Compile Include="Controllers\Mercadotecnia\CAMPAÑASController.cs" />
+    <Compile Include="Controllers\POS\COCINA2Controller.cs" />
     <Compile Include="Controllers\POS\COCINAController.cs" />
     <Compile Include="Controllers\POS\COMANDA_COCINAController.cs" />
     <Compile Include="Controllers\POS\COMANDA_MESASController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\ConfiguracionController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\HomeController.cs" />
     <Compile Include="Controllers\POS\C_cajasController.cs" />
     <Compile Include="Controllers\POS\IMPRIMIRController.cs" />
@@ -485,10 +484,9 @@
     <Compile Include="Controllers\Parametros\Conf_seguridad\PERMISOS_ASIGNADOSController.cs" />
     <Compile Include="Controllers\POS\POSController.cs" />
     <Compile Include="Controllers\POS\POS_PRODUCTOSController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\UBICACIONController.cs" />
     <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOLOGINController.cs" />
-    <Compile Include="Controllers\Parametros\Conf_seguridad\USUARIOSController.cs" />
     <Compile Include="Controllers\POS\POS_PRENOMINAController.cs" />
+    <Compile Include="Controllers\POS\AUTORIZACIONESController.cs" />
     <Compile Include="Controllers\POS\SUC_MOV_INSUMOSController.cs" />
     <Compile Include="Controllers\POS\TrackingStatus.cs" />
     <Compile Include="Global.asax.cs">
@@ -519,6 +517,21 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_almacen_insumos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_autorizaciones_tipos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_autorizacion_motivos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_autorizacion_respuestas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_autorizacion_solicitudes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C_autorizacion_usuarios.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\C_bo_almacen.cs">
@@ -1067,6 +1080,9 @@
     <Compile Include="Models\C_tracking_status.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C_tracking_status_log.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\C_tracking_tiempos.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1137,6 +1153,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\modelConfigBase.cs" />
     <Compile Include="Models\modulosPermisos.cs" />
     <Compile Include="Models\ModulosUsuario.cs" />
     <Compile Include="Models\M_callcenter_clientes.cs">
@@ -1158,7 +1175,6 @@
     <Compile Include="Models\PermisosUsuario.cs" />
     <Compile Include="Models\CarritoItem.cs" />
     <Compile Include="Models\Imprimir.cs" />
-    <Compile Include="Models\modelConfigBase.cs" />
     <Compile Include="Models\permisosServicioModulo.cs" />
     <Compile Include="Models\Productos.cs" />
     <Compile Include="Models\SumaTotal.cs" />
@@ -1364,6 +1380,8 @@
     <Content Include="Views\Direcciones\Details.cshtml" />
     <Content Include="Views\Direcciones\Edit.cshtml" />
     <Content Include="Views\Direcciones\Index.cshtml" />
+    <Content Include="Views\POS\Comanda_cocina\Cocina.cshtml" />
+    <Content Include="Views\Autorizaciones\_Motivos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1379,6 +1397,7 @@
     <Folder Include="Controllers\Inventario\Insumos\" />
     <Folder Include="Controllers\Inventario\Productos\" />
     <Folder Include="Controllers\Inventario\Recetas\" />
+    <Folder Include="Controllers\NewFolder1\" />
     <Folder Include="Controllers\Parametros\Conf_empresas\EMPRESAS\" />
     <Folder Include="Controllers\Parametros\Conf_empresas\MARCAS\" />
     <Folder Include="Controllers\Parametros\Conf_empresas\SOCIEDADES\" />
@@ -1390,7 +1409,9 @@
     <Folder Include="Controllers\Servicios\CFDI\" />
     <Folder Include="Controllers\Servicios\MICROSIP\" />
     <Folder Include="Controllers\Servicios\RELOJ_CHECADOR\" />
+    <Folder Include="Views\COCINA2\" />
     <Folder Include="Views\Imprimir\" />
+    <Folder Include="Views\SOLICITUD\" />
     <Folder Include="Views\TRACKING\" />
   </ItemGroup>
   <ItemGroup>

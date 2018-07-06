@@ -40,6 +40,7 @@ namespace Backoffice0._1.Models
         public Nullable<decimal> precio_unico { get; set; }
         public Nullable<bool> requiere_codigo { get; set; }
         public Nullable<bool> costo_envio { get; set; }
+        public Nullable<bool> aplica_venta_completa { get; set; }
     
         public virtual C_grupo_aplica_operacion C_grupo_aplica_operacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1152,9 +1152,9 @@
 
                     var c_ventas_pagos_tarjetas = [];
                     c_ventas_pagos_tarjetas[0] = "";
-                    c_ventas_pagos_tarjetas[1] = [$("#pago_tarjeta_num").val()];
-                    c_ventas_pagos_tarjetas[2] = [$("#pago_teamcard_num").val()];
-                    c_ventas_pagos_tarjetas[3] = [$("#pago_amigo_num").val()];
+                    c_ventas_pagos_tarjetas[1] = $("#pago_tarjeta_num").val().toString();
+                    c_ventas_pagos_tarjetas[2] = $("#pago_teamcard_num").val().toString();
+                    c_ventas_pagos_tarjetas[3] = $("#pago_amigo_num").val().toString();
 
                     if ($("#tab_buscar").hasClass("active")) {
                         c_pedidos.id_pedido_tipo = 1
@@ -1224,7 +1224,7 @@
                             c_eventos: c_eventos,
                             c_ventas_pagos_tipo: c_ventas_pagos_tipo,
                             c_ventas_pagos_montos: c_ventas_pagos_montos,
-                            c_ventas_pagos_montos: c_ventas_pagos_tarjetas,
+                            c_ventas_pagos_tarjetas: c_ventas_pagos_tarjetas,
                             saldo: saldo_pendiente,
                         },
                         success: function (result) {

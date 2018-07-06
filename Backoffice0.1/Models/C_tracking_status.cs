@@ -18,6 +18,9 @@ namespace Backoffice0._1.Models
         public C_tracking_status()
         {
             this.C_pedidos = new HashSet<C_pedidos>();
+            this.C_tracking_status_log = new HashSet<C_tracking_status_log>();
+            this.C_tracking_status_log1 = new HashSet<C_tracking_status_log>();
+            this.C_tracking_tiempos = new HashSet<C_tracking_tiempos>();
         }
     
         public int C_id_tracking_status { get; set; }
@@ -25,5 +28,11 @@ namespace Backoffice0._1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<C_pedidos> C_pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_tracking_status_log> C_tracking_status_log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_tracking_status_log> C_tracking_status_log1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<C_tracking_tiempos> C_tracking_tiempos { get; set; }
     }
 }

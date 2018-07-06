@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Backoffice0._1.Models.C_grupo_productos_subclases>
 <button type="button" onclick="ConsultaBotonesEspeciales()" class="btn btn-success"><</button>
-<center>
+
     @foreach (var item in Model)
     {
         <img src="@Html.DisplayFor(modelItem=> item.icono_web)" style="width:75px;"onclick="ConsultaCombos(@Html.DisplayFor(modelItem => item.id_grupo_producto_subclase))" class="img_icon" />
     }
-</center>
+

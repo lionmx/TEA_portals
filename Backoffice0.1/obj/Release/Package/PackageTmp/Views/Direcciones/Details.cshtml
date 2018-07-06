@@ -1,0 +1,107 @@
+﻿@model Backoffice0._1.Models.C_direcciones_mx
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>C_direcciones_mx</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero_ext)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero_ext)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entre_calle1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entre_calle1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entre_calle2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entre_calle2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.referencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.d_codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.d_codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_asenta_cpcons)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_asenta_cpcons)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_ciudad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_colonia_mx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_colonia_mx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_colonias_mx.d_codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_colonias_mx.d_codigo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_direccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

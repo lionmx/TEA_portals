@@ -1,0 +1,9 @@
+﻿
+@model IEnumerable<Backoffice0._1.Models.C_autorizacion_motivos>
+@{ foreach (var item in Model)
+    {
+        <option style="width:500px;" value="@item.id_autorizacion_motivo">@item.nombre_autorizacion</option>
+
+    }
+}
+

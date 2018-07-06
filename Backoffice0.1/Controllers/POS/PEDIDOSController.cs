@@ -61,7 +61,7 @@ namespace Backoffice0._1.Controllers.POS
             c_pedidos.fecha_entrega = now;
             c_pedidos.fecha_pedido = now;
             c_pedidos.id_marca = id_marca; 
-            c_pedidos.id_tracking_status = 1;
+            
 
             if (Session["id_pedido"] == null)
             {id_pedido=0;}
@@ -122,7 +122,7 @@ namespace Backoffice0._1.Controllers.POS
                 }
                 if (c_pedidos.id_pedido_tipo == 3) // pedido de especial
                 {
-                    c_pedidos.id_tracking_status = 1;
+                   
                     db.C_eventos.Add(c_eventos);
                     db.SaveChanges();
                     c_pedidos.id_evento = c_eventos.id_evento;
@@ -131,7 +131,11 @@ namespace Backoffice0._1.Controllers.POS
                 {
                     c_pedidos.id_tipo_entrega = 2;
                 }
-                c_pedidos.id_direccion = c_direcciones.id_direccion;
+                if (c_pedidos.id_tipo_entrega == 1)
+                {
+                    c_pedidos.id_direccion = c_direcciones.id_direccion;
+                }
+               
                 db.C_pedidos.Add(c_pedidos);
                 db.SaveChanges();
                 
@@ -166,8 +170,17 @@ namespace Backoffice0._1.Controllers.POS
              c_ventas_g.id_usuario = id_usuario;//cambiar
              c_ventas_g.id_impuesto = null;//cambiar
              c_ventas_g.id_venta_status = 1;
-             
-             db.C_ventas_g.Add(c_ventas_g);
+            if(tipo_usuario==6)
+            {
+                c_ventas_g.id_venta_tipo = 1;
+            }
+            if (tipo_usuario == 28)
+            {
+                c_ventas_g.id_venta_tipo = 2;
+            }
+
+
+            db.C_ventas_g.Add(c_ventas_g);
              db.SaveChanges();
 
              for (int i = 0; i < c_ventas_pagos_montos.Length; i++)
@@ -183,13 +196,11 @@ namespace Backoffice0._1.Controllers.POS
                     {
                         c_ventas_pagos.tarjeta = c_ventas_pagos_tarjetas[i];
                     }
-                   
                      db.C_ventas_pagos.Add(c_ventas_pagos);
-                     db.SaveChanges();
                  }
              }
-          
-             foreach (var item in compras)
+            db.SaveChanges();
+            foreach (var item in compras)
              {
                 if (item.Cuenta == true && item.Sku != "" && item.Pagado == false)
                  {
@@ -214,16 +225,13 @@ namespace Backoffice0._1.Controllers.POS
                // IMPRIMIRController ctl = new IMPRIMIRController();
                //  ctl.Imprimir(id_pedido,c_ventas_g.id_venta_g);
             }
-
             if (saldo == 0)
             {
                 Session["Carrito"] = null;
                 Session["id_pedido"] = null;
                 id_pedido = 0;
             }
-            
             return Content("True");
-            
         }
 
         public bool RegistroMovimiento(int id_pedido)
@@ -424,7 +432,7 @@ namespace Backoffice0._1.Controllers.POS
             base.Dispose(disposing);
         }
 
-        public void CambiarStatus(int status, int id_pedido)
+        public void CambiarStatus(int status_actual,int status, int id_pedido)
         {
             C_pedidos c_pedidos = db.C_pedidos.Find(id_pedido);
             c_pedidos.id_tracking_status = status;
@@ -454,7 +462,33 @@ namespace Backoffice0._1.Controllers.POS
                
             }
             db.SaveChanges();
-           
+            DateTime date1 = DateTime.Now;
+            var ultimo_cambio = db.C_tracking_status_log.Where(x => x.id_tracking_status2 == status_actual && x.id_pedido == id_pedido);
+            C_tracking_status_log c_tracking_status_log = new C_tracking_status_log();
+            c_tracking_status_log.fecha = DateTime.Now;
+            c_tracking_status_log.id_pedido = id_pedido;
+            c_tracking_status_log.id_tracking_status1 = status_actual;
+            c_tracking_status_log.id_tracking_status2 = status;
+            c_tracking_status_log.id_usuario = (int)Session["LoggedId"];
+            if (ultimo_cambio.Count() > 0)
+            {
+                foreach(var item in ultimo_cambio)
+                {
+                    
+                    DateTime date2 = Convert.ToDateTime(item.fecha);
+                    var tiempo_pedido = date1.Subtract(date2);
+                    c_tracking_status_log.seg_recorridos = tiempo_pedido.Seconds;
+                }
+               
+            }
+            else
+            {
+                DateTime date2 = Convert.ToDateTime(c_pedidos.fecha_pedido);
+                var tiempo_pedido = date1.Subtract(date2);
+                c_tracking_status_log.seg_recorridos = tiempo_pedido.Seconds;
+            }
+            db.C_tracking_status_log.Add(c_tracking_status_log);
+            db.SaveChanges();
         }
         public int ConsultarMarcaPrincipal(string codigo_sucursal)
         {

@@ -27,6 +27,11 @@ namespace Backoffice0._1.Models
     
         public virtual DbSet<C_almacen_insumos> C_almacen_insumos { get; set; }
         public virtual DbSet<C_almacenes> C_almacenes { get; set; }
+        public virtual DbSet<C_autorizacion_motivos> C_autorizacion_motivos { get; set; }
+        public virtual DbSet<C_autorizacion_respuestas> C_autorizacion_respuestas { get; set; }
+        public virtual DbSet<C_autorizacion_solicitudes> C_autorizacion_solicitudes { get; set; }
+        public virtual DbSet<C_autorizacion_usuarios> C_autorizacion_usuarios { get; set; }
+        public virtual DbSet<C_autorizaciones_tipos> C_autorizaciones_tipos { get; set; }
         public virtual DbSet<C_bo_almacen> C_bo_almacen { get; set; }
         public virtual DbSet<C_bo_calculo> C_bo_calculo { get; set; }
         public virtual DbSet<C_bo_calculo_pe> C_bo_calculo_pe { get; set; }
@@ -178,6 +183,7 @@ namespace Backoffice0._1.Models
         public virtual DbSet<C_tipo_entrega> C_tipo_entrega { get; set; }
         public virtual DbSet<C_tipos_codigo> C_tipos_codigo { get; set; }
         public virtual DbSet<C_tracking_status> C_tracking_status { get; set; }
+        public virtual DbSet<C_tracking_status_log> C_tracking_status_log { get; set; }
         public virtual DbSet<C_tracking_tiempos> C_tracking_tiempos { get; set; }
         public virtual DbSet<C_unidades> C_unidades { get; set; }
         public virtual DbSet<C_unidades_medida> C_unidades_medida { get; set; }

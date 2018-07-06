@@ -20,5 +20,7 @@ namespace Backoffice0._1.Models
         public Nullable<decimal> segundos { get; set; }
         public string Notas { get; set; }
         public Nullable<bool> estatus { get; set; }
+    
+        public virtual C_tracking_status C_tracking_status { get; set; }
     }
 }

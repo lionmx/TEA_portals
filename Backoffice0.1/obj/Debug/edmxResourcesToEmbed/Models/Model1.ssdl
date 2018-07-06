@@ -19,6 +19,54 @@
     <Property Name="id_almacen" Type="int" Nullable="false" />
     <Property Name="id_empresa" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="C_autorizacion_motivos">
+    <Key>
+      <PropertyRef Name="id_autorizacion_motivo" />
+    </Key>
+    <Property Name="id_autorizacion_motivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_autorizacion" Type="varchar" MaxLength="150" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="id_autorizacion_tipo" Type="int" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_respuestas">
+    <Key>
+      <PropertyRef Name="id_autorizacion_respuesta" />
+    </Key>
+    <Property Name="id_autorizacion_respuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="respuesta" Type="nchar" MaxLength="10" />
+    <Property Name="activo" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_solicitudes">
+    <Key>
+      <PropertyRef Name="id_autorizacion_solicitud" />
+    </Key>
+    <Property Name="id_autorizacion_solicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="codigo_sucursal" Type="varchar" MaxLength="50" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="id_tipo_solicitud" Type="int" />
+    <Property Name="id_motivo_solicitud" Type="int" />
+    <Property Name="id_pedido" Type="int" />
+    <Property Name="id_usuario_autorizador" Type="int" />
+    <Property Name="fecha_autorizacion" Type="datetime" />
+    <Property Name="id_respuesta" Type="int" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_usuarios">
+    <Key>
+      <PropertyRef Name="id_autoriza_usuarios" />
+    </Key>
+    <Property Name="id_autoriza_usuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="id_autoriza_tipo" Type="int" />
+  </EntityType>
+  <EntityType Name="C_autorizaciones_tipos">
+    <Key>
+      <PropertyRef Name="id_autorizacion_tipo" />
+    </Key>
+    <Property Name="id_autorizacion_tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
   <EntityType Name="C_bo_almacen">
     <Key>
       <PropertyRef Name="id_bo_almacen" />
@@ -1010,6 +1058,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_empresas_servicios_
     <Property Name="precio_unico" Type="numeric" Precision="18" Scale="2" />
     <Property Name="requiere_codigo" Type="bit" />
     <Property Name="costo_envio" Type="bit" />
+    <Property Name="aplica_venta_completa" Type="bit" />
   </EntityType>
   <EntityType Name="C_grupo_productos_prods">
     <Key>
@@ -2283,6 +2332,19 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.C_sval_tipo_servicios
     <Property Name="C_id_tracking_status" Type="int" Nullable="false" />
     <Property Name="nombre_tracking_status" Type="nchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="C_tracking_status_log">
+    <Key>
+      <PropertyRef Name="id_tracking_status_log" />
+    </Key>
+    <Property Name="id_tracking_status_log" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_pedido" Type="int" />
+    <Property Name="id_tracking_status1" Type="int" />
+    <Property Name="id_tracking_status2" Type="int" />
+    <Property Name="fecha" Type="datetime" />
+    <Property Name="seg_recorridos" Type="int" />
+    <Property Name="id_usuario" Type="int" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
   <EntityType Name="C_tracking_tiempos">
     <Key>
       <PropertyRef Name="C_Id_tracking_tiempos" />
@@ -2786,6 +2848,90 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       </Principal>
       <Dependent Role="C_almacen_insumos">
         <PropertyRef Name="id_zona_almacenaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_motivos_C_autorizaciones_tipos">
+    <End Role="C_autorizaciones_tipos" Type="Self.C_autorizaciones_tipos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_motivos" Type="Self.C_autorizacion_motivos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizaciones_tipos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_motivos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizacion_motivos">
+    <End Role="C_autorizacion_motivos" Type="Self.C_autorizacion_motivos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizacion_motivos">
+        <PropertyRef Name="id_autorizacion_motivo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_motivo_solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizacion_respuestas">
+    <End Role="C_autorizacion_respuestas" Type="Self.C_autorizacion_respuestas" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizacion_respuestas">
+        <PropertyRef Name="id_autorizacion_respuesta" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_respuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizaciones_tipos">
+    <End Role="C_autorizaciones_tipos" Type="Self.C_autorizaciones_tipos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizaciones_tipos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_tipo_solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_usuarios_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_autorizacion_usuarios" Type="Self.C_autorizacion_usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_usuarios">
+        <PropertyRef Name="id_usuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3449,6 +3595,18 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_pedidos_C_direcciones_mx">
+    <End Role="C_direcciones_mx" Type="Self.C_direcciones_mx" Multiplicity="0..1" />
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_direcciones_mx">
+        <PropertyRef Name="id_direccion" />
+      </Principal>
+      <Dependent Role="C_pedidos">
+        <PropertyRef Name="id_direccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_pedidos_C_marcas_g">
     <End Role="C_marcas_g" Type="Self.C_marcas_g" Multiplicity="0..1" />
     <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
@@ -3893,6 +4051,66 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_tracking_status_log_C_pedidos">
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_pedidos">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_status_log_C_tracking_status">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_tracking_status1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_status_log_C_tracking_status1">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_tracking_status2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_status_log_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_tiempos_C_tracking_status">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_tiempos" Type="Self.C_tracking_tiempos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_tiempos">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_usuarios_corporativo_C_usuarios_roles">
     <End Role="C_usuarios_roles" Type="Self.C_usuarios_roles" Multiplicity="0..1" />
     <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="*" />
@@ -4208,6 +4426,11 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
   <EntityContainer Name="DB_CORPORATIVA_DEVModelStoreContainer">
     <EntitySet Name="C_almacen_insumos" EntityType="Self.C_almacen_insumos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_autorizacion_motivos" EntityType="Self.C_autorizacion_motivos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_autorizacion_respuestas" EntityType="Self.C_autorizacion_respuestas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_autorizacion_solicitudes" EntityType="Self.C_autorizacion_solicitudes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_autorizacion_usuarios" EntityType="Self.C_autorizacion_usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_autorizaciones_tipos" EntityType="Self.C_autorizaciones_tipos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_bo_calculo" EntityType="Self.C_bo_calculo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_bo_calculo_pe" EntityType="Self.C_bo_calculo_pe" Schema="dbo" store:Type="Tables" />
@@ -4359,6 +4582,7 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
     <EntitySet Name="C_tipo_entrega" EntityType="Self.C_tipo_entrega" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_tipos_codigo" EntityType="Self.C_tipos_codigo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_tracking_status" EntityType="Self.C_tracking_status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="C_tracking_status_log" EntityType="Self.C_tracking_status_log" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_tracking_tiempos" EntityType="Self.C_tracking_tiempos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_unidades" EntityType="Self.C_unidades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="C_unidades_medida" EntityType="Self.C_unidades_medida" Schema="dbo" store:Type="Tables" />
@@ -4715,6 +4939,34 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       <End Role="C_zonas_almacenaje" EntitySet="C_zonas_almacenaje" />
       <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_motivos_C_autorizaciones_tipos" Association="Self.FK_C_autorizacion_motivos_C_autorizaciones_tipos">
+      <End Role="C_autorizaciones_tipos" EntitySet="C_autorizaciones_tipos" />
+      <End Role="C_autorizacion_motivos" EntitySet="C_autorizacion_motivos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizacion_motivos" Association="Self.FK_C_autorizacion_solicitudes_C_autorizacion_motivos">
+      <End Role="C_autorizacion_motivos" EntitySet="C_autorizacion_motivos" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizacion_respuestas" Association="Self.FK_C_autorizacion_solicitudes_C_autorizacion_respuestas">
+      <End Role="C_autorizacion_respuestas" EntitySet="C_autorizacion_respuestas" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizaciones_tipos" Association="Self.FK_C_autorizacion_solicitudes_C_autorizaciones_tipos">
+      <End Role="C_autorizaciones_tipos" EntitySet="C_autorizaciones_tipos" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_sucursales" Association="Self.FK_C_autorizacion_solicitudes_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_usuarios_corporativo" Association="Self.FK_C_autorizacion_solicitudes_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_usuarios_C_usuarios_corporativo" Association="Self.FK_C_autorizacion_usuarios_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_autorizacion_usuarios" EntitySet="C_autorizacion_usuarios" />
+    </AssociationSet>
     <AssociationSet Name="FK_C_bo_calculo_C_bo_g" Association="Self.FK_C_bo_calculo_C_bo_g">
       <End Role="C_bo_g" EntitySet="C_bo_g" />
       <End Role="C_bo_calculo" EntitySet="C_bo_calculo" />
@@ -4935,6 +5187,10 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
       <End Role="C_clientes" EntitySet="C_clientes" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_pedidos_C_direcciones_mx" Association="Self.FK_C_pedidos_C_direcciones_mx">
+      <End Role="C_direcciones_mx" EntitySet="C_direcciones_mx" />
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
+    </AssociationSet>
     <AssociationSet Name="FK_C_pedidos_C_marcas_g" Association="Self.FK_C_pedidos_C_marcas_g">
       <End Role="C_marcas_g" EntitySet="C_marcas_g" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
@@ -5082,6 +5338,26 @@ advertencia 6002: La tabla o vista 'DB_CORPORATIVA_DEV.dbo.P_opciones' no tiene 
     <AssociationSet Name="FK_C_sucursales_marcas_C_sucursales" Association="Self.FK_C_sucursales_marcas_C_sucursales">
       <End Role="C_sucursales" EntitySet="C_sucursales" />
       <End Role="C_sucursales_marcas" EntitySet="C_sucursales_marcas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_pedidos" Association="Self.FK_C_tracking_status_log_C_pedidos">
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_tracking_status" Association="Self.FK_C_tracking_status_log_C_tracking_status">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_tracking_status1" Association="Self.FK_C_tracking_status_log_C_tracking_status1">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_usuarios_corporativo" Association="Self.FK_C_tracking_status_log_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_tiempos_C_tracking_status" Association="Self.FK_C_tracking_tiempos_C_tracking_status">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_tiempos" EntitySet="C_tracking_tiempos" />
     </AssociationSet>
     <AssociationSet Name="FK_C_usuarios_corporativo_C_usuarios_roles" Association="Self.FK_C_usuarios_corporativo_C_usuarios_roles">
       <End Role="C_usuarios_roles" EntitySet="C_usuarios_roles" />

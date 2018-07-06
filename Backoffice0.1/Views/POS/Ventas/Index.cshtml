@@ -15,8 +15,6 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Datos cliente </h2>
-                          
-
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -170,55 +168,47 @@
                                                 Hora: <input type="time" class="form-control col-md-4 col-sm-4 col-xs-4" id="hora_entrega" placeholder="Hra">
                                             </div>
                                             <div class="col-md-12">
-                                             
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                         <div class="col-md-12" id="desvios">
                             @{Html.RenderAction("ConsultaDesvioSucursales", "POS");}
                         </div>
                     </div>
                 </div>
-                @{ if (Session["EstadoActual"] != null)
-                    {
-                        <script>
-                            function a() {
-                                alert("Caja Abierta!");
-                            }
-                        </script>
-                    }
-                }
-
+                <!--  @{ if (Session["EstadoActual"] != null)
+                      {
+                          <script>
+                              function a() {
+                                  alert("Caja Abierta!");
+                              }
+                          </script>
+                      }
+                  }-->
                 <div class="col-md-6 col-sm-6" id="Caja">
-
                     <div class="x_panel">
 
-                        <div class="x_content col-md-12 col-sm-12" style="height:300px;overflow:scroll;">
-                            <div class="row" id="productos">
+                        <div class="x_content col-md-12 col-sm-12" style="overflow:scroll;min-height:320px;max-height:320px;">
+                            <div  id="productos">
                                 @{Html.RenderAction("FiltraProductos", "POS", new { id_cla = 1 });}
                             </div>
-
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div id="categorias" style="text-align:right;">
+                                @{Html.RenderAction("ConsultaCategorias", "POS");}
+                            </div>
+                        </div>
+                        <div id="paquetes" style="text-align:right;">
+                            @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
                         </div>
                         <div id="slideshow" class="col-md-4 col-sm-4">
                             @{Html.RenderAction("ConsultaBanners", "POS");}
                         </div>
-
-                        <div class="col-md-6 col-sm-6">
-                            <div id="categorias" class="col-md-12 col-sm-12" style="padding-top:10px;float:right;min-height:150px;">
-                                @{Html.RenderAction("ConsultaCategorias", "POS");}
-                            </div>
-                            <div id="paquetes" class="col-md-12 col-sm-12">
-                                @{Html.RenderAction("ConsultaBotonesEspeciales", "POS");}
-                            </div>
-                        </div>
                     </div>
                     <br />
-
                 </div>
 
                 <div class="col-md-4 col-sm-4" id="Carrito">
@@ -229,12 +219,12 @@
                             <h2>Cuenta a pagar <small></small></h2>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="x_content" id="carritodiv">
+                        <div class="x_content" id="carritodiv" style="min-height:300px;">
                             @{Html.RenderAction("VisualizaCarrito1", "POS");}
                         </div>
                         <div>
-                            <table class="table table-striped ">
-                                <tbody>
+                            <table style="text-align:right;" class="table table-striped ">
+                                <tbody >
                                     <tr class="costo_servicio">
                                         <td class=" ">Servicio a domicilio</td>
                                         <td class=" ">$<label id="costo_entrega">@ViewBag.costo_entrega</label></td>
@@ -244,17 +234,16 @@
                                         <td class=" "><h2>$ <label class="total"></label> </h2></td>
                                     </tr>
                                 </tbody>
-
                             </table>
 
-                            <label>Registrar codigo</label>
-                            <input type="text" id="cupon" /><a class="btn btn-success" onclick="ValidarCupon()">Validar</a><br />
+                            <label>Registrar codigo</label><br />
+                            <input type="text" id="cupon" /><a class="btn btn-success" onclick="ValidarCupon()">Validar</a>
+                            <a class="btn btn-primary" onclick="ConsultaMotivosAutorizacion(1)" data-toggle="modal" data-target=".solicita_cortesia">Solicitar</a><br />
                             <button type="button" class="btn btn-danger" onclick="Visualizacarrito()" style="width: 100%;" data-toggle="modal" data-target=".pago">Pagar</button>
+
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div class="col-md-12 col-xs-12">
                 <button class="btn btn-success btn-lg flotante right" id="btn_pc" style="margin-bottom:70px;" data-toggle="modal" data-target=".pedidos_cancelados">P.C</button>
@@ -265,6 +254,7 @@
             <div class="col-md-12 col-xs-12">
                 <button class="btn btn-success btn-lg flotante right" id="btn_pe" data-toggle="modal" data-target=".pedidos_especiales">P.E</button>
                 <button class="btn btn-success btn-lg flotante right" id="btn_apertura_caja" style="margin-bottom:70px;display:none" data-toggle="modal" data-target=".apertura_caja"></button>
+                <button class="btn btn-success btn-lg flotante right" id="btn_cancelacion" style="margin-bottom:70px;display:none" data-toggle="modal" data-target=".cancelacion"></button>
             </div>
         </div>
         <div class="modal fade configura_combo" tabindex="-1" role="dialog" aria-hidden="true">
@@ -359,8 +349,80 @@
                 </div>
             </div>
         </div>
-
         <!--Modal Consulta pedidos-->
+
+
+        <!-- Modal Info_pedido-->
+        <div class="modal fade info_pedido" id="m_info_pedido" role="dialog" aria-hidden="true" style="z-index:1055;">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_repartidor" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Detalle Pedido</h4>
+                    </div>
+                    <div class="detalle_pedido">
+                    </div>
+                    <table class="table table-striped ">
+                        <tbody class="detalle_pedido_productos"></tbody>
+                    </table>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal Consulta pedidos-->
+        <!-- Modal Solicita Cortesia-->
+        <div class="modal fade solicita_cortesia" id="m_solicita_cortesia" role="dialog" aria-hidden="true" style="z-index:1055;">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" id="close_solicita_cortesia" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Solicita autorizacion</h4>
+                    </div>
+                    <div class="modal-body" id="solicita_cortesia">
+                        <h4>Productos a solicitar</h4>
+                        <div id="visualiza_cortesia">
+
+                        </div>
+                        <table style="text-align:right;" class="table table-striped ">
+                            <tbody>
+                                <tr>
+                                    <td class=" ">Subtotal</td>
+                                    <td class=" ">$<label id="subtotal_cortesia"></label></td>
+                                </tr>
+                                <tr>
+                                    <td class=" ">Descuento</td>
+                                    <td class=" "><label id="descuento_cortesia"></label> %</td>
+                                </tr>
+                                <tr>
+                                    <td class=" "><h4>Total</h4></td>
+                                    <td class=" "><h4>$ <label id="total_cortesia"></label> </h4></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <label>Motivo de cortesia:</label>
+                            <select class=" form-control" id="select_motivo_solicitud" style="padding:0px;width:249px;" tabindex="-1"></select>
+                        </div>
+                        <div>
+                            <label>Observaciones:</label>
+                            <textarea class="form-control" placeholder="Observaciones" id="observaciones_cortesia" autofocus></textarea><br>
+                        </div>
+                        <div>
+                            <center>
+                                <button type="button" onclick="SolicitaCortesia()" class="btn btn-primary right">Solicitar Cortesia</button>
+                            </center>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        <!--Modal Solicita Cortesia-->
 
         <!-- Modal pago -->
         <div class="modal fade pago" tabindex="-1" role="dialog" aria-hidden="true" id="modal_pago">
@@ -488,7 +550,7 @@
                             </div>
                         </div><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="RegistrarPedido()">Registrar pago</button>
+                            <button type="button" class="btn btn-primary" onclick="RegistrarPedido(1)">Registrar pago</button>
                             <button type="button" class="btn btn-success left" onclick="DividirCuenta()">Dividir cuenta</button>
                         </div>
                     </div>
@@ -541,6 +603,7 @@
                     document.getElementById("desvios").style.display = "None";
                     $(".img_slider").attr("style", "width:400px;");
                     document.getElementById("slideshow").style = "width:400px;";
+                    $(".item_producto").attr("style", "width:16%;");
 
                     $(".costo_servicio").css("display", "none");
                     $("#ent_suc").prop("checked", true);
@@ -570,7 +633,7 @@
 
                 }
             });
-           
+
                 $(".select2_single").select2({
                     placeholder: "Seleccionar",
                     allowClear: true
@@ -1075,7 +1138,7 @@
 
 //Registro del pedido
 
-            var RegistrarPedido = function () {
+            var RegistrarPedido = function (id_status_tracking) {
                 if (Validar()) {
                     c_pedidos = {};
                     c_ventas_g = {};
@@ -1130,6 +1193,7 @@
                     });
 
                     c_pedidos.pago_recibido = pagado;
+                    c_pedidos.id_tracking_status = id_status_tracking;
                     c_pedidos.id_pedido_status = 1;
 
                     c_telefonos.telefono = $("#telefono").val();
@@ -1152,11 +1216,11 @@
 
                     var c_ventas_pagos_tarjetas = [];
                     c_ventas_pagos_tarjetas[0] = "";
-                    c_ventas_pagos_tarjetas[1] = [$("#pago_tarjeta_num").val()];
-                    c_ventas_pagos_tarjetas[2] = [$("#pago_teamcard_num").val()];
-                    c_ventas_pagos_tarjetas[3] = [$("#pago_amigo_num").val()];
+                    c_ventas_pagos_tarjetas[1] = $("#pago_tarjeta_num").val().toString();
+                    c_ventas_pagos_tarjetas[2] = $("#pago_teamcard_num").val().toString();
+                    c_ventas_pagos_tarjetas[3] = $("#pago_amigo_num").val().toString();
 
-                    if ($("#tab_buscar").hasClass("active")) {
+                    if ($("#tab_buscar").hasClass("active") && @ViewBag.IdRol == 28 ) {
                         c_pedidos.id_pedido_tipo = 1
                         var totalInp = $('[name="clientes"]');
                         totalInp.each(function () {
@@ -1224,7 +1288,7 @@
                             c_eventos: c_eventos,
                             c_ventas_pagos_tipo: c_ventas_pagos_tipo,
                             c_ventas_pagos_montos: c_ventas_pagos_montos,
-                            c_ventas_pagos_montos: c_ventas_pagos_tarjetas,
+                            c_ventas_pagos_tarjetas: c_ventas_pagos_tarjetas,
                             saldo: saldo_pendiente,
                         },
                         success: function (result) {
@@ -1341,6 +1405,7 @@
                 $.ajax({
                     url: "../PEDIDOS/CambiarStatus",
                     data: {
+                        status_actual: status_actual,
                         status: status,
                         id_pedido: id_pedido
                     },
@@ -1461,7 +1526,7 @@
                 var valido = true;
 
                     if (@ViewBag.IdRol == 6) {
-
+                        id_direccion == "";
                     }
                     if (@ViewBag.IdRol == 28) {
                         if ($("#tab_buscar").hasClass("active")) {
@@ -1578,8 +1643,48 @@
                     $("#tab_esp").addClass("active");
                 }
             }
-        </script>
 
+            function ConsultaMotivosAutorizacion(id_tipo_autorizacion) {
+                $.ajax({
+                    url: "../AUTORIZACIONES/ConsultaMotivos",
+                    data: {
+                        id_tipo_solicitud: 1
+                    },
+                    success: function (result) {
+                        $("#select_motivo_solicitud").html(result);
+                    }
+                });
+                $.ajax({
+                    url: "../POS/VisualizaCarrito",
+                    success: function (result) {
+                        $("#visualiza_cortesia").html(result);
+                    }
+                });
+                $.ajax({
+                    url: "../AUTORIZACIONES/ConsultaCortesiaDescuento",
+                    success: function (result) {
+                        var subtotal = parseFloat($(".total").text()).toFixed(2)
+                        $("#subtotal_cortesia").text(subtotal);
+                        $("#descuento_cortesia").text(result);
+                        var total = (subtotal - (subtotal * (result / 100)));
+                        $("#total_cortesia").text(total.toFixed(2));
+                        $("#total_cuenta").text(total);
+                        $("#cambio").text("0");
+                    }
+                });
+               
+            }
+            function SolicitaCortesia() 
+            {
+                if ($("#observaciones_cortesia").val() != "") {
+                    RegistrarPedido(10);
+                }
+                else {
+                    swal("","Ingrese las observaciones","warning")
+                }
+               
+            }
+        </script>
     }
     else
     {

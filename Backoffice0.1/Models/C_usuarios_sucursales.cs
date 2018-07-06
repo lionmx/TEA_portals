@@ -23,7 +23,5 @@ namespace Backoffice0._1.Models
         public virtual C_sucursales C_sucursales { get; set; }
         public virtual C_usuarios_corporativo C_usuarios_corporativo { get; set; }
         public virtual C_usuarios_corporativo C_usuarios_corporativo1 { get; set; }
-
-        public virtual CS_usuarios CS_usuarios { get; set; }
     }
 }

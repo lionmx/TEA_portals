@@ -3,11 +3,12 @@
 <head>
 
     <script type="text/javascript">
-
+      
         var estado = Session["EstadoCaja"];
         function prueba() {
+         
             $.ajax({
-                url: '/CAJA/validarCambio',
+                url: '/DELIVERY/moverRepartidor',
                 type: "POST",
                 contentType: 'application/json',
                 //data: { usuario: q },
@@ -351,6 +352,7 @@
         </div><br>
     </div>
 </div>
+
 <!-- /Modal detalle_pedido -->
 <!-- Modal detalle_salida_almacen -->
 <div class="modal fade detalle_salida_almacen" tabindex="-1" role="dialog" aria-hidden="true">
@@ -2670,10 +2672,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC002" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC002" });}
                 </div>
             </div><br>
         </div>
@@ -2685,10 +2687,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC003" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC003" });}
                 </div>
             </div><br>
         </div>
@@ -2700,10 +2702,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC004" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC004" });}
                 </div>
             </div><br>
         </div>
@@ -2715,10 +2717,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC005" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC005" });}
                 </div>
             </div><br>
         </div>
@@ -2730,10 +2732,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC006" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC006" });}
                 </div>
             </div><br>
         </div>
@@ -2745,10 +2747,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC007" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC007" });}
                 </div>
             </div><br>
         </div>
@@ -2760,10 +2762,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC008" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC008" });}
                 </div>
             </div><br>
         </div>
@@ -2775,10 +2777,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC009" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC009" });}
                 </div>
             </div><br>
         </div>
@@ -2790,10 +2792,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC010" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC010" });}
                 </div>
             </div><br>
         </div>
@@ -2805,10 +2807,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC011" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC011" });}
                 </div>
             </div><br>
         </div>
@@ -2820,10 +2822,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC012" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC012" });}
                 </div>
             </div><br>
         </div>
@@ -2834,11 +2836,12 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
+
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC013" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC013" });}
                 </div>
             </div><br>
         </div>
@@ -2850,10 +2853,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC014" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC014" });}
                 </div>
             </div><br>
         </div>
@@ -2865,10 +2868,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC015" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC015" });}
                 </div>
             </div><br>
         </div>
@@ -2880,10 +2883,10 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos en cocina</h4>
+                    <h4 class="modal-title" id="myModalLabel">Repartidores en sucursal<</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosCocinaModalView", "DELIVERY", new { codigo_sucursal = "SUC016" });}
+                    @{Html.RenderAction("repartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC016" });}
                 </div>
             </div><br>
         </div>
@@ -3026,8 +3029,8 @@
                         <div class="col-md-12 col-xs-12 col-lg-12">
                             <button type="button" class="btn btn-primary right">Mover repartidor</button>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -3399,7 +3402,7 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h2 class="modal-title" id="myModalLabel">Repartidores en sucursal</h2>
+                    <h1 class="modal-title" id="myModalLabel">Repartidores en sucursal</h1>
                 </div>
                 <div class="modal-body" style="height:300px">
                     <div class="col-md-6 col-xs-6 col-lg-6" style="width:215px">
@@ -3408,7 +3411,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-12 col-xs-12 col-lg-12">
-                            <button type="button" class="btn btn-primary right">Mover repartidor</button>
+                            <button type="button" class="btn btn-primary right" data-toggle="modal" data-target=".delivery_moverrepartidor" data-dismiss="modal">Mover repartidor</button>
                         </div>
                     </div>
 
@@ -3432,7 +3435,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="col-md-12 col-xs-12 col-lg-12">
-                            <button type="button" class="btn btn-primary right">Mover repartidor</button>
+                            <button type="button" class="btn btn-primary right" data-toggle="modal" data-target=".cambio_turno" data-dismiss="modal">Mover repartidor</button>
                         </div>
                     </div>
 
@@ -3441,7 +3444,7 @@
         </div>
     </div>
     <!--Modal delivery_pedidos_porasignar-->
-    <div class="modal fade delivery_pedido_porasignarAlamos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade delivery_pedido_porasignarAbastos" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -3452,6 +3455,562 @@
                 </div>
                 <div class="modal-body" style="height:300px">
                     @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC001" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarAlameda" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC002" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarCentenario" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC003" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarConstitucion" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC004" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarFiladelfia" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC005" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarFuentes" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC006" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarGomez" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC007" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarHamburgo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC008" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarHipermart" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC009" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarIndependencia" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC010" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarJuarez" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC011" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarJumbo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC012" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarLerdo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC013" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMadero" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC014" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMatamoros" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC015" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarTriana" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC016" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarVerde" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC017" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMiguelAleman" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC018" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarRebollo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC019" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarSolOte" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC020" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarCallcenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC021" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMieleras" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC022" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarSenderos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC023" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarSantaFe" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC024" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarSanAntonio" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC025" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarChapala" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC026" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarFeriaGomez" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC027" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC028" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarDivisionNorte" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC029" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarSaltillo400" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC030" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMuzquiz" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC031" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarArrallanes" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC032" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarMorelos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC033" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarCepeda" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC034" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+   
+    <div class="modal fade delivery_pedido_porasignarMonaco" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC035" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarColon" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC036" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarDorado" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC037" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_porasignarAlamos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos por Asignar</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosPorAsignarModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
                 </div>
             </div><br>
         </div>
@@ -3487,7 +4046,7 @@
             </div><br>
         </div>
     </div>
-    <div class="modal fade delivery_pedido_entregandoCenternario" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade delivery_pedido_entregandoCentenario" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -4054,7 +4613,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC001" });}
                 </div>
             </div><br>
         </div>
@@ -4069,7 +4628,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC002" });}
                 </div>
             </div><br>
         </div>
@@ -4084,7 +4643,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC003" });}
                 </div>
             </div><br>
         </div>
@@ -4099,7 +4658,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC004" });}
                 </div>
             </div><br>
         </div>
@@ -4114,7 +4673,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC005" });}
                 </div>
             </div><br>
         </div>
@@ -4129,7 +4688,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC006" });}
                 </div>
             </div><br>
         </div>
@@ -4144,7 +4703,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC007" });}
                 </div>
             </div><br>
         </div>
@@ -4159,7 +4718,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC008" });}
                 </div>
             </div><br>
         </div>
@@ -4174,7 +4733,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC009" });}
                 </div>
             </div><br>
         </div>
@@ -4189,7 +4748,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC010" });}
                 </div>
             </div><br>
         </div>
@@ -4204,7 +4763,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC011" });}
                 </div>
             </div><br>
         </div>
@@ -4219,7 +4778,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC012" });}
                 </div>
             </div><br>
         </div>
@@ -4234,7 +4793,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC013" });}
                 </div>
             </div><br>
         </div>
@@ -4249,7 +4808,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC014" });}
                 </div>
             </div><br>
         </div>
@@ -4264,7 +4823,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC015" });}
                 </div>
             </div><br>
         </div>
@@ -4279,7 +4838,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC016" });}
                 </div>
             </div><br>
         </div>
@@ -4294,7 +4853,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC017" });}
                 </div>
             </div><br>
         </div>
@@ -4309,7 +4868,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC018" });}
                 </div>
             </div><br>
         </div>
@@ -4324,7 +4883,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC019" });}
                 </div>
             </div><br>
         </div>
@@ -4339,7 +4898,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC020" });}
                 </div>
             </div><br>
         </div>
@@ -4354,7 +4913,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC021" });}
                 </div>
             </div><br>
         </div>
@@ -4369,7 +4928,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC022" });}
                 </div>
             </div><br>
         </div>
@@ -4384,7 +4943,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC023" });}
                 </div>
             </div><br>
         </div>
@@ -4399,7 +4958,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC024" });}
                 </div>
             </div><br>
         </div>
@@ -4414,7 +4973,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC025" });}
                 </div>
             </div><br>
         </div>
@@ -4429,7 +4988,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC026" });}
                 </div>
             </div><br>
         </div>
@@ -4444,7 +5003,7 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC027" });}
                 </div>
             </div><br>
         </div>
@@ -4459,12 +5018,148 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC028" });}
                 </div>
             </div><br>
         </div>
     </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade delivery_pedido_entregadosDivisionNorte" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC029" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+
+    <div class="modal fade delivery_pedido_entregadosSaltillo400" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC030" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosMuzquiz" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC031" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosArrallanes" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC032" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosMorelos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC033" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosCepeda" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC034" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosMonaco" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC035" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosColon" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC036" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosDorado" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                </div>
+                <div class="modal-body" style="height:300px">
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC037" });}
+                </div>
+            </div><br>
+        </div>
+    </div>
+    <div class="modal fade delivery_pedido_entregadosAlamos" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -4479,7 +5174,7 @@
             </div><br>
         </div>
     </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade delivery_pedido_entregadosPlaza" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -4489,97 +5184,27 @@
                     <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC039" });}
                 </div>
             </div><br>
         </div>
     </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--Modal mover usuario-->
+    <div class="modal fade delivery_moverrepartidor" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
+                    <h4 class="modal-title" id="myModalLabel">Mover repartidor</h4>
                 </div>
                 <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
-                </div>
-            </div><br>
-        </div>
-    </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
-                </div>
-                <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
-                </div>
-            </div><br>
-        </div>
-    </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
-                </div>
-                <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
-                </div>
-            </div><br>
-        </div>
-    </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
-                </div>
-                <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
-                </div>
-            </div><br>
-        </div>
-    </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
-                </div>
-                <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
-                </div>
-            </div><br>
-        </div>
-    </div>
-    <div class="modal fade delivery_pedido_entregadosPlazaArmas" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Pedidos Entregados</h4>
-                </div>
-                <div class="modal-body" style="height:300px">
-                    @{Html.RenderAction("pedidosEntregadosModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @{Html.RenderAction("moverRepartidorModalView", "DELIVERY", new { codigo_sucursal = "SUC038" });}
+                    @if (ViewBag.repartidorEnSucursal != null)
+    {
+                @Html.DropDownList("repid", new SelectList(ViewBag.repartidorEnSucursal, "ID_EMPLEADO", "NOMBRES"))
+}
                 </div>
             </div><br>
         </div>

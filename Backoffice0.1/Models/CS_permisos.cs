@@ -14,7 +14,6 @@ namespace Backoffice0._1.Models
     
     public partial class CS_permisos
     {
-        public Boolean ACTIVO { get; set; }
         public string ID_PERMISO { get; set; }
         public string DESCRIPCION { get; set; }
     }

@@ -780,6 +780,12 @@ C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLib.dll
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.ResolveComReference.cache
 C:\Users\Desarollo2\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csprojResolveAssemblyReference.cache
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.MediaPlayer.dll
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPDXMLib.dll
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLauncher.dll
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLib.dll
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.ResolveComReference.cache
+C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CoreCompileInputs.cache
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll.config
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\Backoffice0.1.pdb
@@ -859,12 +865,6 @@ C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.We
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Webpages.Deployment.resources.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\bin\es\System.Web.Helpers.resources.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.MediaPlayer.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPDXMLib.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLauncher.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Interop.WMPLib.dll
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.ResolveComReference.cache
-C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CoreCompileInputs.cache
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice01.csproj.CopyComplete
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.dll
 C:\Users\Desarrollo1\source\repos\backoffice_lion\Backoffice0.1\obj\Debug\Backoffice0.1.pdb

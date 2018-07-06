@@ -47,7 +47,7 @@
                 <br />
             </div>
             <div class="col-md-2 col-sm-2">
-                <a> Ver <i class="fa fa-search"></i></a><br />
+                <a onclick="ConsultarPedido(@item.id_pedido)" data-toggle="modal" data-target=".info_pedido" > Ver <i class="fa fa-search"></i></a><br />
                 @if (item.id_tipo_entrega == 1)
                 {
                     <span>A domicilio</span>
@@ -61,18 +61,22 @@
                 @if (ViewBag.status == 1)
                 {
                     <a class="btn btn-success btn-sm" onclick="CambiarStatus(1,2,@item.id_pedido)"> Enviar a cocina</a><br />
+                    <a class="btn btn-danger btn-sm" onclick="CancelarPedido()"> Cancelar</a><br />
                 }
                 @if (ViewBag.status == 2 && item.id_tipo_entrega == 1)
                 {
                     <a class="btn btn-success btn-sm" onclick="CambiarStatus(2,3,@item.id_pedido)"> Terminado </a><br />
+                    <a class="btn btn-danger btn-sm" onclick="CancelarPedido()"> Cancelar</a><br />
                 }
                 @if (ViewBag.status == 2 && item.id_tipo_entrega == 2)
                 {
                     <a class="btn btn-success btn-sm" onclick="CambiarStatus(2,5,@item.id_pedido)"> Terminado </a><br />
+                    <a class="btn btn-danger btn-sm" onclick="CancelarPedido()"> Cancelar</a><br />
                 }
                 @if (ViewBag.status == 3)
                 {
                     <a class="btn btn-info btn-sm" onclick="ConsultarPedido(@item.id_pedido)" data-toggle="modal" data-target=".asigna_repartidor"> Asignar<br /> repartidor</a><br />
+                    <a class="btn btn-danger btn-sm" onclick="CancelarPedido()"> Cancelar</a><br />
                 }
                 @if (ViewBag.status == 4)
                 {

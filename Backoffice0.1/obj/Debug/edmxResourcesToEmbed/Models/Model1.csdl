@@ -22,6 +22,65 @@
     <Property Name="id_empresa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_almacen_insumos" Relationship="Self.FK_C_almacen_insumos_C_almacenes" FromRole="C_almacenes" ToRole="C_almacen_insumos" />
   </EntityType>
+  <EntityType Name="C_autorizacion_motivos">
+    <Key>
+      <PropertyRef Name="id_autorizacion_motivo" />
+    </Key>
+    <Property Name="id_autorizacion_motivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_autorizacion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="id_autorizacion_tipo" Type="Int32" />
+    <NavigationProperty Name="C_autorizaciones_tipos" Relationship="Self.FK_C_autorizacion_motivos_C_autorizaciones_tipos" FromRole="C_autorizacion_motivos" ToRole="C_autorizaciones_tipos" />
+    <NavigationProperty Name="C_autorizacion_solicitudes" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizacion_motivos" FromRole="C_autorizacion_motivos" ToRole="C_autorizacion_solicitudes" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_respuestas">
+    <Key>
+      <PropertyRef Name="id_autorizacion_respuesta" />
+    </Key>
+    <Property Name="id_autorizacion_respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="respuesta" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="activo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="C_autorizacion_solicitudes" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizacion_respuestas" FromRole="C_autorizacion_respuestas" ToRole="C_autorizacion_solicitudes" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_solicitudes">
+    <Key>
+      <PropertyRef Name="id_autorizacion_solicitud" />
+    </Key>
+    <Property Name="id_autorizacion_solicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo_sucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="id_tipo_solicitud" Type="Int32" />
+    <Property Name="id_motivo_solicitud" Type="Int32" />
+    <Property Name="id_pedido" Type="Int32" />
+    <Property Name="id_usuario_autorizador" Type="Int32" />
+    <Property Name="fecha_autorizacion" Type="DateTime" Precision="3" />
+    <Property Name="id_respuesta" Type="Int32" />
+    <NavigationProperty Name="C_autorizacion_motivos" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizacion_motivos" FromRole="C_autorizacion_solicitudes" ToRole="C_autorizacion_motivos" />
+    <NavigationProperty Name="C_autorizacion_respuestas" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizacion_respuestas" FromRole="C_autorizacion_solicitudes" ToRole="C_autorizacion_respuestas" />
+    <NavigationProperty Name="C_autorizaciones_tipos" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizaciones_tipos" FromRole="C_autorizacion_solicitudes" ToRole="C_autorizaciones_tipos" />
+    <NavigationProperty Name="C_sucursales" Relationship="Self.FK_C_autorizacion_solicitudes_C_sucursales" FromRole="C_autorizacion_solicitudes" ToRole="C_sucursales" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="Self.FK_C_autorizacion_solicitudes_C_usuarios_corporativo" FromRole="C_autorizacion_solicitudes" ToRole="C_usuarios_corporativo" />
+  </EntityType>
+  <EntityType Name="C_autorizacion_usuarios">
+    <Key>
+      <PropertyRef Name="id_autoriza_usuarios" />
+    </Key>
+    <Property Name="id_autoriza_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="id_autoriza_tipo" Type="Int32" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="Self.FK_C_autorizacion_usuarios_C_usuarios_corporativo" FromRole="C_autorizacion_usuarios" ToRole="C_usuarios_corporativo" />
+  </EntityType>
+  <EntityType Name="C_autorizaciones_tipos">
+    <Key>
+      <PropertyRef Name="id_autorizacion_tipo" />
+    </Key>
+    <Property Name="id_autorizacion_tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_autorizacion_motivos" Relationship="Self.FK_C_autorizacion_motivos_C_autorizaciones_tipos" FromRole="C_autorizaciones_tipos" ToRole="C_autorizacion_motivos" />
+    <NavigationProperty Name="C_autorizacion_solicitudes" Relationship="Self.FK_C_autorizacion_solicitudes_C_autorizaciones_tipos" FromRole="C_autorizaciones_tipos" ToRole="C_autorizacion_solicitudes" />
+  </EntityType>
   <EntityType Name="C_bo_almacen">
     <Key>
       <PropertyRef Name="id_bo_almacen" />
@@ -658,6 +717,7 @@
     <Property Name="id_colonia_mx" Type="Int32" />
     <NavigationProperty Name="C_clientes_direccion" Relationship="Self.FK_C_clientes_direccion_C_direcciones_mx" FromRole="C_direcciones_mx" ToRole="C_clientes_direccion" />
     <NavigationProperty Name="C_colonias_mx" Relationship="Self.FK_C_direcciones_mx_C_colonias_mx" FromRole="C_direcciones_mx" ToRole="C_colonias_mx" />
+    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_C_direcciones_mx" FromRole="C_direcciones_mx" ToRole="C_pedidos" />
   </EntityType>
   <EntityType Name="C_empleados">
     <Key>
@@ -929,6 +989,7 @@
     <Property Name="precio_unico" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="requiere_codigo" Type="Boolean" />
     <Property Name="costo_envio" Type="Boolean" />
+    <Property Name="aplica_venta_completa" Type="Boolean" />
     <NavigationProperty Name="C_grupo_aplica_operacion" Relationship="Self.FK_C_grupo_productos_g_C_grupo_aplica_operacion" FromRole="C_grupo_productos_g" ToRole="C_grupo_aplica_operacion" />
     <NavigationProperty Name="C_grupo_productos_codigos" Relationship="Self.FK_C_grupo_productos_codigos_C_grupo_productos_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_codigos" />
     <NavigationProperty Name="C_grupo_productos_d" Relationship="Self.FK_C_grupo_productos_d_C_grupo_productos_g" FromRole="C_grupo_productos_g" ToRole="C_grupo_productos_d" />
@@ -1341,6 +1402,7 @@
     <Property Name="hora" Type="Time" Precision="7" />
     <Property Name="observaciones" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="C_clientes" Relationship="Self.FK_C_pedidos_C_clientes" FromRole="C_pedidos" ToRole="C_clientes" />
+    <NavigationProperty Name="C_direcciones_mx" Relationship="Self.FK_C_pedidos_C_direcciones_mx" FromRole="C_pedidos" ToRole="C_direcciones_mx" />
     <NavigationProperty Name="C_eventos" Relationship="Self.FK_pedidos_Eventos" FromRole="C_pedidos" ToRole="C_eventos" />
     <NavigationProperty Name="C_grupo_productos_codigos_movs" Relationship="Self.FK_C_grupo_productos_codigos_movs_C_pedidos" FromRole="C_pedidos" ToRole="C_grupo_productos_codigos_movs" />
     <NavigationProperty Name="C_marcas_g" Relationship="Self.FK_C_pedidos_C_marcas_g" FromRole="C_pedidos" ToRole="C_marcas_g" />
@@ -1349,6 +1411,7 @@
     <NavigationProperty Name="C_usuarios_corporativo" Relationship="Self.FK_C_pedidos_C_usuarios_corporativo" FromRole="C_pedidos" ToRole="C_usuarios_corporativo" />
     <NavigationProperty Name="C_pedidos_d" Relationship="Self.FK_C_pedidos_d_C_pedidos" FromRole="C_pedidos" ToRole="C_pedidos_d" />
     <NavigationProperty Name="C_pedidos_empleados" Relationship="Self.FK_C_pedidos_empleados_C_pedidos" FromRole="C_pedidos" ToRole="C_pedidos_empleados" />
+    <NavigationProperty Name="C_tracking_status_log" Relationship="Self.FK_C_tracking_status_log_C_pedidos" FromRole="C_pedidos" ToRole="C_tracking_status_log" />
     <NavigationProperty Name="C_pedidos_tipo" Relationship="Self.FK_pedidos_pedidos_tipo" FromRole="C_pedidos" ToRole="C_pedidos_tipo" />
     <NavigationProperty Name="C_tracking_status" Relationship="Self.FK_pedidos_tracking_status" FromRole="C_pedidos" ToRole="C_tracking_status" />
   </EntityType>
@@ -1708,6 +1771,7 @@
     <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="activo" Type="Boolean" />
     <Property Name="sucursal_desvio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="C_autorizacion_solicitudes" Relationship="Self.FK_C_autorizacion_solicitudes_C_sucursales" FromRole="C_sucursales" ToRole="C_autorizacion_solicitudes" />
     <NavigationProperty Name="C_cajas_sucursales" Relationship="Self.FK_C_cajas_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_cajas_sucursales" />
     <NavigationProperty Name="C_empresas_sucursales" Relationship="Self.FK_C_empresas_sucursales_C_sucursales" FromRole="C_sucursales" ToRole="C_empresas_sucursales" />
     <NavigationProperty Name="C_equipo_sucursal" Relationship="Self.FK_C_equipo_sucursal_C_sucursales" FromRole="C_sucursales" ToRole="C_equipo_sucursal" />
@@ -2001,6 +2065,26 @@
     <Property Name="C_id_tracking_status" Type="Int32" Nullable="false" />
     <Property Name="nombre_tracking_status" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_pedidos_tracking_status" FromRole="C_tracking_status" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_tracking_status_log" Relationship="Self.FK_C_tracking_status_log_C_tracking_status" FromRole="C_tracking_status" ToRole="C_tracking_status_log" />
+    <NavigationProperty Name="C_tracking_status_log1" Relationship="Self.FK_C_tracking_status_log_C_tracking_status1" FromRole="C_tracking_status" ToRole="C_tracking_status_log" />
+    <NavigationProperty Name="C_tracking_tiempos" Relationship="Self.FK_C_tracking_tiempos_C_tracking_status" FromRole="C_tracking_status" ToRole="C_tracking_tiempos" />
+  </EntityType>
+  <EntityType Name="C_tracking_status_log">
+    <Key>
+      <PropertyRef Name="id_tracking_status_log" />
+    </Key>
+    <Property Name="id_tracking_status_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_pedido" Type="Int32" />
+    <Property Name="id_tracking_status1" Type="Int32" />
+    <Property Name="id_tracking_status2" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="seg_recorridos" Type="Int32" />
+    <Property Name="id_usuario" Type="Int32" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_tracking_status_log_C_pedidos" FromRole="C_tracking_status_log" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_tracking_status" Relationship="Self.FK_C_tracking_status_log_C_tracking_status" FromRole="C_tracking_status_log" ToRole="C_tracking_status" />
+    <NavigationProperty Name="C_tracking_status1" Relationship="Self.FK_C_tracking_status_log_C_tracking_status1" FromRole="C_tracking_status_log" ToRole="C_tracking_status" />
+    <NavigationProperty Name="C_usuarios_corporativo" Relationship="Self.FK_C_tracking_status_log_C_usuarios_corporativo" FromRole="C_tracking_status_log" ToRole="C_usuarios_corporativo" />
   </EntityType>
   <EntityType Name="C_tracking_tiempos">
     <Key>
@@ -2012,6 +2096,7 @@
     <Property Name="segundos" Type="Decimal" Precision="2" Scale="0" />
     <Property Name="Notas" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="estatus" Type="Boolean" />
+    <NavigationProperty Name="C_tracking_status" Relationship="Self.FK_C_tracking_tiempos_C_tracking_status" FromRole="C_tracking_tiempos" ToRole="C_tracking_status" />
   </EntityType>
   <EntityType Name="C_unidades">
     <Key>
@@ -2042,7 +2127,10 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="fecha_alta" Type="DateTime" Precision="3" />
     <Property Name="Activo" Type="Boolean" />
+    <NavigationProperty Name="C_autorizacion_solicitudes" Relationship="Self.FK_C_autorizacion_solicitudes_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_autorizacion_solicitudes" />
+    <NavigationProperty Name="C_autorizacion_usuarios" Relationship="Self.FK_C_autorizacion_usuarios_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_autorizacion_usuarios" />
     <NavigationProperty Name="C_pedidos" Relationship="Self.FK_C_pedidos_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_pedidos" />
+    <NavigationProperty Name="C_tracking_status_log" Relationship="Self.FK_C_tracking_status_log_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_tracking_status_log" />
     <NavigationProperty Name="C_usuarios_roles" Relationship="Self.FK_C_usuarios_corporativo_C_usuarios_roles" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_roles" />
     <NavigationProperty Name="C_usuarios_tipo" Relationship="Self.FK_C_usuarios_corporativo_C_usuarios_tipo" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_tipo" />
     <NavigationProperty Name="C_usuarios_servicios" Relationship="Self.FK_C_usuarios_servicios_C_usuarios_corporativo" FromRole="C_usuarios_corporativo" ToRole="C_usuarios_servicios" />
@@ -2761,6 +2849,90 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_autorizacion_motivos_C_autorizaciones_tipos">
+    <End Role="C_autorizaciones_tipos" Type="Self.C_autorizaciones_tipos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_motivos" Type="Self.C_autorizacion_motivos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizaciones_tipos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_motivos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizacion_motivos">
+    <End Role="C_autorizacion_motivos" Type="Self.C_autorizacion_motivos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizacion_motivos">
+        <PropertyRef Name="id_autorizacion_motivo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_motivo_solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizacion_respuestas">
+    <End Role="C_autorizacion_respuestas" Type="Self.C_autorizacion_respuestas" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizacion_respuestas">
+        <PropertyRef Name="id_autorizacion_respuesta" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_respuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_autorizaciones_tipos">
+    <End Role="C_autorizaciones_tipos" Type="Self.C_autorizaciones_tipos" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_autorizaciones_tipos">
+        <PropertyRef Name="id_autorizacion_tipo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_tipo_solicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_sucursales">
+    <End Role="C_sucursales" Type="Self.C_sucursales" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_sucursales">
+        <PropertyRef Name="codigo_sucursal" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="codigo_sucursal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_solicitudes_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_autorizacion_solicitudes" Type="Self.C_autorizacion_solicitudes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_solicitudes">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_autorizacion_usuarios_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_autorizacion_usuarios" Type="Self.C_autorizacion_usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_autorizacion_usuarios">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_bo_calculo_C_bo_g">
     <End Role="C_bo_g" Type="Self.C_bo_g" Multiplicity="0..1" />
     <End Role="C_bo_calculo" Type="Self.C_bo_calculo" Multiplicity="*" />
@@ -3010,6 +3182,18 @@
       </Principal>
       <Dependent Role="C_sucursales_direcciones">
         <PropertyRef Name="id_colonia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_pedidos_C_direcciones_mx">
+    <End Role="C_direcciones_mx" Type="Self.C_direcciones_mx" Multiplicity="0..1" />
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_direcciones_mx">
+        <PropertyRef Name="id_direccion" />
+      </Principal>
+      <Dependent Role="C_pedidos">
+        <PropertyRef Name="id_direccion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3649,6 +3833,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_tracking_status_log_C_pedidos">
+    <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_pedidos">
+        <PropertyRef Name="id_pedido" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_pedidos_pedidos_tipo">
     <End Role="C_pedidos_tipo" Type="Self.C_pedidos_tipo" Multiplicity="0..1" />
     <End Role="C_pedidos" Type="Self.C_pedidos" Multiplicity="*" />
@@ -4033,6 +4229,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_C_tracking_status_log_C_tracking_status">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_tracking_status1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_status_log_C_tracking_status1">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_tracking_status2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_tiempos_C_tracking_status">
+    <End Role="C_tracking_status" Type="Self.C_tracking_status" Multiplicity="0..1" />
+    <End Role="C_tracking_tiempos" Type="Self.C_tracking_tiempos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_tracking_status">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Principal>
+      <Dependent Role="C_tracking_tiempos">
+        <PropertyRef Name="C_id_tracking_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_tracking_status_log_C_usuarios_corporativo">
+    <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="0..1" />
+    <End Role="C_tracking_status_log" Type="Self.C_tracking_status_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="C_usuarios_corporativo">
+        <PropertyRef Name="id_usuario_corporativo" />
+      </Principal>
+      <Dependent Role="C_tracking_status_log">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_C_usuarios_corporativo_C_usuarios_roles">
     <End Role="C_usuarios_roles" Type="Self.C_usuarios_roles" Multiplicity="0..1" />
     <End Role="C_usuarios_corporativo" Type="Self.C_usuarios_corporativo" Multiplicity="*" />
@@ -4192,6 +4436,11 @@
   <EntityContainer Name="DB_CORPORATIVA_DEVEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C_almacen_insumos" EntityType="Self.C_almacen_insumos" />
     <EntitySet Name="C_almacenes" EntityType="Self.C_almacenes" />
+    <EntitySet Name="C_autorizacion_motivos" EntityType="Self.C_autorizacion_motivos" />
+    <EntitySet Name="C_autorizacion_respuestas" EntityType="Self.C_autorizacion_respuestas" />
+    <EntitySet Name="C_autorizacion_solicitudes" EntityType="Self.C_autorizacion_solicitudes" />
+    <EntitySet Name="C_autorizacion_usuarios" EntityType="Self.C_autorizacion_usuarios" />
+    <EntitySet Name="C_autorizaciones_tipos" EntityType="Self.C_autorizaciones_tipos" />
     <EntitySet Name="C_bo_almacen" EntityType="Self.C_bo_almacen" />
     <EntitySet Name="C_bo_calculo" EntityType="Self.C_bo_calculo" />
     <EntitySet Name="C_bo_calculo_pe" EntityType="Self.C_bo_calculo_pe" />
@@ -4343,6 +4592,7 @@
     <EntitySet Name="C_tipo_entrega" EntityType="Self.C_tipo_entrega" />
     <EntitySet Name="C_tipos_codigo" EntityType="Self.C_tipos_codigo" />
     <EntitySet Name="C_tracking_status" EntityType="Self.C_tracking_status" />
+    <EntitySet Name="C_tracking_status_log" EntityType="Self.C_tracking_status_log" />
     <EntitySet Name="C_tracking_tiempos" EntityType="Self.C_tracking_tiempos" />
     <EntitySet Name="C_unidades" EntityType="Self.C_unidades" />
     <EntitySet Name="C_unidades_medida" EntityType="Self.C_unidades_medida" />
@@ -4413,6 +4663,34 @@
     <AssociationSet Name="FK_C_almacen_insumos_C_Zonas_almacenaje" Association="Self.FK_C_almacen_insumos_C_Zonas_almacenaje">
       <End Role="C_zonas_almacenaje" EntitySet="C_zonas_almacenaje" />
       <End Role="C_almacen_insumos" EntitySet="C_almacen_insumos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_motivos_C_autorizaciones_tipos" Association="Self.FK_C_autorizacion_motivos_C_autorizaciones_tipos">
+      <End Role="C_autorizaciones_tipos" EntitySet="C_autorizaciones_tipos" />
+      <End Role="C_autorizacion_motivos" EntitySet="C_autorizacion_motivos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizacion_motivos" Association="Self.FK_C_autorizacion_solicitudes_C_autorizacion_motivos">
+      <End Role="C_autorizacion_motivos" EntitySet="C_autorizacion_motivos" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizacion_respuestas" Association="Self.FK_C_autorizacion_solicitudes_C_autorizacion_respuestas">
+      <End Role="C_autorizacion_respuestas" EntitySet="C_autorizacion_respuestas" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_autorizaciones_tipos" Association="Self.FK_C_autorizacion_solicitudes_C_autorizaciones_tipos">
+      <End Role="C_autorizaciones_tipos" EntitySet="C_autorizaciones_tipos" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_sucursales" Association="Self.FK_C_autorizacion_solicitudes_C_sucursales">
+      <End Role="C_sucursales" EntitySet="C_sucursales" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_solicitudes_C_usuarios_corporativo" Association="Self.FK_C_autorizacion_solicitudes_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_autorizacion_solicitudes" EntitySet="C_autorizacion_solicitudes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_autorizacion_usuarios_C_usuarios_corporativo" Association="Self.FK_C_autorizacion_usuarios_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_autorizacion_usuarios" EntitySet="C_autorizacion_usuarios" />
     </AssociationSet>
     <AssociationSet Name="FK_C_bo_calculo_C_bo_g" Association="Self.FK_C_bo_calculo_C_bo_g">
       <End Role="C_bo_g" EntitySet="C_bo_g" />
@@ -4497,6 +4775,10 @@
     <AssociationSet Name="FK_C_sucursales_direcciones_C_colonias_mx" Association="Self.FK_C_sucursales_direcciones_C_colonias_mx">
       <End Role="C_colonias_mx" EntitySet="C_colonias_mx" />
       <End Role="C_sucursales_direcciones" EntitySet="C_sucursales_direcciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_pedidos_C_direcciones_mx" Association="Self.FK_C_pedidos_C_direcciones_mx">
+      <End Role="C_direcciones_mx" EntitySet="C_direcciones_mx" />
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
     </AssociationSet>
     <AssociationSet Name="FK_C_empleados_C_empleados_niveles" Association="Self.FK_C_empleados_C_empleados_niveles">
       <End Role="C_empleados_niveles" EntitySet="C_empleados_niveles" />
@@ -4710,6 +4992,10 @@
       <End Role="C_pedidos" EntitySet="C_pedidos" />
       <End Role="C_pedidos_empleados" EntitySet="C_pedidos_empleados" />
     </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_pedidos" Association="Self.FK_C_tracking_status_log_C_pedidos">
+      <End Role="C_pedidos" EntitySet="C_pedidos" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
     <AssociationSet Name="FK_pedidos_pedidos_tipo" Association="Self.FK_pedidos_pedidos_tipo">
       <End Role="C_pedidos_tipo" EntitySet="C_pedidos_tipo" />
       <End Role="C_pedidos" EntitySet="C_pedidos" />
@@ -4837,6 +5123,22 @@
     <AssociationSet Name="FK_C_ventas_g_C_sucursales1" Association="Self.FK_C_ventas_g_C_sucursales1">
       <End Role="C_sucursales" EntitySet="C_sucursales" />
       <End Role="C_ventas_g" EntitySet="C_ventas_g" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_tracking_status" Association="Self.FK_C_tracking_status_log_C_tracking_status">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_tracking_status1" Association="Self.FK_C_tracking_status_log_C_tracking_status1">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_tiempos_C_tracking_status" Association="Self.FK_C_tracking_tiempos_C_tracking_status">
+      <End Role="C_tracking_status" EntitySet="C_tracking_status" />
+      <End Role="C_tracking_tiempos" EntitySet="C_tracking_tiempos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_tracking_status_log_C_usuarios_corporativo" Association="Self.FK_C_tracking_status_log_C_usuarios_corporativo">
+      <End Role="C_usuarios_corporativo" EntitySet="C_usuarios_corporativo" />
+      <End Role="C_tracking_status_log" EntitySet="C_tracking_status_log" />
     </AssociationSet>
     <AssociationSet Name="FK_C_usuarios_corporativo_C_usuarios_roles" Association="Self.FK_C_usuarios_corporativo_C_usuarios_roles">
       <End Role="C_usuarios_roles" EntitySet="C_usuarios_roles" />
